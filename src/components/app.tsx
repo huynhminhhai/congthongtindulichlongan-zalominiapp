@@ -19,6 +19,7 @@ import { ProtectedRoute } from "services/permission";
 import ForbiddenPage from "pages/403";
 import { EventsDetailPage, EventsPage } from "pages/events";
 import { DestinationDetailPage, DestinationPage } from "pages/destination";
+import { DestinationTravelDetailPage, DestinationTravelPage } from "pages/destination-travel";
 
 const MyApp = () => {
 
@@ -74,6 +75,10 @@ const MyApp = () => {
                 {/* DESTINATION */}
                 <Route path="/destination" element={<DestinationPage></DestinationPage>}></Route>
                 <Route path="/destination-detail" element={<DestinationDetailPage></DestinationDetailPage>}></Route>
+
+                {/* DESTINATION TRAVEL */}
+                <Route path="/destination-travel" element={<DestinationTravelPage></DestinationTravelPage>}></Route>
+                <Route path="/destination-travel-detail" element={<DestinationTravelDetailPage></DestinationTravelDetailPage>}></Route>
 
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>
