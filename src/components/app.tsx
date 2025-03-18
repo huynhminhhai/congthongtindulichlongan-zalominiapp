@@ -7,7 +7,6 @@ import ScrollToTop from "./scroll-top";
 import { NewsDetailPage, NewsPage } from "pages/news";
 import { HomePage } from "pages/homepage";
 import { FeedbackAddPage, FeedbackDetailPage, FeedbackHistoryPage, FeedbackPage } from "pages/feedback";
-import { FeedbackAnswerPage, FeedbackManagementPage, HouseHoldOverviewPage, ManagementPage, MeetingAddtPage, MeetingManagementPage, MeetingUpdatePage, NewsAddPage, NewsManagementPage, NewsUpdatePage, ReportFinanceCreatePage, ReportFinanceManagementPage, ReportFinanceUpdatePage, ResidentCraftManagementPage, ResidentialManagementPage, ResidentManagementPage, ResidentOverviewPage, ResidentProfileAddPage, ResidentProfileUpdatePage, SurveyAddPage, SurveyChartsPage, SurveyManagementPage, SurveyUpdatePage, TaskAddPage, TaskManagementPage, TaskUpdatePage, TeamAddPage, TeamManagementPage, TeamTermPage, TeamUpdatePage, TransactionsAddPage, TransactionsManagementPage, TransactionsUpdatePage } from "pages/management";
 import { ProfileResidentPage } from "pages/profile";
 import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from "pages/account";
 import { LoadingFullScreen } from "./loading";
@@ -18,6 +17,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getDataFromStorage } from "services/zalo";
 import { ProtectedRoute } from "services/permission";
 import ForbiddenPage from "pages/403";
+import { EventsDetailPage, EventsPage } from "pages/events";
 
 const MyApp = () => {
 
@@ -66,6 +66,10 @@ const MyApp = () => {
                 <Route path="/news" element={<NewsPage></NewsPage>}></Route>
                 <Route path="/news-detail" element={<NewsDetailPage></NewsDetailPage>}></Route>
 
+                {/* EVENTS */}
+                <Route path="/events" element={<EventsPage></EventsPage>}></Route>
+                <Route path="/events-detail" element={<EventsDetailPage></EventsDetailPage>}></Route>
+
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>
                 <Route path="/feedback-detail" element={<FeedbackDetailPage></FeedbackDetailPage>}></Route>
@@ -84,63 +88,8 @@ const MyApp = () => {
                 {/* MAP */}
                 <Route path="/maps" element={<ResidentMapPage></ResidentMapPage>}></Route>
 
-                {/* MANAGEMENT */}
-                <Route path="/management" element={<ProtectedRoute requiredRole="admin"><ManagementPage></ManagementPage></ProtectedRoute>}></Route>
-
-                {/* MANAGEMENT SURVEY */}
-                <Route path="/survey-management" element={<SurveyManagementPage></SurveyManagementPage>}></Route>
-                <Route path="/survey-add" element={<SurveyAddPage></SurveyAddPage>}></Route>
-                <Route path="/survey-update" element={<SurveyUpdatePage></SurveyUpdatePage>}></Route>
-                <Route path="/survey-charts" element={<SurveyChartsPage></SurveyChartsPage>}></Route>
-
-                {/* MANAGEMENT NEWS */}
-                <Route path="/news-management" element={<NewsManagementPage></NewsManagementPage>}></Route>
-                <Route path="/news-add" element={<NewsAddPage></NewsAddPage>}></Route>
-                <Route path="/news-update" element={<NewsUpdatePage></NewsUpdatePage>}></Route>
-
-                {/* MANAGEMENT FEEDBACK */}
-                <Route path="/feedback-management" element={<FeedbackManagementPage></FeedbackManagementPage>}></Route>
-                <Route path="/feedback-answer" element={<FeedbackAnswerPage></FeedbackAnswerPage>}></Route>
-
-                {/* MANAGEMENT MEETING */}
-                <Route path="/meeting-management" element={<MeetingManagementPage></MeetingManagementPage>}></Route>
-                <Route path="/meeting-add" element={<MeetingAddtPage></MeetingAddtPage>}></Route>
-                <Route path="/meeting-update" element={<MeetingUpdatePage></MeetingUpdatePage>}></Route>
-
-                {/* MANAGEMENT RESIDENT */}
-                <Route path="/resident-management" element={<ResidentManagementPage></ResidentManagementPage>}></Route>
-                <Route path="/resident-craft-management" element={<ResidentCraftManagementPage></ResidentCraftManagementPage>}></Route>
-                <Route path="/resident-profile-add" element={<ResidentProfileAddPage></ResidentProfileAddPage>}></Route>
-                <Route path="/resident-profile-update" element={<ResidentProfileUpdatePage></ResidentProfileUpdatePage>}></Route>
-
                 {/* PROFILE */}
                 <Route path="/profile-resident" element={<ProfileResidentPage></ProfileResidentPage>}></Route>
-
-                {/* MANAGEMENT TEAM */}
-                <Route path="/team-management" element={<TeamManagementPage></TeamManagementPage>}></Route>
-                <Route path="/team-add" element={<TeamAddPage></TeamAddPage>}></Route>
-                <Route path="/team-update" element={<TeamUpdatePage></TeamUpdatePage>}></Route>
-                <Route path="/team-term" element={<TeamTermPage></TeamTermPage>}></Route>
-                <Route path="/residential-management" element={<ResidentialManagementPage></ResidentialManagementPage>}></Route>
-
-                {/* MANAGEMENT TASK */}
-                <Route path="/task-management" element={<TaskManagementPage></TaskManagementPage>}></Route>
-                <Route path="/task-add" element={<TaskAddPage></TaskAddPage>}></Route>
-                <Route path="/task-update" element={<TaskUpdatePage></TaskUpdatePage>}></Route>
-
-                {/* MANAGEMENT TRANSACTIONS */}
-                <Route path="/transactions-management" element={<TransactionsManagementPage></TransactionsManagementPage>}></Route>
-                <Route path="/transactions-add" element={<TransactionsAddPage></TransactionsAddPage>}></Route>
-                <Route path="/transactions-update" element={<TransactionsUpdatePage></TransactionsUpdatePage>}></Route>
-
-                {/* MANAGEMENT REPORT FINANCE*/}
-                <Route path="/report-finance-management" element={<ReportFinanceManagementPage></ReportFinanceManagementPage>}></Route>
-                <Route path="/report-finance-add" element={<ReportFinanceCreatePage></ReportFinanceCreatePage>}></Route>
-                <Route path="/report-finance-update" element={<ReportFinanceUpdatePage></ReportFinanceUpdatePage>}></Route>
-
-                {/* MANAGEMENT OVERVIEW */}
-                <Route path="/overview-household" element={<HouseHoldOverviewPage></HouseHoldOverviewPage>}></Route>
-                <Route path="/resident-household" element={<ResidentOverviewPage></ResidentOverviewPage>}></Route>
 
                 {/* PERMISSION */}
                 <Route path="/403" element={<ForbiddenPage></ForbiddenPage>}></Route>
