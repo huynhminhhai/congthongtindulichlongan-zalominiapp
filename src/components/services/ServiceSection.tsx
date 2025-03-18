@@ -13,7 +13,7 @@ export const SERVICES: ServicesType[] = [
     },
     {
         label: 'Sự kiện',
-        url: '/event',
+        url: '/events',
         icon: images.event
     },
     {

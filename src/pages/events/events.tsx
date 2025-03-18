@@ -1,5 +1,5 @@
+import { EventsList } from "components/events"
 import { HeaderSub } from "components/header-sub"
-import { NewsList } from "components/news"
 import FilterBar from "components/table/FilterBar"
 import React from "react"
 import { Box, Input, Page, Select, useNavigate } from "zmp-ui"
@@ -32,7 +32,7 @@ const EventsPage: React.FC = () => {
                             </Select>
                         </div>
                     </FilterBar>
-                    <NewsList />
+                    <EventsList />
                 </Box>
             </Box>
         </Page>

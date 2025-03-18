@@ -23,7 +23,7 @@ const EventsDetailPage: React.FC = () => {
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết tin tức" onBackClick={() => navigate('/news')} />
+                <HeaderSub title="Chi tiết sự kiện"/>
                 {
                     isLoading ?
                         <NewsDetailSkeleton count={1} /> :
@@ -32,7 +32,7 @@ const EventsDetailPage: React.FC = () => {
                                 <Box pb={4}>
                                     <div className="flex items-center gap-2 mb-2">
                                         <div className="h-[24px] w-[5px] bg-[#355933] block"></div>
-                                        <h3 className="text-[16px] leading-[1] font-medium">Tin tức</h3>
+                                        <h3 className="text-[16px] leading-[1] font-medium">Sự kiện</h3>
                                     </div>
                                     <h2 className="text-[22px] leading-[28px] font-semibold mb-2 text-[#355933]">
                                         {data.id} - {data.title}
@@ -45,16 +45,10 @@ const EventsDetailPage: React.FC = () => {
                                             isChecked={true}
                                             onClick={() => console.log('call api favorite')}
                                         />
-                                        <ActionButton
-                                            icon="mdi:bookmark"
-                                            altText="Lưu trữ"
-                                            isChecked={false}
-                                            onClick={() => console.log('call api bookmarked')}
-                                        />
                                     </div>
                                     <Box mt={6}>
                                         <div className="mb-3">
-                                            <img src={data.imageUrl || images.thumbnailNews} alt={data.title} />
+                                            <img src={data.imageUrl || images.eventThumnail} alt={data.title} />
                                         </div>
                                         <div className="detail-content" dangerouslySetInnerHTML={{ __html: data.body }}></div>
                                     </Box>
@@ -80,7 +74,7 @@ const EventsDetailPage: React.FC = () => {
                             </Box>
                 }
                 <Box pt={4} px={4}>
-                    <TitleSection title="Tin tức khác" mB={2} handleClick={() => navigate('/news')} />
+                    <TitleSection title="Tin tức khác" mB={2} handleClick={() => navigate('/events')} />
                     <NewsOthers idNews={Number(newsId)} />
                 </Box>
 
