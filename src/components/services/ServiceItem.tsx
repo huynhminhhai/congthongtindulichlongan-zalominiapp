@@ -21,7 +21,7 @@ const ServiceItem: React.FC<ServiceItemType> = ({data}) => {
     }
 
     return (
-        <Box onClick={() => handleNavigate(data.url)}>
+        <Box onClick={() => navigate(data.url)}>
             <div className="flex-center flex-col gap-2">
                 <Box>
                     <div className="flex-center w-[55px] h-[55px] relative">

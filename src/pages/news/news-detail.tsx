@@ -1,17 +1,15 @@
-import { Icon } from "@iconify/react"
-import { useQuery } from "@tanstack/react-query"
+
 import { useGetNewsDetail } from "apiRequest/news"
 import images from "assets/images"
+import { ActionButton, CommentSection } from "components/actions"
 import { EmptyData } from "components/data"
-import { Divider } from "components/divider"
 import { HeaderSub } from "components/header-sub"
 import { NewsOthers } from "components/news"
 import { NewsDetailSkeleton } from "components/skeleton"
 import TitleSection from "components/titleSection"
-import { News, NEWSDATA } from "constants/utinities"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useSearchParams } from "react-router-dom"
-import { Box, Page, Text, useNavigate, useSnackbar } from "zmp-ui"
+import { Box, Page, useNavigate } from "zmp-ui"
 
 const NewsDetailPage: React.FC = () => {
 
@@ -32,20 +30,34 @@ const NewsDetailPage: React.FC = () => {
                         data ?
                             <Box px={4} pb={4}>
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="h-[24px] w-[5px] bg-[#731611] block"></div>
+                                    <div className="h-[24px] w-[5px] bg-[#355933] block"></div>
                                     <h3 className="text-[16px] leading-[1] font-medium">Tin tức</h3>
                                 </div>
-                                <h2 className="text-[22px] leading-[28px] font-semibold mb-2 text-[#731611]">
+                                <h2 className="text-[22px] leading-[28px] font-semibold mb-2 text-[#355933]">
                                     {data.id} - {data.title}
                                 </h2>
                                 <h4 className="text-[14px] leading-[1] font-medium">12/12/2025</h4>
+                                <div className="flex justify-end gap-3">
+                                    <ActionButton
+                                        icon="mdi:heart"
+                                        altText="Mục yêu thích"
+                                        isChecked={true}
+                                        onClick={() => console.log('call api favorite')}
+                                    />
+                                    <ActionButton
+                                        icon="mdi:bookmark"
+                                        altText="Lưu trữ"
+                                        isChecked={false}
+                                        onClick={() => console.log('call api bookmarked')}
+                                    />
+                                </div>
                                 <Box mt={6}>
                                     <div className="mb-3">
                                         <img src={data.imageUrl || images.thumbnailNews} alt={data.title} />
                                     </div>
                                     <div className="detail-content" dangerouslySetInnerHTML={{ __html: data.body }}></div>
                                 </Box>
-                                <div className="block h-[1px] w-[100%] bg-[#731611] my-4"></div>
+                                <div className="block h-[1px] w-[100%] bg-[#355933] my-4"></div>
                             </Box>
                             :
                             <Box px={4} pb={10}>
@@ -55,7 +67,10 @@ const NewsDetailPage: React.FC = () => {
                                 />
                             </Box>
                 }
-                <Box px={4}>
+                <Box px={4} mb={4}>
+                    <CommentSection itemId={Number(newsId)} />
+                </Box>
+                <Box pt={4} px={4}>
                     <TitleSection title="Tin tức khác" mB={2} handleClick={() => navigate('/news')} />
                     <NewsOthers idNews={Number(newsId)} />
                 </Box>

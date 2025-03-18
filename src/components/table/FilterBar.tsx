@@ -9,11 +9,8 @@ interface FilterBarProps {
     showFilter?: boolean;
     showViewToggle?: boolean;
     onFilterToggle?: () => void;
-    onViewToggle?: () => void;
-    onAddButtonClick?: () => void;  // Prop để tùy chỉnh hành động nút thêm
-    children?: ReactNode; // Cho phép truyền nội dung tùy chỉnh vào bộ lọc
-    setViewCard: React.Dispatch<React.SetStateAction<boolean>>;
-    viewCard: boolean
+    onAddButtonClick?: () => void;
+    children?: ReactNode;
 }
 
 const FilterBar: React.FC<FilterBarProps> = ({
@@ -21,11 +18,8 @@ const FilterBar: React.FC<FilterBarProps> = ({
     showFilter = true,
     showViewToggle = true,
     onFilterToggle,
-    onViewToggle,
-    onAddButtonClick,  // Nhận prop này
-    children, // Nhận nội dung custom
-    setViewCard,
-    viewCard
+    onAddButtonClick,
+    children, 
 }) => {
     const navigate = useNavigate();
     const [filterVisible, setFilterVisible] = useState(false);
@@ -53,7 +47,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
             {/* Filter & View Toggle */}
             {(showFilter || showViewToggle) && (
                 <Box>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1">
                         {showFilter && (
                             <div
                                 className="bg-white flex items-center justify-center gap-2 px-8 py-1 border rounded-3xl cursor-pointer"
@@ -64,17 +58,6 @@ const FilterBar: React.FC<FilterBarProps> = ({
                             >
                                 <Icon icon="lets-icons:filter" fontSize={26} />
                                 <span className="text-[14px] font-semibold">Lọc</span>
-                            </div>
-                        )}
-                        {showViewToggle && (
-                            <div
-                                className="bg-white flex items-center justify-center gap-2 px-8 py-1 border rounded-3xl cursor-pointer"
-                                onClick={() =>
-                                    setViewCard(!viewCard)
-                                }
-                            >
-                                <Icon icon="material-symbols-light:view-apps-outline-rounded" fontSize={26} />
-                                <span className="text-[14px] font-semibold">{viewCard ? "Bảng" : "Dọc"}</span>
                             </div>
                         )}
                     </div>

@@ -74,18 +74,20 @@ const LongAnMap: React.FC = () => {
         atm: [],
         hospital: [],
         oil: [],
-        taxi: []
+        taxi: [],
+        shopping: []
     };
 
     const icons: Icons = {
         restaurant: images.markerRestaurant,
         hotel: images.markerHotel,
         tourist: images.markerTravel,
-        bus: 'https://cdn-icons-png.flaticon.com/128/1042/1042263.png',
+        bus: images.markerBus,
         atm: images.markerAtm,
         hospital: images.markerHospital,
         oil: images.markerOil,
         taxi: images.markerTaxi,
+        shopping: images.markerShopping,
     };
 
     useEffect(() => {

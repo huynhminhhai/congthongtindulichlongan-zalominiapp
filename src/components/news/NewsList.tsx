@@ -44,20 +44,20 @@ const NewsList: React.FC = () => {
                         <>
                             {/* {listData.length > 0 && <NewsMain data={listData[0]} />} */}
                             {listData.length > 0 &&
-                                <Box>
-                                    <div
-                                        className="news-item"
-                                        onClick={() => navigate(`/news-detail/?id=${listData[0].id}`)}
-                                    >
-                                        <div className="w-[100%] h-[220px]">
-                                            <img className="h-[100%] w-[100%] object-cover" src={images.thumbnailNews} alt={listData[0].title} />
-                                        </div>
+                                <Box mb={4}>
+                                    <div onClick={() => navigate(`/news-detail/?id=${listData[0].id}`)}>
+                                        <img
+                                            className="slide-img h-[200px] w-full object-cover"
+                                            src={listData[0].imageUrl || images.thumbnailNews}
+                                            alt={listData[0].title}
+                                        />
                                         <Box px={4}>
-                                            <div className="flex-1 flex flex-col justify-center mt-3 border-b-[1px] pb-4">
-                                                <h3 className="text-[18px] leading-[22px] font-semibold line-clamp-2 mb-1">{listData[0].id} - {listData[0].title}</h3>
-                                                <div className="line-clamp-3 text-[16px] leading-[20px] font-normal text-[#7c7c7c] mb-2">{listData[0].body}</div>
-                                                <div className="text-end text-[14px] leading-[1] text-[#7c7c7c]">12/12/2025</div>
+                                            <div className="flex items-center justify-between mt-3 mb-2 pb-2 border-b-[1px] border-[#355933]">
+                                                <div className="text-[13px] leading-[1] font-semibold">{listData[0].category || 'Tin tức'}</div>
+                                                <div className="text-[12px] leading-[1] font-medium">{listData[0].publishedDate || '12/12/2025'}</div>
                                             </div>
+                                            <h3 className="text-[16px] font-semibold whitespace-normal mt-2 line-clamp-2 ">{listData[0].title}</h3>
+                                            <div className="line-clamp-2">{listData[0].body}</div>
                                         </Box>
                                     </div>
                                 </Box>
@@ -67,17 +67,21 @@ const NewsList: React.FC = () => {
                                     // <NewsItem key={index} data={item} />
                                     <Box key={index}
                                         onClick={() => navigate(`/news-detail/?id=${item.id}`)}
+                                        mb={4}
                                     >
-                                        <div
-                                            className="flex items-center gap-3 news-item py-4 border-b-[1px]"
-                                        >
-                                            <div className="w-[150px] h-[110px]">
-                                                <img className="h-[100%] w-[100%] object-cover" src={images.thumbnailNews} alt={item.title} />
-                                            </div>
-                                            <div className='flex-1 flex flex-col justify-center'>
-                                                <h3 className="text-[16px] leading-[20px] font-semibold line-clamp-2 mb-1">{item.id} - {item.title}</h3>
-                                                <div className="line-clamp-3 text-[14px] leading-[18px] font-normal text-[#7c7c7c] mb-2">{item.body}</div>
-                                                <div className="text-end text-[12px] text-[#7c7c7c] font-normal leading-[1] ">12/12/2025</div>
+                                        <div onClick={() => navigate(`/news-detail`)} className="flex gap-3">
+                                            <img
+                                                className="slide-img w-[140px] h-[100px] object-cover"
+                                                src={item.imageUrl || images.thumbnailNews}
+                                                alt={item.title}
+                                            />
+                                            <div className="flex-1">
+                                                <div className="flex items-center justify-between mb-1 pb-2 border-b-[1px] border-[#355933]">
+                                                    <div className="text-[13px] leading-[1] font-semibold">{item.category || 'Tin tức'}</div>
+                                                    <div className="text-[12px] leading-[1] font-medium">{item.publishedDate || '12/12/2025'}</div>
+                                                </div>
+                                                <h3 className="text-[15px] leading-[20px] font-semibold whitespace-normal mt-1 line-clamp-2">{item.id} - {item.title}</h3>
+                                                <div className="text-[12px] leading-[16px] line-clamp-2 mt-1">{item.body}</div>
                                             </div>
                                         </div>
                                     </Box>

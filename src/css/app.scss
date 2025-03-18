@@ -572,3 +572,32 @@ div.ql-editor {
 .cusine-category::before {
   width: 10px;
 }
+
+/**
+* COMMENT
+**/ 
+
+.comment-form label {
+  display: none;
+}
+
+.comment-form .zaui-input-affix-wrapper {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #355933;
+  border-color: #355933
+}
+
+.comment-form input,
+.comment-form textarea {
+  padding-left: 0;
+}
+
+.comment-form textarea {
+  min-height: 80px;
+}
+
+.comment-form button {
+  border-radius: 24px;
+  padding: 6px 36px;
+}
