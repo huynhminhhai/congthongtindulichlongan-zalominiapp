@@ -11,15 +11,15 @@ interface ActionButtonProps {
 
 const ActionButton: React.FC<ActionButtonProps> = ({ icon, altText, isChecked = false, onClick }) => {
   return (
-    <button
+    <div
       className={classNames(
-        "btn-bookmark p-2 rounded-md transition-colors",
+        "p-[6px] rounded-full transition-colors",
         isChecked ? "text-[#355933] bg-gray-200" : "text-gray-500 bg-transparent"
       )}
       onClick={onClick}
     >
-      <Icon icon={icon} width={24} height={24} />
-    </button>
+      <Icon icon={icon} width={18} height={18} />
+    </div>
   );
 };
 

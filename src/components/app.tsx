@@ -18,6 +18,7 @@ import { getDataFromStorage } from "services/zalo";
 import { ProtectedRoute } from "services/permission";
 import ForbiddenPage from "pages/403";
 import { EventsDetailPage, EventsPage } from "pages/events";
+import { DestinationDetailPage, DestinationPage } from "pages/destination";
 
 const MyApp = () => {
 
@@ -69,6 +70,10 @@ const MyApp = () => {
                 {/* EVENTS */}
                 <Route path="/events" element={<EventsPage></EventsPage>}></Route>
                 <Route path="/events-detail" element={<EventsDetailPage></EventsDetailPage>}></Route>
+
+                {/* DESTINATION */}
+                <Route path="/destination" element={<DestinationPage></DestinationPage>}></Route>
+                <Route path="/destination-detail" element={<DestinationDetailPage></DestinationDetailPage>}></Route>
 
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>
