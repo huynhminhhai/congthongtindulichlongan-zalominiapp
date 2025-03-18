@@ -7,7 +7,7 @@ import news from './newspaper.png'
 import idea from './idea.png'
 import checklist from './checklist.png'
 import meeting from './online-meeting.png'
-import thumbnailNews from './news.jpg'
+import thumbnailNews from './thumbnail.webp'
 import empty from './empty.png'
 import survey from './survey.png'
 import newss from './new.png'
@@ -28,6 +28,34 @@ import research from './research.png'
 import statistics from './statistics.png'
 import map from './map.png'
 import avatarDefault from './private-account.png'
+import event from './event.png'
+import location from './location.png'
+import destinationTravel from './destination-travel.png'
+import goiCuon from './goi-cuon.png'
+import restaurant from './restaurant.png'
+import hotel from './hotel.png'
+import destination from './tour.png'
+import tourGuide from './tour-guide.png'
+import lover from './favourite.png'
+import feedback from './feedback.png'
+import more from './more.png'
+import shopping from './shopping.png'
+import market from './market.png'
+import bus from './bus.png'
+import route from './route.png'
+import taxi from './taxi.png'
+import bio from './bio.png'
+import hospital from './hospital.png'
+import atm from './atm.png'
+import gallery from './gallery.png'
+import eventThumnail from './eventThumnail.jpg'
+import markerHotel from './marker-hotel.png'
+import markerRestaurant from './marker-restaurant.png'
+import markerAtm from './marker-atm.png'
+import markerHospital from './marker-hospital.png'
+import markerOil from './marker-oil.png'
+import markerTravel from './marker-travel.png'
+import markerTaxi from './marker-taxi.png'
 
 const images = {
     logo,
@@ -59,7 +87,21 @@ const images = {
     research,
     statistics,
     map,
-    avatarDefault
+    avatarDefault,
+    event,
+    location,
+    destinationTravel,
+    goiCuon,
+    restaurant,
+    hotel,
+    destination,
+    tourGuide,
+    lover,
+    feedback,
+    more,
+    shopping,
+    market, bus, route, taxi, bio, hospital, atm, gallery, eventThumnail, markerHotel, markerRestaurant, markerAtm, markerHospital,
+    markerOil, markerTravel, markerTaxi
 }
 
 export default images

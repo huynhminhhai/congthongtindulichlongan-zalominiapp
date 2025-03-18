@@ -1,39 +1,50 @@
-import images from "assets/images";
+import { BannerSlider } from "components/banner";
+import { CusineSection } from "components/cusine";
+import { DestinationSection } from "components/destination.tsx";
+import { DestinationTravelSection } from "components/detination-travel";
 import { Divider } from "components/divider";
-import { HeaderHome } from "components/header";
-import { MeetingSection } from "components/meeting";
+import { EventsSection } from "components/events";
+import { HotelSection } from "components/hotel";
+import LongAnMap from "components/maps/LongAnMap";
 import NewsSection from "components/news/NewsSection";
-import { ServiceSection } from "components/services";
-import { StatisticSection } from "components/statistics";
-import { TaskSection } from "components/task";
-import React from "react";
+import { RestaurantSection } from "components/restaurant";
+import { ServiceSection, ServiceSub } from "components/services";
+import { TourSection } from "components/tour";
+import React, { useState } from "react";
 import { useStoreApp } from "store/store";
 import { Box, Page } from "zmp-ui";
 
 const HomePage: React.FunctionComponent = () => {
 
-  const {account} = useStoreApp()
+  const { account } = useStoreApp()
+
+  const [sheetVisible, setSheetVisible] = useState(false);
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px] home">
-      <img src={images.shape2} alt="shape" className="absolute top-0 left-0 w-[460px] h-auto opacity-10 z-0" />
-      <HeaderHome />
       <Box className="relative z-[1]">
-        <StatisticSection />
-        <div className="bg-white rounded-t-2xl pt-3">
-          <ServiceSection />
-          {
-            account &&
-            <>
-              <Divider />
-              <MeetingSection />
-              <Divider />
-              <TaskSection />
-            </>
-          }
-          <NewsSection />
-        </div>
+        <BannerSlider />
+        <ServiceSection setSheetVisible={setSheetVisible} />
+        <Divider />
+        <DestinationSection />
+        <Divider />
+        <DestinationTravelSection />
+        <Divider />
+        <CusineSection />
+        <Divider />
+        <NewsSection />
+        <Divider />
+        <EventsSection />
+        <Divider />
+        <TourSection />
+        <Divider />
+        <HotelSection />
+        <Divider />
+        <RestaurantSection />
+        <Divider />
+        <LongAnMap />
       </Box>
+      <ServiceSub sheetVisible={sheetVisible} setSheetVisible={setSheetVisible} />
     </Page>
   );
 };

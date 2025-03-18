@@ -9,23 +9,23 @@ import { useRole } from "store/authSlice";
 const tabs: Record<string, MenuItem> = {
   "/": {
     label: "Trang chủ",
-    icon: <Icon icon="fa6-solid:house" />,
-    activeIcon: <Icon icon="fa6-solid:house" />
+    icon: <Icon icon="line-md:home-simple-filled" />,
+    activeIcon: <Icon icon="line-md:home-simple-filled" />
   },
-  "/notification": {
-    label: "Thông báo",
-    icon: <div className="relative"> <Icon icon='radix-icons:dot-filled' className="absolute top-[-10px] right-[-10px]" color="#ff4045" /> <Icon icon="solar:bell-bold" /></div>,
-    activeIcon: <Icon icon="solar:bell-bold" />
-  },
-  "/management": {
-    label: "Quản lý",
-    icon: <Icon icon="eos-icons:cluster-management" />,
-    activeIcon: <Icon icon="eos-icons:cluster-management" />
+  "/favorite": {
+    label: "Yêu thích",
+    icon: <Icon icon="line-md:heart-filled" />,
+    activeIcon: <Icon icon="line-md:heart-filled" />
   },
   "/account": {
     label: "Tài khoản",
-    icon: <Icon icon="icon-park-solid:people" />,
-    activeIcon: <Icon icon="icon-park-solid:people" />
+    icon: <Icon icon="line-md:person-filled" />,
+    activeIcon: <Icon icon="line-md:person-filled" />
+  },
+  "/settings": {
+    label: "Cài đặt",
+    icon: <Icon icon="material-symbols:settings" />,
+    activeIcon: <Icon icon="material-symbols:settings" />
   },
 };
 

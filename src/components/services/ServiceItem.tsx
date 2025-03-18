@@ -13,23 +13,23 @@ const ServiceItem: React.FC<ServiceItemType> = ({data}) => {
     const { loginWithZalo } = useLoginWithZalo();
 
     const handleNavigate = (url: string) => {
-        if (data.isCheckLogin) {
-            loginWithZalo(url)
-        } else {
-            navigate(url)
-        }
+        // if (data.isCheckLogin) {
+        //     loginWithZalo(url)
+        // } else {
+        //     navigate(url)
+        // }
     }
 
     return (
         <Box onClick={() => handleNavigate(data.url)}>
             <div className="flex-center flex-col gap-2">
                 <Box>
-                    <div className="bg-[#e9ebed] rounded-full flex-center p-4 w-[60px] h-[60px] relative">
+                    <div className="flex-center w-[55px] h-[55px] relative">
                         <img src={data.icon} alt={data.label} />
                     </div>
                 </Box>
                 <Box>
-                    <h4 className="text-[14px] leading-[18px] text-center font-normal">{data.label}</h4>
+                    <h4 className="text-[14px] leading-[18px] text-center font-medium">{data.label}</h4>
                 </Box>
             </div>
         </Box>

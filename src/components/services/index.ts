@@ -1,3 +1,3 @@
 export { default as ServiceSection } from "./ServiceSection";
-export { default as ServiceList } from "./ServiceList";
+export { default as ServiceSub } from "./ServiceSub";
 export { default as ServiceItem } from "./ServiceItem";
