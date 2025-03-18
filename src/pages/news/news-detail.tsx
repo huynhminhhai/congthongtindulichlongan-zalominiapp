@@ -1,7 +1,7 @@
 
 import { useGetNewsDetail } from "apiRequest/news"
 import images from "assets/images"
-import { ActionButton, CommentSection, ShareInfor } from "components/actions"
+import { ActionButton, CommentSection, Rating, ShareInfor } from "components/actions"
 import { EmptyData } from "components/data"
 import { HeaderSub } from "components/header-sub"
 import { NewsOthers } from "components/news"
@@ -63,6 +63,12 @@ const NewsDetailPage: React.FC = () => {
                                 <Box mb={4}>
                                     <CommentSection itemId={Number(newsId)} />
                                     <ShareInfor />
+                                    <Rating
+                                        averageRating={4.2}
+                                        totalReviews={100}
+                                        ratingDistribution={{ 5: 50, 4: 30, 3: 10, 2: 5, 1: 5 }}
+                                        onRate={(rating) => console.log("Người dùng chọn:", rating)}
+                                    />
                                 </Box>
                             </Box>
                             :
