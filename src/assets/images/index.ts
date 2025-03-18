@@ -58,6 +58,10 @@ import markerTravel from './marker-travel.png'
 import markerTaxi from './marker-taxi.png'
 import markerBus from './marker-bus.png'
 import markerShopping from './marker-shopping.png'
+import facebook from './facebook.png'
+import twitter from './twitter.png'
+import linkedin from './linkedin.png'
+import link from './link.png'
 
 const images = {
     logo,
@@ -103,7 +107,7 @@ const images = {
     more,
     shopping,
     market, bus, route, taxi, bio, hospital, atm, gallery, eventThumnail, markerHotel, markerRestaurant, markerAtm, markerHospital,
-    markerOil, markerTravel, markerTaxi, markerBus, markerShopping
+    markerOil, markerTravel, markerTaxi, markerBus, markerShopping, facebook, twitter, linkedin, link
 }
 
 export default images

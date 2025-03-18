@@ -16,7 +16,7 @@ const BannerSlider: React.FC = () => {
                     loop
                     duration={12000}
                     // autoplay
-                    className="!rounded-none h-[250px]"
+                    className="!rounded-none h-[270px]"
                 >
                     <Swiper.Slide className="h-fit">
                         <Box px={3} py={4} className="relative">
