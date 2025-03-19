@@ -26,6 +26,13 @@ import { HotelDetailPage, HotelPage } from "pages/hotel";
 import { RestaurantDetailPage, RestaurantPage } from "pages/restaurant";
 import { GuideDetailPage, GuidePage } from "pages/guide-tour";
 import { FavoritePage } from "pages/favorite";
+import { ShoppingDetailPage, ShoppingPage } from "pages/shopping";
+import { MarketDetailPage, MarketPage } from "pages/market";
+import { BusDetailPage, BusPage } from "pages/bus";
+import { TaxiDetailPage, TaxiPage } from "pages/taxi";
+import { OilDetailPage, OilPage } from "pages/oil";
+import { HospitalDetailPage, HospitalPage } from "pages/hospital";
+import { AtmDetailPage, AtmPage } from "pages/atm";
 
 const MyApp = () => {
 
@@ -108,7 +115,35 @@ const MyApp = () => {
 
                 {/* FAVORITE */}
                 <Route path="/favorite" element={<FavoritePage></FavoritePage>}></Route>
-                
+
+                {/* SHOPPING */}
+                <Route path="/shopping" element={<ShoppingPage></ShoppingPage>}></Route>
+                <Route path="/shopping-detail" element={<ShoppingDetailPage></ShoppingDetailPage>}></Route>
+
+                {/* MARKET */}
+                <Route path="/market" element={<MarketPage></MarketPage>}></Route>
+                <Route path="/market-detail" element={<MarketDetailPage></MarketDetailPage>}></Route>
+
+                {/* BUS */}
+                <Route path="/bus" element={<BusPage></BusPage>}></Route>
+                <Route path="/bus-detail" element={<BusDetailPage></BusDetailPage>}></Route>
+
+                {/* Taxi */}
+                <Route path="/taxi" element={<TaxiPage></TaxiPage>}></Route>
+                <Route path="/taxi-detail" element={<TaxiDetailPage></TaxiDetailPage>}></Route>
+
+                {/* Oil */}
+                <Route path="/oil" element={<OilPage></OilPage>}></Route>
+                <Route path="/oil-detail" element={<OilDetailPage></OilDetailPage>}></Route>
+
+                {/* Hospital */}
+                <Route path="/hospital" element={<HospitalPage></HospitalPage>}></Route>
+                <Route path="/hospital-detail" element={<HospitalDetailPage></HospitalDetailPage>}></Route>
+
+                {/* ATM */}
+                <Route path="/atm" element={<AtmPage></AtmPage>}></Route>
+                <Route path="/atm-detail" element={<AtmDetailPage></AtmDetailPage>}></Route>
+
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>
                 <Route path="/feedback-detail" element={<FeedbackDetailPage></FeedbackDetailPage>}></Route>

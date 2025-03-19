@@ -15,7 +15,7 @@ const RestaurantItem: React.FC<any> = ({ data }) => {
                 <h3 className='text-[16px] font-bold text-[#355933] line-clamp-1 mb-2'>{data.title}</h3>
                 <ul className='flex flex-col gap-1 text-[14px] leading-[18px] font-medium'>
                     <li className='flex items-start gap-1'>
-                        <Icon fontSize={22} className='mt-[1px]' icon='fluent:location-28-regular' />
+                        <Icon fontSize={18} className='mt-[1px]' icon='fluent:location-28-regular' />
                         <span className='flex-1 line-clamp-2'>
                             {data.address}
                         </span>

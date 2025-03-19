@@ -1,0 +1,1 @@
+export { default as ShoppingItem } from "./ShoppingItem";
