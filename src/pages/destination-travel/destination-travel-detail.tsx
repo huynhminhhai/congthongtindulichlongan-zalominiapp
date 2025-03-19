@@ -6,9 +6,9 @@ import { HeaderSub } from 'components/header-sub'
 import { SingleLocationMap } from 'components/maps'
 import { ImageGallery } from 'components/slider'
 import TitleSection from 'components/titleSection'
-import TitleSubDetail from 'components/TitleSubDetail'
 import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
+import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 
 export const imagesGallery = [
     'https://scontent.iocvnpt.com/resources/portal//Images/LAN/bangdc.lan/canhdongbattan/khudulichcanhdongbattan_1_732599852.jpg',
@@ -36,22 +36,17 @@ const DestinationTravelDetailPage = () => {
                 <HeaderSub title="Chi tiết điểm du lịch" />
                 <Box p={4}>
                     <Box>
-                        <div className="flex items-center justify-between mb-3">
-                            <h1 className="text-[24px] font-semibold text-[#355933]">Cánh đồng bất tận</h1>
-                            <div className="flex justify-end gap-3">
-                                <ActionButton
-                                    icon="mdi:heart"
-                                    altText="Mục yêu thích"
-                                    isChecked={true}
-                                    onClick={() => console.log('call api favorite')}
-                                />
-                            </div>
-                        </div>
-                        <Box mb={9}>
-                            <ImageGallery images={imagesGallery} />
+                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
+                            <TitleDetail title='Cánh đồng bất tận' />
+                            <ActionButton
+                                icon="mdi:heart"
+                                altText="Mục yêu thích"
+                                isChecked={true}
+                                onClick={() => console.log('call api favorite')}
+                            />
                         </Box>
                         <Box mb={9}>
-
+                            <ImageGallery images={imagesGallery} />
                         </Box>
                         <Box mb={9}>
                             <TitleSubDetail title='Thông tin' />
@@ -75,7 +70,7 @@ const DestinationTravelDetailPage = () => {
                         <Box mb={9}>
                             <TitleSubDetail title='Mô tả' />
                             <div className="detail-content" dangerouslySetInnerHTML={{
-                                    __html: `
+                                __html: `
                                     <div style="text-align: justify; line-height: 30px; transition: 0.7s;" class="description animate-in fadeInLeft animated" data-speed="0.7" data-show-screen="0.69">
                                     <p>Điểm du lịch mang nét hoang sơ với những cánh rừng tràm gió, đồng cỏ bàng cùng
                                         nhiều hoạt động giúp du khách thư giãn ngoài trời.</p>
@@ -89,7 +84,7 @@ const DestinationTravelDetailPage = () => {
                                 </div>   
                                     
                                 `}}>
-                                </div>
+                            </div>
                         </Box>
                         <Box mb={9}>
                             <TitleSubDetail title='Bản đồ' />
@@ -115,14 +110,8 @@ const DestinationTravelDetailPage = () => {
                         <div className="grid grid-cols-1 gap-3">
                             {
                                 destinationTravelData.map((item, index) => (
-                                    <Box flex className='gap-3' key={index} onClick={() => navigate('/destination-travel-detail')}>
-                                        <Box>
-                                            <img className='w-[120px] h-[80px] rounded-lg' src={item.imgUrl} alt={item.title} />
-                                        </Box>
-                                        <Box className="flex-1">
-                                            <div className="text-[16px] font-semibold mb-1">{item.title}</div>
-                                            <div className="text-[12px] font-medium">3,24km</div>
-                                        </Box>
+                                    <Box key={index} onClick={() => navigate('/destination-travel-detail')}>
+                                        <ItemDetailCard imgUrl={item.imgUrl} title={item.title} desc={'3.54km'} />
                                     </Box>
                                 ))
                             }

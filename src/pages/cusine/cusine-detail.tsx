@@ -2,14 +2,13 @@ import { Icon } from '@iconify/react'
 import images from 'assets/images'
 import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/actions'
 import { cusineData } from 'components/cusine/CusineSection'
-import { destinationData } from 'components/destination/DestinationSection'
 import { HeaderSub } from 'components/header-sub'
-import { CategoryMap, SingleLocationMap } from 'components/maps'
+import { CategoryMap } from 'components/maps'
 import { ImageGallery } from 'components/slider'
 import TitleSection from 'components/titleSection'
-import TitleSubDetail from 'components/TitleSubDetail'
 import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
+import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 
 export const imagesGallery = [
     'https://www.vietfuntravel.com.vn/image/data/Mekong/dac-san-long-an-lau-mam-1.jpg',
@@ -28,17 +27,15 @@ const CusineDetailPage = () => {
                 <HeaderSub title="Chi tiết đặc sản" />
                 <Box p={4}>
                     <Box>
-                        <div className="flex items-center justify-between mb-3">
-                            <h1 className="text-[24px] font-semibold text-[#355933]">Nhà Trăm Cột</h1>
-                            <div className="flex justify-end gap-3">
-                                <ActionButton
-                                    icon="mdi:heart"
-                                    altText="Mục yêu thích"
-                                    isChecked={true}
-                                    onClick={() => console.log('call api favorite')}
-                                />
-                            </div>
-                        </div>
+                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
+                            <TitleDetail title='Lẩu mắm Long An' />
+                            <ActionButton
+                                icon="mdi:heart"
+                                altText="Mục yêu thích"
+                                isChecked={true}
+                                onClick={() => console.log('call api favorite')}
+                            />
+                        </Box>
                         <Box mb={9}>
                             <ImageGallery images={imagesGallery} />
                         </Box>
@@ -157,19 +154,13 @@ const CusineDetailPage = () => {
                     />
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Điểm đến xung quanh" mB={2} handleClick={() => navigate('/destination')} />
+                    <TitleSection title="Đặc sản khác" mB={2} handleClick={() => navigate('/cusine')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {
                                 cusineData.map((item, index) => (
-                                    <Box flex className='gap-3' key={index} onClick={() => navigate('/destination-detail')}>
-                                        <Box>
-                                            <img className='w-[120px] h-[80px] rounded-lg' src={item.imgUrl} alt={item.title} />
-                                        </Box>
-                                        <Box className="flex-1">
-                                            <div className="text-[16px] font-semibold mb-1">{item.title}</div>
-                                            <div className="text-[12px] font-medium">Đặc sản</div>
-                                        </Box>
+                                    <Box key={index} onClick={() => navigate('/cusine-detail')}>
+                                        <ItemDetailCard imgUrl={item.imgUrl} title={item.title} desc={'Đặc sản'} />
                                     </Box>
                                 ))
                             }

@@ -26,9 +26,9 @@ const CommentList: React.FC<CommentListProps> = ({itemId}) => {
                                 <Box className='flex-1'>
                                     <Box mb={1}>
                                         <div className="text-[16px] font-semibold text-[#355933]">{comment.name}</div>
-                                        <span className="text-[14px] font-medium text-[#222]">{comment.email}</span>
+                                        <span className="text-[13px] font-medium text-[#999]">12/12/2025</span>
                                     </Box>
-                                    <span className="text-[14px] font-medium text-[#222]">{comment.body}</span>
+                                    <span className="text-[14px] font-medium text-[#999]">{comment.body}</span>
                                 </Box>
                             </div>
                         ))
