@@ -1,30 +1,30 @@
-import { ChangePasswordForm, LoginForm } from "components/account"
+import { RegisterForm } from "components/account"
 import { HeaderSub } from "components/header-sub"
 import React from "react"
 import { Box, Page } from "zmp-ui"
 
-const ChangePasswordPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
     return (
         <Page className="relative flex-1 flex flex-col bg-white login-page">
             <Box>
-                <HeaderSub title="Đổi mật khẩu" />
+                <HeaderSub title="Đăng ký" />
                 <Box>
                     <img
                         className="h-[260px] w-full object-cover"
                         style={{
                             clipPath: 'ellipse(120% 100% at 60% 0%)'
                         }}
-                        src={'https://cellphones.com.vn/sforum/wp-content/uploads/2024/03/dia-diem-du-lich-long-an-1.jpg'}
-                        alt="Đổi mật khẩu"
+                        src={'https://vinhtour.vn/wp-content/uploads/2024/09/VT_Khu-Du-Lich-Canh-Dong-Bat-Tan-Long-An-Ve-Dep-Moc-Mac-Dam-Chat-Tay-Nam-Bo1.jpg'}
+                        alt="Đăng ký"
                     />
                 </Box>
                 <Box p={4} mt={4}>
                     <Box>
                         <h3 className="text-[24px] font-bold text-[#355933] text-center">Chào Mừng Trở Lại</h3>
-                        <h4 className="text-[16px] font-normal text-[#8f8f8f] text-center mt-3">Đổi mật khẩu tài khoản của bạn</h4>
+                        <h4 className="text-[16px] font-normal text-[#8f8f8f] text-center mt-3">Đăng ký tài khoản của bạn</h4>
                     </Box>
                     <Box py={4}>
-                        <ChangePasswordForm />
+                        <RegisterForm />
                     </Box>
                 </Box>
 
@@ -33,4 +33,4 @@ const ChangePasswordPage: React.FC = () => {
     )
 }
 
-export default ChangePasswordPage
+export default RegisterPage

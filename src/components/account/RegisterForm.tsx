@@ -1,35 +1,34 @@
 import React, { useState } from "react"
 import { Box, Button, useNavigate, useSnackbar } from "zmp-ui"
-import { FormDataChangePassword, schemaChangePassword } from "./type"
+import { FormDataRegister, schemaRegister } from "./type"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FormInputField } from "components/form"
 import { Icon } from "@iconify/react"
-import { useLoginWithZalo } from "services/loginWithZalo"
 
-const defaultValues: FormDataChangePassword = {
+const defaultValues: FormDataRegister = {
+    fullname: '',
+    phoneNumber: '',
     password: '',
-    oldPassword: '',
     confirmPassword: ''
 }
 
-const ChangePasswordForm: React.FC = () => {
+const RegisterForm: React.FC = () => {
 
     const { openSnackbar } = useSnackbar();
     const navigate = useNavigate()
 
     const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState<FormDataChangePassword>(defaultValues)
+    const [formData, setFormData] = useState<FormDataRegister>(defaultValues)
     const [isHidePw, setIsHidePw] = useState<boolean>(true)
-    const [isHideOPw, setIsHideOPw] = useState<boolean>(true)
     const [isHideCPw, setIsHideCPw] = useState<boolean>(true)
 
-    const { handleSubmit, reset, control, formState: { errors } } = useForm<FormDataChangePassword>({
-        resolver: yupResolver(schemaChangePassword),
+    const { handleSubmit, reset, control, formState: { errors } } = useForm<FormDataRegister>({
+        resolver: yupResolver(schemaRegister),
         defaultValues
     });
 
-    const onSubmit: SubmitHandler<FormDataChangePassword> = (data) => {
+    const onSubmit: SubmitHandler<FormDataRegister> = (data) => {
         setFormData(data)
 
         if (data) {
@@ -70,21 +69,24 @@ const ChangePasswordForm: React.FC = () => {
             <Box>
                 <div className="grid grid-cols-12 gap-x-3">
                     <div className="col-span-12 relative">
-                        <Icon icon='mdi:password' fontSize={20} color="#355933" className="absolute left-[10px] z-10 top-[47%] translate-y-[-50%]" />
+                        <Icon icon='mdi:user' fontSize={20} color="#355933" className="absolute left-[10px] z-10 top-[47%] translate-y-[-50%]" />
                         <FormInputField
-                            name="oldPassword"
-                            type={isHideOPw ? 'password' : 'text'}
+                            name="fullname"
                             label=""
-                            placeholder="Mật khẩu cũ"
+                            placeholder="Họ tên"
                             control={control}
-                            error={errors.oldPassword?.message}
+                            error={errors.fullname?.message}
                         />
-                        <div className="absolute right-[10px] z-10 top-[47%] translate-y-[-50%]" onClick={() => setIsHideOPw(!isHideOPw)}>
-
-                            {
-                                isHideOPw ? <Icon fontSize={20} color="#355933" icon='mdi:eye-off' /> : <Icon fontSize={20} color="#355933" icon='mdi:eye' />
-                            }
-                        </div>
+                    </div>
+                    <div className="col-span-12 relative">
+                        <Icon icon='ic:baseline-phone' fontSize={20} color="#355933" className="absolute left-[10px] z-10 top-[47%] translate-y-[-50%]" />
+                        <FormInputField
+                            name="phoneNumber"
+                            label=""
+                            placeholder="Số điện thoại"
+                            control={control}
+                            error={errors.phoneNumber?.message}
+                        />
                     </div>
                     <div className="col-span-12 relative">
                         <Icon icon='mdi:password' fontSize={20} color="#355933" className="absolute left-[10px] z-10 top-[47%] translate-y-[-50%]" />
@@ -122,7 +124,7 @@ const ChangePasswordForm: React.FC = () => {
                     </div>
                     <div className="col-span-12 relative mt-[40px]">
                         <Button fullWidth onClick={handleSubmit(onSubmit)}>
-                            {loading ? "Đang xử lý..." : "Đổi mật khẩu"}
+                            {loading ? "Đang xử lý..." : "Đăng ký"}
                         </Button>
                     </div>
                 </div>
@@ -131,4 +133,4 @@ const ChangePasswordForm: React.FC = () => {
     )
 }
 
-export default ChangePasswordForm
+export default RegisterForm

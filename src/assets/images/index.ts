@@ -1,32 +1,9 @@
-import logo from './skyscraper.png'
 import avatar from './avatar.webp'
-import shape1 from './shape1.png'
-import shape2 from './shape2.png'
-import home from './home.png'
-import news from './newspaper.png'
-import idea from './idea.png'
-import checklist from './checklist.png'
-import meeting from './online-meeting.png'
 import thumbnailNews from './thumbnail.webp'
+import news from './newspaper.png'
 import empty from './empty.png'
-import survey from './survey.png'
-import newss from './new.png'
-import pieChart from './pie-chart.png'
-import shape3 from './shape-3.png'
-import team from './team.png'
-import todo from './to-do-list.png'
-import todo2 from './to-do-list-2.png'
-import money from './money.png'
-import report from './report.png'
-import login from './enter.png'
-import changePw from './reset-password.png'
 import zalo from './zalo.png'
-import resume from './resume.png'
-import logout from './logout.png'
 import setting from './gear.png'
-import research from './research.png'
-import statistics from './statistics.png'
-import map from './map.png'
 import avatarDefault from './private-account.png'
 import event from './event.png'
 import location from './location.png'
@@ -62,37 +39,25 @@ import facebook from './facebook.png'
 import twitter from './twitter.png'
 import linkedin from './linkedin.png'
 import link from './link.png'
+import vietnam from './vietnam.png'
+import english from './english.png'
+import languages from './language.png'
+import login from './enter.png'
+import resume from './resume.png'
+import logout from './exit.png'
+import changePw from './reset-password.png'
+import signup from './signup.png'
 
 const images = {
-    logo,
     avatar,
-    shape1,
-    shape2,
-    home,
     news,
-    idea,
-    meeting,
+    login,
+    resume,
+    languages, logout, changePw, signup,
     thumbnailNews,
     empty,
-    checklist,
-    survey,
-    newss,
-    pieChart,
-    shape3,
-    team,
-    todo,
-    todo2,
-    money,
-    report,
-    login,
-    changePw,
     zalo,
-    resume,
-    logout,
     setting,
-    research,
-    statistics,
-    map,
     avatarDefault,
     event,
     location,
@@ -107,7 +72,7 @@ const images = {
     more,
     shopping,
     market, bus, route, taxi, bio, hospital, atm, gallery, eventThumnail, markerHotel, markerRestaurant, markerAtm, markerHospital,
-    markerOil, markerTravel, markerTaxi, markerBus, markerShopping, facebook, twitter, linkedin, link
+    markerOil, markerTravel, markerTaxi, markerBus, markerShopping, facebook, twitter, linkedin, link, vietnam, english
 }
 
 export default images

@@ -34,6 +34,9 @@ import { OilDetailPage, OilPage } from "pages/oil";
 import { HospitalDetailPage, HospitalPage } from "pages/hospital";
 import { AtmDetailPage, AtmPage } from "pages/atm";
 import { BusRoutingDetailPage, BusRoutingPage } from "pages/bus-routing";
+import { GalleryDetailPage, GalleryPage } from "pages/gallery";
+import { LanguagePage, SearchPage, SettingsPage } from "pages/settings";
+import RegisterPage from "pages/account/register";
 
 const MyApp = () => {
 
@@ -149,6 +152,10 @@ const MyApp = () => {
                 <Route path="/bus-routing" element={<BusRoutingPage></BusRoutingPage>}></Route>
                 <Route path="/bus-routing-detail" element={<BusRoutingDetailPage></BusRoutingDetailPage>}></Route>
 
+                {/* Gallery */}
+                <Route path="/gallery" element={<GalleryPage></GalleryPage>}></Route>
+                <Route path="/gallery-detail" element={<GalleryDetailPage></GalleryDetailPage>}></Route>
+
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>
                 <Route path="/feedback-detail" element={<FeedbackDetailPage></FeedbackDetailPage>}></Route>
@@ -160,6 +167,7 @@ const MyApp = () => {
                 <Route path="/login" element={<LoginPage></LoginPage>}></Route>
                 <Route path="/profile-account" element={<ProfileAccountPage></ProfileAccountPage>}></Route>
                 <Route path="/change-password" element={<ChangePasswordPage></ChangePasswordPage>}></Route>
+                <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
 
                 {/* NOTIFICATION */}
                 <Route path="/notification" element={<NotificationPage></NotificationPage>}></Route>
@@ -172,6 +180,11 @@ const MyApp = () => {
 
                 {/* PERMISSION */}
                 <Route path="/403" element={<ForbiddenPage></ForbiddenPage>}></Route>
+
+                {/* SETTINGS */}
+                <Route path="/settings" element={<SettingsPage></SettingsPage>}></Route>
+                <Route path="/languages" element={<LanguagePage></LanguagePage>}></Route>
+                <Route path="/search" element={<SearchPage></SearchPage>}></Route>
 
               </Routes>
               <Navigation />

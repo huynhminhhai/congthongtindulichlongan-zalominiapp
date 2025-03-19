@@ -38,3 +38,20 @@ export type FormDataChangePassword = {
     confirmPassword: string;
     password: string;
 }
+
+export const schemaRegister = yup.object().shape({
+    fullname: yup.string().required('Không được để trống'),
+    phoneNumber: yup.string().required('Không được để trống'),
+    password: yup.string().required('Không được để trống'),
+    confirmPassword: yup
+        .string()
+        .required('Không được để trống')
+        .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không khớp'),
+});
+
+export type FormDataRegister = {
+    fullname: string;
+    phoneNumber: string;
+    confirmPassword: string;
+    password: string;
+}
