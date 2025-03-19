@@ -40,9 +40,6 @@ const CusineDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box>
                         <Box mb={9}>
-
-                        </Box>
-                        <Box mb={9}>
                             <TitleSubDetail title='Thông tin' />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
