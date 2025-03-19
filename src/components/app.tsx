@@ -33,6 +33,7 @@ import { TaxiDetailPage, TaxiPage } from "pages/taxi";
 import { OilDetailPage, OilPage } from "pages/oil";
 import { HospitalDetailPage, HospitalPage } from "pages/hospital";
 import { AtmDetailPage, AtmPage } from "pages/atm";
+import { BusRoutingDetailPage, BusRoutingPage } from "pages/bus-routing";
 
 const MyApp = () => {
 
@@ -143,6 +144,10 @@ const MyApp = () => {
                 {/* ATM */}
                 <Route path="/atm" element={<AtmPage></AtmPage>}></Route>
                 <Route path="/atm-detail" element={<AtmDetailPage></AtmDetailPage>}></Route>
+
+                {/* Bus routing */}
+                <Route path="/bus-routing" element={<BusRoutingPage></BusRoutingPage>}></Route>
+                <Route path="/bus-routing-detail" element={<BusRoutingDetailPage></BusRoutingDetailPage>}></Route>
 
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>

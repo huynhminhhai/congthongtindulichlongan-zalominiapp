@@ -39,7 +39,7 @@ export const busData = [
     }
 ]
 
-const ShoppingPage = () => {
+const BusPage = () => {
 
     const { Option } = Select
 
@@ -82,4 +82,4 @@ const ShoppingPage = () => {
     )
 }
 
-export default ShoppingPage
+export default BusPage
