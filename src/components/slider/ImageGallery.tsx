@@ -41,7 +41,7 @@ export default function ImageGallery({ images }) {
       >
         {images.map((src, index) => (
           <SwiperSlide key={index}>
-            <img src={src} alt={`Thumb ${index}`} className="w-[100px] h-[60px] rounded-lg" />
+            <img src={src} alt={`Thumb ${index}`} className="w-[100px] h-[60px] object-cover rounded-lg" />
           </SwiperSlide>
         ))}
       </Swiper>

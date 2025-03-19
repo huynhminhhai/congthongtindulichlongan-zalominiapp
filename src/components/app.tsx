@@ -24,6 +24,8 @@ import { CusineDetailPage, CusinePage } from "pages/cusine";
 import { TourDetailPage, TourPage } from "pages/tour";
 import { HotelDetailPage, HotelPage } from "pages/hotel";
 import { RestaurantDetailPage, RestaurantPage } from "pages/restaurant";
+import { GuideDetailPage, GuidePage } from "pages/guide-tour";
+import { FavoritePage } from "pages/favorite";
 
 const MyApp = () => {
 
@@ -96,9 +98,16 @@ const MyApp = () => {
                 <Route path="/hotel" element={<HotelPage></HotelPage>}></Route>
                 <Route path="/hotel-detail" element={<HotelDetailPage></HotelDetailPage>}></Route>
 
-                {/* HOTEL */}
+                {/* RESTAURANT */}
                 <Route path="/restaurant" element={<RestaurantPage></RestaurantPage>}></Route>
                 <Route path="/restaurant-detail" element={<RestaurantDetailPage></RestaurantDetailPage>}></Route>
+
+                {/* GUIDE TOUR */}
+                <Route path="/guide" element={<GuidePage></GuidePage>}></Route>
+                <Route path="/guide-detail" element={<GuideDetailPage></GuideDetailPage>}></Route>
+
+                {/* FAVORITE */}
+                <Route path="/favorite" element={<FavoritePage></FavoritePage>}></Route>
                 
                 {/* FEEDBACK */}
                 <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>

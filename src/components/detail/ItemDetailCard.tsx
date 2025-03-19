@@ -12,7 +12,7 @@ const ItemDetailCard: React.FC<ItemDetailCardProps> = ({ imgUrl, title, desc }) 
     return (
         <Box flex className='gap-3'>
             <Box>
-                <img className='w-[120px] h-[80px] rounded-lg' src={imgUrl} alt={title} />
+                <img className='w-[120px] h-[80px] object-cover rounded-lg' src={imgUrl} alt={title} />
             </Box>
             <Box className="flex-1">
                 <div className="text-[16px] leading-[18px] font-semibold mb-1 line-clamp-2">{title}</div>
