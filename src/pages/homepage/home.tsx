@@ -8,6 +8,7 @@ import { HotelSection } from "components/hotel";
 import LongAnMap from "components/maps/LongAnMap";
 import NewsSection from "components/news/NewsSection";
 import { RestaurantSection } from "components/restaurant";
+import { SearchSection } from "components/search";
 import { ServiceSection, ServiceSub } from "components/services";
 import { TourSection } from "components/tour";
 import React, { useState } from "react";
@@ -24,6 +25,7 @@ const HomePage: React.FunctionComponent = () => {
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px] home">
       <Box className="relative z-[1]">
         <BannerSlider />
+        <SearchSection />
         <ServiceSection setSheetVisible={setSheetVisible} />
         <Divider />
         <DestinationSection />

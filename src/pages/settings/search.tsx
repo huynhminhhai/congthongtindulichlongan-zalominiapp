@@ -1,3 +1,4 @@
+import { ItemDetailCard } from "components/detail";
 import { HeaderSub } from "components/header-sub"
 import React from "react"
 import { Box, Input, Page, Select, } from "zmp-ui"
@@ -30,24 +31,8 @@ const SearchPage: React.FC = () => {
                     />
                     <div className="text-[16px] leading-[1] font-semibold my-3">Kết quả (2)</div>
                     <Box flex flexDirection="column" className="gap-3">
-                        <div className="flex items-center gap-3">
-                            <img className="w-[100px] h-[70px] object-cover rounded-lg" src="https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg" alt="địa điểm" />
-                            <div>
-                                <span className="text-[16px] leading-[24px] font-semibold line-clamp-2">Nhà trăm cột</span>
-                                <span className="text-[12px] leading-[20px] font-medium line-clamp-1">
-                                    Địa điểm nổi bật
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <img className="w-[100px] h-[70px] object-cover rounded-lg" src="https://www.thatlangon.com/wp-content/uploads/2021/09/canh-chua-ca-tln1-e1633942511539.jpg" alt="địa điểm" />
-                            <div>
-                                <span className="text-[16px] leading-[24px] font-semibold line-clamp-2">Canh chua cá chốt</span>
-                                <span className="text-[12px] leading-[20px] font-medium line-clamp-1">
-                                    Đặc sản
-                                </span>
-                            </div>
-                        </div>
+                        <ItemDetailCard title="Nhà trăm cột" imgUrl="https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg" desc="Địa điểm nổi bật" />
+                        <ItemDetailCard title="Tuần Văn hóa - Thể thao - Du lịch tỉnh Long An lần thứ 2 năm 2024 - Thành công tốt đẹp" imgUrl="https://www.baolongan.vn/image/news/2024/20241205/images/khai%20m%E1%BA%A1c%20(38).jpg" desc="Sự kiện" />
                     </Box>
                 </Box>
             </Box>
