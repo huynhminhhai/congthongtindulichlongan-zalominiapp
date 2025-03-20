@@ -51,16 +51,15 @@ export const SERVICES: ServicesType[] = [
         url: '/guide',
         icon: images.tourGuide
     },
-    
-    {
-        label: 'Yêu thích',
-        url: '/favorite',
-        icon: images.lover
-    },
     {
         label: 'Phản ánh',
         url: '/feedback',
         icon: images.feedback
+    },
+    {
+        label: 'Thư viện ảnh',
+        url: '/gallery',
+        icon: images.gallery
     },
 ]
 

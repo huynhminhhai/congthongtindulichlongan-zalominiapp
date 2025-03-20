@@ -24,14 +24,14 @@ const tabs: Record<string, MenuItem> = {
   },
   "/settings": {
     label: "Cài đặt",
-    icon: <Icon icon="material-symbols:settings" />,
-    activeIcon: <Icon icon="material-symbols:settings" />
+    icon: <Icon icon="line-md:cog-filled" />,
+    activeIcon: <Icon icon="line-md:cog-filled" />
   },
 };
 
 export type TabKeys = keyof typeof tabs;
 
-export const HAS_BOTTOM_NAVIGATION_PAGES = ["/", "/management", "/account", "/notification"];
+export const HAS_BOTTOM_NAVIGATION_PAGES = ["/", "/management", "/account", "/favorite", "/settings"];
 
 export const Navigation: FC = () => {
   const navigate = useNavigate();

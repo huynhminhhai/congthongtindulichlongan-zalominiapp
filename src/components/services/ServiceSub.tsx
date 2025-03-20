@@ -45,11 +45,6 @@ export const SERVICESOTHER: ServicesType[] = [
         url: '/atm',
         icon: images.atm
     },
-    {
-        label: 'Thư viện ảnh',
-        url: '/gallery',
-        icon: images.gallery
-    },
 ]
 
 type ServiceSubProps = {

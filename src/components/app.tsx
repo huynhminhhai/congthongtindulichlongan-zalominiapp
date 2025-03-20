@@ -48,6 +48,8 @@ const MyApp = () => {
     try {
       const storedData = await getDataFromStorage(["account", "token"]);
 
+      console.log(storedData)
+
       if (!storedData) {
         setAuth({ account: null, token: null });
         return;

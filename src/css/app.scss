@@ -614,6 +614,7 @@ div.ql-editor {
 * MAPS
 **/
 
-.infor-map .leaflet-popup-content {
-  margin: 12px;
+.infor-map .leaflet-popup-content,
+.map-wrap .leaflet-popup-content {
+  margin: 22px 8px 8px;
 }
