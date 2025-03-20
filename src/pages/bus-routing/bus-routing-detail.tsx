@@ -14,31 +14,21 @@ import BusMap from 'components/maps/BusMap'
 const location = {
     lat: 10.537824636906599,
     lng: 106.40475073924593,
-    name: "Kỳ Son – Thạnh Hóa và Thạnh Hóa Bình Hiệp",
+    name: "Bến xe Long An - Bến xe Đức Huệ",
     address: "  Số 113, QL1, P2, TP Tân An, Long An",
     img: "https://www.zappiamotors.com/wp-content/uploads/2024/02/ben-xe-long-an-cung-cap-thuc-an-nhanh-va-nuoc-giai-khat.jpg",
     markerImg: images.markerBus,
 };
 
 const busStops = [
-    { name: 'Bệnh viện Đa khoa', lat: 10.5453, lng: 106.4086 },
-    { name: 'Nguyễn Thông', lat: 10.5470, lng: 106.4125 },
-    { name: 'Châu Thị Kim', lat: 10.5492, lng: 106.4153 },
-    { name: 'Hùng Vương', lat: 10.5525, lng: 106.4201 },
-    { name: 'Nguyễn An Ninh', lat: 10.5550, lng: 106.4234 },
-    { name: 'Hai Bà Trưng', lat: 10.5584, lng: 106.4281 },
-    { name: 'Cách Mạng Tháng 8', lat: 10.5610, lng: 106.4325 },
-    { name: 'Nguyễn Trung Trực', lat: 10.5642, lng: 106.4371 },
-    { name: 'Trương Định', lat: 10.5669, lng: 106.4413 },
-    { name: 'Võ Văn Tần', lat: 10.5703, lng: 106.4460 },
-    { name: 'Trà Bình Quý', lat: 10.5731, lng: 106.4505 },
-    { name: 'Hùng Vương (đoạn mới)', lat: 10.5757, lng: 106.4552 },
-    { name: 'QL62', lat: 10.5801, lng: 106.4607 },
-    { name: 'QL.N2', lat: 10.5900, lng: 106.4750 },
-    { name: 'TT Thạnh Hóa', lat: 10.6050, lng: 106.4950 },
-    { name: 'ĐT 836', lat: 10.6150, lng: 106.5100 },
-    { name: 'QL62 (về Bình Hiệp)', lat: 10.6250, lng: 106.5250 },
-    { name: 'Bãi đỗ xe Bình Hiệp', lat: 10.6400, lng: 106.5400 }
+    { name: 'Bến xe Long An', lat: 10.537803541130945, lng: 106.40476146808156 },
+    { name: 'Hùng Vương', lat: 10.539371601842227, lng: 106.40461577088507 },
+    { name: 'Hùng Vương', lat: 10.550287919910376, lng: 106.39861105472117 },
+    { name: 'Đường tráng QL1A', lat: 10.562689589061831, lng: 106.42000937575203 },
+    { name: 'Đường tráng QL1A', lat: 10.598764504793492, lng: 106.4409676497632 },
+    { name: 'Tỉnh lộ 830', lat: 10.636379491762362, lng: 106.46936310645887 },
+    { name: 'Tỉnh lộ 22', lat: 10.857431299659426, lng: 106.30636598768227 },
+    { name: 'Bến xe Đức Huệ', lat: 10.899005145554527, lng: 106.30999023695371 },
 ];
 
 const BusRoutingDetailPage = () => {
@@ -69,11 +59,11 @@ const BusRoutingDetailPage = () => {
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
                                         <Icon fontSize={24} icon='fluent:location-28-regular' />
-                                        <div className='flex-1'>bệnh viện Đa khoa – Nguyễn Thông – Châu Thị Kim – Hùng Vương – Nguyễn An Ninh – Hai Bà Trưng – Cách Mạng Tháng 8-Nguyễn Trung Trực-Trương Định -Võ Văn Tần – Trà Bình Quý – Hùng Vương – QL62 – QL.N2 – TT Thạnh Hóa – ĐT 836 – QL 62 – Bãi đỗ xe Bình Hiệp</div>
+                                        <div className='flex-1'>Bến xe Long An - Hùng Vương - Đường tránh Quốc lộ 1 - Tỉnh lộ 830 - Tỉnh lộ 22 - Bến xe Đức Huệ</div>
                                     </li>
                                     <li className='flex items-start gap-3'>
                                         <Icon fontSize={20} icon='mingcute:time-line' />
-                                        <div className='flex-1'>5h30 – 19h00</div>
+                                        <div className='flex-1'>5h30 - 19h00</div>
                                     </li>
                                     <li className='flex items-start gap-3'>
                                         <Icon fontSize={20} icon='mingcute:time-line' />
@@ -94,7 +84,7 @@ const BusRoutingDetailPage = () => {
                             <TitleSubDetail title='Mô tả' />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                 __html: `
-                                    <p>bệnh viện Đa khoa – Nguyễn Thông – Châu Thị Kim – Hùng Vương – Nguyễn An Ninh – Hai Bà Trưng – Cách Mạng Tháng 8-Nguyễn Trung Trực-Trương Định -Võ Văn Tần – Trà Bình Quý – Hùng Vương – QL62 – QL.N2 – TT Thạnh Hóa – ĐT 836 – QL 62 – Bãi đỗ xe Bình Hiệp</p>
+                                    <p>Bến xe Long An - Hùng Vương - Đường tránh Quốc lộ 1 - Tỉnh lộ 830 - Tỉnh lộ 22 - Bến xe Đức Huệ</p>
                                 `}}>
                             </div>
                         </Box>
