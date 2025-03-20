@@ -4,6 +4,7 @@ import DestinationItem from './DestinationItem'
 import TitleSection from 'components/titleSection'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useTranslation } from 'react-i18next';
 
 export const destinationData = [
     {
@@ -30,12 +31,13 @@ export const destinationData = [
 
 const DestinationSection = () => {
 
+    const { t } = useTranslation("common");
     const navigate = useNavigate()
 
     return (
         <Box py={4} pl={4}>
             <Box pr={4}>
-                <TitleSection title="Điểm đến nổi bật" handleClick={() => navigate('/destination')} />
+                <TitleSection title={t("destinations")} handleClick={() => navigate('/destination')} />
             </Box>
             <Swiper
                 spaceBetween={12}

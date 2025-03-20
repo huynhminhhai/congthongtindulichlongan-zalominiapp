@@ -5,6 +5,7 @@ import { Tabs } from 'zmp-ui';
 import 'leaflet-search/dist/leaflet-search.min.css';
 import images from 'assets/images';
 import { openUrlInWebview } from 'services/zalo';
+import { useTranslation } from 'react-i18next';
 
 interface Location {
     lat: number;
@@ -26,6 +27,7 @@ const LongAnMap: React.FC = () => {
     const mapRef = useRef<L.Map | null>(null);
     const markersRef = useRef<L.LayerGroup>(L.layerGroup());
     const [activeTab, setActiveTab] = React.useState<string>('tourist');
+    const { t } = useTranslation("common");
 
     const locations: Locations = {
         
@@ -706,8 +708,8 @@ const LongAnMap: React.FC = () => {
             <div style="padding-block: 6px;">
               <div style="color: #355933; font-size: 15px; font-weight: 600; margin-bottom: 2px;">${item.name}</div>
               <div style="font-size: 11px;">
-                <div style="margin-bottom: 4px;"><strong>Địa chỉ:</strong> ${item.address}</div>
-                <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">Chỉ đường</button>
+                <div style="margin-bottom: 4px;"><strong>${t("address")}:</strong> ${item.address}</div>
+                <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { Box, useNavigate } from 'zmp-ui'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import CusineItem from './CusineItem';
+import { useTranslation } from 'react-i18next';
 
 export const cusineData = [
     {
@@ -30,12 +31,13 @@ export const cusineData = [
 
 const CusineSection = () => {
 
+    const { t } = useTranslation("common");
     const navigate = useNavigate()
 
     return (
         <Box pt={4} pb={6} className='cusine-section'>
             <Box px={4}>
-                <TitleSection title="Đặc sản" handleClick={() => navigate('/cusine')} />
+                <TitleSection title={t("cusine")} handleClick={() => navigate('/cusine')} />
             </Box>
             <Swiper
                 spaceBetween={12}

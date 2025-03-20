@@ -1,9 +1,9 @@
-import TitleSection from "components/titleSection"
 import React from "react"
 import { Box } from "zmp-ui"
 import images from "assets/images"
 import { ServicesType } from "constants/utinities"
 import ServiceItem from "./ServiceItem"
+import { useTranslation } from "react-i18next"
 
 export const SERVICES: ServicesType[] = [
     {
@@ -68,6 +68,67 @@ type ServiceSectionProps = {
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({setSheetVisible}) => {
+
+    const { t } = useTranslation("common");
+
+    const SERVICES: ServicesType[] = [
+        {
+            label: t("news"),
+            url: '/news',
+            icon: images.news
+        },
+        {
+            label: t("events"),
+            url: '/events',
+            icon: images.event
+        },
+        {
+            label: t("destinations"),
+            url: '/destination',
+            icon: images.location
+        },
+        {
+            label: t("destinations-travel"),
+            url: '/destination-travel',
+            icon: images.destinationTravel
+        },
+        {
+            label: t("cusine"),
+            url: '/cusine',
+            icon: images.goiCuon
+        },
+        {
+            label: t("restaurants"),
+            url: '/restaurant',
+            icon: images.restaurant
+        },
+        {
+            label: t("accommodations"),
+            url: '/hotel',
+            icon: images.hotel
+        },
+        {
+            label: t("tours"),
+            url: '/tour',
+            icon: images.destination
+        },
+        {
+            label: t("tour-guide"),
+            url: '/guide',
+            icon: images.tourGuide
+        },
+        {
+            label: t("feedbacks"),
+            url: '/feedback',
+            icon: images.feedback
+        },
+        {
+            label: t("gallery"),
+            url: '/gallery',
+            icon: images.gallery
+        },
+    ]
+
     return (
         <Box>
             <Box px={4} pb={4} className="bg-white">
@@ -90,7 +151,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({setSheetVisible}) => {
                                     </div>
                                 </Box>
                                 <Box>
-                                    <h4 className="text-[14px] leading-[18px] text-center font-medium">Tiện ích khác</h4>
+                                    <h4 className="text-[14px] leading-[18px] text-center font-medium">{t("utilities")}</h4>
                                 </Box>
                             </div>
                         </Box>

@@ -17,6 +17,8 @@ if (!window.APP_CONFIG) {
   window.APP_CONFIG = appConfig;
 }
 
+import "./i18n";
+
 // Mount the app
 import App from "components/app";
 const root = createRoot(document.getElementById("app")!);

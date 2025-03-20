@@ -6,6 +6,7 @@ import React, { useState } from "react"
 import { Box, useNavigate } from "zmp-ui"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useTranslation } from "react-i18next"
 
 const initParam = {
     page: 1,
@@ -16,6 +17,7 @@ const EventsSection: React.FC = () => {
 
     const [param, setParam] = useState(initParam);
     const navigate = useNavigate()
+    const { t } = useTranslation("home");
 
     const { data, isLoading } = useGetNewsList(param);
 
@@ -32,7 +34,7 @@ const EventsSection: React.FC = () => {
                     <>
                         <Box py={4} pl={4} className="news-section">
                             <Box pr={4}>
-                                <TitleSection title="Sự kiện mới nhất" handleClick={() => navigate('/events')} />
+                                <TitleSection title={t("latest-events")} handleClick={() => navigate('/events')} />
                             </Box>
                             <Swiper
                                 spaceBetween={12}

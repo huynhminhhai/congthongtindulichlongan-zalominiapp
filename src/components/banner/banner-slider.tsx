@@ -1,7 +1,9 @@
 import React from "react"
+import { useTranslation } from "react-i18next";
 import { Box, Swiper } from "zmp-ui"
 
 const BannerSlider: React.FC = () => {
+    const { t } = useTranslation("home");
 
     return (
         <Box className="banner-silder">
@@ -22,12 +24,12 @@ const BannerSlider: React.FC = () => {
                         <Box px={3} py={4} className="relative">
                             <img className="absolute left-[65%] top-[0] w-[70%] h-auto translate-x-[-15%] translate-y-[5%]" src="https://pngimg.com/d/world_map_PNG28.png" alt="shape-map" />
                             <h1 className="text-[32px] leading-[38px] text-[#000] font-bold mb-1">
-                                <div>KHÁM PHÁ</div>
-                                <div>DU LỊCH</div>
-                                <div>TỈNH <span className="text-[#355933]">LONG AN</span></div>
+                                <div>{t("welcome1")}</div>
+                                <div>{t("welcome2")}</div>
+                                <div>{t("welcome3")} <span className="text-[#355933]">LONG AN</span></div>
                             </h1>
                             <p className="whitespace-normal font-medium">
-                                Khám phá Long An – Vùng đất giao thoa giữa thiên nhiên tươi đẹp, văn hóa đặc sắc và ẩm thực độc đáo. Tận hưởng những điểm đến hấp dẫn, tham gia các lễ hội sôi động và trải nghiệm du lịch đầy thú vị tại Long An!
+                                {t("discoveryDesc")}
                             </p>
                         </Box>
                     </Swiper.Slide>

@@ -4,6 +4,7 @@ import { Box, useNavigate } from 'zmp-ui'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import HotelItem from './HotelItem';
+import { useTranslation } from 'react-i18next';
 
 export const hotelData = [
     {
@@ -26,11 +27,12 @@ export const hotelData = [
 const HotelSection: React.FC = () => {
 
     const navigate = useNavigate()
+    const { t } = useTranslation("common");
 
     return (
         <Box py={4} pl={4}>
             <Box pr={4}>
-                <TitleSection title="Lưu trú" handleClick={() => navigate('/hotel')} />
+                <TitleSection title={t("accommodations")} handleClick={() => navigate('/hotel')} />
             </Box>
             <Swiper
                 spaceBetween={12}

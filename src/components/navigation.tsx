@@ -5,39 +5,41 @@ import { BottomNavigation } from "zmp-ui";
 import { MenuItem } from "constants/types";
 import { useStoreApp } from "store/store";
 import { useRole } from "store/authSlice";
-
-const tabs: Record<string, MenuItem> = {
-  "/": {
-    label: "Trang chủ",
-    icon: <Icon icon="line-md:home-simple-filled" />,
-    activeIcon: <Icon icon="line-md:home-simple-filled" />
-  },
-  "/favorite": {
-    label: "Yêu thích",
-    icon: <Icon icon="line-md:heart-filled" />,
-    activeIcon: <Icon icon="line-md:heart-filled" />
-  },
-  "/account": {
-    label: "Tài khoản",
-    icon: <Icon icon="line-md:person-filled" />,
-    activeIcon: <Icon icon="line-md:person-filled" />
-  },
-  "/settings": {
-    label: "Cài đặt",
-    icon: <Icon icon="line-md:cog-filled" />,
-    activeIcon: <Icon icon="line-md:cog-filled" />
-  },
-};
-
-export type TabKeys = keyof typeof tabs;
-
-export const HAS_BOTTOM_NAVIGATION_PAGES = ["/", "/management", "/account", "/favorite", "/settings"];
+import { useTranslation } from "react-i18next";
 
 export const Navigation: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { account } = useStoreApp();
   const role = useRole();
+  const { t } = useTranslation("common");
+
+  const tabs: Record<string, MenuItem> = {
+    "/": {
+      label: t("home"),
+      icon: <Icon icon="line-md:home-simple-filled" />,
+      activeIcon: <Icon icon="line-md:home-simple-filled" />
+    },
+    "/favorite": {
+      label: t("favorites"),
+      icon: <Icon icon="line-md:heart-filled" />,
+      activeIcon: <Icon icon="line-md:heart-filled" />
+    },
+    "/account": {
+      label: t("account"),
+      icon: <Icon icon="line-md:person-filled" />,
+      activeIcon: <Icon icon="line-md:person-filled" />
+    },
+    "/settings": {
+      label: t("settings"),
+      icon: <Icon icon="line-md:cog-filled" />,
+      activeIcon: <Icon icon="line-md:cog-filled" />
+    },
+  };
+
+  type TabKeys = keyof typeof tabs;
+
+  const HAS_BOTTOM_NAVIGATION_PAGES = ["/", "/management", "/account", "/favorite", "/settings"];
 
   const filteredTabs = useMemo(() => {
     if (role === "admin") {
