@@ -9,6 +9,7 @@ import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { shoppingData } from './shopping'
+import { useTranslation } from 'react-i18next'
 
 export const imagesGallery = [
     'https://www.baolongan.vn/image/news/2020/20201222/images/df59710e29aed8f081bf.jpg',
@@ -28,11 +29,12 @@ const location = {
 const ShoppingDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết điểm mua sắm" />
+                <HeaderSub title={tPage('shoppings-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -48,7 +50,7 @@ const ShoppingDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
@@ -67,7 +69,7 @@ const ShoppingDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                 __html: `
                                     <p>
@@ -83,7 +85,7 @@ const ShoppingDetailPage = () => {
                             </div>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Bản đồ' />
+                            <TitleSubDetail title={tPage('map')} />
                             <div className="infor-map">
                                 <SingleLocationMap location={location} />
                             </div>
@@ -101,7 +103,7 @@ const ShoppingDetailPage = () => {
                     />
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Điểm mua sắm khác" mB={2} handleClick={() => navigate('/shopping')} />
+                    <TitleSection title={tPage('shoppings-others')} mB={2} handleClick={() => navigate('/shopping')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {

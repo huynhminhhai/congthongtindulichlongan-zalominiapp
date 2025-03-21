@@ -1,6 +1,6 @@
 import { HeaderSub } from 'components/header-sub'
 import React from 'react'
-import { Box, Page, useNavigate } from 'zmp-ui'
+import { Box, Page } from 'zmp-ui'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
@@ -16,7 +16,6 @@ export const imagesGallery = [
 
 const GalleryDetailPage = () => {
 
-    const navigate = useNavigate()
     const { t: tPage } = useTranslation("page");
 
     return (

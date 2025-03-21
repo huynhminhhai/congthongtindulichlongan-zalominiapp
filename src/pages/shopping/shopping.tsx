@@ -3,6 +3,7 @@ import { HeaderSub } from 'components/header-sub'
 import { ShoppingItem } from 'components/shopping'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box, Input, Page, Select } from 'zmp-ui'
 
 export const shoppingData = [
@@ -41,27 +42,28 @@ export const shoppingData = [
 const ShoppingPage = () => {
 
     const { Option } = Select
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Điểm mua sắm" />
+                <HeaderSub title={tCommon('shoppings')} />
                 <Box pb={4}>
                     <FilterBar
                         showAddButton={false}
                     >
                         <div className="col-span-12">
                             <Input
-                                placeholder="Tìm kiếm..."
+                                placeholder={tCommon('searching')} 
                                 value={''}
                             />
                         </div>
                         <div className="col-span-12">
                             <Select
-                                placeholder="Tất cả"
+                                placeholder={tCommon('all')} 
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')}  value={0} />
                                 <Option title={'Nổi tiếng'} value={1} />
                             </Select>
                         </div>
@@ -70,7 +72,7 @@ const ShoppingPage = () => {
                                 placeholder="Loại mua sắm"
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')}  value={0} />
                                 <Option title={'Nổi tiếng'} value={1} />
                             </Select>
                         </div>

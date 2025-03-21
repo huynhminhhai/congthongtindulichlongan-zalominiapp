@@ -8,6 +8,7 @@ import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { taxiData } from './taxi'
+import { useTranslation } from 'react-i18next'
 
 const location = {
     lat: 10.554719681776884,
@@ -22,11 +23,12 @@ const location = {
 const ShoppingDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết taxi" />
+                <HeaderSub title={tPage('taxi-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -42,7 +44,7 @@ const ShoppingDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box> */}
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
@@ -61,7 +63,7 @@ const ShoppingDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                 __html: `
                                     <p><strong>Giới thiệu về taxi mai linh</strong></p>
@@ -89,7 +91,7 @@ const ShoppingDetailPage = () => {
                     </Box>
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Taxi khác" mB={2} handleClick={() => navigate('/taxi')} />
+                    <TitleSection title={tPage('taxi-others')} mB={2} handleClick={() => navigate('/taxi')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {

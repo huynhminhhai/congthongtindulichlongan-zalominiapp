@@ -10,6 +10,7 @@ import { Box, Page, useNavigate } from 'zmp-ui'
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { busData } from './bus-routing'
 import BusMap from 'components/maps/BusMap'
+import { useTranslation } from 'react-i18next'
 
 const location = {
     lat: 10.537824636906599,
@@ -34,11 +35,12 @@ const busStops = [
 const BusRoutingDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết tuyến xe buýt" />
+                <HeaderSub title={tPage('bus-route-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -54,7 +56,7 @@ const BusRoutingDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box> */}
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
@@ -81,7 +83,7 @@ const BusRoutingDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                 __html: `
                                     <p>Bến xe Long An - Hùng Vương - Đường tránh Quốc lộ 1 - Tỉnh lộ 830 - Tỉnh lộ 22 - Bến xe Đức Huệ</p>
@@ -89,7 +91,7 @@ const BusRoutingDetailPage = () => {
                             </div>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Bản đồ' />
+                            <TitleSubDetail title={tPage('map')} />
                             <div className="infor-map">
                                 <BusMap busStops={busStops}/>
                             </div>
@@ -97,7 +99,7 @@ const BusRoutingDetailPage = () => {
                     </Box>
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Tuyến xe buýt khác" mB={2} handleClick={() => navigate('/bus-routing')} />
+                    <TitleSection title={tPage('bus-route-others')} mB={2} handleClick={() => navigate('/bus-routing')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {

@@ -3,6 +3,7 @@ import { HeaderSub } from 'components/header-sub'
 import { HospitalItem } from 'components/hospital'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box, Input, Page, Select } from 'zmp-ui'
 
 export const medicalData = [
@@ -41,27 +42,28 @@ export const medicalData = [
 const ShoppingPage = () => {
 
     const { Option } = Select
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Cơ sở y tế" />
+                <HeaderSub title={tCommon("medical")} />
                 <Box pb={4}>
                     <FilterBar
                         showAddButton={false}
                     >
                         <div className="col-span-12">
                             <Input
-                                placeholder="Tìm kiếm..."
+                                placeholder={tCommon("searching")}
                                 value={''}
                             />
                         </div>
                         <div className="col-span-12">
                             <Select
-                                placeholder="Tất cả"
+                                placeholder={tCommon("all")}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon("all")} value={0} />
                                 <Option title={'Nổi tiếng'} value={1} />
                             </Select>
                         </div>

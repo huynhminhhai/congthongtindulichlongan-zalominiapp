@@ -9,6 +9,7 @@ import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { busData } from './bus'
+import { useTranslation } from 'react-i18next'
 
 const location = {
     lat: 10.537824636906599,
@@ -22,11 +23,12 @@ const location = {
 const BusDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết bến xe" />
+                <HeaderSub title={tPage('bus-stop-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -42,7 +44,7 @@ const BusDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box> */}
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
@@ -61,7 +63,7 @@ const BusDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                     __html: `
                                     <p>
@@ -82,7 +84,7 @@ const BusDetailPage = () => {
                                 </div>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Bản đồ' />
+                            <TitleSubDetail title={tPage('map')} />
                             <div className="infor-map">
                                 <SingleLocationMap location={location} />
                             </div>
@@ -90,7 +92,7 @@ const BusDetailPage = () => {
                     </Box>
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Bến xe khác" mB={2} handleClick={() => navigate('/bus')} />
+                    <TitleSection title={tPage('bus-stop-others')} mB={2} handleClick={() => navigate('/bus')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {

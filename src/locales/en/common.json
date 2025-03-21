@@ -45,6 +45,7 @@
     "location-type": "Location Type",
     "travel-type": "Travel Type",
     "restaurant-type": "Restaurant Type",
+    "shopping-type": "Shopping Type",
     "send-feedback": "Send Feedback",
     "feedback-sent": "Feedback Sent",
     "feedback-content": "Feedback Content",

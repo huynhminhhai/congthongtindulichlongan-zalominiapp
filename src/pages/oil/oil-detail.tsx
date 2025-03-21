@@ -9,6 +9,7 @@ import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { oilData } from './oil'
+import { useTranslation } from 'react-i18next'
 
 const location = {
     lat: 10.538361659296966,
@@ -23,11 +24,12 @@ const location = {
 const OilDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết trạm xăng/dầu" />
+                <HeaderSub title={tPage('fuel-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -43,7 +45,7 @@ const OilDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box> */}
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
@@ -62,7 +64,7 @@ const OilDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                     __html: `
                                 <p>
@@ -81,7 +83,7 @@ const OilDetailPage = () => {
                                 </div>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Bản đồ' />
+                            <TitleSubDetail title={tPage('map')} />
                             <div className="infor-map">
                                 <SingleLocationMap location={location} />
                             </div>
@@ -89,7 +91,7 @@ const OilDetailPage = () => {
                     </Box>
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Điểm mua sắm khác" mB={2} handleClick={() => navigate('/oil')} />
+                    <TitleSection title={tPage('fuel-others')} mB={2} handleClick={() => navigate('/oil')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {
