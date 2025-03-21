@@ -31,7 +31,7 @@ export const Navigation: FC = () => {
       activeIcon: <Icon icon="line-md:person-filled" />
     },
     "/settings": {
-      label: t("settings"),
+      label: t("settigns"),
       icon: <Icon icon="line-md:cog-filled" />,
       activeIcon: <Icon icon="line-md:cog-filled" />
     },
@@ -48,11 +48,11 @@ export const Navigation: FC = () => {
 
     const { "/management": _, ...restTabs } = tabs;
     return restTabs;
-  }, [account]);
+  }, [account, t]);
 
   const hasBottomNav = useMemo(() => {
     return HAS_BOTTOM_NAVIGATION_PAGES.includes(location.pathname);
-  }, [location]);
+  }, [location, t]);
 
   if (!hasBottomNav) {
     return <></>;

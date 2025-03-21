@@ -21,10 +21,20 @@
     "atm": "ATM",
     "see-all": "View all",
     "see-more": "See more",
+    "all": "All",
     "home": "Home",
     "favorites": "Favorites",
     "account": "Account",
     "settings": "Settings",
     "directions": "Directions",
-    "address": "Address"
+    "address": "Address",
+
+    "phonenumber": "Phone number",
+    "password": "Password",
+    "fullname": "Full name",
+    "password-confirm": "Confirm password",
+    "password-old": "Old password",
+    "password-new": "New password",
+    "birthDate": "Birth Date",
+    "gender": "Gender"
 }

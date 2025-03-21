@@ -21,10 +21,20 @@
     "atm": "ATM",
     "see-all": "Xem tất cả",
     "see-more": "Xem thêm",
+    "all": "Tất cả",
     "home": "Trang chủ",
     "favorites": "Yêu thích",
     "account": "Tài khoản",
     "settings": "Cài đặt",
     "directions": "Chỉ đường",
-    "address": "Địa chỉ"
+    "address": "Địa chỉ",
+
+    "phonenumber": "Số điện thoại",
+    "password": "Mật khẩu",
+    "fullname": "Họ tên",
+    "password-confirm": "Xác nhận mật khẩu",
+    "password-old": "Mật khẩu cũ",
+    "password-new": "Mật khẩu mới",
+    "birthDate": "Ngày sinh",
+    "gender": "Giới tính"
 }

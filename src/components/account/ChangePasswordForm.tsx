@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { FormInputField } from "components/form"
 import { Icon } from "@iconify/react"
 import { useLoginWithZalo } from "services/loginWithZalo"
+import { useTranslation } from "react-i18next"
 
 const defaultValues: FormDataChangePassword = {
     password: '',
@@ -17,6 +18,8 @@ const ChangePasswordForm: React.FC = () => {
 
     const { openSnackbar } = useSnackbar();
     const navigate = useNavigate()
+    const { t: tAccount } = useTranslation("account");
+    const { t: tCommon } = useTranslation("common");
 
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState<FormDataChangePassword>(defaultValues)
@@ -75,7 +78,7 @@ const ChangePasswordForm: React.FC = () => {
                             name="oldPassword"
                             type={isHideOPw ? 'password' : 'text'}
                             label=""
-                            placeholder="Mật khẩu cũ"
+                            placeholder={tCommon("password-old")}
                             control={control}
                             error={errors.oldPassword?.message}
                         />
@@ -92,7 +95,7 @@ const ChangePasswordForm: React.FC = () => {
                             name="password"
                             type={isHidePw ? 'password' : 'text'}
                             label=""
-                            placeholder="Mật khẩu mới"
+                            placeholder={tCommon("password-new")}
                             control={control}
                             error={errors.password?.message}
                         />
@@ -109,7 +112,7 @@ const ChangePasswordForm: React.FC = () => {
                             name="confirmPassword"
                             type={isHideCPw ? 'password' : 'text'}
                             label=""
-                            placeholder="Xác nhận mật khẩu mới"
+                            placeholder={tCommon("password-confirm")}
                             control={control}
                             error={errors.confirmPassword?.message}
                         />
@@ -121,8 +124,8 @@ const ChangePasswordForm: React.FC = () => {
                         </div>
                     </div>
                     <div className="col-span-12 relative mt-[40px]">
-                        <Button fullWidth onClick={handleSubmit(onSubmit)}>
-                            {loading ? "Đang xử lý..." : "Đổi mật khẩu"}
+                        <Button fullWidth onClick={handleSubmit(onSubmit)} className="capitalize">
+                            {loading ? `${tAccount("processing")}` : `${tAccount("change-pw")}`}
                         </Button>
                     </div>
                 </div>

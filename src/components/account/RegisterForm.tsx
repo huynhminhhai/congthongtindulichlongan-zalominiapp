@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FormInputField } from "components/form"
 import { Icon } from "@iconify/react"
+import { useTranslation } from "react-i18next"
+import { useLoginWithZalo } from "services/loginWithZalo"
 
 const defaultValues: FormDataRegister = {
     fullname: '',
@@ -15,8 +17,12 @@ const defaultValues: FormDataRegister = {
 
 const RegisterForm: React.FC = () => {
 
+    const { loginWithZalo } = useLoginWithZalo()
+
     const { openSnackbar } = useSnackbar();
     const navigate = useNavigate()
+    const { t: tAccount } = useTranslation("account");
+    const { t: tCommon } = useTranslation("common");
 
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState<FormDataRegister>(defaultValues)
@@ -73,7 +79,7 @@ const RegisterForm: React.FC = () => {
                         <FormInputField
                             name="fullname"
                             label=""
-                            placeholder="Họ tên"
+                            placeholder={tCommon("fullname")}
                             control={control}
                             error={errors.fullname?.message}
                         />
@@ -83,7 +89,7 @@ const RegisterForm: React.FC = () => {
                         <FormInputField
                             name="phoneNumber"
                             label=""
-                            placeholder="Số điện thoại"
+                            placeholder={tCommon("phonenumber")}
                             control={control}
                             error={errors.phoneNumber?.message}
                         />
@@ -94,7 +100,7 @@ const RegisterForm: React.FC = () => {
                             name="password"
                             type={isHidePw ? 'password' : 'text'}
                             label=""
-                            placeholder="Mật khẩu mới"
+                            placeholder={tCommon("password")}
                             control={control}
                             error={errors.password?.message}
                         />
@@ -111,7 +117,7 @@ const RegisterForm: React.FC = () => {
                             name="confirmPassword"
                             type={isHideCPw ? 'password' : 'text'}
                             label=""
-                            placeholder="Xác nhận mật khẩu mới"
+                            placeholder={tCommon("password-confirm")}
                             control={control}
                             error={errors.confirmPassword?.message}
                         />
@@ -124,8 +130,9 @@ const RegisterForm: React.FC = () => {
                     </div>
                     <div className="col-span-12 relative mt-[40px]">
                         <Button fullWidth onClick={handleSubmit(onSubmit)}>
-                            {loading ? "Đang xử lý..." : "Đăng ký"}
+                            {loading ? `${tAccount("processing")}` : `${tAccount("register")}`}
                         </Button>
+                        <div className="mt-3 font-medium text-center">{tAccount("register-sub")} <br /> <span onClick={() => loginWithZalo()} className="font-semibold text-[#355933]">{tAccount("login-zalo")}</span> - <span onClick={() => navigate('/login')} className="font-semibold text-[#355933]">{tAccount("login-account")}</span></div>
                     </div>
                 </div>
             </Box>

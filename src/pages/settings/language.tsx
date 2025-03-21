@@ -10,7 +10,7 @@ const LanguagePage: React.FC = () => {
 
     const { openSnackbar } = useSnackbar();
     const { setIsLoadingFullScreen } = useStoreApp();
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation("setting");
 
     const handleChangeLanguage = async (lng: string) => {
         if (lng === i18n.language) return;
@@ -32,7 +32,7 @@ const LanguagePage: React.FC = () => {
     return (
         <Page className="relative flex-1 flex flex-col bg-white pb-[66px]" style={{ backgroundColor: '#f5f6f7' }}>
             <Box>
-                <HeaderSub title="Ngôn ngữ" />
+                <HeaderSub title={t("languages")} />
                 <Box p={4}>
                     <div className="grid grid-cols-2 gap-x-3 gap-y-4">
                         <Box

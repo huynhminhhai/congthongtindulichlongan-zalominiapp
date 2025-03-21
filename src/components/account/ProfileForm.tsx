@@ -9,6 +9,7 @@ import { ConfirmModal } from "components/modal"
 import { gender } from "constants/mock"
 import { useStoreApp } from "store/store"
 import { useUpdateAccount } from "apiRequest/account"
+import { useTranslation } from "react-i18next"
 
 const defaultValues: FormDataProfile = {
     fullname: '',
@@ -20,6 +21,9 @@ const defaultValues: FormDataProfile = {
 const ProfileForm: React.FC = () => {
 
     const { account, setAuth } = useStoreApp()
+
+    const { t: tAccount } = useTranslation("account");
+    const { t: tCommon } = useTranslation("common");
 
     console.log(account)
 
@@ -103,8 +107,8 @@ const ProfileForm: React.FC = () => {
                     <div className="col-span-12">
                         <FormInputField
                             name="fullname"
-                            label="Họ tên"
-                            placeholder="Nhập họ tên"
+                            label={tCommon("fullname")}
+                            placeholder={tCommon("fullname")}
                             control={control}
                             error={errors.fullname?.message}
                             required
@@ -113,8 +117,8 @@ const ProfileForm: React.FC = () => {
                     <div className="col-span-12">
                         <FormInputField
                             name="phoneNumber"
-                            label="Số điện thoại"
-                            placeholder="Nhập số điện thoại"
+                            label={tCommon("phonenumber")}
+                            placeholder={tCommon("phonenumber")}
                             control={control}
                             error={errors.phoneNumber?.message}
                             required
@@ -125,7 +129,7 @@ const ProfileForm: React.FC = () => {
                         <FormInputField
                             name="email"
                             label="Email"
-                            placeholder="Nhập email"
+                            placeholder="Email"
                             control={control}
                             error={errors.email?.message}
                         />
@@ -133,9 +137,9 @@ const ProfileForm: React.FC = () => {
                     <div className="col-span-12">
                         <FormControllerDatePicker
                             name="birthDate"
-                            label="Ngày sinh"
+                            label={tCommon("birthDate")}
                             control={control}
-                            placeholder="Chọn ngày sinh"
+                            placeholder={tCommon("birthDate")}
                             required
                             dateFormat="dd/mm/yyyy"
                             error={errors.birthDate?.message}
@@ -144,8 +148,8 @@ const ProfileForm: React.FC = () => {
                     <div className="col-span-12">
                         <FormSelectField
                             name="gender"
-                            label="Giới tính"
-                            placeholder="Chọn giới tính"
+                            label={tCommon("gender")}
+                            placeholder={tCommon("gender")}
                             control={control}
                             options={gender}
                             error={errors.gender?.message}
@@ -154,7 +158,7 @@ const ProfileForm: React.FC = () => {
                     </div>
                     <div className="fixed bottom-0 left-0 flex justify-center w-[100%] bg-white">
                         <Box py={3} className="w-[100%]" flex alignItems="center" justifyContent="center">
-                            <PrimaryButton disabled={loading || !isSubmitEnabled} fullWidth label={loading ? "Đang xử lý..." : "Cập nhật thông tin"} handleClick={handleSubmit(onSubmit)} />
+                            <PrimaryButton disabled={loading || !isSubmitEnabled} fullWidth label={loading ? `${tAccount("processing")}` : `${tAccount('update-infor')}`} handleClick={handleSubmit(onSubmit)} />
                         </Box>
                     </div>
                 </div>

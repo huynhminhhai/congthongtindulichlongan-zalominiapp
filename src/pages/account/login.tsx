@@ -1,6 +1,7 @@
 import { LoginForm } from "components/account"
 import { HeaderSub } from "components/header-sub"
 import React, { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import { getDataFromStorage } from "services/zalo"
 import { useStoreApp } from "store/store"
 import { Box, Page, useNavigate, useSnackbar } from "zmp-ui"
@@ -10,6 +11,7 @@ const LoginPage: React.FC = () => {
     const navigate = useNavigate();
     const { openSnackbar } = useSnackbar();
     const { account, setAuth } = useStoreApp();
+    const { t: tAccount } = useTranslation("account");
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -44,7 +46,7 @@ const LoginPage: React.FC = () => {
     return (
         <Page className="relative flex-1 flex flex-col bg-white login-page">
             <Box>
-                <HeaderSub title="Đăng nhập" />
+                <HeaderSub title={tAccount("login")} />
                 <Box>
                     <img
                         className="h-[260px] w-full object-cover"
@@ -57,8 +59,8 @@ const LoginPage: React.FC = () => {
                 </Box>
                 <Box p={4} mt={6}>
                     <Box>
-                        <h3 className="text-[24px] font-bold text-[#355933] text-center">Chào Mừng Trở Lại</h3>
-                        <h4 className="text-[16px] font-normal text-[#8f8f8f] text-center mt-3">Đăng nhập với tài khoản của bạn</h4>
+                        <h3 className="text-[24px] font-bold text-[#355933] text-center">{tAccount("wellcome-back")}</h3>
+                        <h4 className="text-[16px] font-normal text-[#8f8f8f] text-center mt-3">{tAccount("login-desc")}</h4>
                     </Box>
                     <Box py={4}>
                         <LoginForm />

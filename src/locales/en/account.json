@@ -1,0 +1,17 @@
+{
+    "information": "Account information",
+    "change-pw": "Change password",
+    "logout": "Logout",
+    "register": "Register",
+    "login-zalo": "Login with Zalo",
+    "login-account": "Login with account",
+    "login": "Login",
+    "wellcome-back": "Wellcome back",
+    "login-desc": "Login with your account",
+    "login-sub": "Don't you have an account?",
+    "register-desc": "Register your account",
+    "register-sub": "Already have an account?",
+    "processing": "Processing...",
+    "change-pw-desc": "Change your password",
+    "update-infor": "Update information"
+}

@@ -7,6 +7,7 @@ import { FormInputField } from "components/form"
 import { Icon } from "@iconify/react"
 import { useLoginWithZalo } from "services/loginWithZalo"
 import { useLogin } from "apiRequest/auth"
+import { useTranslation } from "react-i18next"
 
 const defaultValues: FormDataLogin = {
     username: '',
@@ -19,6 +20,8 @@ const LoginForm: React.FC = () => {
 
     const [loading, setLoading] = useState(false);
     const [isHide, setIsHide] = useState<boolean>(true)
+    const { t: tAccount } = useTranslation("account");
+    const { t: tCommon } = useTranslation("common");
 
     const { mutateAsync } = useLogin();
 
@@ -55,7 +58,7 @@ const LoginForm: React.FC = () => {
                         <FormInputField
                             name="username"
                             label=""
-                            placeholder="Số điện thoại"
+                            placeholder={tCommon("phonenumber")}
                             control={control}
                             error={errors.username?.message}
                         />
@@ -66,7 +69,7 @@ const LoginForm: React.FC = () => {
                             name="password"
                             type={isHide ? 'password' : 'text'}
                             label=""
-                            placeholder="Mật khẩu"
+                            placeholder={tCommon("password")}
                             control={control}
                             error={errors.password?.message}
                         />
@@ -80,9 +83,9 @@ const LoginForm: React.FC = () => {
                     </div>
                     <div className="col-span-12 relative mt-[60px]">
                         <Button disabled={loading} fullWidth onClick={handleSubmit(onSubmit)}>
-                            {loading ? "Đang xử lý..." : "Đăng nhập"}
+                            {loading ? `${tAccount("processing")}` : `${tAccount("login")}`}
                         </Button>
-                        <div className="mt-3 font-medium">Bạn không có tài khoản? <span onClick={() => loginWithZalo()} className="font-semibold text-[#355933]">Đăng nhập với zalo</span></div>
+                        <div className="mt-3 font-medium">{tAccount("login-sub")} <span onClick={() => loginWithZalo()} className="font-semibold text-[#355933]">{tAccount("login-zalo")}</span></div>
                     </div>
                 </div>
             </Box>
