@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { openUrlInWebview } from 'services/zalo';
+import { useTranslation } from 'react-i18next';
 
 interface Location {
   lat: number;
@@ -19,6 +20,7 @@ interface Props {
 const SingleLocationMap: React.FC<Props> = ({ location }) => {
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -49,8 +51,8 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
           <div style="padding-block: 6px;">
             <div style="color: #355933; font-size: 13px; font-weight: 700; margin-bottom: 2px;">${location.name}</div>
             <div style="font-size: 11px;">
-              <div style="margin-bottom: 4px;"><strong>Địa chỉ:</strong> ${location.address}</div>
-              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">Chỉ đường</button>
+              <div style="margin-bottom: 4px;"><strong>${t("address")}:</strong> ${location.address}</div>
+              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
             </div>
           </div>
         </div>
