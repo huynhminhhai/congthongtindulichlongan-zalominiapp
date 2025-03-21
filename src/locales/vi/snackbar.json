@@ -1,0 +1,17 @@
+{
+    "account-info-updated-success": "Cập nhật thông tin tài khoản thành công",
+    "close": "Đóng",
+    "login-success": "Đăng nhập thành công",
+    "logout-success": "Đăng xuất thành công",
+    "add-comment-success": "Thêm bình luận thành công",
+    "change-password-success": "Đổi mật khẩu thành công",
+    "copy-success": "Sao chép thành công",
+    "copy-failure": "Sao chép không thành công",
+    "add-feedback-success": "Thêm phản hồi thành công",
+    "error-occurred": "Có lỗi xảy ra, vui lòng thử lại sau",
+    "update-feedback-success": "Cập nhật phản hồi thành công",
+    "you-login-success": "Bạn đã đăng nhập thành công",
+    "send-feedback-success": "Gửi phản hồi thành công",
+    "language-switched": "Đã chuyển sang",
+    "phone-login-rejected": "Bạn đã từ chối đăng nhập bằng số điện thoại"
+}

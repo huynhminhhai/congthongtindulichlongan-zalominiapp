@@ -11,6 +11,7 @@ const LanguagePage: React.FC = () => {
     const { openSnackbar } = useSnackbar();
     const { setIsLoadingFullScreen } = useStoreApp();
     const { t, i18n } = useTranslation("setting");
+    const { t: tSnackbar } = useTranslation("snackbar");
 
     const handleChangeLanguage = async (lng: string) => {
         if (lng === i18n.language) return;
@@ -22,9 +23,9 @@ const LanguagePage: React.FC = () => {
         setIsLoadingFullScreen(false);
         openSnackbar({
             icon: true,
-            text: `Chuyển sang ngôn ngữ ${lng} thành công`,
+            text: `${tSnackbar('language-switched')} ${lng}`,
             type: 'success',
-            action: { text: "Đóng", close: true },
+            action: { text: tSnackbar('close'), close: true },
             duration: 3000,
         });
     };

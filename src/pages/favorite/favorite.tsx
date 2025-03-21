@@ -3,6 +3,7 @@ import { FavoriteItem } from 'components/favorite'
 import { HeaderSub } from 'components/header-sub'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box, Input, Page, Select } from 'zmp-ui'
 
 export const favorite = [
@@ -40,11 +41,12 @@ export const favorite = [
 const FavoritePage = () => {
 
     const { Option } = Select
+    const { t } = useTranslation("common");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Danh sách yêu thích" />
+                <HeaderSub title={t('favorites')} />
                 <Box pb={4}>
                     <FilterBar
                         showAddButton={false}

@@ -1,0 +1,17 @@
+{
+    "account-info-updated-success": "Account information updated successfully",
+    "close": "Close",
+    "login-success": "Login successful",
+    "logout-success": "Logout successful",
+    "add-comment-success": "Comment added successfully",
+    "change-password-success": "Password changed successfully",
+    "copy-success": "Copy successful",
+    "copy-failure": "Copy unsuccessful",
+    "add-feedback-success": "Feedback added successfully",
+    "error-occurred": "Error occurred, please try again later",
+    "update-feedback-success": "Feedback updated successfully",
+    "you-login-success": "You logged in successfully",
+    "send-feedback-success": "Feedback sent successfully",
+    "language-switched": "Switched to",
+    "phone-login-rejected": "You rejected login with phone number"
+}

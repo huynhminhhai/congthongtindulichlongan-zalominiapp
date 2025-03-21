@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { removeDataFromStorage, setDataToStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { useNavigate, useSnackbar } from 'zmp-ui';
+import { useTranslation } from 'react-i18next';
 
 const authApiRequest = {
     login: async (username: string, password: string) => {
@@ -73,6 +74,7 @@ export const useLogin = () => {
     const navigate = useNavigate();
     const { openSnackbar } = useSnackbar();
     const { setAuth } = useStoreApp();
+    const { t: tSnackbar } = useTranslation("snackbar");
 
     return useMutation({
         mutationFn: async (credentials: { username: string; password: string }) => {
@@ -82,7 +84,7 @@ export const useLogin = () => {
 
             openSnackbar({
                 icon: true,
-                text: "Đăng nhập thành công",
+                text: tSnackbar('login-success'),
                 type: 'success',
                 action: { text: "Đóng", close: true },
                 duration: 3000,
@@ -114,6 +116,7 @@ export const useLoginZalo = () => {
 
     const { openSnackbar } = useSnackbar();
     const { setAuth } = useStoreApp();
+    const { t: tSnackbar } = useTranslation("snackbar");
 
     return useMutation({
         mutationFn: async (credentials: {token: string, userAccessToken: string }) => {
@@ -123,9 +126,9 @@ export const useLoginZalo = () => {
 
             openSnackbar({
                 icon: true,
-                text: "Đăng nhập thành công",
+                text: tSnackbar('login-success'),
                 type: 'success',
-                action: { text: "Đóng", close: true },
+                action: { text: tSnackbar('close'), close: true },
                 duration: 3000,
             });
             queryClient.invalidateQueries({ queryKey: ['account'] });
@@ -141,7 +144,7 @@ export const useLoginZalo = () => {
                 icon: true,
                 text: error,
                 type: 'error',
-                action: { text: "Đóng", close: true },
+                action: { text: tSnackbar('close'), close: true },
                 duration: 3000,
             });
         },
@@ -151,6 +154,7 @@ export const useLoginZalo = () => {
 export const useLogout = () => {
     const { openSnackbar } = useSnackbar();
     const { clearAuth } = useStoreApp();
+    const { t: tSnackbar } = useTranslation("snackbar");
 
     const logout = () => {
         authApiRequest.logout();
@@ -159,9 +163,9 @@ export const useLogout = () => {
 
         openSnackbar({
             icon: true,
-            text: "Đăng xuất thành công thành công",
+            text: tSnackbar('logout-success'),
             type: 'success',
-            action: { text: "Đóng", close: true },
+            action: { text: tSnackbar('close'), close: true },
             duration: 3000,
         });
     };

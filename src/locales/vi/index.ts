@@ -3,3 +3,4 @@ export { default as viHome } from "./home.json";
 export { default as viSetting } from "./setting.json";
 export { default as viAccount } from "./account.json";
 export { default as viPage } from "./page.json";
+export { default as viSnackbar } from "./snackbar.json";
