@@ -18,12 +18,12 @@ const BannerSlider: React.FC = () => {
                     loop
                     duration={12000}
                     // autoplay
-                    className="!rounded-none h-[270px]"
+                    className="!rounded-none h-[240px]"
                 >
                     <Swiper.Slide className="h-fit">
                         <Box px={3} py={4} className="relative">
                             <img className="absolute left-[65%] top-[0] w-[70%] h-auto translate-x-[-15%] translate-y-[5%]" src="https://pngimg.com/d/world_map_PNG28.png" alt="shape-map" />
-                            <h1 className="text-[32px] leading-[38px] text-[#000] font-bold mb-1">
+                            <h1 className="text-[28px] leading-[32px] text-[#000] font-bold mb-1">
                                 <div>{t("welcome1")}</div>
                                 <div>{t("welcome2")}</div>
                                 <div>{t("welcome3")} <span className="text-[#355933]">LONG AN</span></div>
