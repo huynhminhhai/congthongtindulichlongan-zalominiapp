@@ -7,6 +7,7 @@ import { ConfirmModal } from "components/modal";
 import { PrimaryButton } from "components/button";
 import TextEditor from "components/form/TextEditorField";
 import { FormImageUploader, FormTextEditorField } from "components/form";
+import { useTranslation } from "react-i18next";
 
 const defaultValues: FormDataFeedback = {
     content: '',
@@ -17,6 +18,8 @@ const FeedbackAddForm: React.FC = () => {
 
     const { openSnackbar } = useSnackbar();
     const navigate = useNavigate()
+
+    const { t: tCommon } = useTranslation("common");
 
     const [loading, setLoading] = useState(false);
     const [isConfirmVisible, setConfirmVisible] = useState(false);
@@ -80,8 +83,8 @@ const FeedbackAddForm: React.FC = () => {
                     <div className="col-span-12">
                         <FormTextEditorField
                             name="content"
-                            label="Nội dung phản ánh"
-                            placeholder="Nhập nội dung phản ánh..."
+                            label={tCommon('feedback-content')}
+                            placeholder={`${tCommon('feedback-content')}...`}
                             control={control}
                             error={errors.content?.message}
                             required
@@ -89,7 +92,7 @@ const FeedbackAddForm: React.FC = () => {
 
                         <FormImageUploader
                             name="images"
-                            label="Upload ảnh"
+                            label={tCommon('upload-image')}
                             control={control}
                             error={errors.images?.message}
                             required
@@ -99,7 +102,7 @@ const FeedbackAddForm: React.FC = () => {
                     </div>
                     <div className="fixed bottom-0 left-0 flex justify-center w-[100%] bg-white">
                         <Box py={3} className="w-[100%]" flex alignItems="center" justifyContent="center">
-                            <PrimaryButton fullWidth label={loading ? "Đang xử lý..." : "Gửi phản ánh"} handleClick={handleSubmit(onSubmit)} />
+                            <PrimaryButton fullWidth label={loading ? `${tCommon('processing')}` : `${tCommon('send-feedback')}`} handleClick={handleSubmit(onSubmit)} />
                         </Box>
                     </div>
                 </div>

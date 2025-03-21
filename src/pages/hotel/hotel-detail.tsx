@@ -9,6 +9,7 @@ import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { SingleLocationMap } from 'components/maps'
 import { hotelData } from 'components/hotel/HotelSection'
 import images from 'assets/images'
+import { useTranslation } from 'react-i18next'
 
 export const imagesGallery = [
     'https://scontent.iocvnpt.com/resources/portal//Images/LAN/vamcofarmstay/hinh_anh_homestay/dam_sen_vamcofarmstay_584108114.png',
@@ -32,11 +33,12 @@ const location = {
 const HotelDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết lưu trú" />
+                <HeaderSub title={tPage('accommodations-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -52,7 +54,7 @@ const HotelDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li className='flex items-start gap-3'>
@@ -71,7 +73,7 @@ const HotelDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                 __html: `
                                     <div class="hotel-description-policy">
@@ -130,7 +132,7 @@ const HotelDetailPage = () => {
                             </div>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Bản đồ' />
+                            <TitleSubDetail title={tPage('map')} />
                             <div className="infor-map">
                                 <SingleLocationMap location={location} />
                             </div>
@@ -148,7 +150,7 @@ const HotelDetailPage = () => {
                     />
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Lưu trú khác" mB={2} handleClick={() => navigate('/hotel')} />
+                    <TitleSection title={tPage('accommodations-others')} mB={2} handleClick={() => navigate('/hotel')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {

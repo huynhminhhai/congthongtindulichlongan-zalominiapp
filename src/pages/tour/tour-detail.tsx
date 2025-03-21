@@ -5,6 +5,7 @@ import { ImageGallery } from 'components/slider'
 import TitleSection from 'components/titleSection'
 import { tourData } from 'components/tour/TourSection'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box, Page, useNavigate } from 'zmp-ui'
 
 export const imagesGallery = [
@@ -27,11 +28,12 @@ const location = {
 const TourDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết tour du lịch" />
+                <HeaderSub title={tPage("tours-detail")} />
                 <Box px={4} pb={4}>
                     <div className="detail-container">
                         <div className="detail-body">
@@ -48,7 +50,7 @@ const TourDetailPage = () => {
                                 <ImageGallery images={imagesGallery} />
                             </Box>
                             <Box mb={9}>
-                                <TitleSubDetail title='Thông tin' />
+                                <TitleSubDetail title={tPage("infor")} />
                                 <Box>
                                     <ul className="flex flex-col gap-3 font-medium">
                                         <li>SĐT liên hệ: 0848551554</li>
@@ -71,7 +73,7 @@ const TourDetailPage = () => {
                                 </Box>
                             </Box>
                             <div className="detail-body--item">
-                                <TitleSubDetail title='Lịch trình' />
+                                <TitleSubDetail title={tPage("desc")} />
                                 <div className="detail-content" dangerouslySetInnerHTML={{
                                     __html: `
                                         <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--description entry-content" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
@@ -126,7 +128,7 @@ const TourDetailPage = () => {
                     />
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Tour du lịch khác" mB={2} handleClick={() => navigate('/tour')} />
+                    <TitleSection title={tPage("tours-others")} mB={2} handleClick={() => navigate('/tour')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {

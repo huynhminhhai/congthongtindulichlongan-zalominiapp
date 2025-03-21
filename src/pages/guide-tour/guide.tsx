@@ -1,11 +1,10 @@
-import { CusineItem } from 'components/cusine'
-import { cusineData } from 'components/cusine/CusineSection'
 import { Divider } from 'components/divider'
 import { GuideItem } from 'components/guide'
 import { HeaderSub } from 'components/header-sub'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
-import { Box, Input, Page, Select, useNavigate } from 'zmp-ui'
+import { useTranslation } from 'react-i18next'
+import { Box, Input, Page, Select } from 'zmp-ui'
 
 export const guides = [
     {
@@ -43,18 +42,19 @@ export const guides = [
 const GuidePage = () => {
 
     const { Option } = Select
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Hướng dẫn viên" />
+                <HeaderSub title={tCommon("tour-guide")} />
                 <Box pb={4}>
                     <FilterBar
                         showAddButton={false}
                     >
                         <div className="col-span-12">
                             <Input
-                                placeholder="Tìm kiếm..."
+                                placeholder={tCommon("searching")}
                                 value={''}
                             />
                         </div>

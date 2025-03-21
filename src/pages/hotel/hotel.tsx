@@ -4,50 +4,52 @@ import { HotelItem } from 'components/hotel'
 import { hotelData } from 'components/hotel/HotelSection'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Box, Input, Page, Select } from 'zmp-ui'
 
 const HotelPage = () => {
 
     const { Option } = Select
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Lưu trú" />
+                <HeaderSub title={tCommon('accommodations')} />
                 <Box pb={4}>
                     <FilterBar
                         showAddButton={false}
                     >
                         <div className="col-span-12">
                             <Input
-                                placeholder="Tìm kiếm..."
+                                placeholder={tCommon('searching')}
                                 value={''}
                             />
                         </div>
                         <div className="col-span-12">
                             <Select
-                                placeholder="Tất cả"
+                                placeholder={tCommon('all')}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')} value={0} />
                                 <Option title={'Nổi tiếng'} value={1} />
                             </Select>
                         </div>
                         <div className="col-span-6">
                             <Select
-                                placeholder="Chi phí"
+                                placeholder={tCommon('cost')}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')} value={0} />
                                 <Option title={'Nổi tiếng'} value={1} />
                             </Select>
                         </div>
                         <div className="col-span-6">
                             <Select
-                                placeholder="Loại lưu trú"
+                                placeholder={tCommon('accommodation-type')}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')} value={0} />
                                 <Option title={'Nổi tiếng'} value={1} />
                             </Select>
                         </div>

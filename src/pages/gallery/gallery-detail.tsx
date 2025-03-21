@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { useTranslation } from 'react-i18next';
 
 export const imagesGallery = [
     'https://truyenhinhvov.qltns.mediacdn.vn/239964650902032384/2022/9/8/107-09-2022-12-55-02-1662625161048-16626251611611410362641.jpg',
@@ -16,11 +17,12 @@ export const imagesGallery = [
 const GalleryDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết thư viện ảnh" />
+                <HeaderSub title={tPage('gallery-detail')} />
                 <div className='bg-[#222222] h-[95vh] flex flex-col items-center justify-center'>
                     <Swiper
                         spaceBetween={10}

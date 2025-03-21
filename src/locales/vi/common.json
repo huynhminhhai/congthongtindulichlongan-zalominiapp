@@ -43,5 +43,14 @@
     "processing": "Đang xử lý...",
     "cost": "Chi phí",
     "location-type": "Loại địa điểm",
-    "travel-type": "Loại du lịch"
+    "travel-type": "Loại du lịch",
+    "restaurant-type": "Loại nhà hàng",
+    "accommodation-type": "Loại lưu trú",
+    "send-feedback": "Gửi phản ánh",
+    "feedback-sent": "Phản ánh đã gửi",
+    "feedback-content": "Nội dung phản ánh",
+    "upload-image": "Tải ảnh lên",
+    "all-displayed": "Đã hiển thị tất cả",
+    "click-to-select-image": "Nhấn để chọn ảnh",
+    "no-data": "Chưa có dữ liệu"
 }

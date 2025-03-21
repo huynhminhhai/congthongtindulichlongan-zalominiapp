@@ -4,6 +4,7 @@ import { HeaderSub } from "components/header-sub"
 import { FeedbackSkeleton } from "components/skeleton";
 import { FEEDBACKDATA } from "constants/utinities";
 import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next";
 import { useInfiniteScroll } from "utils/useInfiniteScroll";
 import { Box, Page, useNavigate } from "zmp-ui"
 
@@ -16,6 +17,8 @@ const FeedbackHistoryPage: React.FC = () => {
     const [listData, setListData] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+
+    const { t: tCommon } = useTranslation("common");
 
     const navigate = useNavigate()
 
@@ -64,10 +67,10 @@ const FeedbackHistoryPage: React.FC = () => {
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box px={4}>
-                <HeaderSub title="Phản ánh đã gửi" />
+                <HeaderSub title={tCommon('feedback-sent')} />
                 <Box>
                     {listData.length === 0 && !loading ? (
-                        <EmptyData title="Chưa có dữ liệu" handleClick={() => navigate('/feedback-add')} textBtn="Thêm phản ánh" />
+                        <EmptyData title={tCommon('no-data')} handleClick={() => navigate('/feedback-add')} textBtn={tCommon('send-feedback')} />
                     ) : (
                         <div className="grid grid-cols-1">
                             {listData.map((item, index) => (
@@ -77,7 +80,7 @@ const FeedbackHistoryPage: React.FC = () => {
                     )}
                     <div ref={loaderRef} >
                         {loading && <FeedbackSkeleton count={listData.length === 0 ? 2 : 1} />}
-                        {listData.length > 0 && !hasMore && <p className="text-center">Đã hiển thị tất cả phản ánh</p>}
+                        {listData.length > 0 && !hasMore && <p className="text-center">{tCommon('all-displayed')}</p>}
                     </div>
                 </Box>
             </Box>

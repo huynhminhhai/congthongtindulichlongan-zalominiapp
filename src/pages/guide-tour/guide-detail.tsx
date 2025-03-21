@@ -1,15 +1,11 @@
-import { Icon } from '@iconify/react'
-import images from 'assets/images'
-import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/actions'
-import { cusineData } from 'components/cusine/CusineSection'
+import { ActionButton } from 'components/actions'
 import { HeaderSub } from 'components/header-sub'
-import { CategoryMap } from 'components/maps'
-import { ImageGallery } from 'components/slider'
 import TitleSection from 'components/titleSection'
 import React from 'react'
 import { Box, Page, useNavigate } from 'zmp-ui'
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
 import { guides } from './guide'
+import { useTranslation } from 'react-i18next'
 
 export const imagesGallery = [
     'https://www.vietfuntravel.com.vn/image/data/Mekong/dac-san-long-an-lau-mam-1.jpg',
@@ -21,11 +17,12 @@ export const imagesGallery = [
 const GuideDetailPage = () => {
 
     const navigate = useNavigate()
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết hướng dẫn viên" />
+                <HeaderSub title={tPage('tour-guide-detail')} />
                 <Box p={4}>
                     <Box>
                         <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
@@ -44,7 +41,7 @@ const GuideDetailPage = () => {
                             <ImageGallery images={imagesGallery} />
                         </Box> */}
                         <Box mb={9}>
-                            <TitleSubDetail title='Thông tin' />
+                            <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
                                     <li>
@@ -66,7 +63,7 @@ const GuideDetailPage = () => {
                             </Box>
                         </Box>
                         <Box mb={9}>
-                            <TitleSubDetail title='Mô tả' />
+                            <TitleSubDetail title={tPage('desc')} />
                             <div className="detail-content" dangerouslySetInnerHTML={{
                                     __html: `
                                     <p>Tôi là Nguyễn Văn Nam, hướng dẫn viên du lịch chuyên nghiệp với hơn 5 năm kinh nghiệm dẫn tour trong và ngoài nước. Am hiểu sâu sắc về văn hóa, lịch sử Việt Nam và đặc biệt có niềm đam mê khám phá, chia sẻ những câu chuyện thú vị với du khách. Sự nhiệt tình, chu đáo và khả năng xử lý tình huống linh hoạt chính là điểm mạnh giúp tôi luôn mang đến những chuyến đi trọn vẹn và đáng nhớ.</p>
@@ -76,7 +73,7 @@ const GuideDetailPage = () => {
                     </Box>
                 </Box>
                 <Box px={4} pb={4}>
-                    <TitleSection title="Hướng dẫn viên khác" mB={2} handleClick={() => navigate('/guide')} />
+                    <TitleSection title={tPage('tour-guide-others')} mB={2} handleClick={() => navigate('/guide')} />
                     <Box pt={4}>
                         <div className="grid grid-cols-1 gap-3">
                             {
