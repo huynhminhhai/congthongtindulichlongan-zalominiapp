@@ -4,10 +4,12 @@ import zmp from "zmp-sdk";
 import images from "assets/images";
 import { openUrlInWebview } from "services/zalo";
 import { copyToClipboard } from "utils/copyToClipboard";
+import { useTranslation } from "react-i18next";
 
 const ShareInfor: React.FC = () => {
     const { openSnackbar } = useSnackbar();
     const link = window.location.href;
+    const { t: tPage } = useTranslation("page");
 
     const handleCopy = async () => {
         
@@ -68,7 +70,7 @@ const ShareInfor: React.FC = () => {
 
     return (
         <Box pb={4} pt={8}>
-            <h3 className="text-[18px] font-semibold text-[#355933] mb-2">Chia sẻ</h3>
+            <h3 className="text-[18px] font-semibold text-[#355933] mb-2">{tPage("share")}</h3>
             <div className="flex flex-wrap mt-3 gap-4">
                 <Box onClick={handleShareZalo}>
                     <img className="w-[36px]" src={images.zalo} alt="Zalo" />

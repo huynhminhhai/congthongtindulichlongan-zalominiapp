@@ -1,0 +1,25 @@
+{
+    "news-detail": "News Detail",
+    "events-detail": "Events Detail",
+    "destination-detail": "Destination Detail",
+    "destination-travel-detail": "Travel Destination Detail",
+    "infor": "Information",
+    "desc": "Description",
+    "map": "Map",
+    "comment-title": "Leave a Comment",
+    "comment": "Comment",
+    "enter-fullname": "Enter Full Name",
+    "enter-comment": "Enter Content",
+    "commnet-content": "Comment Content",
+    "seemore-comment": "See More Comments",
+    "share": "Share",
+    "rate": "Rate",
+    "total": "Total",
+    "rate-number": "number of ratings",
+    "star": "star",
+    "destination-others": "Nearby Destinations",
+    "destination-travel-others": "Nearby Attractions",
+    "news-others": "Other News",
+    "events-other": "Other Events"
+
+}

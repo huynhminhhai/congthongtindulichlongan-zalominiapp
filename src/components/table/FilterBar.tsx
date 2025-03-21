@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Box, Button } from "zmp-ui";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 
 interface FilterBarProps {
     showAddButton?: boolean;
@@ -23,6 +24,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
     const navigate = useNavigate();
     const [filterVisible, setFilterVisible] = useState(false);
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <div className="bg-[#f9f9f9] flex flex-col px-4 py-2 gap-2">
@@ -38,7 +40,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
                     >
                         <div className="flex items-center justify-center gap-1">
                             <Icon fontSize={18} icon="material-symbols:add-rounded" />
-                            Thêm
+                            {tCommon("add")}
                         </div>
                     </Button>
                 </Box>
@@ -57,7 +59,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
                                 }}
                             >
                                 <Icon icon="lets-icons:filter" fontSize={26} />
-                                <span className="text-[14px] font-semibold">Lọc</span>
+                                <span className="text-[14px] font-semibold">{tCommon("filter")}</span>
                             </div>
                         )}
                     </div>

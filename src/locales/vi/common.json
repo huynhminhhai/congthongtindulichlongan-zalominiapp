@@ -36,5 +36,12 @@
     "password-old": "Mật khẩu cũ",
     "password-new": "Mật khẩu mới",
     "birthDate": "Ngày sinh",
-    "gender": "Giới tính"
+    "gender": "Giới tính",
+    "filter": "Lọc",
+    "searching": "Tìm kiếm...",
+    "add": "Thêm",
+    "processing": "Đang xử lý...",
+    "cost": "Chi phí",
+    "location-type": "Loại địa điểm",
+    "travel-type": "Loại du lịch"
 }

@@ -1,6 +1,7 @@
 import { useGetCommentsList } from 'apiRequest/comments';
 import { Loading } from 'components/data';
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { Box } from 'zmp-ui'
 
 type CommentListProps = {
@@ -10,6 +11,8 @@ type CommentListProps = {
 const CommentList: React.FC<CommentListProps> = ({itemId}) => {
 
     const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = useGetCommentsList('postId', itemId, 3);
+    const { t: tPage } = useTranslation("page");
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <Box>
@@ -38,7 +41,7 @@ const CommentList: React.FC<CommentListProps> = ({itemId}) => {
 
             {hasNextPage && (
                 <button onClick={() => fetchNextPage()} className="button button-primary" disabled={isFetchingNextPage}>
-                    <span className='font-medium text-[#355933]'>{isFetchingNextPage ? "Đang tải..." : "Xem thêm bình luận"}</span>
+                    <span className='font-medium text-[#355933]'>{isFetchingNextPage ? `${tCommon('processing')}` : `${tPage('seemore-comment')}`}</span>
                 </button>
             )}
         </Box>

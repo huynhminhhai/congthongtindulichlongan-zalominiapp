@@ -1,4 +1,3 @@
-
 import { useGetNewsDetail } from "apiRequest/news"
 import images from "assets/images"
 import { ActionButton, CommentSection, Rating, ShareInfor } from "components/actions"
@@ -8,6 +7,7 @@ import { NewsOthers } from "components/news"
 import { NewsDetailSkeleton } from "components/skeleton"
 import TitleSection from "components/titleSection"
 import React from "react"
+import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 import { Box, Page, useNavigate } from "zmp-ui"
 
@@ -19,11 +19,12 @@ const NewsDetailPage: React.FC = () => {
     const newsId = searchParams.get("id");
 
     const { data, isLoading } = useGetNewsDetail(Number(newsId));
+    const { t: tPage } = useTranslation("page");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Chi tiết tin tức"/>
+                <HeaderSub title={tPage("news-detail")}/>
                 {
                     isLoading ?
                         <NewsDetailSkeleton count={1} /> :
@@ -80,7 +81,7 @@ const NewsDetailPage: React.FC = () => {
                             </Box>
                 }
                 <Box pt={4} px={4}>
-                    <TitleSection title="Tin tức khác" mB={2} handleClick={() => navigate('/news')} />
+                    <TitleSection title={tPage("news-others")} mB={2} handleClick={() => navigate('/news')} />
                     <NewsOthers idNews={Number(newsId)} />
                 </Box>
 

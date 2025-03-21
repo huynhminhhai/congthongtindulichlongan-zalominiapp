@@ -36,5 +36,12 @@
     "password-old": "Old password",
     "password-new": "New password",
     "birthDate": "Birth Date",
-    "gender": "Gender"
+    "gender": "Gender",
+    "filter": "Filter",
+    "searching": "Search...",
+    "add": "Add",
+    "processing": "Processing...",
+    "cost": "Cost",
+    "location-type": "Location Type",
+    "travel-type": "Travel Type"
 }

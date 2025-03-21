@@ -2,8 +2,8 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { getDataFromStorage } from "services/zalo";
-import { enAccount, enCommon, enHome, enSetting } from "locales/en";
-import { viAccount, viCommon, viHome, viSetting } from "locales/vi";
+import { enAccount, enCommon, enHome, enPage, enSetting } from "locales/en";
+import { viAccount, viCommon, viHome, viPage, viSetting } from "locales/vi";
 
 const initI18n = async () => {
     const storedData = await getDataFromStorage(["lng"]);
@@ -18,18 +18,20 @@ const initI18n = async () => {
                     common: enCommon,
                     home: enHome,
                     setting: enSetting,
-                    account: enAccount
+                    account: enAccount,
+                    page: enPage
                 },
                 vi: {
                     common: viCommon,
                     home: viHome,
                     setting: viSetting,
-                    account: viAccount
+                    account: viAccount,
+                    page: viPage
                 },
             },
             lng: language,
             fallbackLng: "vi",
-            ns: ["common", "home", "setting", "account"],
+            ns: ["common", "home", "setting", "account", "page"],
             defaultNS: "home",
             interpolation: { escapeValue: false },
         });

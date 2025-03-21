@@ -4,50 +4,52 @@ import { Divider } from 'components/divider'
 import { HeaderSub } from 'components/header-sub'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
-import { Box, Input, Page, Select, useNavigate } from 'zmp-ui'
+import { useTranslation } from 'react-i18next'
+import { Box, Input, Page, Select } from 'zmp-ui'
 
 const DestinationPage = () => {
 
     const { Option } = Select
+    const { t: tCommon } = useTranslation("common");
 
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title="Địa điểm nổi bật" />
+                <HeaderSub title={tCommon('destinations')}/>
                 <Box pb={4}>
                     <FilterBar
                         showAddButton={false}
                     >
                         <div className="col-span-12">
                             <Input
-                                placeholder="Tìm kiếm..."
+                                placeholder={tCommon('searching')}
                                 value={''}
                             />
                         </div>
                         <div className="col-span-12">
                             <Select
-                                placeholder="Tất cả"
+                                placeholder={tCommon('all')}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')} value={0} />
                                 <Option title={'Xung quanh'} value={1} />
                             </Select>
                         </div>
                         <div className="col-span-6">
                             <Select
-                                placeholder="Chi phí"
+                                placeholder={tCommon('cost')}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')} value={0} />
                                 <Option title={'Xung quanh'} value={1} />
                             </Select>
                         </div>
                         <div className="col-span-6">
                             <Select
-                                placeholder="Loại địa điểm"
+                                placeholder={tCommon('location-type')}
                                 closeOnSelect
                             >
-                                <Option title={'Tất cả'} value={0} />
+                                <Option title={tCommon('all')} value={0} />
                                 <Option title={'Xung quanh'} value={1} />
                             </Select>
                         </div>

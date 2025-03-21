@@ -6,6 +6,7 @@ import { ConfirmModal } from 'components/modal';
 import { Box, Button } from 'zmp-ui';
 import { FormInputAreaField, FormInputField } from 'components/form';
 import { useAddComment } from 'apiRequest/comments';
+import { useTranslation } from 'react-i18next';
 
 const defaultValues: FormDataComments = {
     name: '',
@@ -17,6 +18,9 @@ type CommentFormProps = {
 }
 
 const CommentForm: React.FC<CommentFormProps> = ({ itemId }) => {
+
+    const { t: tPage } = useTranslation("page");
+    const { t: tCommon } = useTranslation("common");
 
     const [isConfirmVisible, setConfirmVisible] = useState(false);
     const [formData, setFormData] = useState<FormDataComments>(defaultValues)
@@ -54,8 +58,8 @@ const CommentForm: React.FC<CommentFormProps> = ({ itemId }) => {
                     <div className="col-span-12">
                         <FormInputField
                             name="name"
-                            label="Họ tên"
-                            placeholder="Nhập họ tên (*)"
+                            label={tCommon("fullname")}
+                            placeholder={`${tPage('enter-fullname')} (*)`}
                             control={control}
                             error={errors.name?.message}
                             required
@@ -64,8 +68,8 @@ const CommentForm: React.FC<CommentFormProps> = ({ itemId }) => {
                     <div className="col-span-12">
                         <FormInputAreaField
                             name="content"
-                            label="Nội dung bình luận"
-                            placeholder="Nhập nội dung bình luận (*)"
+                            label={tPage("commnet-content")}
+                            placeholder={`${tPage('enter-comment')} (*)`}
                             control={control}
                             error={errors.content?.message}
                             required
@@ -74,7 +78,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ itemId }) => {
                     <div className="col-span-12">
                         <Box mt={3}>
                             <Button variant="primary" size={'small'} onClick={handleSubmit(onSubmit)} disabled={isPending}>
-                                {isPending ? "Đang xử lý..." : "Bình luận"}
+                                {isPending ? `${tCommon("processing")}` : `${tPage("comment")}`}
                             </Button>
                         </Box>
                     </div>

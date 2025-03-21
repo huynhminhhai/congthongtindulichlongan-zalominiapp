@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box } from "zmp-ui";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 
 interface RatingProps {
   averageRating: number;
@@ -12,6 +13,8 @@ interface RatingProps {
 const Rating: React.FC<RatingProps> = ({ averageRating, totalReviews, ratingDistribution, onRate }) => {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
 
+  const { t: tPage } = useTranslation("page");
+
   const handleRating = (rating: number) => {
     setSelectedRating(rating);
     onRate?.(rating);
@@ -19,7 +22,7 @@ const Rating: React.FC<RatingProps> = ({ averageRating, totalReviews, ratingDist
 
   return (
     <Box pb={4} pt={6}>
-      <h3 className="text-[18px] font-semibold text-[#355933] mb-2">Đánh giá</h3>
+      <h3 className="text-[18px] font-semibold text-[#355933] mb-2">{tPage("rate")}</h3>
 
       <div className="flex gap-1 mt-3">
         {[...Array(5)].map((_, index) => {
@@ -40,7 +43,7 @@ const Rating: React.FC<RatingProps> = ({ averageRating, totalReviews, ratingDist
       <Box p={4} mt={4} className="shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
         <div className="flex items-center gap-1">
             <span className="text-sm font-medium text-gray-600">
-            <span className="text-yellow-500 font-semibold">{averageRating.toFixed(1)}</span> / 5 (Tổng: <span className="text-yellow-500 font-semibold">{totalReviews}</span> lượt đánh giá)
+            <span className="text-yellow-500 font-semibold">{averageRating.toFixed(1)}</span> / 5 ({tPage("total")}: <span className="text-yellow-500 font-semibold">{totalReviews}</span> {tPage("rate-number")})
             </span>
         </div>
 
@@ -49,7 +52,7 @@ const Rating: React.FC<RatingProps> = ({ averageRating, totalReviews, ratingDist
             const percentage = totalReviews > 0 ? (ratingDistribution[star] / totalReviews) * 100 : 0;
             return (
                 <div key={star} className="flex items-center mb-1">
-                <div className="text-sm font-medium w-[45px]">{star} sao</div>
+                <div className="text-sm font-medium w-[45px]">{star} {tPage("star")}</div>
                 <div className="flex-1 w-full h-3 bg-gray-200 rounded ml-2 overflow-hidden">
                     <div
                     className="h-3 bg-gradient-to-r from-[#f5b301] to-[#ff66009e]"
