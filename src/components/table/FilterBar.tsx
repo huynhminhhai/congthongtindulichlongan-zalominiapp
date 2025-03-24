@@ -8,26 +8,26 @@ import { useTranslation } from "react-i18next";
 interface FilterBarProps {
     showAddButton?: boolean;
     showFilter?: boolean;
-    showViewToggle?: boolean;
     onFilterToggle?: () => void;
     onAddButtonClick?: () => void;
     children?: ReactNode;
+    searchComponent?: ReactNode;
 }
 
 const FilterBar: React.FC<FilterBarProps> = ({
     showAddButton = true,
     showFilter = true,
-    showViewToggle = true,
     onFilterToggle,
     onAddButtonClick,
-    children, 
+    children,
+    searchComponent
 }) => {
     const navigate = useNavigate();
     const [filterVisible, setFilterVisible] = useState(false);
     const { t: tCommon } = useTranslation("common");
 
     return (
-        <div className="bg-[#f9f9f9] flex flex-col px-4 py-2 gap-2">
+        <div className="bg-[#fff] flex flex-col px-4 py-2 gap-2 filter-bar">
             {/* Add Button */}
             {showAddButton && (
                 <Box flex justifyContent="flex-end">
@@ -47,24 +47,27 @@ const FilterBar: React.FC<FilterBarProps> = ({
             )}
 
             {/* Filter & View Toggle */}
-            {(showFilter || showViewToggle) && (
-                <Box>
-                    <div className="grid grid-cols-1">
+
+            <Box flex alignItems="center" className="gap-2">
+                {searchComponent && <Box className="flex-1">{searchComponent}</Box>}
+                {
+                    showFilter &&
+                    <Box>
                         {showFilter && (
                             <div
-                                className="bg-white flex items-center justify-center gap-2 px-8 py-1 border rounded-3xl cursor-pointer"
+                                className="bg-[#355933] w-[38px] h-[38px] flex items-center justify-center border cursor-pointer rounded-lg"
                                 onClick={() => {
                                     setFilterVisible(!filterVisible);
                                     onFilterToggle?.();
                                 }}
                             >
-                                <Icon icon="lets-icons:filter" fontSize={26} />
-                                <span className="text-[14px] font-semibold">{tCommon("filter")}</span>
+                                <Icon color="#fff" icon="lets-icons:filter" fontSize={22} />
                             </div>
                         )}
-                    </div>
-                </Box>
-            )}
+                    </Box>
+                }
+            </Box>
+
 
             {/* Filter Content */}
             {showFilter && (

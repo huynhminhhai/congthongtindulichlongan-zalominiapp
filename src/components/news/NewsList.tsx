@@ -30,7 +30,6 @@ const NewsList: React.FC = () => {
         onLoadMore: fetchNextPage,
     });
 
-    // Hàm debounce để cập nhật param sau 300ms
     const debouncedSearch = useCallback(
         debounce((value) => {
             setParam((prev) => ({ ...prev, search: value }));
@@ -38,7 +37,6 @@ const NewsList: React.FC = () => {
         []
     );
 
-    // Theo dõi thay đổi của search và debounce trước khi setParam
     useEffect(() => {
         debouncedSearch(search);
     }, [search, debouncedSearch]);
@@ -48,14 +46,14 @@ const NewsList: React.FC = () => {
             <Box>
                 <FilterBar
                     showAddButton={false}
-                >
-                    <div className="col-span-12">
-                        <Input
+                    searchComponent={
+                        <Input.Search
                             placeholder={tCommon("searching")}
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
-                    </div>
+                    }
+                >
                     <div className="col-span-12">
                         <Select
                             placeholder="Văn hóa"
