@@ -17,22 +17,25 @@ const SearchPage: React.FC = () => {
                 <HeaderSub title={tSetting('quick-search')} />
                 <Box p={4}>
                     <Box mb={2}>
+                        <Input.Search
+                            className="h-[46px] !border-0"
+                            focused
+                            placeholder={tSetting("searchPlaceholder")}
+                            onSearch={(text) => console.log(text)}
+                        />
+                    </Box>
+                    <Box>
                         <Select
                             placeholder={tCommon("all")}
                             defaultValue={'all'}
-                            className="h-[46px]"
+                            className="h-[46px] !border-0"
                         >
                             <Option value="all" title={tCommon("all")} />
                             <Option value="2" title="Option 2" />
                             <Option value="3" title="Option 3" />
                         </Select>
                     </Box>
-                    <Input.Search
-                        className="h-[46px]"
-                        focused
-                        placeholder={tSetting("searchPlaceholder")}
-                        onSearch={(text) => console.log(text)}
-                    />
+                    
                     <div className="text-[16px] leading-[1] font-semibold my-3">{tSetting("results")} (2)</div>
                     <Box flex flexDirection="column" className="gap-3">
                         <ItemDetailCard title="Nhà trăm cột" imgUrl="https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg" desc="Địa điểm nổi bật" />

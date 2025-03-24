@@ -793,7 +793,7 @@ const LongAnMap: React.FC = () => {
                             key={type}
                             label={<img src={icons[type]} alt={type} className="tab-icon w-[52px]" />}
                         >
-                            <div className="p-2 flex flex-col gap-2 max-h-[160px] overflow-y-auto mb-2">
+                            <div className="p-2 flex flex-col gap-2 max-h-[220px] overflow-y-auto mb-2">
                                 {locations[type].map((item: Location, index: number) => (
                                     <div
                                         key={index}

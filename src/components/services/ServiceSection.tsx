@@ -131,7 +131,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({setSheetVisible}) => {
 
     return (
         <Box>
-            <Box px={4} pb={4} className="bg-white">
+            <Box p={4} className="bg-white">
                 <Box>
                     <div className="grid grid-cols-4 gap-x-3 gap-y-4">
                         {

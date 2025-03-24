@@ -8,10 +8,11 @@ const SearchSection = () => {
     const navigate = useNavigate()
 
     return (
-        <Box px={4} pt={4} className='bg-white transform -translate-y-4 rounded-t-lg' >
+        <Box px={4} pb={4}>
             <Input.Search
                 onClick={() => navigate('/search')}
                 placeholder={t("searchPlaceholder")}
+                className='!border-0 !bg-[#f7f8fa]'
             />
         </Box>
     )

@@ -8,13 +8,15 @@ const BannerSlider: React.FC = () => {
     return (
         <Box className="banner-silder">
             <Box
-                flex
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                className="bg-[#f5f5f5]"
+                // flex
+                // flexDirection="column"
+                // justifyContent="center"
+                // alignItems="center"
+                className="bg-[#fff] relative overflow-hidden"
+                py={6}
+                px={4}
             >
-                <Swiper
+                {/* <Swiper
                     loop
                     duration={12000}
                     // autoplay
@@ -54,7 +56,13 @@ const BannerSlider: React.FC = () => {
                                 alt='banner'
                             />
                     </Swiper.Slide>
-                </Swiper>
+                </Swiper> */}
+                <img className="absolute left-[60%] top-[0] w-[70%] h-auto translate-x-[-15%] translate-y-[5%]" src="https://pngimg.com/d/world_map_PNG28.png" alt="shape-map" />
+                <h1 className="text-[28px] leading-[38px] text-[#000] font-bold mb-1">
+                    <div>{t("welcome1")}</div>
+                    <div>{t("welcome2")}</div>
+                    <div>{t("welcome3")} <span className="text-[#355933]">LONG AN</span></div>
+                </h1>
             </Box>
         </Box>
     )
