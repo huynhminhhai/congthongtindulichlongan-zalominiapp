@@ -41,7 +41,7 @@ const CusineSection = () => {
             </Box>
             <Swiper
                 spaceBetween={12}
-                slidesPerView={1.2}
+                slidesPerView={1.12}
                 centeredSlides={true}
                 loop
             >
