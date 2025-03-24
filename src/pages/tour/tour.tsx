@@ -17,45 +17,46 @@ const TourPage = () => {
             <Box>
                 <HeaderSub title={tCommon('tours')} />
                 <Box pb={4}>
-                    <FilterBar
-                        showAddButton={false}
-                    >
-                        <div className="col-span-12">
-                            <Input
-                                placeholder={tCommon('searching')}
-                                value={''}
-                            />
-                        </div>
-                        <div className="col-span-12">
-                            <Select
-                                placeholder="Liên tỉnh"
-                                closeOnSelect
-                            >
-                                <Option title={'Tất cả'} value={0} />
-                                <Option title={'Nổi tiếng'} value={1} />
-                            </Select>
-                        </div>
-                        <div className="col-span-6">
-                            <Select
-                                placeholder="Số ngày"
-                                closeOnSelect
-                            >
-                                <Option title={'Tất cả'} value={0} />
-                                <Option title={'Nổi tiếng'} value={1} />
-                            </Select>
-                        </div>
-                        <div className="col-span-6">
-                            <Select
-                                placeholder="Số người"
-                                closeOnSelect
-                            >
-                                <Option title={'Tất cả'} value={0} />
-                                <Option title={'Nổi tiếng'} value={1} />
-                            </Select>
-                        </div>
-                    </FilterBar>
-                    <Divider />
-                    <Box px={4} pt={4}>
+                    <Box>
+                        <FilterBar
+                            showAddButton={false}
+                            searchComponent={
+                                <Input.Search
+                                    placeholder={tCommon('searching')}
+                                    value={''}
+                                />
+                            }
+                        >
+                            <div className="col-span-12">
+                                <Select
+                                    placeholder="Liên tỉnh"
+                                    closeOnSelect
+                                >
+                                    <Option title={'Tất cả'} value={0} />
+                                    <Option title={'Nổi tiếng'} value={1} />
+                                </Select>
+                            </div>
+                            <div className="col-span-6">
+                                <Select
+                                    placeholder="Số ngày"
+                                    closeOnSelect
+                                >
+                                    <Option title={'Tất cả'} value={0} />
+                                    <Option title={'Nổi tiếng'} value={1} />
+                                </Select>
+                            </div>
+                            <div className="col-span-6">
+                                <Select
+                                    placeholder="Số người"
+                                    closeOnSelect
+                                >
+                                    <Option title={'Tất cả'} value={0} />
+                                    <Option title={'Nổi tiếng'} value={1} />
+                                </Select>
+                            </div>
+                        </FilterBar>
+                    </Box>
+                    <Box px={4}>
                         {
                             tourData.map((item, index) => (
                                 <Box mb={6} key={index}>

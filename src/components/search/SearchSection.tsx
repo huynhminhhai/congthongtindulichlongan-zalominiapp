@@ -12,7 +12,6 @@ const SearchSection = () => {
             <Input.Search
                 onClick={() => navigate('/search')}
                 placeholder={t("searchPlaceholder")}
-                className='!border-0 !bg-[#f7f8fa]'
             />
         </Box>
     )

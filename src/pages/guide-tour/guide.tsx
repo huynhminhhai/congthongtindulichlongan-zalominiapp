@@ -49,27 +49,28 @@ const GuidePage = () => {
             <Box>
                 <HeaderSub title={tCommon("tour-guide")} />
                 <Box pb={4}>
-                    <FilterBar
-                        showAddButton={false}
-                    >
-                        <div className="col-span-12">
-                            <Input
-                                placeholder={tCommon("searching")}
-                                value={''}
-                            />
-                        </div>
-                        <div className="col-span-12">
-                            <Select
-                                placeholder="Chọn khu vực"
-                                closeOnSelect
-                            >
-                                <Option title={'Tất cả'} value={0} />
-                                <Option title={'Nổi tiếng'} value={1} />
-                            </Select>
-                        </div>
-                    </FilterBar>
-                    <Divider />
-                    <Box px={4} pt={4}>
+                    <Box>
+                        <FilterBar
+                            showAddButton={false}
+                            searchComponent={
+                                <Input.Search
+                                    placeholder={tCommon('searching')}
+                                    value={''}
+                                />
+                            }
+                        >
+                            <div className="col-span-12">
+                                <Select
+                                    placeholder="Chọn khu vực"
+                                    closeOnSelect
+                                >
+                                    <Option title={'Tất cả'} value={0} />
+                                    <Option title={'Nổi tiếng'} value={1} />
+                                </Select>
+                            </div>
+                        </FilterBar>
+                    </Box>
+                    <Box px={4}>
                         <div className='grid grid-cols-2 gap-3'>
                             {
                                 guides.map((item, index) => (

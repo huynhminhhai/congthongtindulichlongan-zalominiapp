@@ -15,47 +15,48 @@ const DestinationPage = () => {
     return (
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
-                <HeaderSub title={tCommon('destinations')}/>
+                <HeaderSub title={tCommon('destinations')} />
                 <Box pb={4}>
-                    <FilterBar
-                        showAddButton={false}
-                    >
-                        <div className="col-span-12">
-                            <Input
-                                placeholder={tCommon('searching')}
-                                value={''}
-                            />
-                        </div>
-                        <div className="col-span-12">
-                            <Select
-                                placeholder={tCommon('all')}
-                                closeOnSelect
-                            >
-                                <Option title={tCommon('all')} value={0} />
-                                <Option title={'Xung quanh'} value={1} />
-                            </Select>
-                        </div>
-                        <div className="col-span-6">
-                            <Select
-                                placeholder={tCommon('cost')}
-                                closeOnSelect
-                            >
-                                <Option title={tCommon('all')} value={0} />
-                                <Option title={'Xung quanh'} value={1} />
-                            </Select>
-                        </div>
-                        <div className="col-span-6">
-                            <Select
-                                placeholder={tCommon('location-type')}
-                                closeOnSelect
-                            >
-                                <Option title={tCommon('all')} value={0} />
-                                <Option title={'Xung quanh'} value={1} />
-                            </Select>
-                        </div>
-                    </FilterBar>
-                    <Divider />
-                    <Box px={4} pt={4}>
+                    <Box>
+                        <FilterBar
+                            showAddButton={false}
+                            searchComponent={
+                                <Input.Search
+                                    placeholder={tCommon('searching')}
+                                    value={''}
+                                />
+                            }
+                        >
+                            <div className="col-span-12">
+                                <Select
+                                    placeholder={tCommon('all')}
+                                    closeOnSelect
+                                >
+                                    <Option title={tCommon('all')} value={0} />
+                                    <Option title={'Xung quanh'} value={1} />
+                                </Select>
+                            </div>
+                            <div className="col-span-6">
+                                <Select
+                                    placeholder={tCommon('cost')}
+                                    closeOnSelect
+                                >
+                                    <Option title={tCommon('all')} value={0} />
+                                    <Option title={'Xung quanh'} value={1} />
+                                </Select>
+                            </div>
+                            <div className="col-span-6">
+                                <Select
+                                    placeholder={tCommon('location-type')}
+                                    closeOnSelect
+                                >
+                                    <Option title={tCommon('all')} value={0} />
+                                    <Option title={'Xung quanh'} value={1} />
+                                </Select>
+                            </div>
+                        </FilterBar>
+                    </Box>
+                    <Box px={4}>
                         {
                             destinationData.map((item, index) => (
                                 <Box mb={3} key={index}>

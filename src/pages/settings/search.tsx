@@ -12,7 +12,7 @@ const SearchPage: React.FC = () => {
     const { t: tCommon } = useTranslation("common");
 
     return (
-        <Page className="relative flex-1 flex flex-col bg-white pb-[66px]" style={{ backgroundColor: '#f5f6f7' }}>
+        <Page className="relative flex-1 flex flex-col bg-white pb-[66px]">
             <Box>
                 <HeaderSub title={tSetting('quick-search')} />
                 <Box p={4}>

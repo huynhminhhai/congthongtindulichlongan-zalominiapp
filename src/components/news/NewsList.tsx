@@ -8,6 +8,7 @@ import { useGetNewsList } from "apiRequest/news";
 import { FilterBar } from "components/table";
 import { useTranslation } from "react-i18next";
 import { debounce } from "lodash";
+import { Divider } from "components/divider";
 
 const NewsList: React.FC = () => {
     const [search, setSearch] = useState("");

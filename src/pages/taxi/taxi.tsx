@@ -44,27 +44,34 @@ const TaxiPage = () => {
             <Box>
                 <HeaderSub title={tCommon("taxi")} />
                 <Box pb={4}>
-                    <FilterBar
-                        showAddButton={false}
-                    >
-                        <div className="col-span-12">
-                            <Input
-                                placeholder={tCommon("searching")}
-                                value={''}
-                            />
-                        </div>
-                        <div className="col-span-12">
-                            <Select
-                                placeholder={tCommon("all")}
-                                closeOnSelect
-                            >
-                                <Option title={tCommon("all")} value={0} />
-                                <Option title={'Nổi tiếng'} value={1} />
-                            </Select>
-                        </div>
-                    </FilterBar>
-                    <Divider />
-                    <Box px={4} pt={4}>
+                    <Box>
+                        <FilterBar
+                            showAddButton={false}
+                            searchComponent={
+                                <Input.Search
+                                    placeholder={tCommon('searching')}
+                                    value={''}
+                                />
+                            }
+                        >
+                            <div className="col-span-12">
+                                <Input
+                                    placeholder={tCommon("searching")}
+                                    value={''}
+                                />
+                            </div>
+                            <div className="col-span-12">
+                                <Select
+                                    placeholder={tCommon("all")}
+                                    closeOnSelect
+                                >
+                                    <Option title={tCommon("all")} value={0} />
+                                    <Option title={'Nổi tiếng'} value={1} />
+                                </Select>
+                            </div>
+                        </FilterBar>
+                    </Box>
+                    <Box px={4}>
                         {
                             taxiData.map((item, index) => (
                                 <Box mb={6} key={index}>

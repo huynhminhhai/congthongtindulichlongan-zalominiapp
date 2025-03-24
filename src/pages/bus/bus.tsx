@@ -50,26 +50,27 @@ const BusPage = () => {
             <Box>
                 <HeaderSub title={tCommon("bus-stop")} />
                 <Box pb={4}>
-                    <FilterBar
-                        showAddButton={false}
-                    >
-                        <div className="col-span-12">
-                            <Input
-                                placeholder={tCommon("searching")}
-                                value={''}
-                            />
-                        </div>
-                        <div className="col-span-12">
-                            <Select
-                                placeholder={tCommon("all")}
-                                closeOnSelect
-                            >
-                                <Option title={tCommon("all")} value={0} />
-                            </Select>
-                        </div>
-                    </FilterBar>
-                    <Divider />
-                    <Box px={4} pt={4}>
+                    <Box>
+                        <FilterBar
+                            showAddButton={false}
+                            searchComponent={
+                                <Input.Search
+                                    placeholder={tCommon('searching')}
+                                    value={''}
+                                />
+                            }
+                        >
+                            <div className="col-span-12">
+                                <Select
+                                    placeholder={tCommon("all")}
+                                    closeOnSelect
+                                >
+                                    <Option title={tCommon("all")} value={0} />
+                                </Select>
+                            </div>
+                        </FilterBar>
+                    </Box>
+                    <Box px={4}>
                         {
                             busData.map((item, index) => (
                                 <Box mb={6} key={index}>
