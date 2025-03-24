@@ -25,7 +25,7 @@ const GuideDetailPage = () => {
                 <HeaderSub title={tPage('tour-guide-detail')} />
                 <Box p={4}>
                     <Box>
-                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
+                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between' className='gap-2'>
                             <TitleDetail title='Nguyễn Văn Nam' />
                             <ActionButton
                                 icon="mdi:heart"

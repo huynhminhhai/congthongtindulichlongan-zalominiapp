@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs } from "swiper/modules";
+import { Pagination } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import type { Swiper as SwiperType } from "swiper";
+import "swiper/css/pagination";
 
 export default function ImageGallery({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
@@ -16,9 +17,9 @@ export default function ImageGallery({ images }) {
         spaceBetween={10}
         loop
         watchSlidesProgress
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Thumbs]}
-        className="mb-2 max-w-[360px] h-[200px] rounded-lg"
+        pagination={{ clickable: true }}
+        modules={[Pagination]}
+        className="h-[280px]"
       >
         {images.map((src, index) => (
           <SwiperSlide key={index}>
@@ -28,7 +29,7 @@ export default function ImageGallery({ images }) {
       </Swiper>
 
       {/* Thumbnail Swiper */}
-      <Swiper
+      {/* <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={6}
         slidesPerView={3.3}
@@ -44,7 +45,7 @@ export default function ImageGallery({ images }) {
             <img src={src} alt={`Thumb ${index}`} className="w-[100px] h-[60px] object-cover rounded-lg" />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Khu phố thông minh",
-    "headerColor": "#1843EF",
+    "title": "Cổng thông tin du lịch Long An",
+    "headerColor": "#355933",
     "textColor": "white",
     "leftButton": "back",
     "statusBar": "normal",

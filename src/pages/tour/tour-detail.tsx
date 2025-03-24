@@ -34,48 +34,47 @@ const TourDetailPage = () => {
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
                 <HeaderSub title={tPage("tours-detail")} />
-                <Box px={4} pb={4}>
-                    <div className="detail-container">
-                        <div className="detail-body">
-                            <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
-                                <TitleDetail title='Du lịch Long An - Khám phá làng nổi Tân Lập từ Sài Gòn' />
-                                <ActionButton
-                                    icon="mdi:heart"
-                                    altText="Mục yêu thích"
-                                    isChecked={true}
-                                    onClick={() => console.log('call api favorite')}
-                                />
+                <Box>
+                    <Box mb={2}>
+                        <ImageGallery images={imagesGallery} />
+                    </Box>
+                    <Box p={4}>
+                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between' className='gap-2'>
+                            <TitleDetail title='Du lịch Long An - Khám phá làng nổi Tân Lập từ Sài Gòn' />
+                            <ActionButton
+                                icon="mdi:heart"
+                                altText="Mục yêu thích"
+                                isChecked={true}
+                                onClick={() => console.log('call api favorite')}
+                            />
+                        </Box>
+
+                        <Box mb={9}>
+                            <Box>
+                                <ul className="flex flex-col gap-3 font-medium">
+                                    <li>SĐT liên hệ: 0848551554</li>
+                                    <li>
+                                        MÃ TOUR: HUFC7P
+                                    </li>
+                                    <li>
+                                        Phương tiện di chuyển: Ô tô
+                                    </li>
+                                    <li>
+                                        Thời gian: 1 Ngày
+                                    </li>
+                                    <li>
+                                        Nơi khởi hành: TP. Hồ Chí Minh
+                                    </li>
+                                    <li>
+                                        Ngày khởi hành: Chủ Nhật
+                                    </li>
+                                </ul>
                             </Box>
-                            <Box mb={9}>
-                                <ImageGallery images={imagesGallery} />
-                            </Box>
-                            <Box mb={9}>
-                                <TitleSubDetail title={tPage("infor")} />
-                                <Box>
-                                    <ul className="flex flex-col gap-3 font-medium">
-                                        <li>SĐT liên hệ: 0848551554</li>
-                                        <li>
-                                            MÃ TOUR: HUFC7P
-                                        </li>
-                                        <li>
-                                            Phương tiện di chuyển: Ô tô
-                                        </li>
-                                        <li>
-                                            Thời gian: 1 Ngày
-                                        </li>
-                                        <li>
-                                            Nơi khởi hành: TP. Hồ Chí Minh
-                                        </li>
-                                        <li>
-                                            Ngày khởi hành: Chủ Nhật
-                                        </li>
-                                    </ul>
-                                </Box>
-                            </Box>
-                            <div className="detail-body--item">
-                                <TitleSubDetail title={tPage("desc")} />
-                                <div className="detail-content" dangerouslySetInnerHTML={{
-                                    __html: `
+                        </Box>
+                        <div className="detail-body--item">
+                            <TitleSubDetail title={tPage("desc")} />
+                            <div className="detail-content" dangerouslySetInnerHTML={{
+                                __html: `
                                         <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--description entry-content" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
                                             <p style="text-align: center;"><strong>–o0o–</strong></p>
                                             <h2><span style="color: #000000; font-size: 90%;"><strong>BUỔI SÁNG: TP. HỒ CHÍ MINH
@@ -112,10 +111,9 @@ const TourDetailPage = () => {
                                             
                                         </div>
                                     `}}>
-                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Box>
                 </Box>
                 <Box px={4} mb={10}>
                     <CommentSection itemId={1} />

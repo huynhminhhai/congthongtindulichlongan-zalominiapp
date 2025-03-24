@@ -13,7 +13,7 @@ interface Location {
   img: string;
 }
 
-const CategoryMap: React.FC<any> = ({locations, iconMarker}) => {
+const CategoryMap: React.FC<any> = ({ locations, iconMarker }) => {
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.LayerGroup>(L.layerGroup());
   const { t } = useTranslation("common");
@@ -101,13 +101,13 @@ const CategoryMap: React.FC<any> = ({locations, iconMarker}) => {
 
   return (
     <div className="map-wrap">
-      <div className="sidebar p-2 flex flex-col gap-2 max-h-[160px] overflow-y-auto mb-4">
+      <div className="sidebar flex flex-col gap-2 max-h-[220px] overflow-y-auto mb-4">
         {locations.map((item, index) => (
-          <div key={index} className="flex gap-2 cursor-pointer" onClick={() => handleItemClick(item.lat, item.lng)}>
-            <img className="w-[80px] h-[60px] object-cover" src={item.img} alt={item.name} />
-            <div>
-              <div className="text-[16px] font-bold text-[#355933]">{item.name}</div>
-              <div className="text-[12px]">{item.address}</div>
+          <div key={index} className="flex gap-2" onClick={() => handleItemClick(item.lat, item.lng)}>
+            <img className="w-[100px] h-[60px] object-cover" src={item.img} alt={item.name} />
+            <div className='flex-1'>
+              <div className="text-[16px] leading-[24px] font-bold text-[#355933] line-clamp-1">{item.name}</div>
+              <div className="text-[12px] leading-[16px] font-medium line-clamp-2">{item.address}</div>
             </div>
           </div>
         ))}

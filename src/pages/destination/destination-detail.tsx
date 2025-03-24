@@ -38,9 +38,12 @@ const DestinationDetailPage = () => {
         <Page className="relative flex-1 flex flex-col bg-white">
             <Box>
                 <HeaderSub title={tPage('destination-detail')} />
-                <Box p={4}>
-                    <Box>
-                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
+                <Box>
+                    <Box mb={2}>
+                        <ImageGallery images={imagesGallery} />
+                    </Box>
+                    <Box p={4}>
+                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between' className='gap-2'>
                             <TitleDetail title='Nhà Trăm Cột' />
                             <ActionButton
                                 icon="mdi:heart"
@@ -50,21 +53,18 @@ const DestinationDetailPage = () => {
                             />
                         </Box>
                         <Box mb={9}>
-                            <ImageGallery images={imagesGallery} />
-                        </Box>
-                        <Box mb={9}>
-                            <TitleSubDetail title={tPage('infor')} />
+                            {/* <TitleSubDetail title={tPage('infor')} /> */}
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
-                                    <li className='flex items-start gap-3'>
+                                    <li className='flex items-start gap-2'>
                                         <Icon fontSize={24} icon='fluent:location-28-regular' />
                                         <div className='flex-1'>Ấp Cầu Ngang, Xã Long Hựu Đông, Huyện Cần Đước, Tỉnh Long An</div>
                                     </li>
-                                    <li className='flex items-start gap-3'>
+                                    <li className='flex items-start gap-2'>
                                         <Icon fontSize={24} icon='material-symbols-light:mail-outline' />
                                         <div className='flex-1'>dulichthongminh.longan@gmail.com</div>
                                     </li>
-                                    <li className='flex items-start gap-3'>
+                                    <li className='flex items-start gap-2'>
                                         <Icon fontSize={24} icon='mdi-light:phone' />
                                         <div className='flex-1'>0397455789</div>
                                     </li>

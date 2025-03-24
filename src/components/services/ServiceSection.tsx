@@ -4,6 +4,7 @@ import images from "assets/images"
 import { ServicesType } from "constants/utinities"
 import ServiceItem from "./ServiceItem"
 import { useTranslation } from "react-i18next"
+import { Icon } from "@iconify/react"
 
 export const SERVICES: ServicesType[] = [
     {
@@ -144,10 +145,10 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({setSheetVisible}) => {
                             setSheetVisible(true);
                         }}
                         >
-                            <div className="flex-center flex-col gap-2">
+                            <div className="flex-center flex-col gap-1">
                                 <Box>
                                     <div className="flex-center w-[60px] h-[60px] relative">
-                                        <img src={images.more} alt='Tiện ích khác' />
+                                        <Icon fontSize={55} icon='line-md:grid-3' />
                                     </div>
                                 </Box>
                                 <Box>

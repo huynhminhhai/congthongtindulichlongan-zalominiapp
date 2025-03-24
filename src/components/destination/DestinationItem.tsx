@@ -7,7 +7,7 @@ const DestinationItem: React.FC<any> = ({ data }) => {
     const navigate = useNavigate()
 
     return (
-        <Box className='relative w-full h-[240px] rounded-lg overflow-hidden' onClick={() => navigate(`/destination-detail/?id=${data.id}`)}>
+        <Box className='relative w-full h-[200px] rounded-lg overflow-hidden' onClick={() => navigate(`/destination-detail/?id=${data.id}`)}>
             {/* <NearLocation /> */}
             <img className='h-full w-full object-cover' src={data.imgUrl} alt="destination" />
             <div className='absolute w-full bottom-0 left-0 p-4 bg-[#365140e6]'>

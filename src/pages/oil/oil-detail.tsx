@@ -32,7 +32,7 @@ const OilDetailPage = () => {
                 <HeaderSub title={tPage('fuel-detail')} />
                 <Box p={4}>
                     <Box>
-                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between'>
+                        <Box mb={3} flex alignItems='flex-end' justifyContent='space-between' className='gap-2'>
                             <TitleDetail title={location.name} />
                             <ActionButton
                                 icon="mdi:heart"
@@ -48,15 +48,15 @@ const OilDetailPage = () => {
                             <TitleSubDetail title={tPage('infor')} />
                             <Box>
                                 <ul className='flex flex-col gap-3 font-medium'>
-                                    <li className='flex items-start gap-3'>
+                                    <li className='flex items-start gap-2'>
                                         <Icon fontSize={24} icon='fluent:location-28-regular' />
                                         <div className='flex-1'>{location.address}</div>
                                     </li>
-                                    {/* <li className='flex items-start gap-3'>
+                                    {/* <li className='flex items-start gap-2'>
                                         <Icon fontSize={24} icon='material-symbols-light:mail-outline' />
                                         <div className='flex-1'>sanhafood.longan@gmail.com</div>
                                     </li> */}
-                                    <li className='flex items-start gap-3'>
+                                    <li className='flex items-start gap-2'>
                                         <Icon fontSize={24} icon='mdi-light:phone' />
                                         <div className='flex-1'>0397455789</div>
                                     </li>

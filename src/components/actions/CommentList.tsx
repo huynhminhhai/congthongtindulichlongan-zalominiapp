@@ -22,7 +22,7 @@ const CommentList: React.FC<CommentListProps> = ({itemId}) => {
                 <>
                     {data?.pages.map((page) =>
                         page.map((comment) => (
-                            <div key={comment.id} className="flex items-start gap-3 mb-3">
+                            <div key={comment.id} className="flex items-start gap-2 mb-3">
                                 <div className="avatar">
                                     <img className="w-[38px]" src="https://cdn-icons-png.flaticon.com/128/3608/3608172.png" alt="comment" />
                                 </div>

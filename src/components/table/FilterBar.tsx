@@ -61,7 +61,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
                                     onFilterToggle?.();
                                 }}
                             >
-                                <Icon color="#fff" icon="lets-icons:filter" fontSize={22} />
+                                <Icon color="#fff" icon="line-md:filter" fontSize={22} />
                             </div>
                         )}
                     </Box>

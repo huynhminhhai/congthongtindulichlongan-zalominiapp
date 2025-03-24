@@ -1,6 +1,6 @@
 import React from "react"
 import { useTranslation } from "react-i18next";
-import { Box, Swiper } from "zmp-ui"
+import { Box } from "zmp-ui"
 
 const BannerSlider: React.FC = () => {
     const { t } = useTranslation("home");
@@ -57,7 +57,7 @@ const BannerSlider: React.FC = () => {
                             />
                     </Swiper.Slide>
                 </Swiper> */}
-                <img className="absolute left-[60%] top-[0] w-[70%] h-auto translate-x-[-15%] translate-y-[5%]" src="https://pngimg.com/d/world_map_PNG28.png" alt="shape-map" />
+                <img className="absolute left-[65%] top-[0] w-[100%] h-auto translate-x-[-15%] translate-y-[5%]" src="https://pngimg.com/d/world_map_PNG28.png" alt="shape-map" />
                 <h1 className="text-[28px] leading-[38px] text-[#000] font-bold mb-1">
                     <div>{t("welcome1")}</div>
                     <div>{t("welcome2")}</div>

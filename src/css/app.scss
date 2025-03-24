@@ -46,7 +46,7 @@
 @font-face {
   font-family: 'Playfair Display';
   src: url('/src/assets/fonts/PlayfairDisplay-SemiBold.woff2') format('woff2'),
-      url('/src/assets/fonts/PlayfairDisplay-SemiBold.woff') format('woff');
+    url('/src/assets/fonts/PlayfairDisplay-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -55,7 +55,7 @@
 @font-face {
   font-family: 'Playfair Display';
   src: url('/src/assets/fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
-      url('/src/assets/fonts/PlayfairDisplay-Bold.woff') format('woff');
+    url('/src/assets/fonts/PlayfairDisplay-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -214,6 +214,18 @@ tbody tr td:not(:first-child) {
 
 .zaui-swiper-item .task-item img {
   width: 60px;
+}
+
+.swiper-horizontal .swiper-pagination-bullet {
+  background-color: var(--white-color);
+  opacity: 0.8;
+}
+
+.swiper-horizontal .swiper-pagination-bullet-active {
+  width: 24px;
+  height: 8px;
+  opacity: 1;
+  border-radius: 8px;
 }
 
 /**
@@ -617,7 +629,7 @@ div.ql-editor {
 
 /**
 * COMMENT
-**/ 
+**/
 
 .comment-form label {
   display: none;
@@ -627,7 +639,8 @@ div.ql-editor {
   border-radius: 0;
   border: 0;
   border-bottom: 1px solid #355933;
-  border-color: #355933
+  border-color: #355933;
+  background-color: transparent;
 }
 
 .comment-form input,
