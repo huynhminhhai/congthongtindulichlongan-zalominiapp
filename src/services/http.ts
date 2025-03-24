@@ -6,37 +6,40 @@ const request = async <T>(
     url: string,
     body?: any
 ): Promise<T> => {
-
-    const fullUrl = `${envConfig.API_ENDPOINT}${url}`;
-
-    const storedData = await getDataFromStorage(['token']);
-    const token = storedData?.token;
-
-    const headers: HeadersInit = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-    };
-
-    const options: RequestInit = {
-        method,
-        headers,
-        ...(body && { body: JSON.stringify(body) }),
-    };
-
     try {
+        const fullUrl = `${envConfig.API_ENDPOINT}${url}`;
+
+        const storedData = await getDataFromStorage(['token']);
+        const token = storedData?.token || '';
+
+        const headers: HeadersInit = {
+            'Content-Type': 'application/json',
+            ...(token && { Authorization: `Bearer ${token}` }),
+        };
+
+        const options: RequestInit = {
+            method,
+            headers,
+            ...(body && { body: JSON.stringify(body) }),
+        };
+
         const response = await fetch(fullUrl, options);
-        const data: T = await response.json();
-        
+
         if (!response.ok) {
             if (response.status === 401) {
-                removeDataFromStorage(['token']);
+                await removeDataFromStorage(['token']);
                 window.location.href = '/account';
                 throw new Error('Token hết hạn');
             }
+            const errorData = await response.json().catch(() => ({ message: 'Lỗi không xác định (request)' }));
             window.location.href = '/';
-            throw new Error((data as any)?.message || 'Lỗi không xác định (request)');
+            throw new Error(errorData.message || 'Lỗi không xác định (request)');
         }
-    
+
+        const data: T = await response.json().catch(() => {
+            throw new Error('Response không hợp lệ');
+        });
+
         return data;
     } catch (error) {
         console.error('Request error:', error);

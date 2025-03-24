@@ -31,7 +31,7 @@ export const Navigation: FC = () => {
       activeIcon: <Icon icon="line-md:person-filled" />
     },
     "/settings": {
-      label: t("settigns"),
+      label: t("settings"),
       icon: <Icon icon="line-md:cog-filled" />,
       activeIcon: <Icon icon="line-md:cog-filled" />
     },

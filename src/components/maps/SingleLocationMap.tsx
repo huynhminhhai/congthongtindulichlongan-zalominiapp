@@ -79,7 +79,7 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
     await openUrlInWebview(googleMapsUrl, 'bottomSheet');  // Sử dụng hàm openUrlInWebview để mở Google Maps
   };
 
-  return <div id="map" style={{ height: '400px' }}></div>;
+  return <div id="map" style={{ height: '500px' }}></div>;
 };
 
 export default SingleLocationMap;

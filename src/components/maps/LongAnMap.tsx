@@ -812,7 +812,7 @@ const LongAnMap: React.FC = () => {
                     ))}
                 </Tabs>
             </div>
-            <div id="map" style={{ height: '400px' }}></div>
+            <div id="map" style={{ height: '500px' }}></div>
         </div>
     );
 };
