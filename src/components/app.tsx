@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { App, ZMPRouter, SnackbarProvider } from "zmp-ui";
 import { RecoilRoot } from "recoil";
@@ -37,40 +37,70 @@ import { BusRoutingDetailPage, BusRoutingPage } from "pages/bus-routing";
 import { GalleryDetailPage, GalleryPage } from "pages/gallery";
 import { LanguagePage, SearchPage, SettingsPage } from "pages/settings";
 import RegisterPage from "pages/account/register";
+import { initI18n } from "../i18n";
 
 const MyApp = () => {
 
-  const { isLoadingFullScreen, setAuth } = useStoreApp();
-
   const queryClient = new QueryClient()
+  const { isLoadingFullScreen, setAuth } = useStoreApp();
+  const [isI18nInitialized, setIsI18nInitialized] = useState(false);
 
-  const loadAuthData = async () => {
-    try {
-      const storedData = await getDataFromStorage(["account", "token"]);
+  // const loadAuthData = async () => {
+  //   try {
+  //     const storedData = await getDataFromStorage(["account", "token"]);
 
-      console.log(storedData)
+  //     console.log(storedData)
 
-      if (!storedData) {
-        setAuth({ account: null, token: null });
-        return;
-      }
+  //     if (!storedData) {
+  //       setAuth({ account: null, token: null });
+  //       return;
+  //     }
 
-      const storedAccount = storedData.account ? JSON.parse(storedData.account) : null;
-      const storedToken = storedData.token || null;
+  //     const storedAccount = storedData.account ? JSON.parse(storedData.account) : null;
+  //     const storedToken = storedData.token || null;
 
-      setAuth({
-        account: storedAccount,
-        token: storedToken,
-      });
-    } catch (error) {
-      console.error("Lỗi khi load dữ liệu từ storage:", error);
-      setAuth({ account: null, token: null }); // Reset nếu có lỗi
-    }
-  };
+  //     setAuth({
+  //       account: storedAccount,
+  //       token: storedToken,
+  //     });
+  //   } catch (error) {
+  //     console.error("Lỗi khi load dữ liệu từ storage:", error);
+  //     setAuth({ account: null, token: null }); // Reset nếu có lỗi
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   loadAuthData();
+  // }, [setAuth]);
 
   useEffect(() => {
+    const loadAuthData = async () => {
+      try {
+        const storedData = await getDataFromStorage(["account", "token", "lng"]) || {}; // Đảm bảo storedData luôn là object
+        const language = storedData.lng ?? "vi"; // Dùng nullish coalescing (??) để tránh lỗi undefined
+
+        await initI18n(language);
+        setIsI18nInitialized(true);
+
+        const storedAccount = storedData.account ? JSON.parse(storedData.account) : null;
+        const storedToken = storedData.token ?? null;
+
+        setAuth({
+          account: storedAccount,
+          token: storedToken,
+        });
+      } catch (error) {
+        console.error("Lỗi khi load dữ liệu từ storage:", error);
+        setAuth({ account: null, token: null });
+      }
+    };
+
     loadAuthData();
   }, [setAuth]);
+
+  if (!isI18nInitialized) {
+    return <LoadingFullScreen isLoading={true} />;
+  }
 
   return (
     <RecoilRoot>

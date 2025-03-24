@@ -1,15 +1,11 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { getDataFromStorage } from "services/zalo";
 import { enAccount, enCommon, enHome, enPage, enSetting, enSnackbar } from "locales/en";
 import { viAccount, viCommon, viHome, viPage, viSetting, viSnackbar } from "locales/vi";
 
-const initI18n = async () => {
-    const storedData = await getDataFromStorage(["lng"]);
-    const language = storedData?.lng || "vi";
-
-    i18n
+export const initI18n = async (language: string) => {
+    await i18n
         .use(LanguageDetector)
         .use(initReactI18next)
         .init({
@@ -39,5 +35,4 @@ const initI18n = async () => {
         });
 };
 
-initI18n();
 export default i18n;
