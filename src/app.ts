@@ -10,7 +10,7 @@ import "zmp-ui/zaui.css";
 
 // Your stylesheet
 import "css/app.scss";
-
+import "css/_index.scss"
 // Expose app configuration
 import appConfig from "../app-config.json";
 if (!window.APP_CONFIG) {

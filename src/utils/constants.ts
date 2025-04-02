@@ -1,0 +1,2 @@
+export const SLIDE_SPACE_BETWEEN_HOMEPAGE = 15
+export const SLIDE_PER_VIEW_HOMEPAGE = 1.08
