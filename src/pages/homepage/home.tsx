@@ -42,8 +42,8 @@ const HomePage: React.FunctionComponent = () => {
         <HotelSection />
         <Divider size={8} />
         <RestaurantSection />
-        <Divider size={8} />
-        <LongAnMap />
+        {/* <Divider size={8} />
+        <LongAnMap /> */}
       </Box>
       <ServiceSub
         sheetVisible={sheetVisible}

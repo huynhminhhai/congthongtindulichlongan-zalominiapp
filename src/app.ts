@@ -1,16 +1,16 @@
 // React core
 import React from "react";
 import { createRoot } from "react-dom/client";
-
+import 'swiper/css'
 // Tailwind stylesheet
-import "css/tailwind.scss";
+import "styles/tailwind.scss";
 
 // ZaUI stylesheet
 import "zmp-ui/zaui.css";
 
 // Your stylesheet
-import "css/app.scss";
-import "css/_index.scss"
+import "styles/app.scss";
+import "styles/_index.scss"
 // Expose app configuration
 import appConfig from "../app-config.json";
 if (!window.APP_CONFIG) {

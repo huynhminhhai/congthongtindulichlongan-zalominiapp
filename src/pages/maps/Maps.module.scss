@@ -1,0 +1,121 @@
+@import '../../styles/mixins.scss';
+.categoryList {
+  margin-top: 10px;
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 15px;
+  gap: 10px;
+  padding: 0 12px;
+}
+.categoryItem {
+  min-width: fit-content;
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: 999px;
+  padding: 6px 14px;
+  color: var(--primary-color);
+  &.active {
+    background: var(--primary-color);
+    color: white;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+.map {
+  z-index: 1;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    z-index: 401;
+  }
+}
+.serviceListWrapper {
+  padding: 0 10px;
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  width: 100%;
+  .serviceList {
+    // margin-bottom: 15px;
+  }
+  .findNearButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  .actionWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    margin-bottom: 15px;
+    // .showListButton {
+    //   background: var(--primary-color);
+    //   color: var(--white-color);
+    //   font-size: 16px;
+    //   padding: 8px 16px;
+    //   height: 44px;
+    // }
+    .getCurrentLocationButton {
+      // position: absolute;
+      // right: 0;
+      font-size: 16px;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 18px;
+      height: 44px;
+    }
+  }
+}
+.serviceItem {
+  display: flex;
+  box-shadow:
+    rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--white-color);
+  .serviceDetail {
+    padding: 8px;
+  }
+  .serviceImage {
+    width: 110px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .serviceName {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    @include line-clamp(2);
+  }
+  .serviceRating {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  .serviceAddress {
+    font-size: 13px;
+    line-height: 18px;
+    @include line-clamp(2);
+  }
+}

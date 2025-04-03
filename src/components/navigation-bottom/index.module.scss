@@ -1,0 +1,13 @@
+.bottomNavigation {
+  z-index: 11;
+  :global(.zaui-bottom-navigation-content) {
+    padding-block: 10px;
+    height: fit-content;
+  }
+  :global(.zaui-bottom-navigation-item-active) {
+    color: var(--primary-color);
+    :global(.zaui-bottom-navigation-item-label) {
+      font-weight: 600;
+    }
+  }
+}

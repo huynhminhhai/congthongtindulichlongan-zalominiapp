@@ -6,7 +6,7 @@ import { MenuItem } from 'constants/types'
 import { useStoreApp } from 'store/store'
 import { useRole } from 'store/authSlice'
 import { useTranslation } from 'react-i18next'
-
+import styles from './index.module.scss'
 const Navigation: FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,23 +17,23 @@ const Navigation: FC = () => {
   const tabs: Record<string, MenuItem> = {
     '/': {
       label: t('home'),
-      icon: <Icon icon="line-md:home-simple-filled" />,
-      activeIcon: <Icon icon="line-md:home-simple-filled" />,
+      icon: <Icon icon="mynaui:home" />,
+      activeIcon: <Icon icon="mynaui:home" />,
     },
     '/maps': {
-      label: t('maps'),
-      icon: <Icon icon="line-md:cog-filled" />,
-      activeIcon: <Icon icon="line-md:cog-filled" />,
+      label: t('search'),
+      icon: <Icon icon="material-symbols:search" />,
+      activeIcon: <Icon icon="material-symbols:search" />,
     },
     '/favorite': {
       label: t('favorites'),
-      icon: <Icon icon="line-md:heart-filled" />,
-      activeIcon: <Icon icon="line-md:heart-filled" />,
+      icon: <Icon icon="material-symbols:favorite-outline" />,
+      activeIcon: <Icon icon="material-symbols:favorite-outline" />,
     },
     '/account': {
       label: t('account'),
-      icon: <Icon icon="line-md:person-filled" />,
-      activeIcon: <Icon icon="line-md:person-filled" />,
+      icon: <Icon icon="mdi:account-outline" />,
+      activeIcon: <Icon icon="mdi:account-outline" />,
     },
     // '/settings': {
     //   label: t('settings'),
@@ -74,7 +74,7 @@ const Navigation: FC = () => {
     <BottomNavigation
       id="footer"
       activeKey={location.pathname}
-      className="z-10 box-shadow-3"
+      className={styles.bottomNavigation}
     >
       {Object.keys(filteredTabs).map((path: TabKeys) => (
         <BottomNavigation.Item

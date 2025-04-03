@@ -15,7 +15,7 @@ export default () => {
     plugins: [zaloMiniApp(), react(), tsconfigPaths()],
     resolve: {
       alias: {
-        "css": path.resolve(__dirname, "src/css"), 
+        "styles": path.resolve(__dirname, "src/styles"), 
         "components": path.resolve(__dirname, "src/components"), 
         "pages": path.resolve(__dirname, "src/pages"), 
         "store": path.resolve(__dirname, "src/store"), 
