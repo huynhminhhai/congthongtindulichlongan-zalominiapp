@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Montserrat';
-  src: url('/src/assets/fonts/Montserrat-Light.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/Montserrat-Light.woff2') format('woff2'),
     url('/src/assets/fonts/Montserrat-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
@@ -9,7 +10,8 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/src/assets/fonts/Montserrat-Bold.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/Montserrat-Bold.woff2') format('woff2'),
     url('/src/assets/fonts/Montserrat-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
@@ -18,7 +20,8 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/src/assets/fonts/Montserrat-Medium.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/Montserrat-Medium.woff2') format('woff2'),
     url('/src/assets/fonts/Montserrat-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
@@ -27,7 +30,8 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/src/assets/fonts/Montserrat-SemiBold.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/Montserrat-SemiBold.woff2') format('woff2'),
     url('/src/assets/fonts/Montserrat-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
@@ -36,7 +40,8 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/src/assets/fonts/Montserrat-Regular.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/Montserrat-Regular.woff2') format('woff2'),
     url('/src/assets/fonts/Montserrat-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -45,7 +50,8 @@
 
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/src/assets/fonts/PlayfairDisplay-SemiBold.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/PlayfairDisplay-SemiBold.woff2') format('woff2'),
     url('/src/assets/fonts/PlayfairDisplay-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
@@ -54,7 +60,8 @@
 
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/src/assets/fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
+  src:
+    url('/src/assets/fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
     url('/src/assets/fonts/PlayfairDisplay-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
@@ -64,7 +71,7 @@
 :root {
   --white-color: #ffffff;
   --black-color: #222222;
-  --grey-light-color: #F5F5F5;
+  --grey-light-color: #f5f5f5;
   --primary-color: #355933;
   --secondary-color: #80876d;
   --third-color: #c5a47e;
@@ -74,7 +81,7 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   user-select: none;
   font-size: 14px;
@@ -107,7 +114,6 @@ body {
   &::after {
     display: none;
   }
-
 }
 
 .zaui-header.sub {
@@ -203,7 +209,6 @@ tbody tr td:not(:first-child) {
   max-height: 60vh;
 }
 
-
 .zaui-swiper-item {
   opacity: 1 !important;
 }
@@ -268,11 +273,15 @@ tbody tr td:not(:first-child) {
 }
 
 .box-shadow-2 {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .box-shadow-3 {
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  box-shadow:
+    rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
 .box-shadow-4 {
@@ -379,7 +388,7 @@ textarea.zaui-input {
   color: #777777;
 }
 
-textarea[name="address"] {
+textarea[name='address'] {
   min-height: unset;
 }
 
@@ -414,7 +423,7 @@ textarea[name="address"] {
 * MODAL
 **/
 
-.zaui-modal-content-main>div {
+.zaui-modal-content-main > div {
   padding: 0 !important;
 }
 
@@ -555,7 +564,7 @@ div.ql-editor {
 
 .login-page .login-form input {
   height: 46px;
-  background-color: var(--primary-color)18;
+  background-color: var(--primary-color) 18;
   padding-left: 38px;
   padding-right: 28px;
 }
@@ -616,7 +625,7 @@ div.ql-editor {
 
 .cusine-category:after,
 .cusine-category::before {
-  content: "";
+  content: '';
   display: block;
   width: 30px;
   height: 1px;

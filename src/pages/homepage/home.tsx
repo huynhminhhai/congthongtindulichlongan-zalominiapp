@@ -1,7 +1,7 @@
 import { BannerSlider } from 'components/banner'
 import { CusineSection } from 'components/cusine'
 import { DestinationSection } from 'components/destination'
-import { DestinationTravelSection } from 'components/detination-travel'
+import { DestinationTravelSection } from 'components/destination-travel'
 import { Divider } from 'components/divider'
 import { EventsSection } from 'components/events'
 import { HotelSection } from 'components/hotel'

@@ -85,6 +85,16 @@ const AccountPage: React.FC = () => {
               />
             </List>
           </Box>
+          <Box m={4}>
+            <List className="bg-white rounded-lg">
+              <Item
+                onClick={() => navigate('/languages')}
+                title={tAccount('languages')}
+                prefix={<img src={images.languages} width={30} />}
+                suffix={<Icon fontSize={20} icon="formkit:right" />}
+              />
+            </List>
+          </Box>
         </Box>
       </Box>
     </Page>

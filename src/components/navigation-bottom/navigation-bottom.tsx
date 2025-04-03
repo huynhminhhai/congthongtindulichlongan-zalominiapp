@@ -7,7 +7,7 @@ import { useStoreApp } from 'store/store'
 import { useRole } from 'store/authSlice'
 import { useTranslation } from 'react-i18next'
 
-export const Navigation: FC = () => {
+const Navigation: FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { account } = useStoreApp()
@@ -20,6 +20,11 @@ export const Navigation: FC = () => {
       icon: <Icon icon="line-md:home-simple-filled" />,
       activeIcon: <Icon icon="line-md:home-simple-filled" />,
     },
+    '/maps': {
+      label: t('maps'),
+      icon: <Icon icon="line-md:cog-filled" />,
+      activeIcon: <Icon icon="line-md:cog-filled" />,
+    },
     '/favorite': {
       label: t('favorites'),
       icon: <Icon icon="line-md:heart-filled" />,
@@ -30,11 +35,11 @@ export const Navigation: FC = () => {
       icon: <Icon icon="line-md:person-filled" />,
       activeIcon: <Icon icon="line-md:person-filled" />,
     },
-    '/settings': {
-      label: t('settings'),
-      icon: <Icon icon="line-md:cog-filled" />,
-      activeIcon: <Icon icon="line-md:cog-filled" />,
-    },
+    // '/settings': {
+    //   label: t('settings'),
+    //   icon: <Icon icon="line-md:cog-filled" />,
+    //   activeIcon: <Icon icon="line-md:cog-filled" />,
+    // },
   }
 
   type TabKeys = keyof typeof tabs
@@ -45,6 +50,7 @@ export const Navigation: FC = () => {
     '/account',
     '/favorite',
     '/settings',
+    '/maps',
   ]
 
   const filteredTabs = useMemo(() => {
@@ -82,3 +88,4 @@ export const Navigation: FC = () => {
     </BottomNavigation>
   )
 }
+export default Navigation
