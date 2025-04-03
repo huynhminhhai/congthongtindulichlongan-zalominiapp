@@ -21,9 +21,9 @@ const Navigation: FC = () => {
       activeIcon: <Icon icon="mynaui:home" />,
     },
     '/maps': {
-      label: t('search'),
-      icon: <Icon icon="material-symbols:search" />,
-      activeIcon: <Icon icon="material-symbols:search" />,
+      label: 'Bản đồ',
+      icon: <Icon icon="solar:map-linear" />,
+      activeIcon: <Icon icon="solar:map-linear" />,
     },
     '/favorite': {
       label: t('favorites'),
