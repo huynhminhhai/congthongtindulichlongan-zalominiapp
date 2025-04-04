@@ -15,7 +15,7 @@ export const SERVICES: ServicesType[] = [
   },
   {
     label: 'Sự kiện',
-    url: '/events',
+    url: '/news',
     icon: images.event,
   },
   {
@@ -80,7 +80,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
     },
     {
       label: t('events'),
-      url: '/events',
+      url: '/news',
       icon: images.event,
     },
     {

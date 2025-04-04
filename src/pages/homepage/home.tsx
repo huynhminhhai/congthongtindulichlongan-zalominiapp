@@ -2,7 +2,6 @@ import { AccommodationSection } from 'components/accommodation';
 import { BannerSlider } from 'components/banner';
 import { CusineSection } from 'components/cusine';
 import { Divider } from 'components/divider';
-import { EventsSection } from 'components/events';
 import { LocationSection } from 'components/location';
 import NewsSection from 'components/news/NewsSection';
 import { SearchSection } from 'components/search';
@@ -10,12 +9,17 @@ import { ServiceSection, ServiceSub } from 'components/services';
 import { TourSection } from 'components/tour';
 import React, { useState } from 'react';
 import { useStoreApp } from 'store/store';
-import { DIA_DIEM_DU_LICH_DATA, DIA_DIEM_NOI_BAT_DATA, HOTEL_DATA, RESTAURENT_DATA } from 'utils/data';
+import {
+  DIA_DIEM_DU_LICH_DATA,
+  DIA_DIEM_NOI_BAT_DATA,
+  HOTEL_DATA,
+  RESTAURENT_DATA,
+  SU_KIEN_DATA,
+  TIN_TUC_DATA,
+} from 'utils/data';
 import { Box, Page } from 'zmp-ui';
 
 const HomePage: React.FunctionComponent = () => {
-  const { account } = useStoreApp();
-
   const [sheetVisible, setSheetVisible] = useState(false);
 
   return (
@@ -31,9 +35,9 @@ const HomePage: React.FunctionComponent = () => {
         <Divider size={8} />
         <CusineSection />
         <Divider size={8} />
-        <NewsSection />
+        <NewsSection data={TIN_TUC_DATA} title="Tin tức" />
         <Divider size={8} />
-        <EventsSection />
+        <NewsSection data={SU_KIEN_DATA} title="Sự kiện" />
         <Divider size={8} />
         <TourSection />
         <Divider size={8} />

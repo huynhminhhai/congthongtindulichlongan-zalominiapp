@@ -1,33 +1,31 @@
-import images from "assets/images"
-import { News } from "constants/utinities"
-import React from "react"
-import { Box, Text, useNavigate } from "zmp-ui"
+import images from 'assets/images';
+import { News } from 'constants/utinities';
+import React from 'react';
+import { Box, Text, useNavigate } from 'zmp-ui';
 
 type NewsItemProps = {
-    data: News
-}
+  data: News;
+};
 
 const NewsItem: React.FC<NewsItemProps> = ({ data }) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  return (
+    <Box>
+      <div onClick={() => navigate(`/news-detail/${data.id}`)}>
+        <img
+          className="slide-img h-[200px] w-full object-cover rounded-xl"
+          src={data.imageUrl || images.thumbnailNews}
+          alt={data.title}
+        />
+        <div className="flex items-center justify-between mt-3 mb-2 pb-2 border-b-[1px] border-[#355933]">
+          <div className="text-[13px] leading-[1] font-semibold">{data.category || 'Tin tức'}</div>
+          <div className="text-[12px] leading-[1] font-medium">{data.publishedDate || '18/03/2025'}</div>
+        </div>
+        <h3 className="text-[16px] font-semibold whitespace-normal mt-2 line-clamp-2 ">{data.title}</h3>
+      </div>
+    </Box>
+  );
+};
 
-    return (
-        <Box>
-            <div
-                className="flex items-center gap-3 news-item py-4 border-b-[1px]"
-                onClick={() => navigate(`/news-detail/?id=${data.id}`)}
-            >
-                <div className="w-[150px] h-[110px]">
-                    <img className="h-[100%] w-[100%] object-cover" src={data.imageUrl || images.thumbnailNews} alt={data.title} />
-                </div>
-                <div className='flex-1 flex flex-col justify-center'>
-                    <h3 className="text-[16px] leading-[20px] font-semibold line-clamp-2 mb-1">{data.title}</h3>
-                    <div className="line-clamp-3 text-[14px] leading-[18px] font-normal text-[#7c7c7c] mb-2">{data.description}</div>
-                    <div className="text-end text-[12px] text-[#7c7c7c] font-normal leading-[1] ">{data.publishedDate}</div>
-                </div>
-            </div>
-        </Box>
-    )
-}
-
-export default NewsItem
+export default NewsItem;
