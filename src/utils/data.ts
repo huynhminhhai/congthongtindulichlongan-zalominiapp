@@ -758,3 +758,30 @@ export const RESTAURENT_DATA = [
     rating: 3.9,
   },
 ]
+
+export const DIA_DIEM_NOI_BAT_DATA = [
+  {
+    title: 'Nhà Trăm Cột',
+    imgUrl: 'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg',
+  },
+  {
+    title: 'Làng nổi Tân Lập',
+    imgUrl:
+      'https://dulichtoivaban.com/wp-content/uploads/2023/08/Khu-du-lich-sinh-thai-Lang-Noi-Tan-Lap-o-Long-An.jpg.webp',
+  },
+  {
+    title: 'Cửa khẩu Quốc tế Bình Hiệp',
+    imgUrl:
+      'https://cdn.media.dulich24.com.vn/diemden/cua-khau-binh-hiep-7264/cua-khau-binh-hiep-1.jpg',
+  },
+  {
+    title: 'Bảo tàng Long An',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/sangvt.lan/tien_ich/dia_diem/bao_tang_long_an/unnamed_1_copy_637189302797678077.jpg',
+  },
+  {
+    title: 'Công viên 7 Kỳ Quan Thế Giới',
+    imgUrl:
+      'https://houserentaldanang.com/wp-content/uploads/2023/09/Cong-vien-7-ky-quan-Da-Nang-7.jpg',
+  },
+]

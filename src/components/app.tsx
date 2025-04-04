@@ -35,8 +35,6 @@ import {
 } from 'pages/destination-travel'
 import { CusineDetailPage, CusinePage } from 'pages/cusine'
 import { TourDetailPage, TourPage } from 'pages/tour'
-import { HotelDetailPage, HotelPage } from 'pages/hotel'
-import { RestaurantDetailPage, RestaurantPage } from 'pages/restaurant'
 import { GuideDetailPage, GuidePage } from 'pages/guide-tour'
 import { FavoritePage } from 'pages/favorite'
 import { ShoppingDetailPage, ShoppingPage } from 'pages/shopping'
@@ -52,6 +50,7 @@ import { LanguagePage, SearchPage, SettingsPage } from 'pages/settings'
 import RegisterPage from 'pages/account/register'
 import { initI18n } from '../i18n'
 import { NavigationBottom } from './navigation-bottom'
+import { AccommodationDetailPage, AccommodationPage } from 'pages/accommodation'
 
 const MyApp = () => {
   const queryClient = new QueryClient()
@@ -186,20 +185,13 @@ const MyApp = () => {
                 ></Route>
 
                 {/* HOTEL */}
-                <Route path="/hotel" element={<HotelPage></HotelPage>}></Route>
                 <Route
-                  path="/hotel-detail"
-                  element={<HotelDetailPage></HotelDetailPage>}
-                ></Route>
-
-                {/* RESTAURANT */}
-                <Route
-                  path="/restaurant"
-                  element={<RestaurantPage></RestaurantPage>}
+                  path="/accommodation"
+                  element={<AccommodationPage></AccommodationPage>}
                 ></Route>
                 <Route
-                  path="/restaurant-detail"
-                  element={<RestaurantDetailPage></RestaurantDetailPage>}
+                  path="/accommodation/:id"
+                  element={<AccommodationDetailPage></AccommodationDetailPage>}
                 ></Route>
 
                 {/* GUIDE TOUR */}

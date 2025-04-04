@@ -1,23 +1,27 @@
+import TitleSection from 'components/titleSection'
 import React from 'react'
 import { Box, useNavigate } from 'zmp-ui'
-import LocationItem from './LocationItem'
-import TitleSection from 'components/titleSection'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
+import AccommodationItem from './AccommodationItem'
 import {
   SLIDE_PER_VIEW_HOMEPAGE,
   SLIDE_SPACE_BETWEEN_HOMEPAGE,
 } from 'utils/constants'
 
-const LocationSection = ({ data, title }) => {
+const AccommodationSection: React.FC<any> = ({ data, title, type }) => {
   const navigate = useNavigate()
 
   return (
-    <Box py={4} pl={4}>
+    <Box py={5} pl={4}>
       <Box pr={4}>
         <TitleSection
           title={title}
-          handleClick={() => navigate('/destination')}
+          handleClick={() =>
+            navigate('/accommodation', {
+              state: { type: type },
+            })
+          }
         />
       </Box>
       <Swiper
@@ -27,7 +31,7 @@ const LocationSection = ({ data, title }) => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index}>
-            <LocationItem data={item} />
+            <AccommodationItem data={item} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -35,4 +39,4 @@ const LocationSection = ({ data, title }) => {
   )
 }
 
-export default LocationSection
+export default AccommodationSection

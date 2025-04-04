@@ -4,9 +4,8 @@ import { DestinationSection } from 'components/destination'
 import { DestinationTravelSection } from 'components/destination-travel'
 import { Divider } from 'components/divider'
 import { EventsSection } from 'components/events'
-import { LocationSection } from 'components/location'
+import { AccommodationSection } from 'components/accommodation'
 import NewsSection from 'components/news/NewsSection'
-import { RestaurantSection } from 'components/restaurant'
 import { SearchSection } from 'components/search'
 import { ServiceSection, ServiceSub } from 'components/services'
 import { TourSection } from 'components/tour'
@@ -39,9 +38,17 @@ const HomePage: React.FunctionComponent = () => {
         <Divider size={8} />
         <TourSection />
         <Divider size={8} />
-        <LocationSection data={HOTEL_DATA} title="Khách sạn" />
+        <AccommodationSection
+          data={HOTEL_DATA}
+          title="Khách sạn"
+          type="hotel"
+        />
         <Divider size={8} />
-        <LocationSection data={RESTAURENT_DATA} title="Nhà hàng" />
+        <AccommodationSection
+          data={RESTAURENT_DATA}
+          title="Nhà hàng"
+          type="restaurent"
+        />
         {/* <Divider size={8} />
         <LongAnMap /> */}
       </Box>

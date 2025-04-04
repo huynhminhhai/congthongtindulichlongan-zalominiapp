@@ -1,5 +1,5 @@
 @import '../../styles/mixins';
-.locationItem {
+.accommodationItem {
   // border: 1px solid #eee;
   border-radius: 8px;
   overflow: hidden;
@@ -22,24 +22,24 @@
     color: var(--danger-700);
   }
 }
-.locationImage {
+.accommodationImage {
   width: 100%;
   height: 210px;
   border-radius: 16px;
   object-fit: cover;
 }
 
-.locationContent {
+.accommodationContent {
   padding: 12px 0;
 }
-.locationContentTop {
+.accommodationContentTop {
   margin-bottom: 8px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
 }
-.locationTitle {
+.accommodationTitle {
   font-size: 18px;
   font-weight: bold;
   color: var(--primary-color);
@@ -65,7 +65,7 @@
   color: var(--neutral-700);
   @include line-clamp(2);
 }
-.locationRate {
+.accommodationRate {
   padding: 4px 6px;
   border-radius: 8px;
   display: flex;

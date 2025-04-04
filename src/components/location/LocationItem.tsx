@@ -1,46 +1,26 @@
-import { Icon } from '@iconify/react'
+import NearLocation from 'components/near'
 import React from 'react'
 import { Box, useNavigate } from 'zmp-ui'
-import styles from './index.module.scss'
 
-interface ILocationItem {
-  data: any
-  onClick?: () => void
-}
-
-const LocationItem: React.FC<ILocationItem> = ({ data, onClick }) => {
+const LocationItem: React.FC<any> = ({ data }) => {
   const navigate = useNavigate()
 
   return (
     <Box
-      className={styles.locationItem}
-      onClick={() => navigate(`/hotel-detail/?id=${data?.id}`)}
+      className="relative w-full h-[200px] rounded-lg overflow-hidden"
+      onClick={() => navigate(`/destination-detail/?id=${data.id}`)}
     >
-      <div className={styles.toggleFavorite}>
-        {data?.isFavorite ? (
-          <Icon icon="line-md:heart-filled" className={styles.active} />
-        ) : (
-          <Icon icon="mdi-light:heart" />
-        )}
-      </div>
+      {/* <NearLocation /> */}
       <img
-        className={styles.locationImage}
-        src={data?.imgUrl}
-        alt={data?.title}
+        className="h-full w-full object-cover"
+        src={data.imgUrl}
+        alt="destination"
       />
-      <Box className={styles.locationContent}>
-        <div className={styles.locationContentTop}>
-          <h3 className={styles.locationTitle}>{data?.title}</h3>
-          <div className={styles.locationRate}>
-            <p>{data?.rating}</p>
-            <Icon className={styles.starIcon} icon="ic:round-star" />
-          </div>
-        </div>
-        <div className={styles.address}>
-          <Icon className={styles.addressIcon} icon="weui:location-filled" />
-          <span className={styles.addressText}>{data?.address}</span>
-        </div>
-      </Box>
+      <div className="absolute w-full bottom-0 left-0 p-3 bg-[#365140e6]">
+        <h3 className="text-[16px] leading-[24px] font-semibold text-[#fff] line-clamp-1">
+          {data.title}
+        </h3>
+      </div>
     </Box>
   )
 }
