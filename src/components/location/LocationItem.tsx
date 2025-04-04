@@ -8,7 +8,7 @@ const LocationItem: React.FC<any> = ({ data }) => {
   return (
     <Box
       className="relative w-full h-[200px] rounded-lg overflow-hidden"
-      onClick={() => navigate(`/destination-detail/?id=${data.id}`)}
+      onClick={() => navigate(`/location/${data.id}`)}
     >
       {/* <NearLocation /> */}
       <img

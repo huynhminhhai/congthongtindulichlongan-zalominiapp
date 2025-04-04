@@ -1,27 +1,24 @@
-import { DestinationTravelItem } from 'components/destination-travel'
-import { destinationTravelData } from 'components/destination-travel/DestinationTravelSection'
-import { Divider } from 'components/divider'
-import { HeaderSub } from 'components/header-sub'
-import FilterBar from 'components/table/FilterBar'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Box, Input, Page, Select } from 'zmp-ui'
+import { HeaderSub } from 'components/header-sub';
+import { LocationItem } from 'components/location';
+import FilterBar from 'components/table/FilterBar';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { DIA_DIEM_DU_LICH_DATA } from 'utils/data';
+import { Box, Input, Page, Select } from 'zmp-ui';
 
-const DestinationTravelPage = () => {
-  const { Option } = Select
-  const { t: tCommon } = useTranslation('common')
+const LocationPage = () => {
+  const { Option } = Select;
+  const { t: tCommon } = useTranslation('common');
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
-        <HeaderSub title={tCommon('destinations-travel')} />
+        <HeaderSub title={tCommon('destinations')} />
         <Box pb={4}>
           <Box>
             <FilterBar
               showAddButton={false}
-              searchComponent={
-                <Input.Search placeholder={tCommon('searching')} value={''} />
-              }
+              searchComponent={<Input.Search placeholder={tCommon('searching')} value={''} />}
             >
               <div className="col-span-12">
                 <Select placeholder={tCommon('all')} closeOnSelect>
@@ -36,7 +33,7 @@ const DestinationTravelPage = () => {
                 </Select>
               </div>
               <div className="col-span-6">
-                <Select placeholder={tCommon('travel-type')} closeOnSelect>
+                <Select placeholder={tCommon('location-type')} closeOnSelect>
                   <Option title={tCommon('all')} value={0} />
                   <Option title={'Xung quanh'} value={1} />
                 </Select>
@@ -44,16 +41,16 @@ const DestinationTravelPage = () => {
             </FilterBar>
           </Box>
           <Box px={4}>
-            {destinationTravelData.map((item, index) => (
+            {DIA_DIEM_DU_LICH_DATA.map((item, index) => (
               <Box mb={3} key={index}>
-                <DestinationTravelItem data={item} />
+                <LocationItem data={item} />
               </Box>
             ))}
           </Box>
         </Box>
       </Box>
     </Page>
-  )
-}
+  );
+};
 
-export default DestinationTravelPage
+export default LocationPage;

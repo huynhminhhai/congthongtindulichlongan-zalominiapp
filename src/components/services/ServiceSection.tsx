@@ -1,10 +1,11 @@
-import React from 'react'
-import { Box } from 'zmp-ui'
-import images from 'assets/images'
-import { ServicesType } from 'constants/utinities'
-import ServiceItem from './ServiceItem'
-import { useTranslation } from 'react-i18next'
-import { Icon } from '@iconify/react'
+import { Icon } from '@iconify/react';
+import images from 'assets/images';
+import { ServicesType } from 'constants/utinities';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Box } from 'zmp-ui';
+
+import ServiceItem from './ServiceItem';
 
 export const SERVICES: ServicesType[] = [
   {
@@ -19,12 +20,12 @@ export const SERVICES: ServicesType[] = [
   },
   {
     label: 'Điểm đến nổi bật',
-    url: '/destination',
+    url: '/location',
     icon: images.location,
   },
   {
     label: 'Điểm du lịch',
-    url: '/destination-travel',
+    url: '/location',
     icon: images.destinationTravel,
   },
   {
@@ -34,12 +35,12 @@ export const SERVICES: ServicesType[] = [
   },
   {
     label: 'Nhà hàng',
-    url: '/restaurant',
+    url: '/accommodation',
     icon: images.restaurant,
   },
   {
     label: 'Lưu trú',
-    url: '/hotel',
+    url: '/accommodation',
     icon: images.hotel,
   },
   {
@@ -62,14 +63,14 @@ export const SERVICES: ServicesType[] = [
     url: '/gallery',
     icon: images.gallery,
   },
-]
+];
 
 type ServiceSectionProps = {
-  setSheetVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
+  setSheetVisible: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('common');
 
   const SERVICES: ServicesType[] = [
     {
@@ -84,12 +85,12 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
     },
     {
       label: t('destinations'),
-      url: '/destination',
+      url: '/location',
       icon: images.location,
     },
     {
       label: t('destinations-travel'),
-      url: '/destination-travel',
+      url: '/location',
       icon: images.destinationTravel,
     },
     {
@@ -127,7 +128,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
       url: '/gallery',
       icon: images.gallery,
     },
-  ]
+  ];
 
   return (
     <Box>
@@ -139,7 +140,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
             ))}
             <Box
               onClick={() => {
-                setSheetVisible(true)
+                setSheetVisible(true);
               }}
             >
               <div className="flex-center flex-col gap-2">
@@ -149,9 +150,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
                   </div>
                 </Box>
                 <Box>
-                  <h4 className="text-[13px] leading-[18px] text-center font-medium">
-                    {t('utilities')}
-                  </h4>
+                  <h4 className="text-[13px] leading-[18px] text-center font-medium">{t('utilities')}</h4>
                 </Box>
               </div>
             </Box>
@@ -159,7 +158,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ setSheetVisible }) => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default ServiceSection
+export default ServiceSection;

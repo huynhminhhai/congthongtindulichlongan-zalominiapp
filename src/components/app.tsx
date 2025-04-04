@@ -28,11 +28,7 @@ import { getDataFromStorage } from 'services/zalo'
 import { ProtectedRoute } from 'services/permission'
 import ForbiddenPage from 'pages/403'
 import { EventsDetailPage, EventsPage } from 'pages/events'
-import { DestinationDetailPage, DestinationPage } from 'pages/destination'
-import {
-  DestinationTravelDetailPage,
-  DestinationTravelPage,
-} from 'pages/destination-travel'
+
 import { CusineDetailPage, CusinePage } from 'pages/cusine'
 import { TourDetailPage, TourPage } from 'pages/tour'
 import { GuideDetailPage, GuidePage } from 'pages/guide-tour'
@@ -51,6 +47,7 @@ import RegisterPage from 'pages/account/register'
 import { initI18n } from '../i18n'
 import { NavigationBottom } from './navigation-bottom'
 import { AccommodationDetailPage, AccommodationPage } from 'pages/accommodation'
+import { LocationDetailPage, LocationPage } from 'pages/location'
 
 const MyApp = () => {
   const queryClient = new QueryClient()
@@ -145,28 +142,6 @@ const MyApp = () => {
                   element={<EventsDetailPage></EventsDetailPage>}
                 ></Route>
 
-                {/* DESTINATION */}
-                <Route
-                  path="/destination"
-                  element={<DestinationPage></DestinationPage>}
-                ></Route>
-                <Route
-                  path="/destination-detail"
-                  element={<DestinationDetailPage></DestinationDetailPage>}
-                ></Route>
-
-                {/* DESTINATION TRAVEL */}
-                <Route
-                  path="/destination-travel"
-                  element={<DestinationTravelPage></DestinationTravelPage>}
-                ></Route>
-                <Route
-                  path="/destination-travel-detail"
-                  element={
-                    <DestinationTravelDetailPage></DestinationTravelDetailPage>
-                  }
-                ></Route>
-
                 {/* CUSINE */}
                 <Route
                   path="/cusine"
@@ -184,7 +159,7 @@ const MyApp = () => {
                   element={<TourDetailPage></TourDetailPage>}
                 ></Route>
 
-                {/* HOTEL */}
+                {/* Lưu trú */}
                 <Route
                   path="/accommodation"
                   element={<AccommodationPage></AccommodationPage>}
@@ -194,6 +169,12 @@ const MyApp = () => {
                   element={<AccommodationDetailPage></AccommodationDetailPage>}
                 ></Route>
 
+                {/* Địa điểm */}
+                <Route path="/location" element={<LocationPage />}></Route>
+                <Route
+                  path="/location/:id"
+                  element={<LocationDetailPage />}
+                ></Route>
                 {/* GUIDE TOUR */}
                 <Route path="/guide" element={<GuidePage></GuidePage>}></Route>
                 <Route

@@ -1,20 +1,15 @@
-import { Icon } from '@iconify/react'
-import {
-  ActionButton,
-  CommentSection,
-  Rating,
-  ShareInfor,
-} from 'components/actions'
-import { HeaderSub } from 'components/header-sub'
-import { ImageGallery } from 'components/slider'
-import TitleSection from 'components/titleSection'
-import React from 'react'
-import { Box, Page, useNavigate } from 'zmp-ui'
-import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail'
-import { SingleLocationMap } from 'components/maps'
-import images from 'assets/images'
-import { useTranslation } from 'react-i18next'
-import { HOTEL_DATA } from 'utils/data'
+import { Icon } from '@iconify/react';
+import images from 'assets/images';
+import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/actions';
+import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail';
+import { HeaderSub } from 'components/header-sub';
+import { SingleLocationMap } from 'components/maps';
+import { ImageGallery } from 'components/slider';
+import TitleSection from 'components/titleSection';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { HOTEL_DATA } from 'utils/data';
+import { Box, Page, useNavigate } from 'zmp-ui';
 
 export const imagesGallery = [
   'https://scontent.iocvnpt.com/resources/portal//Images/LAN/vamcofarmstay/hinh_anh_homestay/dam_sen_vamcofarmstay_584108114.png',
@@ -24,7 +19,7 @@ export const imagesGallery = [
   'https://scontent.iocvnpt.com/resources/portal//Images/LAN/vamcofarmstay/hinh_anh_homestay/homestay_vamcofarmstay_11_840781801.png',
   'https://scontent.iocvnpt.com/resources/portal//Images/LAN/vamcofarmstay/hinh_anh_homestay/ho_boi_vamcofarmstay_2_377571207.png',
   'https://scontent.iocvnpt.com/resources/portal//Images/LAN/vamcofarmstay/hinh_anh_homestay/homestay_vamcofarmstay_16_663281182.png',
-]
+];
 
 const location = {
   lat: 10.482655336277755,
@@ -33,11 +28,11 @@ const location = {
   address: 'Đường Rạch Tre, ấp 5, xã An Thạnh, huyện Bến Lức, tỉnh Long An',
   img: 'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toansauconkun994/1_647964214.jpg',
   markerImg: images.markerHotel,
-}
+};
 
-const AccommodationDetailPage = () => {
-  const navigate = useNavigate()
-  const { t: tPage } = useTranslation('page')
+const AccommoaDetailPage = () => {
+  const navigate = useNavigate();
+  const { t: tPage } = useTranslation('page');
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
@@ -48,13 +43,7 @@ const AccommodationDetailPage = () => {
             <ImageGallery images={imagesGallery} />
           </Box>
           <Box p={4}>
-            <Box
-              mb={3}
-              flex
-              alignItems="flex-end"
-              justifyContent="space-between"
-              className="gap-2"
-            >
+            <Box mb={3} flex alignItems="flex-end" justifyContent="space-between" className="gap-2">
               <TitleDetail title="HOMESTAY VÀM CỎ FARMSTAY" />
               <ActionButton
                 icon="mdi:heart"
@@ -70,15 +59,11 @@ const AccommodationDetailPage = () => {
                   <li className="flex items-start gap-2">
                     <Icon fontSize={24} icon="fluent:location-28-regular" />
                     <div className="flex-1">
-                      Đường Rạch Tre, ấp 5, xã An Thạnh, huyện Bến Lức, tỉnh
-                      Long An Tỉnh Long An
+                      Đường Rạch Tre, ấp 5, xã An Thạnh, huyện Bến Lức, tỉnh Long An Tỉnh Long An
                     </div>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Icon
-                      fontSize={24}
-                      icon="material-symbols-light:mail-outline"
-                    />
+                    <Icon fontSize={24} icon="material-symbols-light:mail-outline" />
                     <div className="flex-1">cskh@vamcofarmstay.com</div>
                   </li>
                   <li className="flex items-start gap-2">
@@ -165,24 +150,16 @@ const AccommodationDetailPage = () => {
             averageRating={4.2}
             totalReviews={100}
             ratingDistribution={{ 5: 50, 4: 30, 3: 10, 2: 5, 1: 5 }}
-            onRate={(rating) => console.log('Người dùng chọn:', rating)}
+            onRate={rating => console.log('Người dùng chọn:', rating)}
           />
         </Box>
         <Box px={4} pb={4}>
-          <TitleSection
-            title={tPage('accommodations-others')}
-            mB={2}
-            handleClick={() => navigate('/hotel')}
-          />
+          <TitleSection title={tPage('accommodations-others')} mB={2} handleClick={() => navigate('/hotel')} />
           <Box pt={4}>
             <div className="grid grid-cols-1 gap-3">
               {HOTEL_DATA.map((item, index) => (
                 <Box key={index} onClick={() => navigate('/hotel-detail')}>
-                  <ItemDetailCard
-                    imgUrl={item.imgUrl}
-                    title={item.title}
-                    desc={item.address}
-                  />
+                  <ItemDetailCard imgUrl={item.imgUrl} title={item.title} desc={item.address} />
                 </Box>
               ))}
             </div>
@@ -190,7 +167,7 @@ const AccommodationDetailPage = () => {
         </Box>
       </Box>
     </Page>
-  )
-}
+  );
+};
 
-export default AccommodationDetailPage
+export default AccommoaDetailPage;

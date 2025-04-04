@@ -761,27 +761,66 @@ export const RESTAURENT_DATA = [
 
 export const DIA_DIEM_NOI_BAT_DATA = [
   {
+    id: 1,
     title: 'Nhà Trăm Cột',
     imgUrl: 'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg',
   },
   {
+    id: 2,
     title: 'Làng nổi Tân Lập',
     imgUrl:
       'https://dulichtoivaban.com/wp-content/uploads/2023/08/Khu-du-lich-sinh-thai-Lang-Noi-Tan-Lap-o-Long-An.jpg.webp',
   },
   {
+    id: 3,
     title: 'Cửa khẩu Quốc tế Bình Hiệp',
     imgUrl:
       'https://cdn.media.dulich24.com.vn/diemden/cua-khau-binh-hiep-7264/cua-khau-binh-hiep-1.jpg',
   },
   {
+    id: 4,
     title: 'Bảo tàng Long An',
     imgUrl:
       'https://scontent.iocvnpt.com/resources/portal//Images/LAN/sangvt.lan/tien_ich/dia_diem/bao_tang_long_an/unnamed_1_copy_637189302797678077.jpg',
   },
   {
+    id: 5,
     title: 'Công viên 7 Kỳ Quan Thế Giới',
     imgUrl:
       'https://houserentaldanang.com/wp-content/uploads/2023/09/Cong-vien-7-ky-quan-Da-Nang-7.jpg',
   },
 ]
+
+export const DIA_DIEM_DU_LICH_DATA = [
+  {
+    id: 1,
+    title: 'DI TÍCH NGÃ TƯ RẠCH KIẾN',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/huongvamco/huyen_can_duoc/nga_tu_rach_kien/diem_qua_7_di_tich_lich_su_noi_bat_o_long_an_2_218845898.jpg',
+  },
+  {
+    id: 2,
+    title: 'DI TÍCH CHÙA PHƯỚC LÂM',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/huongvamco/huyen_can_duoc/phuoc_lam/chua_phuoc_lam_long_an_1_700x385_242728256.jpg',
+  },
+  {
+    id: 3,
+    title: 'Cánh đồng bất tận',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toanlm.lan/hinh_diem/khudulichcanhdongbattan_263205966.jpg',
+  },
+  {
+    id: 4,
+    title: 'DI TÍCH LỊCH SỬ NHÀ TỔNG THẬN',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/sangvt.lan/tien_ich/dia_diem/dinh_tong_than/8566_nha_tong_than_637189153551780877.jpg',
+  },
+  {
+    id: 5,
+    title: 'KHU DI TÍCH LỊCH SỬ CÁCH MẠNG TỈNH LONG AN',
+    imgUrl:
+      'https://www.baolongan.vn/image/news/2017/20171025/fckimage/7118_B%C3%ACnh-Th%C3%A0nh.jpg',
+  },
+]
+
