@@ -35,7 +35,7 @@ const NewsSection: React.FC = () => {
     <>
       {listData && listData.length > 0 ? (
         <>
-          <Box py={4} pl={4} className="news-section">
+          <Box py={6} pl={4} className="news-section">
             <Box pr={4}>
               <TitleSection
                 title={t('latest-news')}

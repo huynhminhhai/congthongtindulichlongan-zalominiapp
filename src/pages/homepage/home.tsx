@@ -4,8 +4,7 @@ import { DestinationSection } from 'components/destination'
 import { DestinationTravelSection } from 'components/destination-travel'
 import { Divider } from 'components/divider'
 import { EventsSection } from 'components/events'
-import { HotelSection } from 'components/hotel'
-import LongAnMap from 'components/maps/LongAnMap'
+import { LocationSection } from 'components/location'
 import NewsSection from 'components/news/NewsSection'
 import { RestaurantSection } from 'components/restaurant'
 import { SearchSection } from 'components/search'
@@ -13,6 +12,7 @@ import { ServiceSection, ServiceSub } from 'components/services'
 import { TourSection } from 'components/tour'
 import React, { useState } from 'react'
 import { useStoreApp } from 'store/store'
+import { HOTEL_DATA, RESTAURENT_DATA } from 'utils/data'
 import { Box, Page } from 'zmp-ui'
 
 const HomePage: React.FunctionComponent = () => {
@@ -39,9 +39,9 @@ const HomePage: React.FunctionComponent = () => {
         <Divider size={8} />
         <TourSection />
         <Divider size={8} />
-        <HotelSection />
+        <LocationSection data={HOTEL_DATA} title="Khách sạn" />
         <Divider size={8} />
-        <RestaurantSection />
+        <LocationSection data={RESTAURENT_DATA} title="Nhà hàng" />
         {/* <Divider size={8} />
         <LongAnMap /> */}
       </Box>

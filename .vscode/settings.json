@@ -5,4 +5,7 @@
   "prettier.useEditorConfig": false,
   "prettier.useTabs": false,
   "prettier.configPath": ".prettierrc.json",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
