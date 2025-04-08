@@ -27,7 +27,7 @@ const HomePage: React.FunctionComponent = () => {
       <Box className="relative z-[1]">
         <BannerSlider />
         <SearchSection />
-        <ServiceSection setSheetVisible={setSheetVisible} />
+        <ServiceSection />
         <Divider size={8} />
         <LocationSection data={DIA_DIEM_NOI_BAT_DATA} title="Địa điểm nổi bật" type="dia_diem_noi_bat" />
         <Divider size={8} />
@@ -45,7 +45,6 @@ const HomePage: React.FunctionComponent = () => {
         <Divider size={8} />
         <AccommodationSection data={RESTAURENT_DATA} title="Nhà hàng" type="restaurent" />
       </Box>
-      <ServiceSub sheetVisible={sheetVisible} setSheetVisible={setSheetVisible} />
     </Page>
   );
 };

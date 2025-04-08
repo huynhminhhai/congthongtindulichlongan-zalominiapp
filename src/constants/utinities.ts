@@ -22,12 +22,6 @@ export const STATISTICS: StatisticsType[] = [
   },
 ];
 
-export type ServicesType = {
-  label: string;
-  url: string;
-  icon?: string;
-};
-
 export type MeetingStatusType = {
   [key: number]: string;
 };
