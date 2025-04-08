@@ -1,14 +1,14 @@
-import TitleSection from 'components/titleSection'
-import React from 'react'
-import { Box, useNavigate } from 'zmp-ui'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import TourItem from './TourItem'
-import { useTranslation } from 'react-i18next'
-import {
-  SLIDE_PER_VIEW_HOMEPAGE,
-  SLIDE_SPACE_BETWEEN_HOMEPAGE,
-} from 'utils/constants'
+import TitleSection from 'components/titleSection';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Box, useNavigate } from 'zmp-ui';
+
+import 'swiper/css';
+
+import { useTranslation } from 'react-i18next';
+import { SLIDE_PER_VIEW_HOMEPAGE, SLIDE_SPACE_BETWEEN_HOMEPAGE } from 'utils/constants';
+
+import TourItem from './TourItem';
 
 export const tourData = [
   {
@@ -21,8 +21,7 @@ export const tourData = [
   },
   {
     title: 'Tour 01 ngày- khách nội địa',
-    imgUrl:
-      'https://datviettour.com.vn/uploads/images/mien-nam/long-an/danh-thang/tour-lang-noi-tan-lap-long-an.jpg',
+    imgUrl: 'https://datviettour.com.vn/uploads/images/mien-nam/long-an/danh-thang/tour-lang-noi-tan-lap-long-an.jpg',
     date: 1,
     place: 1,
     price: '0đ',
@@ -35,25 +34,18 @@ export const tourData = [
     place: 2,
     price: '350.000đ',
   },
-]
+];
 
 const TourSection: React.FC = () => {
-  const navigate = useNavigate()
-  const { t } = useTranslation('common')
+  const navigate = useNavigate();
+  const { t } = useTranslation('common');
 
   return (
     <Box py={4} pl={4}>
       <Box pr={4}>
-        <TitleSection
-          title={t('tours')}
-          handleClick={() => navigate('/news')}
-        />
+        <TitleSection title={t('tours')} handleClick={() => navigate('/tours')} />
       </Box>
-      <Swiper
-        spaceBetween={SLIDE_SPACE_BETWEEN_HOMEPAGE}
-        slidesPerView={SLIDE_PER_VIEW_HOMEPAGE}
-        loop
-      >
+      <Swiper spaceBetween={SLIDE_SPACE_BETWEEN_HOMEPAGE} slidesPerView={SLIDE_PER_VIEW_HOMEPAGE} loop>
         {tourData.map((item, index) => (
           <SwiperSlide key={index}>
             <TourItem data={item} />
@@ -61,7 +53,7 @@ const TourSection: React.FC = () => {
         ))}
       </Swiper>
     </Box>
-  )
-}
+  );
+};
 
-export default TourSection
+export default TourSection;

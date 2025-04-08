@@ -14,12 +14,15 @@
     "Firefox >= 31",
     "Samsung >= 5"
   ],
+  "prettier": "@febase/prettier-config",
   "scripts": {
     "login": "zmp login",
     "start": "zmp start",
-    "deploy": "zmp deploy"
+    "deploy": "zmp deploy",
+    "format": "prettier --write ."
   },
   "dependencies": {
+    "@febase/prettier-config": "^1.5.0",
     "@hookform/resolvers": "^3.10.0",
     "@iconify/react": "^5.2.0",
     "@tanstack/react-query": "^5.66.7",

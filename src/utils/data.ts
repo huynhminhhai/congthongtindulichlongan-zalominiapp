@@ -1,13 +1,13 @@
 interface Location {
-  lat: number
-  lng: number
-  rating: number
-  name: string
-  address: string
-  img: string
+  lat: number;
+  lng: number;
+  rating: number;
+  name: string;
+  address: string;
+  img: string;
 }
 interface Locations {
-  [key: string]: Location[]
+  [key: string]: Location[];
 }
 export const LOCATION_DATA_FAKE: Locations = {
   tourist: [
@@ -24,8 +24,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.416667,
       rating: 4,
       name: 'Nhà trăm cột',
-      address:
-        'Ấp Cầu Ngang, xã Long Hựu Đông, huyện Cần Đước, Long An, Việt Nam',
+      address: 'Ấp Cầu Ngang, xã Long Hựu Đông, huyện Cần Đước, Long An, Việt Nam',
       img: 'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg',
     },
     {
@@ -105,8 +104,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.4,
       rating: 4,
       name: 'Bảo tàng Long An',
-      address:
-        'Đường Hùng Vương, phường 2, thành phố Tân An, Long An, Việt Nam',
+      address: 'Đường Hùng Vương, phường 2, thành phố Tân An, Long An, Việt Nam',
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5-9rNi1R_7H_-hK4R_tDfrYeaKmq6wkkx-Q&s',
     },
     {
@@ -397,8 +395,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.67662845273966,
       rating: 4,
       name: 'Mộc Korean BBQ',
-      address:
-        'khu dân cư, D6/đường Tân Phú Thịnh, khu phố Phước Thuận, Cần Giuộc, Long An 82500, Việt Nam',
+      address: 'khu dân cư, D6/đường Tân Phú Thịnh, khu phố Phước Thuận, Cần Giuộc, Long An 82500, Việt Nam',
       img: 'https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/478945ZKX/anh-mo-ta.png',
     },
     {
@@ -406,8 +403,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.66669328391026,
       rating: 4,
       name: 'Nhà Hàng Mỹ Yến',
-      address:
-        'Đ. Nguyễn Thái Bình, Khu phố 4, Cần Giuộc, Long An 853100, Việt Nam',
+      address: 'Đ. Nguyễn Thái Bình, Khu phố 4, Cần Giuộc, Long An 853100, Việt Nam',
       img: 'https://nhahangmyyen.com/wp-content/uploads/2023/08/240604843_195257076071390_7130880707043214558_n.jpg',
     },
     {
@@ -538,8 +534,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.406111,
       rating: 4,
       name: 'Khách sạn Ngọc Lan',
-      address:
-        'Số 123, đường Hùng Vương, phường 2, thành phố Tân An, tỉnh Long An',
+      address: 'Số 123, đường Hùng Vương, phường 2, thành phố Tân An, tỉnh Long An',
       img: 'https://i0.wp.com/ngoclanhotel.com.vn/wp-content/uploads/2018/10/khach-san-ngoc-lan-quan-11.jpg?fit=1280%2C851',
     },
     {
@@ -563,8 +558,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.413056,
       rating: 4,
       name: 'Nhà nghỉ Tân An',
-      address:
-        'Đường Nguyễn Đình Chiểu, phường 3, thành phố Tân An, tỉnh Long An',
+      address: 'Đường Nguyễn Đình Chiểu, phường 3, thành phố Tân An, tỉnh Long An',
       img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/491173830.webp?k=cde3fa554818fb8cca8d9626d28d010e230a82d0f6c8465b0c2acf561eee3c87&o=',
     },
     {
@@ -588,8 +582,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.408333,
       rating: 4,
       name: 'Khách sạn Sông Vàm',
-      address:
-        'Đường Nguyễn Trung Trực, phường 2, thành phố Tân An, tỉnh Long An',
+      address: 'Đường Nguyễn Trung Trực, phường 2, thành phố Tân An, tỉnh Long An',
       img: 'https://du-lich.chudu24.com/f/m/1608/03/khach-san-cong-doan-ha-long-0.jpg',
     },
     {
@@ -653,8 +646,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.716667,
       rating: 4,
       name: 'Khách sạn Tân Đức',
-      address:
-        'Đường Tỉnh lộ 835, xã Đức Lập Thượng, huyện Đức Hòa, tỉnh Long An',
+      address: 'Đường Tỉnh lộ 835, xã Đức Lập Thượng, huyện Đức Hòa, tỉnh Long An',
       img: 'https://image.vietgoing.com/hotel/03/70/medium/vietgoing_jtz2303147188.webp',
     },
     {
@@ -697,8 +689,7 @@ export const LOCATION_DATA_FAKE: Locations = {
       lng: 106.40477113174349,
       rating: 4,
       name: 'Bến xe Long An',
-      address:
-        '68/48, Hẻm, 68 Đ. Hùng Vương, Phường 2, Tân An, Long An, Việt Nam',
+      address: '68/48, Hẻm, 68 Đ. Hùng Vương, Phường 2, Tân An, Long An, Việt Nam',
       img: 'https://lh5.googleusercontent.com/p/AF1QipOiLB-YjvNrtDq57hKeypJC61pjiU2E2rghlebz=w408-h306-k-no',
     },
   ],
@@ -707,4 +698,189 @@ export const LOCATION_DATA_FAKE: Locations = {
   oil: [],
   taxi: [],
   shopping: [],
-}
+};
+
+export const HOTEL_DATA = [
+  {
+    title: 'Khách sạn Ruby',
+    imgUrl:
+      'https://i.vntrip.vn/800x550/smart/https://statics.vntrip.vn/data-v2/hotels/611930/img_max/611930_1576550162_ru.jpg',
+    address: 'Đường Số 2, Khu Dân Cư Trung Tâm, Thị Trấn Bến Lức, Huyện Bến Lức, Tỉnh Long An',
+    rating: 4.2,
+  },
+  {
+    title: 'Khách sạn Kim Linh',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/trietnm.lan/Can%20Giuoc/Khach%20san%20Kim%20Linh/av_637025786230053746.jpg',
+    address: 'Áp Hòa Thuận I, Xã Trường Bình Xã Trường Bình, Huyện Cần Giuộc, Tỉnh Long An',
+    rating: 3.8,
+  },
+  {
+    title: 'HOMESTAY VÀM CỎ FARMSTAY',
+    imgUrl: 'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toansauconkun994/thumb/1_647964214.jpg',
+    address: 'Đường Rạch Tre, ấp 5, xã An Thạnh, huyện Bến Lức, tỉnh Long An',
+    rating: 4.5,
+  },
+];
+
+export const RESTAURENT_DATA = [
+  {
+    title: 'Nhà Hàng Sân Golf West Lakes',
+    imgUrl:
+      'https://file.hstatic.net/200000844097/file/st-lakes-golf-_-villas-goda-golf__27__6fcee2c4056e477cac6b367fb45011f2.png',
+    address: 'Số 145, ĐT822, ấp Chánh, Đức Hòa, Long An Tỉnh Long An',
+    rating: 4.6,
+  },
+  {
+    title: 'HẢI SẢN PHÚ QUÝ',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal/Images/LAN/vamcofarmstay/hai_san_phu_quy/hai_san_phu_quy_11_521496205.jpg',
+    address: '09 Đường số 1, KDC Đường 10 Tỉnh Long An',
+    rating: 4.1,
+  },
+  {
+    title: 'Hải sản Hoàng',
+    imgUrl:
+      'https://lh4.googleusercontent.com/proxy/1kWPmEJzM6rbgs0UMGzb9Wbd-mWw-PBlMjSNHHoUvJ7vqU8ZndjLHdo9lRdvR0Uzu3B6Da5DeFSJcESahFUPSVPqL0GaAzXbDHXFnw5djkkepJOU9pE0FyeLnHKPTHzG3so6tvXigKnW_so4kAlh7owKkQ',
+    address: '133 Đường Phan Văn Mãng, KP9, Thị trấn Bến Lức, Tỉnh Long An',
+    rating: 3.9,
+  },
+];
+
+export const DIA_DIEM_NOI_BAT_DATA = [
+  {
+    id: 1,
+    title: 'Nhà Trăm Cột',
+    imgUrl: 'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg',
+  },
+  {
+    id: 2,
+    title: 'Làng nổi Tân Lập',
+    imgUrl:
+      'https://dulichtoivaban.com/wp-content/uploads/2023/08/Khu-du-lich-sinh-thai-Lang-Noi-Tan-Lap-o-Long-An.jpg.webp',
+  },
+  {
+    id: 3,
+    title: 'Cửa khẩu Quốc tế Bình Hiệp',
+    imgUrl: 'https://cdn.media.dulich24.com.vn/diemden/cua-khau-binh-hiep-7264/cua-khau-binh-hiep-1.jpg',
+  },
+  {
+    id: 4,
+    title: 'Bảo tàng Long An',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/sangvt.lan/tien_ich/dia_diem/bao_tang_long_an/unnamed_1_copy_637189302797678077.jpg',
+  },
+  {
+    id: 5,
+    title: 'Công viên 7 Kỳ Quan Thế Giới',
+    imgUrl: 'https://houserentaldanang.com/wp-content/uploads/2023/09/Cong-vien-7-ky-quan-Da-Nang-7.jpg',
+  },
+];
+
+export const DIA_DIEM_DU_LICH_DATA = [
+  {
+    id: 1,
+    title: 'DI TÍCH NGÃ TƯ RẠCH KIẾN',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/huongvamco/huyen_can_duoc/nga_tu_rach_kien/diem_qua_7_di_tich_lich_su_noi_bat_o_long_an_2_218845898.jpg',
+  },
+  {
+    id: 2,
+    title: 'DI TÍCH CHÙA PHƯỚC LÂM',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/huongvamco/huyen_can_duoc/phuoc_lam/chua_phuoc_lam_long_an_1_700x385_242728256.jpg',
+  },
+  {
+    id: 3,
+    title: 'Cánh đồng bất tận',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toanlm.lan/hinh_diem/khudulichcanhdongbattan_263205966.jpg',
+  },
+  {
+    id: 4,
+    title: 'DI TÍCH LỊCH SỬ NHÀ TỔNG THẬN',
+    imgUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/sangvt.lan/tien_ich/dia_diem/dinh_tong_than/8566_nha_tong_than_637189153551780877.jpg',
+  },
+  {
+    id: 5,
+    title: 'KHU DI TÍCH LỊCH SỬ CÁCH MẠNG TỈNH LONG AN',
+    imgUrl: 'https://www.baolongan.vn/image/news/2017/20171025/fckimage/7118_B%C3%ACnh-Th%C3%A0nh.jpg',
+  },
+];
+
+export const TIN_TUC_DATA = [
+  {
+    id: 1,
+    title: 'Trồng khoai mì ruột vàng mang lại thu nhập cao',
+    category: 'Xã hội',
+    publishedDate: '22/02/2025',
+    imageUrl: 'https://www.baolongan.vn/image/news/2025/20250228/images/62_766_img-1316.jpg',
+    content:
+      'Trong quá trình sản xuất nông nghiệp, nhiều nông dân nhạy bén nắm bắt nhu cầu thị trường, mạnh dạn chuyển đổi cơ cấu cây trồng, bước đầu mang lại hiệu quả kinh tế. Ông Võ Văn Cư (ấp 2, xã Hựu Thạnh, huyện Đức Hòa, tỉnh Long An) là một trong những nông dân như thế.',
+    link: '/chi-tiet-tin-tuc/du-lich-long-an-them-nhieu-hua-hen-1',
+  },
+  {
+    id: 2,
+    title: 'Du lịch Long An - Thêm nhiều hứa hẹn',
+    category: 'Văn hóa - Giải trí',
+    publishedDate: '04/03/2025',
+    imageUrl:
+      'https://www.baolongan.vn/image/news/2025/20250203/images/19_2025-37_52534448_475437088-1149167247217145-3869741133198436879-n.jpg',
+    content:
+      'Năm 2024, lần đầu tiên tỉnh đón hơn 2 triệu lượt du khách trong năm với tổng doanh thu vượt 1.000 tỉ đồng. Dịp Tết Nguyên đán Ất Tỵ năm 2025, mặc dù một số điểm du lịch trong tỉnh không mở cửa đón khách nhưng lượt du khách đến Long An không giảm.',
+    link: '/chi-tiet-tin-tuc/du-lich-long-an-them-nhieu-hua-hen-1',
+  },
+  {
+    id: 3,
+    title: 'Về xứ đồng bưng thưởng thức món ngon dân dã',
+    category: 'Văn hóa - Giải trí',
+    publishedDate: '04/03/2025',
+    imageUrl:
+      'https://www.baolongan.vn/image/news/2025/20250226/images/2_2025-36_94342599_ngu-o-i-da-n-di-xu-c-ca-lia-thia-o-ca-c-ca-nh-do-ng-nga-p-nu-o-c.jpg',
+    content:
+      'Về huyện Đức Huệ, tỉnh Long An, chúng ta không chỉ tận hưởng khung cảnh yên bình mà còn được thưởng thức các món ăn dân dã gắn liền với người dân nơi đây qua bao thế hệ...',
+    link: '/chi-tiet-tin-tuc/du-lich-long-an-them-nhieu-hua-hen-1',
+  },
+  {
+    id: 4,
+    title: 'Phát huy hiệu quả các mô hình bảo đảm an ninh, trật tự',
+    category: 'Địa phương',
+    publishedDate: '04/03/2025',
+    imageUrl: 'https://www.baolongan.vn/image/news/2025/20250303/thumbnail/510x286/734_1741003486.jpeg',
+    content:
+      'Ban Chỉ đạo phòng, chống tội phạm, tệ nạn xã hội và xây dựng phong trào Toàn dân bảo vệ an ninh Tổ quốc huyện Bến Lức đã chủ động củng cố, kiện toàn và nâng cao chất lượng các mô hình tổ chức quần chúng.',
+    link: '/chi-tiet-tin-tuc/du-lich-long-an-them-nhieu-hua-hen-1',
+  },
+];
+export const SU_KIEN_DATA = [
+  {
+    title:
+      'Du lịch Long An nhiều chương trình hấp dẫn phục vụ tuần văn hoa – Thể thao – Du lịch tỉnh lần thứ 2 (28/11 - 04/12/2024)',
+    category: 'Sự kiện',
+    publishedDate: '22/02/2025',
+    imageUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toanlm.lan/2024/z6064936543707_e78248ae6d5959b5ba6ba1a560e91a61_916470942.jpg',
+    link: '/chi-tiet-su-kien/tuan-le-van-hoa-the-thao-du-luch-tinh-long-an-1',
+    description: 'Xách vali và đến Long An để cùng 𝐊𝐡𝐚́𝐭 𝐯𝐨̣𝐧𝐠 𝐬𝐨̂𝐧𝐠 𝐕𝐚̀𝐦 𝟐𝟎𝟐𝟒 trải nghiệm',
+  },
+  {
+    title: 'Tuần Văn hóa – Thể thao – Du lịch tỉnh Long An',
+    category: 'Sự kiện',
+    publishedDate: '22/02/2025',
+    imageUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toanlm/2024/z6055808802997_04702604dc1650e5cde5d49bd5c45781_895515248.jpg',
+    link: '/chi-tiet-su-kien/tuan-le-van-hoa-the-thao-du-luch-tinh-long-an-1',
+    description: '',
+  },
+  {
+    title: 'KHÁT VỌNG SÔNG VÀM 2024 - LONG AN ĐÃ SẴN SÀNG',
+    category: 'Sự kiện',
+    publishedDate: '22/02/2025',
+    imageUrl:
+      'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toanlm/2024/467404204_122100529274628028_4299896698637172696_n_100185913.jpg',
+    link: '/chi-tiet-su-kien/tuan-le-van-hoa-the-thao-du-luch-tinh-long-an-1',
+    description:
+      'Là điểm hẹn giao thoa giữa văn hoá Việt Nam, đặc biệt là các tỉnh miền Tây với xứ sở kim chi - Hàn Quốc, sự kiện hứa hẹn là điểm bùng nổ cuối năm 2024. Tỉnh Long An đã sát sao, chuẩn bị kỹ lưỡng về mọi mặt, đảm bảo sự kiện được diễn ra an toàn, thành',
+  },
+];

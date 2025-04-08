@@ -1,20 +1,20 @@
-import { DestinationTravelItem } from 'components/destination-travel'
-import { destinationTravelData } from 'components/destination-travel/DestinationTravelSection'
-import { Divider } from 'components/divider'
+import { AccommodationItem } from 'components/accommodation'
 import { HeaderSub } from 'components/header-sub'
 import FilterBar from 'components/table/FilterBar'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Input, Page, Select } from 'zmp-ui'
+import { HOTEL_DATA } from 'utils/data'
+import { Box, Input, Page, Select, useLocation } from 'zmp-ui'
 
-const DestinationTravelPage = () => {
+const AccommodationPage = () => {
   const { Option } = Select
   const { t: tCommon } = useTranslation('common')
-
+  const { state } = useLocation()
+  console.log(state.type)
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
-        <HeaderSub title={tCommon('destinations-travel')} />
+        <HeaderSub title={tCommon('accommodations')} />
         <Box pb={4}>
           <Box>
             <FilterBar
@@ -26,27 +26,30 @@ const DestinationTravelPage = () => {
               <div className="col-span-12">
                 <Select placeholder={tCommon('all')} closeOnSelect>
                   <Option title={tCommon('all')} value={0} />
-                  <Option title={'Xung quanh'} value={1} />
+                  <Option title={'Nổi tiếng'} value={1} />
                 </Select>
               </div>
               <div className="col-span-6">
                 <Select placeholder={tCommon('cost')} closeOnSelect>
                   <Option title={tCommon('all')} value={0} />
-                  <Option title={'Xung quanh'} value={1} />
+                  <Option title={'Nổi tiếng'} value={1} />
                 </Select>
               </div>
               <div className="col-span-6">
-                <Select placeholder={tCommon('travel-type')} closeOnSelect>
+                <Select
+                  placeholder={tCommon('accommodation-type')}
+                  closeOnSelect
+                >
                   <Option title={tCommon('all')} value={0} />
-                  <Option title={'Xung quanh'} value={1} />
+                  <Option title={'Nổi tiếng'} value={1} />
                 </Select>
               </div>
             </FilterBar>
           </Box>
           <Box px={4}>
-            {destinationTravelData.map((item, index) => (
-              <Box mb={3} key={index}>
-                <DestinationTravelItem data={item} />
+            {HOTEL_DATA.map((item, index) => (
+              <Box mb={6} key={index}>
+                <AccommodationItem data={item} />
               </Box>
             ))}
           </Box>
@@ -56,4 +59,4 @@ const DestinationTravelPage = () => {
   )
 }
 
-export default DestinationTravelPage
+export default AccommodationPage

@@ -1,0 +1,85 @@
+@import '../../styles/mixins';
+.accommodationItem {
+  // border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.toggleFavorite {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 38px;
+  height: 38px;
+  background: var(--white-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  &.active {
+    color: var(--danger-700);
+  }
+}
+.accommodationImage {
+  width: 100%;
+  height: 210px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.accommodationContent {
+  padding: 12px 0;
+}
+.accommodationContentTop {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.accommodationTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.address {
+  display: flex;
+  align-items: start;
+  gap: 4px;
+}
+
+.addressIcon {
+  font-size: 16px;
+  color: var(--danger-600);
+}
+
+.addressText {
+  flex: 1;
+  color: var(--neutral-700);
+  @include line-clamp(2);
+}
+.accommodationRate {
+  padding: 4px 6px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  background: var(--warning-600);
+  color: var(--white-color);
+  .starIcon {
+    font-size: 14px;
+  }
+  p {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+  }
+}

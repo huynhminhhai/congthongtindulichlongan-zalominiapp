@@ -2,13 +2,13 @@ import NearLocation from 'components/near'
 import React from 'react'
 import { Box, useNavigate } from 'zmp-ui'
 
-const DestinationItem: React.FC<any> = ({ data }) => {
+const LocationItem: React.FC<any> = ({ data }) => {
   const navigate = useNavigate()
 
   return (
     <Box
       className="relative w-full h-[200px] rounded-lg overflow-hidden"
-      onClick={() => navigate(`/destination-detail/?id=${data.id}`)}
+      onClick={() => navigate(`/location/${data.id}`)}
     >
       {/* <NearLocation /> */}
       <img
@@ -25,4 +25,4 @@ const DestinationItem: React.FC<any> = ({ data }) => {
   )
 }
 
-export default DestinationItem
+export default LocationItem

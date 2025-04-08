@@ -1,33 +1,40 @@
-import { Icon } from '@iconify/react'
-import React from 'react'
-import { Box, useNavigate } from 'zmp-ui'
+import { Icon } from '@iconify/react';
+import React from 'react';
+import { Box, useNavigate } from 'zmp-ui';
+
+import styles from './index.module.scss';
 
 const TourItem: React.FC<any> = ({ data }) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-    
-    return (
-        <Box className='border-[1px] rounded-lg' onClick={() => navigate(`/tour-detail/?id=${data.id}`)}>
-            <img className='w-full h-[210px] object-cover rounded-lg' src={data.imgUrl} alt={data.title} />
-            <Box px={3} py={4}>
-                <h3 className='text-[16px] font-bold text-[#355933] line-clamp-1 mb-2'>{data.title}</h3>
-                <ul className='flex flex-col gap-1 text-[14px] leading-[18px] font-medium'>
-                    <li className='flex items-center gap-1'>
-                        <Icon className='w-[20px]' icon='mdi:place-outline' />
-                        {data.place} địa điểm
-                    </li>
-                    <li className='flex items-center gap-1'>
-                        <Icon className='w-[20px]' icon='material-symbols:date-range-outline' />
-                        {data.date} ngày
-                    </li>
+  return (
+    <Box className={styles.tourItem} onClick={() => navigate(`/tour/${data.id}`)}>
+      <div className={styles.toggleFavorite}>
+        {data?.isFavorite ? (
+          <Icon icon="line-md:heart-filled" className={styles.active} />
+        ) : (
+          <Icon icon="mdi-light:heart" />
+        )}
+      </div>
+      <img src={data.imgUrl} alt={data.title} />
+      <Box className={styles.content}>
+        <h3>{data.title}</h3>
+        <ul>
+          <li>
+            <Icon icon="mdi:place-outline" />
+            {data.place} địa điểm
+          </li>
+          <li>
+            <Icon icon="material-symbols:date-range-outline" />
+            {data.date} ngày
+          </li>
+        </ul>
+      </Box>
+      <Box className={styles.footer}>
+        <div className={styles.price}>{data.price}</div>
+      </Box>
+    </Box>
+  );
+};
 
-                </ul>
-            </Box>
-            <Box p={4} className='border-t-[1px]'>
-                <div className='text-[16px] leading-[1] text-[#355933] font-bold'>{data.price}</div>
-            </Box>
-        </Box>
-    )
-}
-
-export default TourItem
+export default TourItem;
