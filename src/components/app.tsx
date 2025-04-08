@@ -120,7 +120,7 @@ const MyApp = () => {
 
                 {/* TOUR */}
                 <Route path="/tour" element={<TourPage></TourPage>}></Route>
-                <Route path="/tour-detail" element={<TourDetailPage></TourDetailPage>}></Route>
+                <Route path="/tour/:id" element={<TourDetailPage></TourDetailPage>}></Route>
 
                 {/* Lưu trú */}
                 <Route path="/accommodation" element={<AccommodationPage></AccommodationPage>}></Route>

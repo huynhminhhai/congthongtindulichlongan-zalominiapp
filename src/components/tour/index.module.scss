@@ -1,0 +1,73 @@
+.tourItem {
+  border: 1px solid #e5e7eb; // tương đương border-[1px]
+  border-radius: 0.5rem; // rounded-lg
+  cursor: pointer;
+  overflow: hidden;
+  .toggleFavorite {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    background: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    &.active {
+      color: var(--danger-700);
+    }
+  }
+  img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+
+  .content {
+    padding: 1rem 0.75rem;
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #355933;
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        svg {
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  .footer {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1;
+      color: #355933;
+    }
+  }
+}
