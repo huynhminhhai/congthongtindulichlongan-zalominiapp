@@ -6,6 +6,7 @@ import ScrollToTop from 'components/scroll-top';
 import ForbiddenPage from 'pages/403';
 import { AccommodationDetailPage, AccommodationPage } from 'pages/accommodation';
 import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from 'pages/account';
+import LanguagePage from 'pages/account/language';
 import RegisterPage from 'pages/account/register';
 import { AtmDetailPage, AtmPage } from 'pages/atm';
 import { BusDetailPage, BusPage } from 'pages/bus';
@@ -24,7 +25,7 @@ import { NewsDetailPage, NewsPage } from 'pages/news';
 import { NotificationPage } from 'pages/notification';
 import { OilDetailPage, OilPage } from 'pages/oil';
 import { ProfileResidentPage } from 'pages/profile';
-import { LanguagePage, SearchPage, SettingsPage } from 'pages/settings';
+import { SearchPage, SettingsPage } from 'pages/settings';
 import { ShoppingDetailPage, ShoppingPage } from 'pages/shopping';
 import { TaxiDetailPage, TaxiPage } from 'pages/taxi';
 import { TourDetailPage, TourPage } from 'pages/tour';
@@ -41,10 +42,10 @@ const Layout = () => {
     if (languageData) {
       const initLanguage = async () => {
         setLanguages(languageData);
-        const currentKey = (await getDataFromStorage('lng')) || 'vi';
-        const currentLang = languageData.find(item => item.keyName === currentKey);
+        const currentKey = (await getDataFromStorage('langId')) || 1;
+        const currentLang = languageData.find(item => Number(item.langId) === Number(currentKey));
         if (currentLang) {
-          setCurrentLanguage(currentLang.keyName, currentLang.value as string);
+          setCurrentLanguage(currentLang.langId, currentLang.value as string);
         }
       };
       initLanguage();

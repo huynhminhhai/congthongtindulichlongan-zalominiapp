@@ -1,27 +1,16 @@
-import { MenuItemType } from 'constants/utinities';
+import { MenuItemType } from 'apiRequest/menu/types';
 import React from 'react';
-import { useLoginWithZalo } from 'services/loginWithZalo';
 import { formatImageSrc } from 'utils/formatImageSrc';
-import { Box, useNavigate } from 'zmp-ui';
+import { Box } from 'zmp-ui';
 
 type ServiceItemType = {
   data: MenuItemType;
+  onClick: () => void;
 };
 
-const ServiceItem: React.FC<ServiceItemType> = ({ data }) => {
-  const navigate = useNavigate();
-  const { loginWithZalo } = useLoginWithZalo();
-
-  const handleNavigate = (url: string) => {
-    // if (data.isCheckLogin) {
-    //     loginWithZalo(url)
-    // } else {
-    //     navigate(url)
-    // }
-  };
-
+const ServiceItem: React.FC<ServiceItemType> = ({ data, onClick }) => {
   return (
-    <Box onClick={() => navigate(data.url)}>
+    <Box onClick={onClick}>
       <div className="flex-center flex-col gap-2">
         <Box>
           <div className="flex-center w-[45px] h-[45px] relative">

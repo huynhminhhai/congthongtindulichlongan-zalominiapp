@@ -4,10 +4,12 @@ import { getDataFromStorage, removeDataFromStorage } from './zalo';
 
 const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, body?: any): Promise<T> => {
   try {
-    const fullUrl = `${envConfig.API_ENDPOINT}${url}`;
-    console.log('Request URL:', fullUrl);
-    const storedData = await getDataFromStorage(['token']);
-    const token = storedData?.token || '';
+    let fullUrl = `${envConfig.API_ENDPOINT}${url}`;
+    if (method === 'GET') {
+      const lang = (await getDataFromStorage('lng')) || 2;
+      fullUrl = `${fullUrl}?langId=${lang}`;
+    }
+    const token = await getDataFromStorage('token');
 
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
@@ -24,7 +26,7 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
 
     if (!response.ok) {
       if (response.status === 401) {
-        await removeDataFromStorage(['token']);
+        await removeDataFromStorage('token');
         window.location.href = '/account';
         throw new Error('Token hết hạn');
       }

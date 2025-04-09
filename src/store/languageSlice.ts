@@ -1,45 +1,46 @@
 import { LanguageType } from 'apiRequest/languages/types';
+import { setDataToStorage } from 'services/zalo';
 
 export type LanguageSliceType = {
   languages: LanguageType[];
   currentLanguage: {
-    key: string;
+    langId: number;
     value: Record<string, string>; // value parse từ string JSON
   };
   setLanguages: (langs: LanguageType[]) => void;
-  setCurrentLanguage: (key: string, value: string) => void;
-  changeAppLanguage: (key: string) => void;
+  setCurrentLanguage: (langId: number, value: string) => void;
+  changeAppLanguage: (langId: number) => void;
 };
 
 export const createLanguageSlice = (set: any, get: any): LanguageSliceType => ({
   languages: [],
   currentLanguage: {
-    key: 'vi',
+    langId: 1,
     value: {},
   },
   // Lưu tất cả ngôn ngữ
   setLanguages: langs => set({ languages: langs }),
 
   // Gán ngôn ngữ hiện tại
-  setCurrentLanguage: (key, value) =>
+  setCurrentLanguage: (langId, value) =>
     set({
       currentLanguage: {
-        key,
+        langId,
         value: JSON.parse(value),
       },
     }),
 
   // Thay đổi ngôn ngữ
-  changeAppLanguage: key => {
-    const lang = get().languages.find(item => item.keyName === key);
+  changeAppLanguage: langId => {
+    const lang = get().languages.find(item => Number(item.langId) === Number(langId));
     if (lang) {
       set({
         currentLanguage: {
-          key: lang.keyName,
+          langId: lang.langId,
           value: JSON.parse(lang.value as string),
         },
       });
-      localStorage.setItem('lng', key);
+      setDataToStorage('langId', String(langId));
     }
   },
 });
