@@ -10,11 +10,7 @@ import { Box } from 'zmp-ui';
 import ServiceItem from './ServiceItem';
 import ServiceSub from './ServiceSub';
 
-type ServiceSectionProps = {
-  setSheetVisible: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const ServiceSection: React.FC<ServiceSectionProps> = () => {
+const ServiceSection: React.FC = () => {
   const { t } = useTranslation('common');
   const [sheetVisible, setSheetVisible] = useState(false);
   const { data: languageList } = useGetLanguages();

@@ -20,8 +20,9 @@ import {
 import { Box, Page } from 'zmp-ui';
 
 const HomePage: React.FunctionComponent = () => {
-  const [sheetVisible, setSheetVisible] = useState(false);
-
+  const { currentLanguage } = useStoreApp();
+  const { FeaturedPlacesTitleHome } = currentLanguage.value;
+  console.log(currentLanguage.value);
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px] home">
       <Box className="relative z-[1]">
@@ -29,7 +30,7 @@ const HomePage: React.FunctionComponent = () => {
         <SearchSection />
         <ServiceSection />
         <Divider size={8} />
-        <LocationSection data={DIA_DIEM_NOI_BAT_DATA} title="Địa điểm nổi bật" type="dia_diem_noi_bat" />
+        <LocationSection data={DIA_DIEM_NOI_BAT_DATA} title={FeaturedPlacesTitleHome} type="dia_diem_noi_bat" />
         <Divider size={8} />
         <LocationSection data={DIA_DIEM_DU_LICH_DATA} title="Địa điểm du lịch" type="dia_diem_du_lich" />
         <Divider size={8} />

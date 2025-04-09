@@ -17,7 +17,6 @@ export const createLanguageSlice = (set: any, get: any): LanguageSliceType => ({
     key: 'vi',
     value: {},
   },
-
   // Lưu tất cả ngôn ngữ
   setLanguages: langs => set({ languages: langs }),
 
