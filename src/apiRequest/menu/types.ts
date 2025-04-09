@@ -1,12 +1,12 @@
-export type ServiceResponseType = {
-  items: ServicesType[];
+export type MenuResponseType = {
+  items: MenuItemType[];
 };
-export type ServicesType = {
+export type MenuItemType = {
   label: string;
   url: string;
   icon?: string;
   text: string;
   image: string;
   additionClass: string;
-  children: ServicesType[];
+  children: MenuItemType[];
 };

@@ -118,7 +118,7 @@ export const getDataFromStorage = async (key: string) => {
 
     return data;
   } catch (error) {
-    console.error('Lỗi khi lấy dữ liệu từ storage:', error);
+    // console.error('Lỗi khi lấy dữ liệu từ storage:', error);
     return null;
   }
 };
@@ -127,6 +127,6 @@ export const removeDataFromStorage = async (key: string) => {
   try {
     await nativeStorage.removeItem(key);
   } catch (error) {
-    console.error('Lỗi khi xóa dữ liệu khỏi storage:', error);
+    // console.error('Lỗi khi xóa dữ liệu khỏi storage:', error);
   }
 };

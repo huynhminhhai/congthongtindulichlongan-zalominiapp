@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
-import { useGetMenu } from 'apiRequest/menu/menu';
-import { ServicesType } from 'apiRequest/menu/types';
+import { useGetLanguages } from 'apiRequest/languages';
+import { useGetMenu } from 'apiRequest/menu';
+import { MenuItemType } from 'apiRequest/menu/types';
 import images from 'assets/images';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,18 +17,18 @@ type ServiceSectionProps = {
 const ServiceSection: React.FC<ServiceSectionProps> = () => {
   const { t } = useTranslation('common');
   const [sheetVisible, setSheetVisible] = useState(false);
-
+  const { data: languageList } = useGetLanguages();
   const { data } = useGetMenu();
   const serviceItemList = useMemo(() => {
     if (data) {
-      return data[0]?.items?.filter((item: ServicesType) => item.additionClass !== 'showMoreMenu');
+      return data[0]?.items?.filter((item: MenuItemType) => item.additionClass !== 'showMoreMenu');
     }
     return [];
   }, [data]);
 
   const otherServiceItem = useMemo(() => {
     if (data) {
-      return data[0]?.items?.find((item: ServicesType) => item.additionClass === 'showMoreMenu')?.children;
+      return data[0]?.items?.find((item: MenuItemType) => item.additionClass === 'showMoreMenu')?.children;
     }
     return [];
   }, [data]);
@@ -38,7 +39,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = () => {
       <Box>
         <div className="grid grid-cols-4 gap-x-3 gap-y-4">
           {serviceItemList &&
-            serviceItemList.map((item: ServicesType, index: React.Key) => <ServiceItem key={index} data={item} />)}
+            serviceItemList.map((item: MenuItemType, index: React.Key) => <ServiceItem key={index} data={item} />)}
           <div
             className="flex items-center flex-col gap-2"
             onClick={() => {

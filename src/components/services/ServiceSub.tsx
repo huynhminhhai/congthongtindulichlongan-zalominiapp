@@ -1,4 +1,4 @@
-import { ServicesType } from 'apiRequest/menu/types';
+import { MenuItemType } from 'apiRequest/menu/types';
 import images from 'assets/images';
 import React from 'react';
 import { createPortal } from 'react-dom';
@@ -10,7 +10,7 @@ import ServiceItem from './ServiceItem';
 type ServiceSubProps = {
   sheetVisible: boolean;
   setSheetVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  otherServiceItem?: ServicesType[];
+  otherServiceItem?: MenuItemType[];
 };
 
 const ServiceSub: React.FC<ServiceSubProps> = ({ sheetVisible, setSheetVisible, otherServiceItem }) => {
@@ -19,7 +19,7 @@ const ServiceSub: React.FC<ServiceSubProps> = ({ sheetVisible, setSheetVisible, 
       <Box p={4} className="custom-bottom-sheet" flex flexDirection="column">
         <div className="grid grid-cols-4 gap-x-3 gap-y-4">
           {otherServiceItem &&
-            otherServiceItem.map((item: ServicesType, index: React.Key) => <ServiceItem key={index} data={item} />)}
+            otherServiceItem.map((item: MenuItemType, index: React.Key) => <ServiceItem key={index} data={item} />)}
         </div>
       </Box>
     </Sheet>,

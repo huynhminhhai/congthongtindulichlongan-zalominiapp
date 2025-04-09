@@ -1,11 +1,11 @@
-import { ServicesType } from 'constants/utinities';
+import { MenuItemType } from 'constants/utinities';
 import React from 'react';
 import { useLoginWithZalo } from 'services/loginWithZalo';
 import { formatImageSrc } from 'utils/formatImageSrc';
 import { Box, useNavigate } from 'zmp-ui';
 
 type ServiceItemType = {
-  data: ServicesType;
+  data: MenuItemType;
 };
 
 const ServiceItem: React.FC<ServiceItemType> = ({ data }) => {

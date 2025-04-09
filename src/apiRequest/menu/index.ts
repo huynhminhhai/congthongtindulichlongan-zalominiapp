@@ -1,16 +1,16 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import http from 'services/http';
 
-import { ServiceResponseType } from './types';
+import { MenuResponseType } from './types';
 
 const eventsApiRequest = {
   getMenu: async () => {
-    return await http.get<ServiceResponseType>(`/menus`);
+    return await http.get<MenuResponseType>(`/menus`);
   },
 };
 
 export const useGetMenu = () => {
-  return useQuery<ServiceResponseType>({
+  return useQuery<MenuResponseType>({
     queryKey: ['menu'],
     queryFn: async () => {
       try {
