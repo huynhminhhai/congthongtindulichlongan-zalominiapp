@@ -7,7 +7,7 @@ import { HeaderSub } from 'components/header-sub';
 import { SingleLocationMap } from 'components/maps';
 import { ImageGallery } from 'components/slider';
 import TitleSection from 'components/titleSection';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { DIA_DIEM_DU_LICH_DATA } from 'utils/data';
@@ -37,6 +37,15 @@ const PostDetailPage = () => {
   const { data: postDetailData } = useGetPostDetail(Number(id));
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
+  const { isRating, isMap, isComment } = useMemo(() => {
+    if (postDetailData) {
+      const isRating = postDetailData.categories.some(cat => cat.isRating);
+      const isMap = postDetailData.categories.some(cat => cat.isMap);
+      const isComment = postDetailData.categories.some(cat => cat.isComment);
+      return { isRating, isMap, isComment };
+    }
+    return { isRating: false, isMap: false, isComment: false };
+  }, [postDetailData]);
   if (!postDetailData) {
     return <></>;
   }
@@ -77,7 +86,7 @@ const PostDetailPage = () => {
                 </ul>
               </Box> */}
             </Box>
-            <Box mb={9}>
+            <Box>
               <TitleSubDetail title={t.Desc} />
               <div
                 className="detail-content"
@@ -86,23 +95,34 @@ const PostDetailPage = () => {
                 }}
               ></div>
             </Box>
-            <Box mb={9}>
+          </Box>
+          {isMap && (
+            <Box p={4} mb={4}>
               <TitleSubDetail title={t.Map} />
               <div className="infor-map">
                 <SingleLocationMap location={location} />
               </div>
             </Box>
+          )}
+          {isComment && (
+            <Box px={4} mb={4}>
+              <CommentSection itemId={1} />
+            </Box>
+          )}
+          <Box px={4} mb={4}>
+            <ShareInfor />
           </Box>
         </Box>
-        <Box px={4} mb={10}>
-          <CommentSection itemId={1} />
-          <ShareInfor />
-          <Rating
-            averageRating={4.2}
-            totalReviews={100}
-            ratingDistribution={{ 5: 50, 4: 30, 3: 10, 2: 5, 1: 5 }}
-            onRate={rating => console.log('Người dùng chọn:', rating)}
-          />
+
+        <Box px={4} mb={4}>
+          {isRating && (
+            <Rating
+              averageRating={4.2}
+              totalReviews={100}
+              ratingDistribution={{ 5: 50, 4: 30, 3: 10, 2: 5, 1: 5 }}
+              onRate={rating => console.log('Người dùng chọn:', rating)}
+            />
+          )}
         </Box>
         <Box px={4} pb={4}>
           <TitleSection title={t.RelatedPost} mB={2} handleClick={() => navigate('/bai-viet')} />
