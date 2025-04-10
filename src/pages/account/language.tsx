@@ -1,14 +1,13 @@
 import { HeaderSub } from 'components/header-sub';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
-import { formatImageSrc } from 'utils/formatImageSrc';
-import { Box, Page, useSnackbar } from 'zmp-ui';
+import { formatImageSrc } from 'utils';
+import { Box, Page } from 'zmp-ui';
 
 const LanguagePage: React.FC = () => {
   const { setIsLoadingFullScreen, languages, currentLanguage, changeAppLanguage } = useStoreApp();
-  const { t, i18n } = useTranslation('setting');
 
+  const { Languages } = currentLanguage.value;
   const handleChangeLanguage = async (langId: number) => {
     setIsLoadingFullScreen(true);
     changeAppLanguage(langId);
@@ -18,7 +17,7 @@ const LanguagePage: React.FC = () => {
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px]" style={{ backgroundColor: '#f5f6f7' }}>
       <Box>
-        <HeaderSub title={t('languages')} />
+        <HeaderSub title={Languages} />
         <Box p={4}>
           <div className="flex flex-col gap-2">
             {languages.map((item, index) => {

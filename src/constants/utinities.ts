@@ -430,13 +430,13 @@ export const RESIDENTMAIN: ResidentType = {
 
 export type News = {
   id: number;
-  title: string; // Tiêu đề
-  description: string; // Mô tả
-  content: string; // Nội dung
-  imageUrl?: string; // Ảnh minh họa (tuỳ chọn)
-  publishedDate: string; // Ngày đăng (ISO string hoặc dạng khác)
-  author: string; // Tác giả
-  views: number; // Số lượt xem
+  title: string;
+  description: string;
+  content: string;
+  image?: string;
+  publishedDate: string;
+  author: string;
+  views: number;
   category: string;
 };
 

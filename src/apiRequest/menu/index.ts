@@ -3,7 +3,7 @@ import http from 'services/http';
 
 import { MenuResponseType } from './types';
 
-const eventsApiRequest = {
+const menuApiRequest = {
   getMenu: async () => {
     return await http.get<MenuResponseType>(`/menus`);
   },
@@ -14,7 +14,7 @@ export const useGetMenu = () => {
     queryKey: ['menu'],
     queryFn: async () => {
       try {
-        return await eventsApiRequest.getMenu();
+        return await menuApiRequest.getMenu();
       } catch (error) {
         console.error(error);
         throw error;

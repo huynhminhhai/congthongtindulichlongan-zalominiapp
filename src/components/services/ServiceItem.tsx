@@ -1,6 +1,6 @@
 import { MenuItemType } from 'apiRequest/menu/types';
 import React from 'react';
-import { formatImageSrc } from 'utils/formatImageSrc';
+import { formatImageSrc } from 'utils';
 import { Box } from 'zmp-ui';
 
 type ServiceItemType = {

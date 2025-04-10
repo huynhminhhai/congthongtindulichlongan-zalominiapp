@@ -5,13 +5,11 @@ import { getDataFromStorage, removeDataFromStorage } from './zalo';
 const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, body?: any): Promise<T> => {
   try {
     let fullUrl = `${envConfig.API_ENDPOINT}${url}`;
-    if (method === 'GET') {
-      const lang = (await getDataFromStorage('lng')) || 2;
-      fullUrl = `${fullUrl}?langId=${lang}`;
-    }
+
     const token = await getDataFromStorage('token');
 
     const headers: HeadersInit = {
+      'ngrok-skip-browser-warning': 'true',
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` }),
     };
@@ -31,7 +29,7 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
         throw new Error('Token hết hạn');
       }
       const errorData = await response.json().catch(() => ({ message: 'Lỗi không xác định (request)' }));
-      window.location.href = '/';
+      // window.location.href = '/';
       throw new Error(errorData.message || 'Lỗi không xác định (request)');
     }
 

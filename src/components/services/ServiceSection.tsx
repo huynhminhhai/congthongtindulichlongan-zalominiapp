@@ -24,14 +24,13 @@ const ServiceSection: React.FC = () => {
     }
     return undefined;
   }, [data]);
-  console.log(otherServiceItem);
   return (
     <Box p={4} className="bg-white">
       <Box>
         <div className="grid grid-cols-4 gap-x-3 gap-y-4">
           {serviceItemList &&
             serviceItemList.map((item: MenuItemType, index: React.Key) => (
-              <ServiceItem key={index} data={item} onClick={() => navigate(`/${item.url}`)} />
+              <ServiceItem key={index} data={item} onClick={() => navigate(item.url)} />
             ))}
           {otherServiceItem && (
             <>

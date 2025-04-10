@@ -22,7 +22,7 @@ import { Box, Page } from 'zmp-ui';
 const HomePage: React.FunctionComponent = () => {
   const { currentLanguage } = useStoreApp();
   const { FeaturedPlacesTitleHome } = currentLanguage.value;
-  console.log(currentLanguage.value);
+
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px] home">
       <Box className="relative z-[1]">
