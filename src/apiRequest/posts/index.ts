@@ -3,7 +3,7 @@ import http from 'services/http';
 import { getDataFromStorage } from 'services/zalo';
 import { encodeQueryData } from 'utils';
 
-import { PostsResponseType } from './../posts/types';
+import { PostType } from './types';
 
 type PostParamsType = {
   page: number;
@@ -26,7 +26,7 @@ const postsApiRequest = {
 
 export const useGetPostsList = (params: PostParamsType) => {
   return useInfiniteQuery({
-    queryKey: ['postsList', params.size, params.search],
+    queryKey: ['postsList', params.size, params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
       try {
         return await postsApiRequest.getPostsList({
@@ -51,7 +51,7 @@ export const useGetPostsList = (params: PostParamsType) => {
 };
 
 export const useGetPostDetail = (id: number) => {
-  return useQuery({
+  return useQuery<PostType>({
     queryKey: ['postDetail', id],
     queryFn: async () => {
       try {

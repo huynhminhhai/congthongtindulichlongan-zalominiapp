@@ -1,3 +1,4 @@
+import { Flex } from 'antd';
 import { useGetCategoryDetail } from 'apiRequest/categories';
 import { useGetPostsList } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
@@ -13,7 +14,8 @@ import { useStoreApp } from 'store/store';
 import { Box, Input, Page, Select } from 'zmp-ui';
 
 type PostComponentProps = {
-  data: PostType; // hoặc định nghĩa rõ kiểu nếu có, ví dụ PostType
+  data: PostType;
+  onClick?: () => void;
 };
 const layoutComponentMap: Record<string, React.FC<PostComponentProps>> = {
   HomeNews: NewsItem,
@@ -21,7 +23,7 @@ const layoutComponentMap: Record<string, React.FC<PostComponentProps>> = {
   NhaHangKhachSanHome: AccommodationItem,
   DacSanDiaPhuongHome: CusineItem,
 };
-const PostPage = () => {
+const PostListPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentLanguage } = useStoreApp();
@@ -30,7 +32,7 @@ const PostPage = () => {
   const t = currentLanguage.value;
   const PostComponent = useMemo((): React.FC<PostComponentProps> => {
     if (categoryDetail) {
-      return layoutComponentMap[categoryDetail.layout] || NewsItem;
+      return layoutComponentMap[categoryDetail.zaloLayout] || NewsItem;
     }
     return NewsItem;
   }, [categoryDetail]);
@@ -49,7 +51,13 @@ const PostPage = () => {
           </FilterBar>
 
           <Box pb={4} px={4}>
-            {postsList?.pages.map(page => page.items.map(data => <PostComponent key={data.id} data={data} />))}
+            <div className="grid gap-4">
+              {postsList?.pages.map(page =>
+                page.items.map((data: PostType) => (
+                  <PostComponent key={data.id} data={data} onClick={() => navigate(`/bai-viet/${data.id}`)} />
+                ))
+              )}
+            </div>
           </Box>
         </Box>
       </Box>
@@ -57,4 +65,4 @@ const PostPage = () => {
   );
 };
 
-export default PostPage;
+export default PostListPage;

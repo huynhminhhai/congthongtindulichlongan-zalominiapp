@@ -24,7 +24,8 @@ import { MarketDetailPage, MarketPage } from 'pages/market';
 import { NewsDetailPage, NewsPage } from 'pages/news';
 import { NotificationPage } from 'pages/notification';
 import { OilDetailPage, OilPage } from 'pages/oil';
-import { PostPage } from 'pages/post';
+import { PostDetailPage } from 'pages/postDetailPage';
+import { PostListPage } from 'pages/postListPage';
 import { ProfileResidentPage } from 'pages/profile';
 import { SearchPage, SettingsPage } from 'pages/settings';
 import { ShoppingDetailPage, ShoppingPage } from 'pages/shopping';
@@ -60,7 +61,8 @@ const Layout = () => {
         <Route path="/" element={<HomePage></HomePage>}></Route>
 
         {/* NEWS */}
-        <Route path="/chuyen-muc/:id" element={<PostPage />}></Route>
+        <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
+        <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
 
         <Route path="/news" element={<NewsPage></NewsPage>}></Route>
         <Route path="/news/:id" element={<NewsDetailPage></NewsDetailPage>}></Route>

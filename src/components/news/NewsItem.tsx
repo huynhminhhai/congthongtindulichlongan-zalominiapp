@@ -1,21 +1,20 @@
 import { PostType } from 'apiRequest/posts/types';
-import images from 'assets/images';
-import { News } from 'constants/utinities';
 import React from 'react';
 import { formatDate, formatImageSrc } from 'utils';
-import { Box, Text, useNavigate } from 'zmp-ui';
+import { Box, useNavigate } from 'zmp-ui';
 
 type NewsItemProps = {
   data: PostType;
+  onClick?: () => void;
 };
 
-const NewsItem: React.FC<NewsItemProps> = ({ data }) => {
+const NewsItem: React.FC<NewsItemProps> = ({ data, onClick }) => {
   const navigate = useNavigate();
   if (!data) return <></>;
 
   return (
     <Box>
-      <div onClick={() => navigate(`/news-detail/${data.id}`)}>
+      <div onClick={onClick}>
         <img
           className="slide-img h-[200px] w-full object-cover rounded-xl"
           src={formatImageSrc(data.image)}

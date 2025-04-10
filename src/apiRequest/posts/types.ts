@@ -24,4 +24,5 @@ export type PostType = {
     keywords: string | null;
   };
   categories: CategoryType[];
+  relatedPosts: PostType[];
 };
