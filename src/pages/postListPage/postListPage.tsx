@@ -11,18 +11,9 @@ import { FilterBar } from 'components/table';
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
+import { layoutComponentMap, PostComponentProps } from 'utils/constants';
 import { Box, Input, Page, Select } from 'zmp-ui';
 
-type PostComponentProps = {
-  data: PostType;
-  onClick?: () => void;
-};
-const layoutComponentMap: Record<string, React.FC<PostComponentProps>> = {
-  HomeNews: NewsItem,
-  DiaDiemHome: LocationItem,
-  NhaHangKhachSanHome: AccommodationItem,
-  DacSanDiaPhuongHome: CusineItem,
-};
 const PostListPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();

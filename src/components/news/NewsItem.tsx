@@ -22,7 +22,8 @@ const NewsItem: React.FC<NewsItemProps> = ({ data, onClick }) => {
         />
         <div className="flex items-center justify-between mt-3 mb-2 pb-2 border-b-[1px] border-[#355933]">
           <div className="text-[13px] leading-[1] font-semibold">
-            {data.categories?.length ? data.categories.map(c => c.name).join(', ') : ''}
+            {data?.categoryName ||
+              (data.categories && data.categories?.length ? data.categories.map(c => c.name).join(', ') : '')}
           </div>
           <div className="text-[12px] leading-[1] font-medium">{formatDate(data.publishedDate) || ''}</div>
         </div>

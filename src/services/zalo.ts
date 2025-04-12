@@ -62,7 +62,9 @@ export const openChatScreen = async ({ type = 'user', idUser, message }: openCha
 
 export const getUser = async (): Promise<any> => {
   try {
-    const { userInfo } = await getUserInfo({});
+    const { userInfo } = await getUserInfo({
+      autoRequestPermission: true,
+    });
 
     return userInfo;
   } catch (error) {

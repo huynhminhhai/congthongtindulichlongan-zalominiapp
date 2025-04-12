@@ -1,11 +1,13 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import http from 'services/http';
+import { getDataFromStorage } from 'services/zalo';
 
 import { MenuResponseType } from './types';
 
 const menuApiRequest = {
   getMenu: async () => {
-    return await http.get<MenuResponseType>(`/menus`);
+    const langId = Number((await getDataFromStorage('langId')) || 1);
+    return await http.get<MenuResponseType>(`/menus?langId=${langId}`);
   },
 };
 

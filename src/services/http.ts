@@ -23,14 +23,16 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
     const response = await fetch(fullUrl, options);
 
     if (!response.ok) {
-      if (response.status === 401) {
-        await removeDataFromStorage('token');
-        window.location.href = '/account';
-        throw new Error('Token hết hạn');
-      }
-      const errorData = await response.json().catch(() => ({ message: 'Lỗi không xác định (request)' }));
+      throw new Error('Token hết hạn');
+
+      // if (response.status === 401) {
+      //   await removeDataFromStorage('token');
+      //   // window.location.href = '/account';
+      //   throw new Error('Token hết hạn');
+      // }
+      // const errorData = await response.json().catch(() => ({ message: 'Lỗi không xác định (request)' }));
       // window.location.href = '/';
-      throw new Error(errorData.message || 'Lỗi không xác định (request)');
+      // throw new Error(errorData.message || 'Lỗi không xác định (request)');
     }
 
     const data: T = await response.json().catch(() => {

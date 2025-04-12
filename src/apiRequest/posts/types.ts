@@ -1,4 +1,5 @@
 import { CategoryType } from 'apiRequest/categories/types';
+import { MapType } from 'apiRequest/map/type';
 
 export type PostsResponseType = {
   items: PostType[];
@@ -13,5 +14,11 @@ export type PostType = {
   status: number;
   publishedDate: Date | null;
   categories: CategoryType[];
+  categoryName: string;
   relatedPosts: PostType[];
+  rating: number;
+  isFavorite: boolean;
+  address: string;
+  postMaps: MapType[];
+  postTypeNames: string;
 };
