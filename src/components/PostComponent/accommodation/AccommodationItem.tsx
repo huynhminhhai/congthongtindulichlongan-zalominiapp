@@ -1,21 +1,14 @@
 import { Icon } from '@iconify/react';
-import { PostType } from 'apiRequest/posts/types';
 import React from 'react';
 import { formatImageSrc } from 'utils';
-import { Box, useNavigate } from 'zmp-ui';
+import { PostComponentPropsType } from 'utils/constants';
+import { Box } from 'zmp-ui';
 
 import styles from './index.module.scss';
 
-interface IAccommodationItem {
-  data: PostType;
-  onClick?: () => void;
-}
-
-const AccommodationItem: React.FC<IAccommodationItem> = ({ data, onClick }) => {
-  const navigate = useNavigate();
-
+const AccommodationItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
   return (
-    <Box className={styles.accommodationItem} onClick={() => navigate(`/accommodation/${data?.id}`)}>
+    <Box className={styles.accommodationItem} onClick={onClick}>
       {/* <div className={styles.toggleFavorite}>
         {data?.isFavorite ? (
           <Icon icon="line-md:heart-filled" className={styles.active} />

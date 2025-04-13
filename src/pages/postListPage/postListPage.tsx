@@ -11,7 +11,7 @@ import { FilterBar } from 'components/table';
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
-import { layoutComponentMap, PostComponentProps } from 'utils/constants';
+import { layoutComponentMap, PostComponentPropsType } from 'utils/constants';
 import { Box, Input, Page, Select } from 'zmp-ui';
 
 const PostListPage = () => {
@@ -21,7 +21,7 @@ const PostListPage = () => {
   const { data: categoryDetail } = useGetCategoryDetail(Number(id));
   const { data: postsList } = useGetPostsList({ page: 1, size: 10, categoryId: Number(id) });
   const t = currentLanguage.value;
-  const PostComponent = useMemo((): React.FC<PostComponentProps> => {
+  const PostComponent = useMemo((): React.FC<PostComponentPropsType> => {
     if (categoryDetail) {
       return layoutComponentMap[categoryDetail.zaloLayout] || NewsItem;
     }

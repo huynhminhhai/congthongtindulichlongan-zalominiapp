@@ -2,12 +2,12 @@ import { Icon } from '@iconify/react';
 import { PostType } from 'apiRequest/posts/types';
 import React from 'react';
 import { formatImageSrc } from 'utils';
-import { PostComponentProps } from 'utils/constants';
+import { PostComponentPropsType } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
 import styles from './index.module.scss';
 
-const TourItem: React.FC<PostComponentProps> = ({ data, onClick }) => {
+const TourItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
   return (
     <Box className={styles.tourItem} onClick={onClick}>
       {/* <div className={styles.toggleFavorite}>

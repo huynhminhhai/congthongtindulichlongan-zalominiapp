@@ -2,20 +2,14 @@ import { Icon } from '@iconify/react';
 import { PostType } from 'apiRequest/posts/types';
 import React from 'react';
 import { formatImageSrc } from 'utils';
+import { PostComponentPropsType } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
-type GuideItemType = {
-  data: PostType;
-  onClick: () => void;
-};
-
-const GuideItem: React.FC<GuideItemType> = ({ data, onClick }) => {
+const GuideItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
   console.log(data);
 
-  const navigate = useNavigate();
-
   return (
-    <Box flex flexDirection="column" alignItems="center" onClick={() => navigate('/guide-detail')}>
+    <Box flex flexDirection="column" alignItems="center" onClick={onClick}>
       <img
         className="h-[110px] w-[110px] object-cover rounded-full"
         src={formatImageSrc(data.image)}

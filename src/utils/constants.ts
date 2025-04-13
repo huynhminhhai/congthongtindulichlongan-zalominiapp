@@ -9,12 +9,12 @@ import { TourItem } from 'components/PostComponent/tour';
 export const SLIDE_SPACE_BETWEEN_HOMEPAGE = 20;
 export const SLIDE_PER_VIEW_HOMEPAGE = 1.2;
 
-export type PostComponentProps = {
+export type PostComponentPropsType = {
   data: PostType;
   onClick?: () => void;
 };
 
-export const layoutComponentMap: Record<string, React.FC<PostComponentProps>> = {
+export const layoutComponentMap: Record<string, React.FC<PostComponentPropsType>> = {
   HomeNews: NewsItem,
   SuKienHome: NewsItem,
   DiaDiemHome: LocationItem,

@@ -1,14 +1,9 @@
-import { PostType } from 'apiRequest/posts/types';
 import React from 'react';
 import { formatDate, formatImageSrc } from 'utils';
+import { PostComponentPropsType } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
-type NewsItemProps = {
-  data: PostType;
-  onClick?: () => void;
-};
-
-const NewsItem: React.FC<NewsItemProps> = ({ data, onClick }) => {
+const NewsItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
   const navigate = useNavigate();
   if (!data) return <></>;
 

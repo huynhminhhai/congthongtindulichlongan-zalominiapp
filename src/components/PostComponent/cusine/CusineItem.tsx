@@ -1,18 +1,13 @@
-import { PostType } from 'apiRequest/posts/types';
-import NearLocation from 'components/near';
 import React from 'react';
 import { formatImageSrc } from 'utils';
+import { PostComponentPropsType } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
-type CusineItemType = {
-  data: PostType;
-  onClick?: () => void;
-};
-const CusineItem: React.FC<CusineItemType> = ({ data, onClick }) => {
+const CusineItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
   const navigate = useNavigate();
 
   return (
-    <Box onClick={() => navigate(`/cusine-detail/?id=${data.id}`)} className="relative">
+    <Box onClick={onClick} className="relative">
       <div className="h-[200px] w-full rounded-[8px] overflow-hidden">
         <img className="w-full h-full object-cover" src={formatImageSrc(data.image)} alt={data.title} />
       </div>
