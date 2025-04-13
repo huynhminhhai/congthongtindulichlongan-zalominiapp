@@ -46,22 +46,6 @@ const HomePage: React.FunctionComponent = () => {
               </React.Fragment>
             );
           })}
-
-        {/* <LocationSection data={DIA_DIEM_NOI_BAT_DATA} title={FeaturedPlacesTitleHome} type="dia_diem_noi_bat" />
-        <Divider size={8} />
-        <LocationSection data={DIA_DIEM_DU_LICH_DATA} title="Địa điểm du lịch" type="dia_diem_du_lich" />
-        <Divider size={8} />
-        <CusineSection />
-        <Divider size={8} />
-        <NewsSection data={TIN_TUC_DATA} title="Tin tức" />
-        <Divider size={8} />
-        <NewsSection data={SU_KIEN_DATA} title="Sự kiện" />
-        <Divider size={8} />
-        <TourSection />
-        <Divider size={8} />
-        <AccommodationSection data={HOTEL_DATA} title="Khách sạn" type="hotel" />
-        <Divider size={8} />
-        <AccommodationSection data={RESTAURENT_DATA} title="Nhà hàng" type="restaurent" /> */}
       </Box>
     </Page>
   );

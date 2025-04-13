@@ -12,15 +12,6 @@ import { Box, Page, useNavigate, useParams } from 'zmp-ui';
 
 import SkeletonPostDetailPage from './skeletonPostDetailPage';
 
-export const imagesGallery = [
-  'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-1.jpg?tr=q-70,c-at_max,w-500,h-300,dpr-2',
-  'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-9-1024x768.jpg?tr=q-70,c-at_max,w-500,h-300,dpr-2',
-  'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3tPApPFReu540fGsIOTdoHg1nm9PcK9l_rg&s',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQbW-K2nSZpaY7Uo6J9B4RjauteSGq9PC8G7hPljfEHloZo8QEvF4qvylgXP-XI2kOvjk&usqp=CAU',
-  'https://image.sggp.org.vn/w1000/Uploaded/2025/dureixrxkw/2019_02_02/nha-tram-cot_1_sggp_HJCU.jpg.webp',
-];
-
 const PostDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
