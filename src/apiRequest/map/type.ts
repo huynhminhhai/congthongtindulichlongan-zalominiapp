@@ -2,8 +2,8 @@ export interface MapType {
   id: number;
   name: string;
   address: string;
-  lng: string;
-  lat: string;
+  lng: number;
+  lat: number;
   icon: string | null;
   image: string;
   isShow: boolean | null;

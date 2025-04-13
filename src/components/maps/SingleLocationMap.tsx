@@ -1,26 +1,22 @@
-import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { openUrlInWebview } from 'services/zalo';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useRef } from 'react';
 
-interface Location {
-  lat: number;
-  lng: number;
-  name: string;
-  address: string;
-  img: string;
-  markerImg: string;
-}
+import 'leaflet/dist/leaflet.css';
+
+import { MapType } from 'apiRequest/map/type';
+import LocationPointer from 'assets/images/location-pointer.png';
+import { useTranslation } from 'react-i18next';
+import { openUrlInWebview } from 'services/zalo';
+import { formatImageSrc } from 'utils';
 
 interface Props {
-  location: Location;
+  location: MapType;
 }
 
 const SingleLocationMap: React.FC<Props> = ({ location }) => {
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -37,7 +33,7 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
     }
 
     const customIcon = L.icon({
-      iconUrl: location.markerImg,
+      iconUrl: location.icon || LocationPointer,
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],
@@ -45,18 +41,21 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
 
     markerRef.current = L.marker([location.lat, location.lng], { icon: customIcon })
       .addTo(mapRef.current)
-      .bindPopup(`
+      .bindPopup(
+        `
         <div style="width: 180px">
-          <img style="width: 100%; height: 100px; object-fit: cover" src="${location.img}" alt="${location.name}" />
+          <img style="width: 100%; height: 100px; object-fit: cover" src="${formatImageSrc(location.image)}" alt="${location.name}" />
           <div style="padding-block: 6px;">
             <div style="color: #355933; font-size: 13px; font-weight: 700; margin-bottom: 2px;">${location.name}</div>
             <div style="font-size: 11px;">
-              <div style="margin-bottom: 4px;"><strong>${t("address")}:</strong> ${location.address}</div>
+              <div style="margin-bottom: 4px;"><strong>${t('address')}:</strong> ${location.address}</div>
               <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
             </div>
           </div>
         </div>
-      `).openPopup();
+      `
+      )
+      .openPopup();
 
     const googleMapsLink = document.querySelector('.google-maps-link');
     if (googleMapsLink) {
@@ -76,7 +75,7 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
 
   const openGoogleMaps = async () => {
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`;
-    await openUrlInWebview(googleMapsUrl, 'bottomSheet');  // Sử dụng hàm openUrlInWebview để mở Google Maps
+    await openUrlInWebview(googleMapsUrl, 'bottomSheet'); // Sử dụng hàm openUrlInWebview để mở Google Maps
   };
 
   return <div id="map" style={{ height: '500px' }}></div>;

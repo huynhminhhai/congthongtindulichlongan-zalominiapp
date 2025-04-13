@@ -16,9 +16,11 @@ export type PostType = {
   categories: CategoryType[];
   categoryName: string;
   relatedPosts: PostType[];
-  rating: number;
+  ratingDistribution: number[];
+  averageRating: number;
+  totalVotes: number;
   isFavorite: boolean;
   address: string;
-  postMaps: MapType[];
+  maps: MapType[];
   postTypeNames: string;
 };

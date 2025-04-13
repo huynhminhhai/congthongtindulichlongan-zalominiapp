@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { layoutComponentMap, SLIDE_PER_VIEW_HOMEPAGE, SLIDE_SPACE_BETWEEN_HOMEPAGE } from 'utils/constants';
+import { ROUTES } from 'utils/pathRoute';
 import { Box, Page } from 'zmp-ui';
 
 const HomePage: React.FunctionComponent = () => {
@@ -35,7 +36,11 @@ const HomePage: React.FunctionComponent = () => {
                       const PostComponent = layoutComponentMap[cate.zaloLayout] || layoutComponentMap['HomeNews'];
                       return (
                         <SwiperSlide key={index}>
-                          <PostComponent key={post.id} data={post} />
+                          <PostComponent
+                            key={post.id}
+                            data={post}
+                            onClick={() => navigate(`${ROUTES.postDetail}/${post.id}`)}
+                          />
                         </SwiperSlide>
                       );
                     })}
