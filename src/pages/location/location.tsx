@@ -1,5 +1,5 @@
 import { HeaderSub } from 'components/header-sub';
-import { LocationItem } from 'components/location';
+import { LocationItem } from 'components/PostComponent/location';
 import FilterBar from 'components/table/FilterBar';
 import React from 'react';
 import { useTranslation } from 'react-i18next';

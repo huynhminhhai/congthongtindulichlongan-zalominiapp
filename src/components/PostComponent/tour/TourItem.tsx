@@ -2,20 +2,14 @@ import { Icon } from '@iconify/react';
 import { PostType } from 'apiRequest/posts/types';
 import React from 'react';
 import { formatImageSrc } from 'utils';
+import { PostComponentProps } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
 import styles from './index.module.scss';
 
-type TourItemType = {
-  data: PostType;
-  onClick: () => void;
-};
-
-const TourItem: React.FC<TourItemType> = ({ data }) => {
-  const navigate = useNavigate();
-
+const TourItem: React.FC<PostComponentProps> = ({ data, onClick }) => {
   return (
-    <Box className={styles.tourItem} onClick={() => navigate(`/tour/${data.id}`)}>
+    <Box className={styles.tourItem} onClick={onClick}>
       {/* <div className={styles.toggleFavorite}>
         {data?.isFavorite ? (
           <Icon icon="line-md:heart-filled" className={styles.active} />
@@ -32,8 +26,8 @@ const TourItem: React.FC<TourItemType> = ({ data }) => {
             {data.postMaps.length} địa điểm
           </li>
           <li>
-            <Icon icon="material-symbols:date-range-outline" />
-            {data.postTypeNames} ngày
+            <Icon icon="material-symbols:info-outline-rounded" />
+            {data.postTypeNames}
           </li>
         </ul>
       </Box>

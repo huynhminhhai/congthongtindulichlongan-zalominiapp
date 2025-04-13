@@ -1,33 +1,18 @@
 import { useGetCategoryListShowHome } from 'apiRequest/categories';
-import { AccommodationSection } from 'components/accommodation';
 import { BannerSlider } from 'components/banner';
-import { CusineSection } from 'components/cusine';
 import { Divider } from 'components/divider';
-import { LocationSection } from 'components/location';
-import NewsSection from 'components/news/NewsSection';
 import { SearchSection } from 'components/search';
-import { ServiceSection, ServiceSub } from 'components/services';
+import { ServiceSection } from 'components/services';
 import TitleSection from 'components/titleSection';
-import { TourSection } from 'components/tour';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { layoutComponentMap, SLIDE_PER_VIEW_HOMEPAGE, SLIDE_SPACE_BETWEEN_HOMEPAGE } from 'utils/constants';
-import {
-  DIA_DIEM_DU_LICH_DATA,
-  DIA_DIEM_NOI_BAT_DATA,
-  HOTEL_DATA,
-  RESTAURENT_DATA,
-  SU_KIEN_DATA,
-  TIN_TUC_DATA,
-} from 'utils/data';
 import { Box, Page } from 'zmp-ui';
 
 const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const { currentLanguage } = useStoreApp();
-  const { FeaturedPlacesTitleHome } = currentLanguage.value;
   const { data: categoriesList } = useGetCategoryListShowHome();
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px] home">

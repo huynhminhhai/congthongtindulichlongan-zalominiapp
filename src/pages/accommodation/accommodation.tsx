@@ -1,16 +1,16 @@
-import { AccommodationItem } from 'components/accommodation'
-import { HeaderSub } from 'components/header-sub'
-import FilterBar from 'components/table/FilterBar'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { HOTEL_DATA } from 'utils/data'
-import { Box, Input, Page, Select, useLocation } from 'zmp-ui'
+import { HeaderSub } from 'components/header-sub';
+import { AccommodationItem } from 'components/PostComponent/accommodation';
+import FilterBar from 'components/table/FilterBar';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { HOTEL_DATA } from 'utils/data';
+import { Box, Input, Page, Select, useLocation } from 'zmp-ui';
 
 const AccommodationPage = () => {
-  const { Option } = Select
-  const { t: tCommon } = useTranslation('common')
-  const { state } = useLocation()
-  console.log(state.type)
+  const { Option } = Select;
+  const { t: tCommon } = useTranslation('common');
+  const { state } = useLocation();
+  console.log(state.type);
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
@@ -19,9 +19,7 @@ const AccommodationPage = () => {
           <Box>
             <FilterBar
               showAddButton={false}
-              searchComponent={
-                <Input.Search placeholder={tCommon('searching')} value={''} />
-              }
+              searchComponent={<Input.Search placeholder={tCommon('searching')} value={''} />}
             >
               <div className="col-span-12">
                 <Select placeholder={tCommon('all')} closeOnSelect>
@@ -36,10 +34,7 @@ const AccommodationPage = () => {
                 </Select>
               </div>
               <div className="col-span-6">
-                <Select
-                  placeholder={tCommon('accommodation-type')}
-                  closeOnSelect
-                >
+                <Select placeholder={tCommon('accommodation-type')} closeOnSelect>
                   <Option title={tCommon('all')} value={0} />
                   <Option title={'Nổi tiếng'} value={1} />
                 </Select>
@@ -56,7 +51,7 @@ const AccommodationPage = () => {
         </Box>
       </Box>
     </Page>
-  )
-}
+  );
+};
 
-export default AccommodationPage
+export default AccommodationPage;
