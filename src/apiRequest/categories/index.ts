@@ -12,6 +12,10 @@ const categoriesApiRequest = {
     const langId = Number((await getDataFromStorage('langId')) || 1);
     return await http.get<CategoryType[]>(`/categories/home?langId=${langId}`);
   },
+  getCategoryListHasMap: async () => {
+    const langId = Number((await getDataFromStorage('langId')) || 1);
+    return await http.get<CategoryType[]>(`/categories/map?langId=${langId}`);
+  },
 };
 
 export const useGetCategoryDetail = (id: number) => {
@@ -43,7 +47,23 @@ export const useGetCategoryListShowHome = () => {
       }
     },
 
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 30,
+    retry: 1,
+  });
+};
+export const useGetCategoryListHasMap = () => {
+  return useQuery({
+    queryKey: ['categoryListHasMap'],
+    queryFn: async () => {
+      try {
+        return await categoriesApiRequest.getCategoryListHasMap();
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+
+    staleTime: 1000 * 30,
     retry: 1,
   });
 };

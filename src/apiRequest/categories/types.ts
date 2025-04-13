@@ -10,4 +10,5 @@ export type CategoryType = {
   zaloLayout: string;
   url: string;
   posts: PostType[];
+  icon: string;
 };

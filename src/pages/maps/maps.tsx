@@ -1,39 +1,63 @@
-import React, { useEffect, useRef } from 'react'
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-import { Box, Page, Tabs } from 'zmp-ui'
-import 'leaflet-search/dist/leaflet-search.min.css'
-import images from 'assets/images'
-import { openUrlInWebview } from 'services/zalo'
-import { useTranslation } from 'react-i18next'
-import { LOCATION_DATA_FAKE } from 'utils/data'
-import { HeaderSub } from 'components/header-sub'
-import CategoryItem from './CategoryItem'
-import ServiceItem from './ServiceItem'
-import styles from './Maps.module.scss'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import { Button } from 'antd'
-import { Icon } from '@iconify/react'
+import L from 'leaflet';
+import React, { useEffect, useRef } from 'react';
+
+import 'leaflet/dist/leaflet.css';
+
+import { Box, Page, Tabs } from 'zmp-ui';
+
+import 'leaflet-search/dist/leaflet-search.min.css';
+
+import images from 'assets/images';
+import { HeaderSub } from 'components/header-sub';
+import { useTranslation } from 'react-i18next';
+import { openUrlInWebview } from 'services/zalo';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { LOCATION_DATA_FAKE } from 'utils/data';
+
+import CategoryItem from './CategoryItem';
+import styles from './Maps.module.scss';
+import ServiceItem from './ServiceItem';
+
+import 'swiper/css';
+
+import { Icon } from '@iconify/react';
+import { Button } from 'antd';
+import { useGetCategoryListHasMap } from 'apiRequest/categories';
+import { useGetPostsList } from 'apiRequest/posts';
+import { PostType } from 'apiRequest/posts/types';
+
+import ServiceItemSkeleton from './ServiceItemSkeleton';
+
 interface Location {
-  lat: number
-  lng: number
-  name: string
-  address: string
-  img: string
-  rating: number
+  lat: number;
+  lng: number;
+  name: string;
+  address: string;
+  img: string;
+  rating: number;
 }
 
 interface Icons {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const ResidentMapPage = () => {
-  const mapRef = useRef<L.Map | null>(null)
-  const markersRef = useRef<L.LayerGroup>(L.layerGroup())
-  const [activeTab, setActiveTab] = React.useState<string>('tourist')
-  const { t } = useTranslation('common')
-  const locations = LOCATION_DATA_FAKE
+  const mapRef = useRef<L.Map | null>(null);
+  const markersRef = useRef<L.LayerGroup>(L.layerGroup());
+  const [activeTab, setActiveTab] = React.useState<number>();
+
+  const { data: categories } = useGetCategoryListHasMap();
+  const { data: postListData, isLoading } = useGetPostsList(
+    {
+      page: 1,
+      size: 100,
+      categoryId: activeTab,
+    },
+    {
+      enabled: !!activeTab,
+    }
+  );
+  const { t } = useTranslation('common');
 
   const icons: Icons = {
     tourist: images.markerTravel,
@@ -45,71 +69,69 @@ const ResidentMapPage = () => {
     oil: images.markerOil,
     taxi: images.markerTaxi,
     shopping: images.markerShopping,
-  }
-  const categories = [
-    { key: 'tourist', icon: 'material-symbols:tour-rounded', title: 'Tourist' },
-    {
-      key: 'restaurant',
-      icon: 'ion:restaurant-sharp',
-      title: 'Restaurant',
-    },
-    { key: 'hotel', icon: 'mingcute:hotel-fill', title: 'Hotel' },
-    { key: 'bus', icon: 'bxs:bus', title: 'Bus' },
-    { key: 'atm', icon: 'map:atm', title: 'Atm' },
-    { key: 'hospital', icon: 'uis:hospital', title: 'Hospital' },
-    { key: 'oil', icon: 'maki:fuel', title: 'Oil' },
-    { key: 'taxi', icon: 'bxs:taxi', title: 'Taxi' },
-    { key: 'shopping', icon: 'icon-park-solid:shopping', title: 'Shopping' },
-  ]
-
+  };
+  // const categories = [
+  //   { key: 'tourist', icon: 'material-symbols:tour-rounded', title: 'Tourist' },
+  //   {
+  //     key: 'restaurant',
+  //     icon: 'ion:restaurant-sharp',
+  //     title: 'Restaurant',
+  //   },
+  //   { key: 'hotel', icon: 'mingcute:hotel-fill', title: 'Hotel' },
+  //   { key: 'bus', icon: 'bxs:bus', title: 'Bus' },
+  //   { key: 'atm', icon: 'map:atm', title: 'Atm' },
+  //   { key: 'hospital', icon: 'uis:hospital', title: 'Hospital' },
+  //   { key: 'oil', icon: 'maki:fuel', title: 'Oil' },
+  //   { key: 'taxi', icon: 'bxs:taxi', title: 'Taxi' },
+  //   { key: 'shopping', icon: 'icon-park-solid:shopping', title: 'Shopping' },
+  // ];
+  const locations = postListData?.pages[0].items || 0;
   useEffect(() => {
     import('leaflet-search')
       .then(() => {
         if (!mapRef.current) {
-          mapRef.current = L.map('map').setView([10.5333, 106.4167], 10)
+          mapRef.current = L.map('map').setView([10.5333, 106.4167], 10);
           L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
             maxZoom: 19,
-          }).addTo(mapRef.current)
+          }).addTo(mapRef.current);
 
-          markersRef.current.addTo(mapRef.current)
+          markersRef.current.addTo(mapRef.current);
         }
-        loadMarkers(activeTab)
-        addSearchControl()
+        loadMarkers(activeTab);
+        addSearchControl();
       })
-      .catch((err) => {
-        console.error('Failed to load leaflet-search:', err)
-      })
+      .catch(err => {
+        console.error('Failed to load leaflet-search:', err);
+      });
 
     return () => {
       if (mapRef.current) {
-        mapRef.current.remove()
-        mapRef.current = null
+        mapRef.current.remove();
+        mapRef.current = null;
       }
-    }
-  }, [activeTab])
+    };
+  }, [activeTab]);
 
   const loadMarkers = (type: string) => {
-    if (!mapRef.current) return
+    if (!mapRef.current && !locations) return;
 
-    markersRef.current.clearLayers()
+    markersRef.current.clearLayers();
 
     const icon = L.icon({
       iconUrl: icons[type],
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],
-    })
+    });
 
-    const items = locations[type]
+    const items = locations[type];
 
     if (items.length === 0) {
-      mapRef.current.setView([10.5333, 106.4167], 10)
-      return
+      mapRef.current.setView([10.5333, 106.4167], 10);
+      return;
     }
 
-    const bounds = L.latLngBounds(
-      items.map((item: Location) => [item.lat, item.lng])
-    )
+    const bounds = L.latLngBounds(items.map((item: Location) => [item.lat, item.lng]));
 
     items.forEach((item: Location) => {
       const marker = L.marker([item.lat, item.lng], {
@@ -128,41 +150,37 @@ const ResidentMapPage = () => {
                 </div>
               </div>
             </div>
-          `)
+          `);
 
       marker.on('popupopen', () => {
-        const googleMapsLink = (marker.getPopup() as any)
-          .getElement()
-          ?.querySelector('.google-maps-link')
+        const googleMapsLink = (marker.getPopup() as any).getElement()?.querySelector('.google-maps-link');
         if (googleMapsLink) {
-          googleMapsLink.addEventListener('click', () =>
-            openGoogleMaps(item.lat, item.lng)
-          )
+          googleMapsLink.addEventListener('click', () => openGoogleMaps(item.lat, item.lng));
         }
-      })
-    })
+      });
+    });
 
     if (bounds.isValid()) {
       mapRef.current.fitBounds(bounds, {
         paddingTopLeft: [0, 100],
         maxZoom: 14,
-      })
+      });
     }
-  }
+  };
 
   const openGoogleMaps = async (lat, lng) => {
-    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
-    await openUrlInWebview(googleMapsUrl, 'bottomSheet') // Sử dụng hàm openUrlInWebview để mở Google Maps
-  }
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    await openUrlInWebview(googleMapsUrl, 'bottomSheet'); // Sử dụng hàm openUrlInWebview để mở Google Maps
+  };
 
   const addSearchControl = () => {
-    if (!mapRef.current) return
+    if (!mapRef.current) return;
 
-    const SearchControl = (L.Control as any).Search
+    const SearchControl = (L.Control as any).Search;
 
     if (!SearchControl) {
-      console.error('Leaflet Search plugin is not loaded.')
-      return
+      console.error('Leaflet Search plugin is not loaded.');
+      return;
     }
 
     const searchControl = new SearchControl({
@@ -172,39 +190,40 @@ const ResidentMapPage = () => {
       marker: false,
       caseSensitive: false,
       filter: function (searchText: string, marker: any) {
-        return (
-          marker.options.title
-            .toLowerCase()
-            .indexOf(searchText.toLowerCase()) !== -1
-        )
+        return marker.options.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;
       },
       moveToLocation: function (latlng: L.LatLng, name: string, map: L.Map) {
-        map.setView(latlng, 15)
+        map.setView(latlng, 15);
         markersRef.current.eachLayer(function (layer: any) {
           if ((layer as L.Marker).options.title === name) {
-            ;(layer as L.Marker).openPopup()
+            (layer as L.Marker).openPopup();
           }
-        })
+        });
       },
       textPlaceholder: 'Tìm kiếm địa điểm...',
       textErr: 'Không tìm thấy địa điểm',
       textCancel: 'Hủy',
-    })
+    });
 
-    mapRef.current.addControl(searchControl)
-  }
+    mapRef.current.addControl(searchControl);
+  };
 
   const handleItemClick = (lat: number, lng: number) => {
-    if (!mapRef.current) return
+    if (!mapRef.current) return;
 
-    mapRef.current.setView([lat, lng], 15)
+    mapRef.current.setView([lat, lng], 15);
     markersRef.current.eachLayer((marker: any) => {
-      const markerLatLng = marker.getLatLng()
+      const markerLatLng = marker.getLatLng();
       if (markerLatLng.lat === lat && markerLatLng.lng === lng) {
-        marker.openPopup()
+        marker.openPopup();
       }
-    })
-  }
+    });
+  };
+  useEffect(() => {
+    if (categories) {
+      setActiveTab(categories[0].id);
+    }
+  }, [categories]);
   return (
     <Page className="relative flex-1 flex flex-col bg-white ">
       <Box>
@@ -212,25 +231,22 @@ const ResidentMapPage = () => {
         <div className="map-wrap">
           <div className="sidebar">
             <div className={styles.categoryList}>
-              {categories.map((cate, index) => {
-                return (
-                  <CategoryItem
-                    active={activeTab === cate.key}
-                    key={index}
-                    icon={cate.icon}
-                    title={cate.title}
-                    onClick={() => setActiveTab(cate.key)}
-                  />
-                )
-              })}
+              {categories &&
+                categories.map((cate, index) => {
+                  return (
+                    <CategoryItem
+                      active={activeTab === cate.id}
+                      key={index}
+                      icon={cate.icon}
+                      title={cate.name}
+                      onClick={() => setActiveTab(cate.id)}
+                    />
+                  );
+                })}
             </div>
           </div>
           <div className="relative">
-            <div
-              className={styles.map}
-              id="map"
-              style={{ height: 'calc(100vh - 175px)' }}
-            ></div>
+            <div className={styles.map} id="map" style={{ height: 'calc(100vh - 175px)' }}></div>
 
             <div className={styles.serviceListWrapper}>
               <div className={styles.actionWrapper}>
@@ -245,29 +261,33 @@ const ResidentMapPage = () => {
               {/* <Button className={styles.findNearButton}>
                 Tìm kiếm khu vực này
               </Button> */}
-              <Swiper
-                className={styles.serviceList}
-                slidesPerView={1.08}
-                spaceBetween={12}
-              >
-                {locations[activeTab].map((item: Location, index: number) => (
-                  <SwiperSlide key={index}>
-                    <ServiceItem
-                      rating={item.rating}
-                      name={item.name}
-                      address={item.address}
-                      image={item.img}
-                      onClick={() => handleItemClick(item.lat, item.lng)}
-                    />
-                  </SwiperSlide>
-                ))}
+              <Swiper className={styles.serviceList} slidesPerView={1.08} spaceBetween={12}>
+                {isLoading
+                  ? Array.from({ length: 4 }).map((_, index) => (
+                      <SwiperSlide key={index}>
+                        <ServiceItemSkeleton />
+                      </SwiperSlide>
+                    ))
+                  : locations &&
+                    locations.map((item: PostType, index: number) => (
+                      <SwiperSlide key={index}>
+                        <ServiceItem
+                          rating={item.averageRating}
+                          name={item.title}
+                          address={item.address}
+                          image={item.image}
+                          totolVote={item.totalVotes}
+                          onClick={() => handleItemClick(item.lat, item.lng)}
+                        />
+                      </SwiperSlide>
+                    ))}
               </Swiper>
             </div>
           </div>
         </div>
       </Box>
     </Page>
-  )
-}
+  );
+};
 
-export default ResidentMapPage
+export default ResidentMapPage;

@@ -1,27 +1,22 @@
-import React from 'react'
-import styles from './Maps.module.scss'
-import { Icon } from '@iconify/react'
+import { Icon } from '@iconify/react';
+import React from 'react';
+import { formatImageSrc } from 'utils';
+
+import styles from './Maps.module.scss';
+
 interface ICategoryItem {
-  icon: string
-  title: string
-  active: boolean
-  onClick: () => void
+  icon: string;
+  title: string;
+  active: boolean;
+  onClick: () => void;
 }
-const CategoryItem: React.FC<ICategoryItem> = ({
-  icon,
-  title,
-  active,
-  onClick,
-}) => {
+const CategoryItem: React.FC<ICategoryItem> = ({ icon, title, active, onClick }) => {
   return (
-    <div
-      className={`${styles.categoryItem} ${active ? styles.active : ''}`}
-      onClick={onClick}
-    >
-      <Icon fontSize={16} icon={icon} />
+    <div className={`${styles.categoryItem} ${active ? styles.active : ''}`} onClick={onClick}>
+      <Icon fontSize={16} icon={formatImageSrc(icon)} />
       <p>{title}</p>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryItem
+export default CategoryItem;

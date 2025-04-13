@@ -29,29 +29,23 @@ const postsApiRequest = {
   },
 };
 
-export const useGetPostsList = (params: PostParamsType) => {
+export const useGetPostsList = (params: PostParamsType, options?: { enabled?: boolean }) => {
   return useInfiniteQuery({
-    queryKey: ['postsList', params.size, params.categoryId],
+    queryKey: ['postsList', params],
     queryFn: async ({ pageParam = 1 }) => {
-      try {
-        return await postsApiRequest.getPostsList({
-          page: pageParam,
-          size: params.size,
-          search: params.search,
-          categoryId: params.categoryId,
-          postId: params.postId,
-        });
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
+      return await postsApiRequest.getPostsList({
+        ...params,
+        page: pageParam,
+      });
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === params.size ? allPages.length + 1 : undefined;
+      const posts = lastPage?.data || [];
+      return posts.length === params.size ? allPages.length + 1 : undefined;
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 5 * 60 * 1000,
     retry: 1,
+    enabled: options?.enabled ?? true,
   });
 };
 
