@@ -5,6 +5,27 @@ export type PostsResponseType = {
   items: PostType[];
   total: number;
 };
+export type FavoriteResponseType = {
+  total: number;
+  items: FavoriteItemType[];
+};
+
+export type FavoriteItemType = {
+  userId: number;
+  postId: number;
+  dateCreated: string;
+  user: {
+    id: number;
+    name: string;
+  };
+  post: {
+    id: number;
+    title: string;
+    slug: string;
+    image: string;
+  };
+};
+
 export type PostType = {
   id: number;
   title: string;

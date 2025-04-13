@@ -25,12 +25,11 @@ export const logout = () => {
 };
 
 export const errorHandler = (error: HttpError) => {
-  console.log('error', error);
+  console.log('error', error.message);
   switch (error.status) {
     case 401:
       logout();
-      break;
-
+      throw error as HttpError;
     default:
       throw error as HttpError;
   }
@@ -55,10 +54,20 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
 
     const response = await fetch(fullUrl, options);
     if (response.ok) {
-      return response.json();
+      const result = response.json();
+      return result;
     }
 
-    throw new HttpError(response);
+    let errorMessage = 'Có lỗi xảy ra';
+    try {
+      const errorData = await response.json();
+
+      errorMessage = errorData?.message || errorMessage;
+    } catch (err) {
+      console.warn('Không thể đọc JSON từ lỗi API');
+    }
+
+    throw new HttpError(response, errorMessage);
   } catch (error) {
     throw errorHandler(error as HttpError);
   }

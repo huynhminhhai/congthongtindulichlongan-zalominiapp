@@ -5,16 +5,10 @@ import { encodeQueryData } from 'utils';
 
 const favoritesApiRequest = {
   addFavorite: async (postId: number) => {
-    const response = await http.post<any>('/fvr/add', {
-      postId,
-    });
-    return response;
+    return await http.post<any>(`/postFavorites/add?postId=${postId}`, {});
   },
   removeFavorite: async (postId: number) => {
-    const response = await http.post<any>('/fvr/remove', {
-      postId,
-    });
-    return response;
+    return await http.post<any>(`/postFavorites/remove?postId=${postId}`, {});
   },
 };
 export const useAddFavorite = () => {

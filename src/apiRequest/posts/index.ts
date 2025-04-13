@@ -22,6 +22,11 @@ const postsApiRequest = {
   getPostDetail: async (id: number) => {
     return await http.get<any>(`/posts/${id}`);
   },
+  getListPostFavorite: async (params: PostParamsType) => {
+    const langId = Number((await getDataFromStorage('langId')) || 1);
+    params = { ...params, langId };
+    return await http.get<any>(`/postFavorites?${encodeQueryData(params)}`);
+  },
 };
 
 export const useGetPostsList = (params: PostParamsType) => {
@@ -62,7 +67,32 @@ export const useGetPostDetail = (id: number) => {
       }
     },
     enabled: !!id,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
+    retry: 1,
+  });
+};
+export const useGetFavoritePosts = (params: PostParamsType) => {
+  return useInfiniteQuery({
+    queryKey: ['favoritePosts', params.size],
+    queryFn: async ({ pageParam = 1 }) => {
+      try {
+        return await postsApiRequest.getListPostFavorite({
+          page: pageParam,
+          size: params.size,
+          search: params.search,
+          categoryId: params.categoryId,
+          postId: params.postId,
+        });
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === params.size ? allPages.length + 1 : undefined;
+    },
+    staleTime: 0,
     retry: 1,
   });
 };

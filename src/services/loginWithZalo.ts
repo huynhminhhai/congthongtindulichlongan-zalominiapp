@@ -4,7 +4,7 @@ import { useStoreApp } from 'store/store';
 import { useSnackbar } from 'zmp-ui';
 
 import { HttpError } from './http';
-import { getAccessTokenAccount, getPhoneNumberAccount, getUser } from './zalo';
+import { getAccessTokenAccount, getPhoneNumberAccount, getUser, setDataToStorage } from './zalo';
 
 export const useLoginWithZalo = () => {
   const navigate = useNavigate();
@@ -21,15 +21,23 @@ export const useLoginWithZalo = () => {
       const phoneNumberCode = await getPhoneNumberAccount();
       if (phoneNumberCode && zaloInfo) {
         const accessTokenZalo = await getAccessTokenAccount();
-        await loginMutation({
+        const res = await loginMutation({
           access_token: accessTokenZalo,
           code: phoneNumberCode,
           providerKey: zaloInfo.id,
           userName: zaloInfo.name,
           avatar: zaloInfo.avatar,
         });
+        await setDataToStorage('token', res.token);
         const accountInfo = await getUserInfo();
         setAccount(accountInfo);
+        openSnackbar({
+          icon: true,
+          text: 'Đăng nhập thành công',
+          type: 'success',
+          action: { text: 'Đóng', close: true },
+          duration: 3000,
+        });
       }
     } catch (error: any) {
       openSnackbar({
@@ -37,7 +45,7 @@ export const useLoginWithZalo = () => {
         text: error.message,
         type: 'error',
         action: { text: 'Đóng', close: true },
-        duration: 5000,
+        duration: 3000,
       });
     }
     setIsLoadingFullScreen(false);

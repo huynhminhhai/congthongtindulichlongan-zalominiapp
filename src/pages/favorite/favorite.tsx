@@ -1,58 +1,65 @@
-import { Divider } from 'components/divider'
-import { FavoriteItem } from 'components/favorite'
-import { HeaderSub } from 'components/header-sub'
-import FilterBar from 'components/table/FilterBar'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Box, Input, Page, Select } from 'zmp-ui'
+import { Skeleton } from 'antd';
+import { useRemoveFavorite } from 'apiRequest/favorites';
+import { useGetFavoritePosts } from 'apiRequest/posts';
+import { Divider } from 'components/divider';
+import { FavoriteItem } from 'components/favorite';
+import { FavoriteItemType } from 'components/favorite/FavoriteItem';
+import { HeaderSub } from 'components/header-sub';
+import FilterBar from 'components/table/FilterBar';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Box, Input, Page, Select, useSnackbar } from 'zmp-ui';
 
-export const favorite = [
-  {
-    title: 'Nhà Trăm Cột',
-    img: 'https://ik.imagekit.io/tvlk/blog/2023/11/nha-tram-cot-cover.jpg',
-    category: 'Điểm đến nổi bật',
-    favoriteIcon: 'https://cdn-icons-png.flaticon.com/128/6460/6460112.png',
-    infoIcon: 'https://cdn-icons-png.flaticon.com/128/1620/1620735.png',
-  },
-  {
-    title: 'Tour 2 ngày 1 đêm- khách nội địa',
-    img: 'https://scontent.iocvnpt.com/resources/portal//Images/LAN/trietnm.lan/duc_hoa/lang_co_phuoc_loc_tho/cropper_637189358343630424.jpg',
-    category: 'Tour du lịch',
-    favoriteIcon: 'https://cdn-icons-png.flaticon.com/128/6460/6460112.png',
-    infoIcon: 'https://cdn-icons-png.flaticon.com/128/1620/1620735.png',
-  },
-  {
-    title: 'Cánh đồng bất tận',
-    img: 'https://scontent.iocvnpt.com/resources/portal//Images/LAN/toanlm.lan/hinh_diem/khudulichcanhdongbattan_263205966.jpg',
-    category: 'Điểm du lịch',
-    favoriteIcon: 'https://cdn-icons-png.flaticon.com/128/6460/6460112.png',
-    infoIcon: 'https://cdn-icons-png.flaticon.com/128/1620/1620735.png',
-  },
-  {
-    title: 'Lẩu mắm Long An',
-    img: 'https://cdn.buffetposeidon.com/app/media/uploaded-files/110724-lau-mam-mien-tay-cung-buffet-poseidon-1-1.jpg',
-    category: 'Đặc sản',
-    favoriteIcon: 'https://cdn-icons-png.flaticon.com/128/6460/6460112.png',
-    infoIcon: 'https://cdn-icons-png.flaticon.com/128/1620/1620735.png',
-  },
-]
-
+const FavoriteItemSkeleton = () => {
+  return (
+    <div className="flex gap-4">
+      <Skeleton.Image style={{ width: 100, height: 100 }} active />
+      <div className="flex-1">
+        <Skeleton active paragraph={{ rows: 2 }} title={{ width: '80%' }} />
+      </div>
+    </div>
+  );
+};
 const FavoritePage = () => {
-  const { Option } = Select
-  const { t } = useTranslation('common')
+  const { Option } = Select;
+  const { t } = useTranslation('common');
+  const { data, isLoading, refetch } = useGetFavoritePosts({
+    page: 1,
+    size: 10,
+  });
+  const favoritePosts = data?.pages[0]?.items || [];
+  const { openSnackbar } = useSnackbar();
 
+  const { mutateAsync: removeFavorite } = useRemoveFavorite();
+  const handleToggleFavorite = async id => {
+    if (!id) return;
+    try {
+      await removeFavorite(id);
+      await refetch();
+      openSnackbar({
+        icon: true,
+        text: 'Gỡ yêu thích thành công',
+        type: 'success',
+        action: { text: 'Đóng', close: true },
+        duration: 3000,
+      });
+    } catch (error: any) {
+      openSnackbar({
+        icon: true,
+        text: error.message,
+        type: 'error',
+        action: { text: 'Đóng', close: true },
+        duration: 3000,
+      });
+    }
+  };
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[62px]">
       <Box>
         <HeaderSub title={t('favorites')} />
         <Box>
           <Box>
-            <FilterBar
-              showAddButton={false}
-              searchComponent={
-                <Input.Search placeholder={t('searching')} value={''} />
-              }
-            >
+            <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t('searching')} value={''} />}>
               <div className="col-span-12">
                 <Select placeholder="Danh mục" closeOnSelect>
                   <Option title={'Tất cả'} value={0} />
@@ -62,20 +69,31 @@ const FavoritePage = () => {
             </FilterBar>
           </Box>
           <Box px={4}>
-            {favorite.map((item, index) => (
-              <Box mb={6} key={index}>
-                <FavoriteItem
-                  image={item.img}
-                  category={item.category}
-                  title={item.title}
-                />
-              </Box>
-            ))}
+            {isLoading
+              ? [...Array(4)].map((_, idx) => (
+                  <Box mb={6} key={idx}>
+                    <FavoriteItemSkeleton />
+                  </Box>
+                ))
+              : favoritePosts?.map((item, index) => {
+                  const fvr = item.post;
+                  return (
+                    <Box mb={6} key={index}>
+                      <FavoriteItem
+                        id={fvr.id}
+                        image={fvr.image}
+                        title={fvr.title}
+                        category={fvr.category}
+                        onCancel={() => handleToggleFavorite(fvr.id)}
+                      />
+                    </Box>
+                  );
+                })}
           </Box>
         </Box>
       </Box>
     </Page>
-  )
-}
+  );
+};
 
-export default FavoritePage
+export default FavoritePage;
