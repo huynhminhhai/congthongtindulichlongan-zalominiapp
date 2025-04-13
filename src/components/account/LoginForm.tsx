@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Icon } from '@iconify/react';
-import { useLoginAccount } from 'apiRequest/auth';
+import { useGetUserInfo, useLoginAccount } from 'apiRequest/auth';
 import { FormInputField } from 'components/form';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useLoginWithZalo } from 'services/loginWithZalo';
+import { useStoreApp } from 'store/store';
 import { Box, Button, useNavigate, useSnackbar } from 'zmp-ui';
 
 import { FormDataLogin, schemaLogin } from './type';
@@ -16,7 +17,10 @@ const defaultValues: FormDataLogin = {
 };
 
 const LoginForm: React.FC = () => {
-  const { mutateAsync } = useLoginAccount();
+  const { setAccount } = useStoreApp();
+  const { mutateAsync: loginAccount } = useLoginAccount();
+
+  const { mutateAsync: getUserInfo } = useGetUserInfo();
   const { loginWithZalo } = useLoginWithZalo();
 
   const [loading, setLoading] = useState(false);
@@ -44,7 +48,9 @@ const LoginForm: React.FC = () => {
     setLoading(true);
 
     try {
-      await mutateAsync({ username: data.username, password: data.password });
+      await loginAccount({ username: data.username, password: data.password });
+      const accountInfo = await getUserInfo();
+      setAccount(accountInfo);
     } catch (error) {
       console.error('Error:', error);
     } finally {

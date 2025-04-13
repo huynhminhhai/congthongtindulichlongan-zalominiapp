@@ -38,7 +38,6 @@ const authApiRequest = {
   },
   logout: () => {
     removeDataFromStorage('token');
-    removeDataFromStorage('account');
   },
   getUserInfo: async () => {
     return await http.get<any>(`/Account/UserInfo`);

@@ -8,5 +8,6 @@ export type CategoryType = {
   isMap: boolean;
   isComment: boolean;
   zaloLayout: string;
+  url: string;
   posts: PostType[];
 };

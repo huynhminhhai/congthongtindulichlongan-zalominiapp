@@ -1,4 +1,5 @@
 import envConfig from 'envConfig';
+import { useStoreApp } from 'store/store';
 
 import { getDataFromStorage, removeDataFromStorage } from './zalo';
 
@@ -17,7 +18,23 @@ export class HttpError extends Error {
     this.message = message;
   }
 }
+export const logout = () => {
+  removeDataFromStorage('token');
+  const { setAccount } = useStoreApp.getState();
+  setAccount(null);
+};
 
+export const errorHandler = (error: HttpError) => {
+  console.log('error', error);
+  switch (error.status) {
+    case 401:
+      logout();
+      break;
+
+    default:
+      throw error as HttpError;
+  }
+};
 const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, body?: any): Promise<T> => {
   try {
     let fullUrl = `${envConfig.API_ENDPOINT}${url}`;
@@ -43,8 +60,7 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
 
     throw new HttpError(response);
   } catch (error) {
-    console.error('Request error:', error);
-    throw error;
+    throw errorHandler(error as HttpError);
   }
 };
 

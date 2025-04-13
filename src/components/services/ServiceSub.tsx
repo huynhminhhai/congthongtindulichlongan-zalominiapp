@@ -3,6 +3,7 @@ import images from 'assets/images';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Box, Sheet } from 'zmp-ui';
 
 import ServiceItem from './ServiceItem';
@@ -14,12 +15,15 @@ type ServiceSubProps = {
 };
 
 const ServiceSub: React.FC<ServiceSubProps> = ({ sheetVisible, setSheetVisible, otherServiceItem }) => {
+  const navigate = useNavigate();
   return createPortal(
     <Sheet visible={sheetVisible} onClose={() => setSheetVisible(false)} autoHeight zIndex={1000} swipeToClose>
       <Box p={4} className="custom-bottom-sheet" flex flexDirection="column">
         <div className="grid grid-cols-4 gap-x-3 gap-y-4">
           {otherServiceItem &&
-            otherServiceItem.map((item: MenuItemType, index: React.Key) => <ServiceItem key={index} data={item} />)}
+            otherServiceItem.map((item: MenuItemType, index: React.Key) => (
+              <ServiceItem key={index} data={item} onClick={() => navigate(item.url)} />
+            ))}
         </div>
       </Box>
     </Sheet>,

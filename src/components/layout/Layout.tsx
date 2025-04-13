@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useGetUserInfo } from 'apiRequest/auth';
 import { useGetLanguages } from 'apiRequest/languages';
 import { LoadingFullScreen } from 'components/loading';
 import { NavigationBottom } from 'components/navigation-bottom';
@@ -40,6 +41,22 @@ const Layout = () => {
   const { isLoadingFullScreen, setLanguages, setCurrentLanguage } = useStoreApp();
 
   const { data: languageData } = useGetLanguages();
+  const { setAccount } = useStoreApp();
+  const { mutateAsync: getUserInfo } = useGetUserInfo();
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const res = await getUserInfo();
+        if (res) {
+          setAccount(res);
+        }
+      } catch (error) {
+        console.error('Lỗi lấy thông tin tài khoản:', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
   useEffect(() => {
     if (languageData) {
       const initLanguage = async () => {

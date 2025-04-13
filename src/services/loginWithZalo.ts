@@ -9,7 +9,7 @@ import { getAccessTokenAccount, getPhoneNumberAccount, getUser } from './zalo';
 export const useLoginWithZalo = () => {
   const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
-  const { setIsLoadingFullScreen, token, setToken, setAccount } = useStoreApp();
+  const { setIsLoadingFullScreen, setAccount } = useStoreApp();
   const { mutateAsync: loginMutation } = useLoginZalo();
   const { mutateAsync: getUserInfo } = useGetUserInfo();
 
@@ -21,14 +21,13 @@ export const useLoginWithZalo = () => {
       const phoneNumberCode = await getPhoneNumberAccount();
       if (phoneNumberCode && zaloInfo) {
         const accessTokenZalo = await getAccessTokenAccount();
-        const res = await loginMutation({
+        await loginMutation({
           access_token: accessTokenZalo,
           code: phoneNumberCode,
           providerKey: zaloInfo.id,
           userName: zaloInfo.name,
           avatar: zaloInfo.avatar,
         });
-        setToken(res.token);
         const accountInfo = await getUserInfo();
         setAccount(accountInfo);
       }

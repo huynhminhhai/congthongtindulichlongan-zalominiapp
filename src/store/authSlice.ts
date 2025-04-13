@@ -6,8 +6,7 @@ import { useStoreApp } from './store';
 export interface AuthSliceType {
   account: UserInfoType | null;
   token: string | null;
-  setToken: (token: string) => void;
-  setAccount: (account: UserInfoType) => void;
+  setAccount: (account: UserInfoType | null) => void;
   setAuth: (authData: { account: UserInfoType | null; token: string | null }) => void;
   clearAuth: () => void;
 }
@@ -15,18 +14,6 @@ export interface AuthSliceType {
 export const createAuthSlice = (set: any): AuthSliceType => ({
   account: null,
   token: null,
-  setToken: token => {
-    set((state: AuthSliceType) => ({
-      ...state,
-      token,
-    }));
-
-    if (token) {
-      setDataToStorage('token', token);
-    } else {
-      removeDataFromStorage('token');
-    }
-  },
   setAccount: account => {
     set((state: AuthSliceType) => ({
       ...state,

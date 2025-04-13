@@ -29,7 +29,7 @@ const HomePage: React.FunctionComponent = () => {
               <React.Fragment key={index}>
                 <Box py={4} pl={4}>
                   <Box pr={4}>
-                    <TitleSection title={cate.name} handleClick={() => navigate(`/chuyen-muc/${cate.id}`)} />
+                    <TitleSection title={cate.name} handleClick={() => navigate(cate.url)} />
                   </Box>
                   <Swiper spaceBetween={SLIDE_SPACE_BETWEEN_HOMEPAGE} slidesPerView={SLIDE_PER_VIEW_HOMEPAGE} loop>
                     {cate.posts.map(post => {
