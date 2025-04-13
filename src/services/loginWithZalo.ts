@@ -1,45 +1,47 @@
-import { useLoginZalo } from 'apiRequest/auth';
+import { useGetUserInfo, useLoginZalo } from 'apiRequest/auth';
 import { useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { useSnackbar } from 'zmp-ui';
 
+import { HttpError } from './http';
 import { getAccessTokenAccount, getPhoneNumberAccount, getUser } from './zalo';
 
 export const useLoginWithZalo = () => {
   const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
-  const { setIsLoadingFullScreen, token } = useStoreApp();
-  const { mutateAsync } = useLoginZalo();
+  const { setIsLoadingFullScreen, token, setToken, setAccount } = useStoreApp();
+  const { mutateAsync: loginMutation } = useLoginZalo();
+  const { mutateAsync: getUserInfo } = useGetUserInfo();
 
   const loginWithZalo = async (redirectUrl?: string) => {
-    // if (token) {
-    //   console.log('Đã đăng nhập');
-    //   navigate(redirectUrl || '/account');
-    //   return;
-    // }
-    const userInfo = await getUser();
-    const phoneNumberCode = await getPhoneNumberAccount();
-    // console.log('userInfo', userInfo);
-    // console.log('phoneNumberCode', phoneNumberCode);
-    // setIsLoadingFullScreen(true);
+    setIsLoadingFullScreen(true);
 
     try {
-      if (phoneNumberCode) {
-        const accessToken = await getAccessTokenAccount();
-        // console.log('accessToken', accessToken);
-        await mutateAsync({
-          access_token: accessToken,
+      const zaloInfo = await getUser();
+      const phoneNumberCode = await getPhoneNumberAccount();
+      if (phoneNumberCode && zaloInfo) {
+        const accessTokenZalo = await getAccessTokenAccount();
+        const res = await loginMutation({
+          access_token: accessTokenZalo,
           code: phoneNumberCode,
-          providerKey: userInfo.id,
-          userName: userInfo.name,
-          avatar: userInfo.avatar,
+          providerKey: zaloInfo.id,
+          userName: zaloInfo.name,
+          avatar: zaloInfo.avatar,
         });
+        setToken(res.token);
+        const accountInfo = await getUserInfo();
+        setAccount(accountInfo);
       }
-    } catch (error) {
-      console.log('hello');
-      // console.error('Error:', error);
+    } catch (error: any) {
+      openSnackbar({
+        icon: true,
+        text: error.message,
+        type: 'error',
+        action: { text: 'Đóng', close: true },
+        duration: 5000,
+      });
     }
-
+    setIsLoadingFullScreen(false);
     //     // navigate(redirectUrl || '/account');
     //   }
     // } catch (error) {

@@ -1,25 +1,44 @@
+import { UserInfoType } from 'apiRequest/auth/type';
 import { removeDataFromStorage, setDataToStorage } from 'services/zalo';
 
 import { useStoreApp } from './store';
 
-export interface Account {
-  id: string;
-  fullname: string;
-  avatar: string;
-  role: string;
-  phoneNumber: string;
-}
-
 export interface AuthSliceType {
-  account: Account | null;
+  account: UserInfoType | null;
   token: string | null;
-  setAuth: (authData: { account: Account | null; token: string | null }) => void;
+  setToken: (token: string) => void;
+  setAccount: (account: UserInfoType) => void;
+  setAuth: (authData: { account: UserInfoType | null; token: string | null }) => void;
   clearAuth: () => void;
 }
 
 export const createAuthSlice = (set: any): AuthSliceType => ({
   account: null,
   token: null,
+  setToken: token => {
+    set((state: AuthSliceType) => ({
+      ...state,
+      token,
+    }));
+
+    if (token) {
+      setDataToStorage('token', token);
+    } else {
+      removeDataFromStorage('token');
+    }
+  },
+  setAccount: account => {
+    set((state: AuthSliceType) => ({
+      ...state,
+      account,
+    }));
+
+    if (account) {
+      setDataToStorage('account', JSON.stringify(account));
+    } else {
+      removeDataFromStorage('account');
+    }
+  },
   setAuth: ({ account, token }) => {
     set((state: AuthSliceType) => ({
       ...state,
@@ -47,7 +66,3 @@ export const createAuthSlice = (set: any): AuthSliceType => ({
     removeDataFromStorage('token');
   },
 });
-
-export const useRole = () => {
-  return useStoreApp(state => state.account?.role || 'guest');
-};

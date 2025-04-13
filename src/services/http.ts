@@ -2,6 +2,22 @@ import envConfig from 'envConfig';
 
 import { getDataFromStorage, removeDataFromStorage } from './zalo';
 
+export class HttpError extends Error {
+  status: number;
+
+  response: Response;
+
+  message: string;
+
+  constructor(response, message = '') {
+    super(message || response.statusText || String(response.status));
+    this.name = 'HttpError';
+    this.status = response.status;
+    this.response = response;
+    this.message = message;
+  }
+}
+
 const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, body?: any): Promise<T> => {
   try {
     let fullUrl = `${envConfig.API_ENDPOINT}${url}`;
@@ -21,25 +37,11 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
     };
 
     const response = await fetch(fullUrl, options);
-
-    if (!response.ok) {
-      throw new Error('Token hết hạn');
-
-      // if (response.status === 401) {
-      //   await removeDataFromStorage('token');
-      //   // window.location.href = '/account';
-      //   throw new Error('Token hết hạn');
-      // }
-      // const errorData = await response.json().catch(() => ({ message: 'Lỗi không xác định (request)' }));
-      // window.location.href = '/';
-      // throw new Error(errorData.message || 'Lỗi không xác định (request)');
+    if (response.ok) {
+      return response.json();
     }
 
-    const data: T = await response.json().catch(() => {
-      throw new Error('Response không hợp lệ');
-    });
-
-    return data;
+    throw new HttpError(response);
   } catch (error) {
     console.error('Request error:', error);
     throw error;

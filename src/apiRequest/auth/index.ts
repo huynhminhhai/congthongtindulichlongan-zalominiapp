@@ -1,9 +1,11 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import http from 'services/http';
 import { removeDataFromStorage, setDataToStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { useNavigate, useSnackbar } from 'zmp-ui';
+
+import { AuthResponseType } from './type';
 
 type LoginZaloParamsType = {
   access_token: string;
@@ -25,67 +27,36 @@ const authApiRequest = {
       userName: params.userName,
       avatar: params.avatar,
     });
-    console.log(response);
-    // if (response.token) {
-    //     localStorage.setItem('token', response.token);
-    // }
-
-    // return response;
+    return response;
   },
   loginAccount: async (params: LoginAccountParamsType) => {
     const response = await http.post<{ token: string }>('/Account/Login', {
       username: params.username,
       password: params.password,
     });
-    console.log(response);
-    // if (response.token) {
-    //     localStorage.setItem('token', response.token);
-    // }
-
-    // return response;
+    return response;
   },
   logout: () => {
     removeDataFromStorage('token');
     removeDataFromStorage('account');
+  },
+  getUserInfo: async () => {
+    return await http.get<any>(`/Account/UserInfo`);
   },
 };
 
 export const useLoginZalo = () => {
   const queryClient = useQueryClient();
 
-  const { openSnackbar } = useSnackbar();
-  const { setAuth } = useStoreApp();
-  const { t: tSnackbar } = useTranslation('snackbar');
-
   return useMutation({
     mutationFn: async (params: LoginZaloParamsType) => {
-      return authApiRequest.loginZalo(params);
+      return await authApiRequest.loginZalo(params);
     },
-    onSuccess: (data: any) => {
-      openSnackbar({
-        icon: true,
-        text: tSnackbar('login-success'),
-        type: 'success',
-        action: { text: tSnackbar('close'), close: true },
-        duration: 3000,
-      });
+    onSuccess: (data: AuthResponseType) => {
       queryClient.invalidateQueries({ queryKey: ['account'] });
-
-      setAuth({
-        account: data.account || null,
-        token: data.token || null,
-      });
     },
     onError: (error: string) => {
-      console.error('Lỗi:', error);
       throw new Error(error);
-      // openSnackbar({
-      //   icon: true,
-      //   text: error,
-      //   type: 'error',
-      //   action: { text: tSnackbar('close'), close: true },
-      //   duration: 3000,
-      // });
     },
   });
 };
@@ -118,13 +89,6 @@ export const useLoginAccount = () => {
     onError: (error: string) => {
       console.error('Lỗi:', error);
       throw new Error(error);
-      // openSnackbar({
-      //   icon: true,
-      //   text: error,
-      //   type: 'error',
-      //   action: { text: tSnackbar('close'), close: true },
-      //   duration: 3000,
-      // });
     },
   });
 };
@@ -148,4 +112,11 @@ export const useLogout = () => {
   };
 
   return logout;
+};
+export const useGetUserInfo = () => {
+  return useMutation({
+    mutationFn: async () => {
+      return await authApiRequest.getUserInfo();
+    },
+  });
 };

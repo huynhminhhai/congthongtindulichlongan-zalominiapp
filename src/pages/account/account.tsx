@@ -31,12 +31,8 @@ const AccountPage: React.FC = () => {
             <>
               <Box m={4}>
                 <Flex justify="center" align="center" vertical className="mb-[20px]">
-                  <Avatar
-                    className={styles.userAvatar}
-                    size={120}
-                    src="https://kenh14cdn.com/203336854389633024/2024/1/9/photo1704700714420-17047007145851168330132-1704766434727733399404.png"
-                  />
-                  <p className={styles.userName}>Võ Anh Hào</p>
+                  <Avatar className={styles.userAvatar} size={120} src={account.avatar} />
+                  <p className={styles.userName}>{account.fullName}</p>
                 </Flex>
 
                 <List className="bg-white rounded-lg">
