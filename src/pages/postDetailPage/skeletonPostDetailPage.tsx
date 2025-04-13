@@ -8,7 +8,7 @@ const SkeletonPostDetailPage = () => {
     <Box>
       {/* Image skeleton */}
       <Box mb={2}>
-        <Skeleton.Image className="!w-full" style={{ width: '100%', height: 280 }} active />
+        <Skeleton.Image className="!h-[250px] object-cover !w-full" active />
       </Box>
 
       <Box p={4}>
@@ -20,12 +20,12 @@ const SkeletonPostDetailPage = () => {
 
         {/* Description */}
         <Box mb={9}>
-          <Skeleton active paragraph={{ rows: 4 }} />
+          <Skeleton active paragraph={{ rows: 8 }} />
         </Box>
 
         {/* Map */}
         <Box p={0} mb={4}>
-          <Skeleton.Image style={{ width: '100%', height: 200 }} active />
+          <Skeleton.Input className="!h-[250px] object-cover !w-full" active />
         </Box>
 
         {/* Rating */}

@@ -35,12 +35,8 @@ const HomePage: React.FunctionComponent = () => {
                     {cate.posts.map(post => {
                       const PostComponent = layoutComponentMap[cate.zaloLayout] || layoutComponentMap['HomeNews'];
                       return (
-                        <SwiperSlide key={index}>
-                          <PostComponent
-                            key={post.id}
-                            data={post}
-                            onClick={() => navigate(`${ROUTES.postDetail}/${post.id}`)}
-                          />
+                        <SwiperSlide key={post.id}>
+                          <PostComponent data={post} onClick={() => navigate(`${ROUTES.postDetail}/${post.id}`)} />
                         </SwiperSlide>
                       );
                     })}

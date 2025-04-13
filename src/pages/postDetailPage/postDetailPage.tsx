@@ -47,7 +47,7 @@ const PostDetailPage = () => {
           <>
             <Box>
               <Box mb={2}>
-                <img src={formatImageSrc(postDetailData.image)} alt="" />
+                <img src={formatImageSrc(postDetailData?.image)} alt="" className="h-[250px] object-cover w-full" />
               </Box>
               <Box p={4}>
                 <Box mb={3} flex alignItems="flex-end" justifyContent="space-between" className="gap-2">
@@ -113,7 +113,7 @@ const PostDetailPage = () => {
               )}
             </Box>
             <Box px={4} pb={4}>
-              <TitleSection title={t.RelatedPost} mB={2} handleClick={() => navigate('/bai-viet')} />
+              <TitleSection title={t.RelatedPost} mB={2} />
               <Box pt={4}>
                 <div className="grid grid-cols-1 gap-3">
                   {postDetailData?.relatedPosts &&
