@@ -61,25 +61,14 @@ export const useLoginZalo = () => {
 export const useLoginAccount = () => {
   const queryClient = useQueryClient();
 
-  const { showSuccess } = useCustomSnackbar();
-  const { setAuth, currentLanguage } = useStoreApp();
-  const t = currentLanguage.value;
-
   return useMutation({
     mutationFn: async (params: LoginAccountParamsType) => {
       return authApiRequest.loginAccount(params);
     },
-    onSuccess: (data: any) => {
-      showSuccess(t['LoginSuccess']);
+    onSuccess: (data: AuthResponseType) => {
       queryClient.invalidateQueries({ queryKey: ['account'] });
-
-      setAuth({
-        account: data.account || null,
-        token: data.token || null,
-      });
     },
     onError: (error: string) => {
-      console.error('Lỗi:', error);
       throw new Error(error);
     },
   });

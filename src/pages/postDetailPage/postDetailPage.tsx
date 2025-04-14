@@ -23,7 +23,7 @@ const PostDetailPage = () => {
   const { data: postDetailData } = useGetPostDetail(Number(id));
 
   const [isFavorite, setIsFavorite] = useState(false);
-  const { currentLanguage } = useStoreApp();
+  const { currentLanguage, token, setIsLoginModalOpen } = useStoreApp();
   const t = currentLanguage.value;
   const { isRating, isMap, isComment } = useMemo(() => {
     if (postDetailData) {
@@ -41,6 +41,10 @@ const PostDetailPage = () => {
   }, [postDetailData]);
   const handleToggleFavorite = async () => {
     if (!postDetailData) return;
+    if (!token) {
+      setIsLoginModalOpen(true);
+      return;
+    }
     try {
       if (isFavorite) {
         await removeFavorite(postDetailData.id);
@@ -120,7 +124,7 @@ const PostDetailPage = () => {
             </Box>
 
             <Box px={4} mb={4}>
-              {isRating && <Rating postId={Number(id)} />}
+              {isRating && <Rating postId={Number(id)} vote={postDetailData?.vote} />}
             </Box>
             <Box px={4} pb={4}>
               <TitleSection title={t['RelatedPost']} mB={2} />

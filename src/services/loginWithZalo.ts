@@ -9,7 +9,7 @@ import { getAccessTokenAccount, getPhoneNumberAccount, getUser, setDataToStorage
 export const useLoginWithZalo = () => {
   const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
-  const { setIsLoadingFullScreen, setAccount } = useStoreApp();
+  const { setIsLoadingFullScreen, setAccount, setToken } = useStoreApp();
   const { mutateAsync: loginMutation } = useLoginZalo();
   const { mutateAsync: getUserInfo } = useGetUserInfo();
 
@@ -30,6 +30,7 @@ export const useLoginWithZalo = () => {
         });
         await setDataToStorage('token', res.token);
         const accountInfo = await getUserInfo();
+        setToken(res.token);
         setAccount(accountInfo);
         openSnackbar({
           icon: true,

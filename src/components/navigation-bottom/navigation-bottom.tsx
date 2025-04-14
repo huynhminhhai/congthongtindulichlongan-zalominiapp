@@ -15,23 +15,23 @@ const Navigation: FC = () => {
   const tabs: Record<string, MenuItem> = {
     '/': {
       label: Home,
-      icon: <Icon icon="mynaui:home" />,
-      activeIcon: <Icon icon="mynaui:home" />,
+      icon: <Icon icon="material-symbols:home-rounded" />,
+      activeIcon: <Icon icon="material-symbols:home-rounded" />,
     },
     '/maps': {
       label: Map,
-      icon: <Icon icon="solar:map-linear" />,
-      activeIcon: <Icon icon="solar:map-linear" />,
+      icon: <Icon icon="material-symbols:map" />,
+      activeIcon: <Icon icon="material-symbols:map" />,
     },
     '/favorite': {
       label: ZaloFavorites,
-      icon: <Icon icon="material-symbols:favorite-outline" />,
-      activeIcon: <Icon icon="material-symbols:favorite-outline" />,
+      icon: <Icon icon="material-symbols:favorite-rounded" />,
+      activeIcon: <Icon icon="material-symbols:favorite-rounded" />,
     },
     '/account': {
       label: Account,
-      icon: <Icon icon="mdi:account-outline" />,
-      activeIcon: <Icon icon="mdi:account-outline" />,
+      icon: <Icon icon="heroicons:user-16-solid" />,
+      activeIcon: <Icon icon="heroicons:user-16-solid" />,
     },
   };
 

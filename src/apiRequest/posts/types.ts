@@ -44,5 +44,6 @@ export type PostType = {
   isFavorite: boolean;
   address: string;
   maps: MapType[];
+  vote: number;
   postTypeNames: string;
 };

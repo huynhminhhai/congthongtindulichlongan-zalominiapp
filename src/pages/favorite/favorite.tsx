@@ -6,8 +6,9 @@ import { FavoriteItem } from 'components/favorite';
 import { FavoriteItemType } from 'components/favorite/FavoriteItem';
 import { HeaderSub } from 'components/header-sub';
 import FilterBar from 'components/table/FilterBar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getDataFromStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Input, Page, Select, useSnackbar } from 'zmp-ui';
@@ -24,12 +25,17 @@ const FavoriteItemSkeleton = () => {
 };
 const FavoritePage = () => {
   const { Option } = Select;
-  const { currentLanguage } = useStoreApp();
+  const { currentLanguage, setIsLoginModalOpen, token } = useStoreApp();
   const t = currentLanguage.value;
-  const { data, isLoading, refetch } = useGetFavoritePosts({
-    page: 1,
-    size: 10,
-  });
+  const { data, isLoading, refetch } = useGetFavoritePosts(
+    {
+      page: 1,
+      size: 10,
+    },
+    {
+      enabled: !!token,
+    }
+  );
   const favoritePosts = data?.pages[0]?.items || [];
   const { showError, showSuccess } = useCustomSnackbar();
 
@@ -44,6 +50,11 @@ const FavoritePage = () => {
       showError(t['RemoveFavoriteSuccess']);
     }
   };
+  useEffect(() => {
+    if (!token) {
+      setIsLoginModalOpen(true);
+    }
+  }, [token]);
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[62px]">
       <Box>

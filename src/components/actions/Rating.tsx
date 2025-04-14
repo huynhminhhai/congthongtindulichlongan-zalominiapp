@@ -1,23 +1,28 @@
 import { Icon } from '@iconify/react';
 import { useAddRating, useGetRating } from 'apiRequest/ratings';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box } from 'zmp-ui';
 
 interface RatingProps {
   postId: number;
+  vote: number;
 }
-const Rating: React.FC<RatingProps> = ({ postId }) => {
+const Rating: React.FC<RatingProps> = ({ postId, vote }) => {
   const { data: ratingData, refetch } = useGetRating(postId);
   const { mutateAsync: onRating } = useAddRating();
   const { showError, showSuccess } = useCustomSnackbar();
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [selectedRating, setSelectedRating] = useState<number | null>(0);
 
-  const { currentLanguage } = useStoreApp();
+  const { currentLanguage, token, setIsLoginModalOpen } = useStoreApp();
   const t = currentLanguage.value;
 
   const handleRating = async (rating: number) => {
+    if (!token) {
+      setIsLoginModalOpen(true);
+      return;
+    }
     try {
       await onRating?.({
         postId: postId,
@@ -30,7 +35,10 @@ const Rating: React.FC<RatingProps> = ({ postId }) => {
       showError(t['AddRatingFailure']);
     }
   };
-
+  useEffect(() => {
+    console.log(vote);
+    setSelectedRating(vote);
+  }, [vote]);
   return (
     <Box pb={4} pt={6}>
       {ratingData && (

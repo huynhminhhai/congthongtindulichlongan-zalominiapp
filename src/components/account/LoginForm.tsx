@@ -5,7 +5,9 @@ import { FormInputField } from 'components/form';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLoginWithZalo } from 'services/loginWithZalo';
+import { setDataToStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
+import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Button, useNavigate, useSnackbar } from 'zmp-ui';
 
 import { FormDataLogin, schemaLogin } from './type';
@@ -16,8 +18,10 @@ const defaultValues: FormDataLogin = {
 };
 
 const LoginForm: React.FC = () => {
-  const { setAccount, currentLanguage } = useStoreApp();
+  const navigate = useNavigate();
+  const { setAccount, setToken, currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
+  const { showError, showSuccess } = useCustomSnackbar();
   const { mutateAsync: loginAccount } = useLoginAccount();
 
   const { mutateAsync: getUserInfo } = useGetUserInfo();
@@ -46,11 +50,15 @@ const LoginForm: React.FC = () => {
     setLoading(true);
 
     try {
-      await loginAccount({ username: data.username, password: data.password });
+      const res = await loginAccount({ username: data.username, password: data.password });
+      await setDataToStorage('token', res.token);
       const accountInfo = await getUserInfo();
+      setToken(res.token);
       setAccount(accountInfo);
-    } catch (error) {
-      console.error('Error:', error);
+      showSuccess(t['YouLoginSuccess']);
+      navigate('/account');
+    } catch (error: any) {
+      showError(error.message);
     } finally {
       reset(defaultValues);
       setLoading(false);

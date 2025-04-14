@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useGetUserInfo } from 'apiRequest/auth';
 import { useGetLanguages } from 'apiRequest/languages';
 import { LoadingFullScreen } from 'components/loading';
+import LoginModal from 'components/LoginModal/LoginModal';
 import { NavigationBottom } from 'components/navigation-bottom';
 import ScrollToTop from 'components/scroll-top';
 import ForbiddenPage from 'pages/403';
@@ -41,13 +42,14 @@ const Layout = () => {
   const { isLoadingFullScreen, setLanguages, setCurrentLanguage } = useStoreApp();
 
   const { data: languageData } = useGetLanguages();
-  const { setAccount } = useStoreApp();
+  const { setAccount, setToken } = useStoreApp();
   const { mutateAsync: getUserInfo } = useGetUserInfo();
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
         const token = await getDataFromStorage('token');
         if (token) {
+          setToken(token);
           const res = await getUserInfo();
           if (res) {
             setAccount(res);
@@ -175,6 +177,7 @@ const Layout = () => {
         <Route path="/languages" element={<LanguagePage></LanguagePage>}></Route>
         <Route path="/search" element={<SearchPage></SearchPage>}></Route>
       </Routes>
+      <LoginModal />
       <NavigationBottom />
     </>
   );

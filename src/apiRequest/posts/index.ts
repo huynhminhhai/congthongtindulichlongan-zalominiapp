@@ -65,7 +65,7 @@ export const useGetPostDetail = (id: number) => {
     retry: 1,
   });
 };
-export const useGetFavoritePosts = (params: PostParamsType) => {
+export const useGetFavoritePosts = (params: PostParamsType, options?: { enabled?: boolean }) => {
   return useInfiniteQuery({
     queryKey: ['favoritePosts', params.size],
     queryFn: async ({ pageParam = 1 }) => {
@@ -88,5 +88,6 @@ export const useGetFavoritePosts = (params: PostParamsType) => {
     },
     staleTime: 0,
     retry: 1,
+    enabled: options?.enabled ?? true,
   });
 };

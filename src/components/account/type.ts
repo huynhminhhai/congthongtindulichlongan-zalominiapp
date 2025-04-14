@@ -21,7 +21,7 @@ export const schemaProfile = () => {
     email: yup.string().email(t['InvalidEmail']).required(t['FieldRequired']),
     fullName: yup.string().required(t['FieldRequired']),
     phoneNumber: yup.string().required(t['FieldRequired']),
-    avatar: yup.string().required(t['FieldRequired']),
+    avatar: yup.string(),
     gender: yup.number().required(t['PleaseEnterGender']),
     birthOfDate: yup.string().notRequired(),
   });
@@ -32,7 +32,7 @@ export type FormDataProfile = {
   email: string;
   fullName: string;
   phoneNumber: string;
-  avatar: string;
+  avatar?: string;
   gender: number;
   birthOfDate?: string | null;
 };

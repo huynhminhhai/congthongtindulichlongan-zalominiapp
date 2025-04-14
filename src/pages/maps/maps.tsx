@@ -3,16 +3,14 @@ import React, { useEffect, useRef } from 'react';
 
 import 'leaflet/dist/leaflet.css';
 
-import { Box, Page, Tabs } from 'zmp-ui';
+import { Box, Page } from 'zmp-ui';
 
 import 'leaflet-search/dist/leaflet-search.min.css';
 
 import images from 'assets/images';
 import { HeaderSub } from 'components/header-sub';
-import { useTranslation } from 'react-i18next';
 import { openUrlInWebview } from 'services/zalo';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { LOCATION_DATA_FAKE } from 'utils/data';
 
 import CategoryItem from './CategoryItem';
 import styles from './Maps.module.scss';
@@ -218,7 +216,7 @@ const ResidentMapPage = () => {
     });
   };
   useEffect(() => {
-    if (categories) {
+    if (categories && categories.length > 0) {
       setActiveTab(categories[0].id);
     }
   }, [categories]);
