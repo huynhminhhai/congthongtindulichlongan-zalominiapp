@@ -1,7 +1,6 @@
 import { ItemDetailCard } from 'components/detail';
 import { HeaderSub } from 'components/header-sub';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { Box, Input, Page, Select } from 'zmp-ui';
 

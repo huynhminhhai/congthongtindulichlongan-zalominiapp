@@ -5,8 +5,8 @@ import 'leaflet/dist/leaflet.css';
 
 import { MapType } from 'apiRequest/map/type';
 import LocationPointer from 'assets/images/location-pointer.png';
-import { useTranslation } from 'react-i18next';
 import { openUrlInWebview } from 'services/zalo';
+import { useStoreApp } from 'store/store';
 import { formatImageSrc } from 'utils';
 
 interface Props {
@@ -16,8 +16,8 @@ interface Props {
 const SingleLocationMap: React.FC<Props> = ({ location }) => {
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
-  const { t } = useTranslation('common');
-
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   useEffect(() => {
     if (!mapRef.current) {
       mapRef.current = L.map('map').setView([location.lat, location.lng], 15);
@@ -48,8 +48,8 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
           <div style="padding-block: 6px;">
             <div style="color: #355933; font-size: 13px; font-weight: 700; margin-bottom: 2px;">${location.name}</div>
             <div style="font-size: 11px;">
-              <div style="margin-bottom: 4px;"><strong>${t('address')}:</strong> ${location.address}</div>
-              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
+              <div style="margin-bottom: 4px;"><strong>${t['Address']}:</strong> ${location.address}</div>
+              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t['Directions']}</button>
             </div>
           </div>
         </div>

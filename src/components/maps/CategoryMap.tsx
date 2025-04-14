@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-search/dist/leaflet-search.min.css';
 
-import { useTranslation } from 'react-i18next';
 import { openUrlInWebview } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { formatImageSrc } from 'utils';

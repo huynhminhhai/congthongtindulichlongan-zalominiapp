@@ -7,7 +7,6 @@ import { FavoriteItemType } from 'components/favorite/FavoriteItem';
 import { HeaderSub } from 'components/header-sub';
 import FilterBar from 'components/table/FilterBar';
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { getDataFromStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';

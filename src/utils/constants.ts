@@ -23,3 +23,12 @@ export const layoutComponentMap: Record<string, React.FC<PostComponentPropsType>
   HuongDanVienDuLichHome: GuideItem,
   TourDuLichHome: TourItem,
 };
+export const gridLayoutComponentMap: Record<string, number> = {
+  HomeNews: 1,
+  SuKienHome: 1,
+  DiaDiemHome: 1,
+  NhaHangKhachSanHome: 1,
+  DacSanDiaPhuongHome: 1,
+  HuongDanVienDuLichHome: 2,
+  TourDuLichHome: 1,
+};

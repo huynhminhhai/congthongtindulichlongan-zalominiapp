@@ -2,7 +2,6 @@ import { MenuItemType } from 'apiRequest/menu/types';
 import images from 'assets/images';
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Box, Sheet } from 'zmp-ui';
 

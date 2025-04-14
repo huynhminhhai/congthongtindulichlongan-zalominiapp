@@ -4,9 +4,7 @@ import { useLogout } from 'apiRequest/auth';
 import images from 'assets/images';
 import { HeaderSub } from 'components/header-sub';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useLoginWithZalo } from 'services/loginWithZalo';
-import { getDataFromStorage, openPermissionSettingApp } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { Avatar, Box, List, Page, useNavigate } from 'zmp-ui';
 
