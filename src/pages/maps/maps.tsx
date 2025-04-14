@@ -225,7 +225,7 @@ const ResidentMapPage = () => {
   return (
     <Page className="relative flex-1 flex flex-col bg-white ">
       <Box>
-        <HeaderSub title="Bản đồ" />
+        <HeaderSub title={t['Map']} />
         <div className="map-wrap">
           <div className="sidebar">
             <div className={styles.categoryList}>

@@ -6,6 +6,7 @@ import 'leaflet-search/dist/leaflet-search.min.css';
 
 import { useTranslation } from 'react-i18next';
 import { openUrlInWebview } from 'services/zalo';
+import { useStoreApp } from 'store/store';
 import { formatImageSrc } from 'utils';
 
 interface Location {
@@ -17,9 +18,10 @@ interface Location {
 }
 
 const CategoryMap: React.FC<any> = ({ locations, iconMarker }) => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.LayerGroup>(L.layerGroup());
-  const { t } = useTranslation('common');
 
   const icon = L.icon({
     iconUrl: iconMarker || 'https://cdn-icons-png.flaticon.com/128/948/948036.png',
@@ -66,8 +68,8 @@ const CategoryMap: React.FC<any> = ({ locations, iconMarker }) => {
             <img style="width: 100%; height: 100px" src="${formatImageSrc(item.image)}" alt="${item.name}" />
             <div style="padding-block: 6px;">
               <div style="color: #355933; font-size: 15px; font-weight: 600;">${item.name}</div>
-              <div style="font-size: 11px;"><strong>${t('address')}:</strong> ${item.address}</div>
-              <button style="margin-top:6px; background:#355933; color:white; padding:6px; border-radius:4px;" class="google-maps-link">${t('directions')}</button>
+              <div style="font-size: 11px;"><strong>${t['Address']}:</strong> ${item.address}</div>
+              <button style="margin-top:6px; background:#355933; color:white; padding:6px; border-radius:4px;" class="google-maps-link">${t['Directions']}</button>
             </div>
           </div>
         `);

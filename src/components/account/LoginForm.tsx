@@ -4,7 +4,6 @@ import { useGetUserInfo, useLoginAccount } from 'apiRequest/auth';
 import { FormInputField } from 'components/form';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { useLoginWithZalo } from 'services/loginWithZalo';
 import { useStoreApp } from 'store/store';
 import { Box, Button, useNavigate, useSnackbar } from 'zmp-ui';
@@ -17,7 +16,8 @@ const defaultValues: FormDataLogin = {
 };
 
 const LoginForm: React.FC = () => {
-  const { setAccount } = useStoreApp();
+  const { setAccount, currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const { mutateAsync: loginAccount } = useLoginAccount();
 
   const { mutateAsync: getUserInfo } = useGetUserInfo();
@@ -25,8 +25,6 @@ const LoginForm: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [isHide, setIsHide] = useState<boolean>(true);
-  const { t: tAccount } = useTranslation('account');
-  const { t: tCommon } = useTranslation('common');
 
   const {
     handleSubmit,
@@ -89,7 +87,7 @@ const LoginForm: React.FC = () => {
               name="password"
               type={isHide ? 'password' : 'text'}
               label=""
-              placeholder={tCommon('password')}
+              placeholder={t['Password']}
               control={control}
               error={errors.password?.message}
             />
@@ -102,12 +100,12 @@ const LoginForm: React.FC = () => {
           </div>
           <div className="col-span-12 relative mt-[30px]">
             <Button disabled={loading} fullWidth onClick={handleSubmit(onSubmit)}>
-              {loading ? `${tAccount('processing')}` : `${tAccount('login')}`}
+              {loading ? `${t['Processing']}` : `${t['Login']}`}
             </Button>
             <div className="mt-[20px] font-medium">
-              {tAccount('login-sub')}{' '}
+              {t['LoginSub']}{' '}
               <span onClick={() => loginWithZalo()} className="font-semibold text-[#355933]">
-                {tAccount('login-zalo')}
+                {t['LoginZalo']}
               </span>
             </div>
           </div>

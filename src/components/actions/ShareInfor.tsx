@@ -1,12 +1,11 @@
 import images from 'assets/images';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { openUrlInWebview } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { copyToClipboard } from 'utils/copyToClipboard';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import zmp from 'zmp-sdk';
-import { Box, Button, useSnackbar } from 'zmp-ui';
+import { Box } from 'zmp-ui';
 
 const ShareInfor: React.FC = () => {
   const { showError, showSuccess } = useCustomSnackbar();

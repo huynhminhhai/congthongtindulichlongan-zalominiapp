@@ -4,7 +4,6 @@ import { FormInputAreaField, FormInputField } from 'components/form';
 import { ConfirmModal } from 'components/modal';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Button, useSnackbar } from 'zmp-ui';

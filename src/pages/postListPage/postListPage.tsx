@@ -33,7 +33,7 @@ const PostListPage = () => {
       <Box>
         <HeaderSub title={categoryDetail?.name || '...'} onBackClick={() => navigate('/')} />
         <Box pb={4}>
-          <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t.Search} value={''} />}>
+          <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t['Search']} value={''} />}>
             {/* <div className="col-span-12">
                 <Select placeholder={tCommon('all')} closeOnSelect>
                   <Option title={tCommon('all')} value={0} />

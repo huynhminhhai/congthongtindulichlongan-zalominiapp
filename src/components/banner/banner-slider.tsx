@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { Box } from 'zmp-ui';
 

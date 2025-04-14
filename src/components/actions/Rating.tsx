@@ -1,7 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useAddRating, useGetRating } from 'apiRequest/ratings';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box } from 'zmp-ui';

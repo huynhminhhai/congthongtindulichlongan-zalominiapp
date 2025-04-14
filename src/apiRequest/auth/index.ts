@@ -1,9 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import http from 'services/http';
-import { removeDataFromStorage, setDataToStorage } from 'services/zalo';
+import { removeDataFromStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
-import { useNavigate, useSnackbar } from 'zmp-ui';
+import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 
 import { AuthResponseType } from './type';
 
@@ -62,22 +61,16 @@ export const useLoginZalo = () => {
 export const useLoginAccount = () => {
   const queryClient = useQueryClient();
 
-  const { openSnackbar } = useSnackbar();
-  const { setAuth } = useStoreApp();
-  const { t: tSnackbar } = useTranslation('snackbar');
+  const { showSuccess } = useCustomSnackbar();
+  const { setAuth, currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
 
   return useMutation({
     mutationFn: async (params: LoginAccountParamsType) => {
       return authApiRequest.loginAccount(params);
     },
     onSuccess: (data: any) => {
-      openSnackbar({
-        icon: true,
-        text: tSnackbar('login-success'),
-        type: 'success',
-        action: { text: tSnackbar('close'), close: true },
-        duration: 3000,
-      });
+      showSuccess(t['LoginSuccess']);
       queryClient.invalidateQueries({ queryKey: ['account'] });
 
       setAuth({
@@ -92,22 +85,15 @@ export const useLoginAccount = () => {
   });
 };
 export const useLogout = () => {
-  const { openSnackbar } = useSnackbar();
   const { clearAuth } = useStoreApp();
-  const { t: tSnackbar } = useTranslation('snackbar');
+  const { showSuccess } = useCustomSnackbar();
+  const { setAuth, currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
 
   const logout = () => {
     authApiRequest.logout();
-
     clearAuth();
-
-    openSnackbar({
-      icon: true,
-      text: tSnackbar('logout-success'),
-      type: 'success',
-      action: { text: tSnackbar('close'), close: true },
-      duration: 3000,
-    });
+    showSuccess(t['LogoutSuccess']);
   };
 
   return logout;
