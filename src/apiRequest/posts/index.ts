@@ -31,7 +31,7 @@ const postsApiRequest = {
 
 export const useGetPostsList = (params: PostParamsType, options?: { enabled?: boolean }) => {
   return useInfiniteQuery({
-    queryKey: ['postsList', params],
+    queryKey: ['postsList', params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
       return await postsApiRequest.getPostsList({
         ...params,
@@ -43,7 +43,7 @@ export const useGetPostsList = (params: PostParamsType, options?: { enabled?: bo
       const posts = lastPage?.data || [];
       return posts.length === params.size ? allPages.length + 1 : undefined;
     },
-    staleTime: 5 * 60 * 1000,
+    staleTime: 0,
     retry: 1,
     enabled: options?.enabled ?? true,
   });
