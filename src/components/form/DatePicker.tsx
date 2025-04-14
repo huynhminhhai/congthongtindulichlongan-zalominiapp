@@ -8,35 +8,24 @@ import Label from './Label';
 
 interface FormDatePickerProps {
   name: string;
-  label: string;
-  value: string;
+  label?: string;
+  value: string; // Chuỗi ISO như "2000-12-12T00:00:00Z"
   required?: boolean;
   error?: string;
   helperText?: string;
   placeholder?: string;
-  dateFormat?: string;
-  onChange: (value: string) => void;
+  onChange: (value: string) => void; // Trả về chuỗi ISO
 }
 
-export const formatDate = (date: Date | null, format: string): string => {
+export const formatDate = (date: Date | null): string => {
   if (!date) return '';
-  const options: Intl.DateTimeFormatOptions = format.split('/').reduce((acc, part, index) => {
-    if (part === 'dd') acc.day = '2-digit';
-    if (part === 'mm') acc.month = '2-digit';
-    if (part === 'yyyy') acc.year = 'numeric';
-    return acc;
-  }, {} as Intl.DateTimeFormatOptions);
-  return new Intl.DateTimeFormat('en-GB', options).format(date);
+  return date.toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' }).replace(' ', 'T') + 'Z'; // "2000-12-12T00:00:00Z"
 };
 
-export const parseDate = (dateStr: string, format: string): Date | undefined => {
+export const parseDate = (dateStr: string): Date | undefined => {
   if (!dateStr) return undefined;
-  const parts = dateStr.split('/');
-  const formatParts = format.split('/');
-  const day = parseInt(parts[formatParts.indexOf('dd')], 10);
-  const month = parseInt(parts[formatParts.indexOf('mm')], 10) - 1;
-  const year = parseInt(parts[formatParts.indexOf('yyyy')], 10);
-  return new Date(year, month, day);
+  const date = new Date(dateStr); // Chuyển chuỗi ISO thành Date
+  return isNaN(date.getTime()) ? undefined : date;
 };
 
 export const FormDatePicker: React.FC<FormDatePickerProps> = ({
@@ -46,25 +35,23 @@ export const FormDatePicker: React.FC<FormDatePickerProps> = ({
   required = false,
   error,
   helperText,
-  placeholder = 'Chọn ngày', // Sử dụng giá trị mặc định trực tiếp
-  dateFormat = 'dd/mm/yyyy', // Sử dụng giá trị mặc định trực tiếp
+  placeholder = 'Chọn ngày',
   onChange,
 }) => {
-  const dateValue = parseDate(value, dateFormat); // Chuyển giá trị chuỗi thành `Date`
+  const dateValue = parseDate(value); // Chuyển chuỗi ISO thành Date
 
   return (
     <Box pb={4} className={`relative ${error && 'borderRed'}`}>
-      <Label required={required} text={label} name={name} />
+      <Label required={required} text={label || ''} name={name} />
 
       <DatePicker
         title={label}
-        value={dateValue || undefined} // Truyền giá trị kiểu `Date`
+        value={dateValue || undefined}
         placeholder={placeholder}
         helperText={helperText}
-        dateFormat={dateFormat}
         mask
         maskClosable
-        onChange={newDate => onChange(formatDate(newDate as Date | null, dateFormat))}
+        onChange={newDate => onChange(formatDate(newDate as Date | null))}
       />
 
       {error && <ErrorMessage message={error} />}
@@ -74,11 +61,10 @@ export const FormDatePicker: React.FC<FormDatePickerProps> = ({
 
 type FormControllerDatePickerProps = {
   name: string;
-  label: string;
+  label?: string;
   control: Control<any>;
   placeholder?: string;
   required?: boolean;
-  dateFormat?: string;
   helperText?: string;
   error?: string;
 };
@@ -89,7 +75,6 @@ const FormControllerDatePicker: React.FC<FormControllerDatePickerProps> = ({
   control,
   placeholder = 'Chọn ngày',
   required = false,
-  dateFormat = 'dd/mm/yyyy',
   helperText,
   error,
 }) => {
@@ -105,7 +90,6 @@ const FormControllerDatePicker: React.FC<FormControllerDatePickerProps> = ({
           value={field.value}
           placeholder={placeholder}
           required={required}
-          dateFormat={dateFormat}
           helperText={helperText}
           onChange={field.onChange}
           error={error}
