@@ -116,3 +116,9 @@
 .ant-tag {
   margin-inline-end: 0px;
 }
+.ant-pagination .ant-pagination-item-active {
+  border-color: var(--primary-color);
+  a {
+    color: var(--primary-color);
+  }
+}

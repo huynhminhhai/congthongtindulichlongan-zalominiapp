@@ -7,7 +7,7 @@ import { CategoryMap, SingleLocationMap } from 'components/maps';
 import TitleSection from 'components/titleSection';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useStoreApp } from 'store/store';
-import { formatImageSrc } from 'utils';
+import { formatDate, formatImageSrc } from 'utils';
 import { Box, Page, useNavigate, useParams, useSnackbar } from 'zmp-ui';
 
 import SkeletonPostDetailPage from './skeletonPostDetailPage';
@@ -76,8 +76,13 @@ const PostDetailPage = () => {
                 />
               </Box>
               <Box p={4}>
-                <Box mb={3} flex alignItems="flex-end" justifyContent="space-between" className="gap-2">
+                <Box mb={10}>
                   <TitleDetail title={postDetailData?.title} />
+                  {postDetailData?.dateCreated && (
+                    <div className="text-[14px] mt-2 italic text-[#355933]">
+                      {formatDate(postDetailData.dateCreated)}
+                    </div>
+                  )}
                 </Box>
 
                 <Box>
@@ -108,7 +113,7 @@ const PostDetailPage = () => {
               )}
               {isComment && (
                 <Box px={4} mb={4}>
-                  <CommentSection itemId={1} />
+                  <CommentSection postId={Number(id)} />
                 </Box>
               )}
               <Box px={4} mb={4}>

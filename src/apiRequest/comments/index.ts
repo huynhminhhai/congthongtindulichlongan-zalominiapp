@@ -7,9 +7,18 @@ type CommentsParamsType = {
   size: number;
   postId?: number;
 };
+
+type AddCommentsParamsType = {
+  content: string;
+  name?: string;
+  postId: number;
+};
 const commentsApiRequest = {
-  addComment: async (postId: number) => {
-    return await http.post<any>(`/postComments/add?postId=${postId}`, {});
+  addComment: async (params: AddCommentsParamsType) => {
+    return await http.post<any>(`/postComments/add?postId=${params.postId}`, {
+      content: params.content,
+      name: params.name,
+    });
   },
   getCommentsList: async (params: CommentsParamsType) => {
     return await http.get<any>(`/postComments?${encodeQueryData(params)}`);
@@ -17,8 +26,8 @@ const commentsApiRequest = {
 };
 export const useAddComment = () => {
   return useMutation({
-    mutationFn: async (postId: number) => {
-      return await commentsApiRequest.addComment(postId);
+    mutationFn: async (params: AddCommentsParamsType) => {
+      return await commentsApiRequest.addComment(params);
     },
   });
 };

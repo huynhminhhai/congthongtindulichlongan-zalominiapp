@@ -33,6 +33,7 @@ export type PostType = {
   content: string;
   image: string;
   status: number;
+  dateCreated: Date | null;
   publishedDate: Date | null;
   categories: CategoryType[];
   categoryName: string;

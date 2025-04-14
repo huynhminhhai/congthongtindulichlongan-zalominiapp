@@ -31,7 +31,7 @@ const PostListPage = () => {
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
-        <HeaderSub title={categoryDetail?.name} onBackClick={() => navigate('/')} />
+        <HeaderSub title={categoryDetail?.name || '...'} onBackClick={() => navigate('/')} />
         <Box pb={4}>
           <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t.Search} value={''} />}>
             {/* <div className="col-span-12">

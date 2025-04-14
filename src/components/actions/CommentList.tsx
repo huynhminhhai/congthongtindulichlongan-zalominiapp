@@ -46,7 +46,7 @@ const CommentList: React.FC<CommentListProps> = ({ postId }) => {
           ))}
 
           {total > pageSize && (
-            <div className="mt-4 flex justify-center">
+            <div className="mt-5 flex justify-center">
               <Pagination
                 current={currentPage}
                 pageSize={pageSize}
