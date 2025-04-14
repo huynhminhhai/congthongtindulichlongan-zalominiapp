@@ -4,13 +4,10 @@ import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/act
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail';
 import { HeaderSub } from 'components/header-sub';
 import { CategoryMap, SingleLocationMap } from 'components/maps';
-import { ImageGallery } from 'components/slider';
 import TitleSection from 'components/titleSection';
 import React, { useEffect, useMemo, useState } from 'react';
-import { HttpError } from 'services/http';
 import { useStoreApp } from 'store/store';
 import { formatImageSrc } from 'utils';
-import { messageError } from 'utils/AntdMessage';
 import { Box, Page, useNavigate, useParams, useSnackbar } from 'zmp-ui';
 
 import SkeletonPostDetailPage from './skeletonPostDetailPage';
@@ -22,6 +19,7 @@ const PostDetailPage = () => {
   const { mutateAsync: addFavorite } = useAddFavorite();
   const { mutateAsync: removeFavorite } = useRemoveFavorite();
   const { data: postDetailData } = useGetPostDetail(Number(id));
+
   const [isFavorite, setIsFavorite] = useState(false);
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
