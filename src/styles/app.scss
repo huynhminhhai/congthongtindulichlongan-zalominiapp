@@ -362,7 +362,21 @@ tbody tr td:not(:first-child) {
 * INPUT
 **/
 
-.zaui-input {
+.zaui-input-otp-list {
+  width: 100%;
+  justify-content: center;
+}
+
+input#file-upload-button {
+  padding-block: 8px;
+}
+
+.ant-upload-wrapper .ant-upload-select {
+  display: block;
+}
+
+.zaui-input,
+.ant-picker {
   height: 38px;
   font-size: 14px;
   line-height: 1;
@@ -372,6 +386,11 @@ tbody tr td:not(:first-child) {
 .zaui-input-affix-wrapper {
   border: 0;
   background-color: #f2f2f2;
+}
+
+.feedback-form .zaui-input-affix-wrapper {
+  border: 1px solid #f2f2f2;
+  background-color: #ffffff;
 }
 
 textarea.zaui-input {
