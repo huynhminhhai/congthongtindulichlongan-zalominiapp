@@ -8,6 +8,8 @@ import { HeaderSub } from 'components/header-sub';
 import FilterBar from 'components/table/FilterBar';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useStoreApp } from 'store/store';
+import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Input, Page, Select, useSnackbar } from 'zmp-ui';
 
 const FavoriteItemSkeleton = () => {
@@ -22,13 +24,14 @@ const FavoriteItemSkeleton = () => {
 };
 const FavoritePage = () => {
   const { Option } = Select;
-  const { t } = useTranslation('common');
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const { data, isLoading, refetch } = useGetFavoritePosts({
     page: 1,
     size: 10,
   });
   const favoritePosts = data?.pages[0]?.items || [];
-  const { openSnackbar } = useSnackbar();
+  const { showError, showSuccess } = useCustomSnackbar();
 
   const { mutateAsync: removeFavorite } = useRemoveFavorite();
   const handleToggleFavorite = async id => {
@@ -36,30 +39,18 @@ const FavoritePage = () => {
     try {
       await removeFavorite(id);
       await refetch();
-      openSnackbar({
-        icon: true,
-        text: 'Gỡ yêu thích thành công',
-        type: 'success',
-        action: { text: 'Đóng', close: true },
-        duration: 3000,
-      });
+      showSuccess(t['RemoveFavoriteSuccess']);
     } catch (error: any) {
-      openSnackbar({
-        icon: true,
-        text: error.message,
-        type: 'error',
-        action: { text: 'Đóng', close: true },
-        duration: 3000,
-      });
+      showError(t['RemoveFavoriteSuccess']);
     }
   };
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[62px]">
       <Box>
-        <HeaderSub title={t('favorites')} />
-        <Box>
-          <Box>
-            <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t('searching')} value={''} />}>
+        <HeaderSub title={t['ZaloFavorites']} />
+        <Box mt={3}>
+          {/* <Box>
+            <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t['Search']} value={''} />}>
               <div className="col-span-12">
                 <Select placeholder="Danh mục" closeOnSelect>
                   <Option title={'Tất cả'} value={0} />
@@ -67,7 +58,7 @@ const FavoritePage = () => {
                 </Select>
               </div>
             </FilterBar>
-          </Box>
+          </Box> */}
           <Box px={4}>
             {isLoading
               ? [...Array(4)].map((_, idx) => (

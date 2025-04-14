@@ -6,7 +6,6 @@ import { ConfirmModal } from 'components/modal';
 import { gender } from 'constants/mock';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { Box } from 'zmp-ui';
 
@@ -23,12 +22,7 @@ const defaultValues: FormDataProfile = {
 };
 
 const ProfileForm: React.FC = () => {
-  const { account, setAuth } = useStoreApp();
-
-  const { t: tAccount } = useTranslation('account');
-  const { t: tCommon } = useTranslation('common');
-
-  console.log(account);
+  const { account, setAuth, currentLanguage } = useStoreApp();
 
   const [loading, setLoading] = useState(false);
   const [isConfirmVisible, setConfirmVisible] = useState(false);
@@ -36,7 +30,7 @@ const ProfileForm: React.FC = () => {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
   const { mutateAsync } = useUpdateAccount();
-
+  const t = currentLanguage.value;
   const {
     handleSubmit,
     reset,
@@ -44,7 +38,7 @@ const ProfileForm: React.FC = () => {
     control,
     formState: { errors },
   } = useForm<FormDataProfile>({
-    resolver: yupResolver(schemaProfile),
+    resolver: yupResolver(schemaProfile()),
     defaultValues,
   });
 
@@ -109,7 +103,7 @@ const ProfileForm: React.FC = () => {
           <div className="col-span-12">
             <FormAvatarUploaderSingle
               name="avatar"
-              label="Upload ảnh"
+              label={t['UploadPhoto']}
               control={control}
               error={errors.avatar?.message}
             />
@@ -117,8 +111,8 @@ const ProfileForm: React.FC = () => {
           <div className="col-span-12">
             <FormInputField
               name="fullName"
-              label={tCommon('fullname')}
-              placeholder={tCommon('fullname')}
+              label={t['NamePlaceholder']}
+              placeholder={t['EnterName']}
               control={control}
               error={errors.fullName?.message}
               required
@@ -127,8 +121,8 @@ const ProfileForm: React.FC = () => {
           <div className="col-span-12">
             <FormInputField
               name="phoneNumber"
-              label={tCommon('phonenumber')}
-              placeholder={tCommon('phonenumber')}
+              label={t['Phone']}
+              placeholder={t['EnterPhone']}
               control={control}
               error={errors.phoneNumber?.message}
               required
@@ -147,9 +141,9 @@ const ProfileForm: React.FC = () => {
           <div className="col-span-12">
             <FormControllerDatePicker
               name="birthOfDate"
-              label={tCommon('birthDate')}
+              label={t['BirthDate']}
               control={control}
-              placeholder={tCommon('birthDate')}
+              placeholder={t['EnterBirthDate']}
               required
               dateFormat="dd/mm/yyyy"
               error={errors.birthOfDate?.message}
@@ -158,8 +152,8 @@ const ProfileForm: React.FC = () => {
           <div className="col-span-12">
             <FormSelectField
               name="gender"
-              label={tCommon('gender')}
-              placeholder={tCommon('gender')}
+              label={t['Gender']}
+              placeholder={t['EnterGender']}
               control={control}
               options={gender}
               error={errors.gender?.message}
@@ -171,7 +165,7 @@ const ProfileForm: React.FC = () => {
               <PrimaryButton
                 disabled={loading || !isSubmitEnabled}
                 fullWidth
-                label={loading ? `${tAccount('processing')}` : `${tAccount('update-infor')}`}
+                label={loading ? `${t['Processing']}` : `${t['UpdateInfor']}`}
                 handleClick={handleSubmit(onSubmit)}
               />
             </Box>
@@ -180,8 +174,8 @@ const ProfileForm: React.FC = () => {
       </Box>
       <ConfirmModal
         visible={isConfirmVisible}
-        title="Xác nhận"
-        message="Bạn có chắc chắn muốn cập nhật thông tin tài khoản không?"
+        title={t['Confirm']}
+        message={t['ConfirmUpdateAccount']}
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />

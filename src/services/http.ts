@@ -19,6 +19,7 @@ export class HttpError extends Error {
   }
 }
 export const logout = () => {
+  console.log('lỗi 401 nè bà');
   removeDataFromStorage('token');
   const { setAccount } = useStoreApp.getState();
   setAccount(null);

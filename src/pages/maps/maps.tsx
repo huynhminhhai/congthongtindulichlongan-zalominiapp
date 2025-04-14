@@ -25,6 +25,7 @@ import { Button } from 'antd';
 import { useGetCategoryListHasMap } from 'apiRequest/categories';
 import { useGetPostsList } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
+import { useStoreApp } from 'store/store';
 import { formatImageSrc } from 'utils';
 
 import ServiceItemSkeleton from './ServiceItemSkeleton';
@@ -42,6 +43,8 @@ interface Icons {
 }
 
 const ResidentMapPage = () => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.LayerGroup>(L.layerGroup());
   const [activeTab, setActiveTab] = React.useState<number>();
@@ -57,7 +60,6 @@ const ResidentMapPage = () => {
       enabled: !!activeTab,
     }
   );
-  const { t } = useTranslation('common');
 
   const icons: Icons = {
     tourist: images.markerTravel,
@@ -116,7 +118,6 @@ const ResidentMapPage = () => {
     });
 
     const items = locations;
-    console.log('locations', locations);
 
     if (items.length === 0) {
       mapRef.current.setView([10.5333, 106.4167], 10);
@@ -129,7 +130,7 @@ const ResidentMapPage = () => {
       item.maps?.forEach((point: Location) => {
         const marker = L.marker([point.lat, point.lng], {
           icon,
-          title: item.title,
+          title: point.name,
         }).addTo(markersRef.current).bindPopup(`
         <div style="width: 180px">
           <div class="card-img">
@@ -138,8 +139,8 @@ const ResidentMapPage = () => {
           <div style="padding-block: 6px;">
             <div style="color: #355933; font-size: 15px; font-weight: 600; margin-bottom: 2px;">${point.name}</div>
             <div style="font-size: 11px;">
-              <div style="margin-bottom: 4px;"><strong>${t('address')}:</strong> ${point.address}</div>
-              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
+              <div style="margin-bottom: 4px;"><strong>${t['Address']}:</strong> ${point.address}</div>
+              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t['Directions']}</button>
             </div>
           </div>
         </div>
@@ -251,9 +252,9 @@ const ResidentMapPage = () => {
                   <Icon icon="lucide:list"></Icon>
                   <p>Danh sách</p>
                 </Button> */}
-                <Button className={styles.getCurrentLocationButton}>
+                {/* <Button className={styles.getCurrentLocationButton}>
                   <Icon icon="teenyicons:location-outline" />
-                </Button>
+                </Button> */}
               </div>
               {/* <Button className={styles.findNearButton}>
                 Tìm kiếm khu vực này
@@ -274,7 +275,7 @@ const ResidentMapPage = () => {
                           address={item.address}
                           image={item.image}
                           totolVote={item.totalVotes}
-                          onClick={() => handleItemClick(item.maps[0].lat, item.maps[0].lng)}
+                          onClick={() => handleItemClick(item.maps[0]?.lat, item.maps[0]?.lng)}
                         />
                       </SwiperSlide>
                     ))}

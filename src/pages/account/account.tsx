@@ -18,14 +18,13 @@ const AccountPage: React.FC = () => {
   const navigate = useNavigate();
   const { loginWithZalo } = useLoginWithZalo();
   const { account, currentLanguage } = useStoreApp();
-  const { Information, ChangePw, Logout, LoginZalo, LoginAccount, Register, Languages } = currentLanguage.value;
+  const t = currentLanguage.value;
   const logout = useLogout();
-  const { t: tCommon } = useTranslation('common');
 
   return (
     <Page className={styles.accountPage}>
       <Box>
-        <HeaderSub title={tCommon('account')} onBackClick={() => navigate('/')} />
+        <HeaderSub title={t['Account']} onBackClick={() => navigate('/')} />
         <Box>
           {account ? (
             <>
@@ -38,19 +37,19 @@ const AccountPage: React.FC = () => {
                 <List className="bg-white rounded-lg">
                   <Item
                     onClick={() => navigate('/profile-account')}
-                    title={Information}
+                    title={t['Information']}
                     prefix={<img src={images.resume} width={30} />}
                     suffix={<Icon fontSize={20} icon="formkit:right" />}
                   />
                   <Item
                     onClick={() => navigate('/change-password')}
-                    title={ChangePw}
+                    title={t['ChangePw']}
                     prefix={<img src={images.changePw} width={30} />}
                     suffix={<Icon fontSize={20} icon="formkit:right" />}
                   />
                   <Item
                     onClick={logout}
-                    title={Logout}
+                    title={t['Logout']}
                     prefix={<img src={images.logout} width={30} />}
                     suffix={<Icon fontSize={20} icon="formkit:right" />}
                   />
@@ -63,20 +62,20 @@ const AccountPage: React.FC = () => {
                 <List className="bg-white rounded-lg">
                   <Item
                     onClick={() => loginWithZalo()}
-                    title={LoginZalo}
+                    title={t['LoginZalo']}
                     prefix={<img src={images.zalo} width={30} />}
                     suffix={<Icon fontSize={20} icon="formkit:right" />}
                   />
                   <Item
                     onClick={() => navigate('/login')}
-                    title={LoginAccount}
+                    title={t['LoginAccount']}
                     prefix={<img src={images.login} width={30} />}
                     suffix={<Icon fontSize={20} icon="formkit:right" />}
                   />
 
                   <Item
                     onClick={() => navigate('/register')}
-                    title={Register}
+                    title={t['Register']}
                     prefix={<img src={images.signup} width={30} />}
                     suffix={<Icon fontSize={20} icon="formkit:right" />}
                   />
@@ -89,7 +88,7 @@ const AccountPage: React.FC = () => {
             <List className="bg-white rounded-lg">
               <Item
                 onClick={() => navigate('/languages')}
-                title={Languages}
+                title={t['Languages']}
                 prefix={<img src={images.languages} width={30} />}
                 suffix={<Icon fontSize={20} icon="formkit:right" />}
               />

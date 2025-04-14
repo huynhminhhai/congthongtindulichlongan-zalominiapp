@@ -4,7 +4,6 @@ import { PostComponentPropsType } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
 const NewsItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
-  const navigate = useNavigate();
   if (!data) return <></>;
 
   return (

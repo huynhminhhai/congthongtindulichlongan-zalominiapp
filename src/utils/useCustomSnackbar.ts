@@ -1,12 +1,14 @@
+import { useStoreApp } from 'store/store';
 import { useSnackbar } from 'zmp-ui';
 
 export const useCustomSnackbar = () => {
   const { openSnackbar } = useSnackbar();
-
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const showSnackbar = options => {
     openSnackbar({
       icon: true,
-      action: { text: 'Đóng', close: true },
+      action: { text: t['Close'], close: true },
       duration: 3000,
       ...options,
     });

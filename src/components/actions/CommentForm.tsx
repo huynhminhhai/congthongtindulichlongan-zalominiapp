@@ -21,15 +21,13 @@ type CommentFormProps = {
 };
 
 const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
-  const { t: tPage } = useTranslation('page');
-  const { t: tCommon } = useTranslation('common');
-  const { account } = useStoreApp();
+  const { account, currentLanguage } = useStoreApp();
   const { showSuccess, showError } = useCustomSnackbar();
   const [isConfirmVisible, setConfirmVisible] = useState(false);
   const [formData, setFormData] = useState<FormDataComments>(defaultValues);
 
   const { mutate: addComment, isPending } = useAddComment();
-
+  const t = currentLanguage.value;
   const {
     handleSubmit,
     reset,
@@ -41,7 +39,6 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
   });
 
   const onSubmit: SubmitHandler<FormDataComments> = data => {
-    console.log(data);
     setConfirmVisible(true);
     setFormData(data);
   };
@@ -50,7 +47,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
     setConfirmVisible(false);
     try {
       await addComment({ ...formData, postId: postId });
-      showSuccess('Gửi bình luận thành công');
+      showSuccess(t['AddCommentSuccess']);
       reset(defaultValues);
     } catch (error) {
       showError('Gửi bình luận thất bại');
@@ -70,8 +67,8 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
             <div className="col-span-12">
               <FormInputField
                 name="name"
-                label={tCommon('fullname')}
-                placeholder={`${tPage('enter-fullname')} (*)`}
+                label={t['NamePlaceholder']}
+                placeholder={`${t['NamePlaceholder']} (*)`}
                 control={control}
                 error={errors.name?.message}
                 required
@@ -82,20 +79,18 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
           <div className="col-span-12">
             <FormInputAreaField
               name="content"
-              label={tPage('commnet-content')}
-              placeholder={`${tPage('enter-comment')} (*)`}
+              label={t['CommentContent']}
+              placeholder={`${t['EnterContent']} (*)`}
               control={control}
               error={errors.content?.message}
               required
             />
           </div>
-          <p className=" col-span-12 text-[13px] italic text-red-500 mb-2">
-            * {tPage('comment-note', 'Bình luận sẽ được phê duyệt trước khi hiển thị.')}
-          </p>
+          <p className=" col-span-12 text-[13px] italic text-red-500 mb-2">* {t['CommentApprovalNotice']}</p>
           <div className="col-span-12">
             <Box mt={3}>
               <Button variant="primary" size={'small'} onClick={handleSubmit(onSubmit)} disabled={isPending}>
-                {isPending ? `${tCommon('processing')}` : `${tPage('comment')}`}
+                {isPending ? `${t['Processing']}` : `${t['Comment']}`}
               </Button>
             </Box>
           </div>

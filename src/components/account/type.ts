@@ -1,3 +1,4 @@
+import { useStoreApp } from 'store/store';
 import * as yup from 'yup';
 
 import { gender } from './../../constants/mock';
@@ -12,10 +13,19 @@ export type FormDataLogin = {
   password: string;
 };
 
-export const schemaProfile = yup.object().shape({
-  fullname: yup.string().required('Không được để trống'),
-  phoneNumber: yup.string().required('Không được để trống'),
-});
+export const schemaProfile = () => {
+  const { currentLanguage } = useStoreApp.getState();
+  const t = currentLanguage.value;
+  return yup.object().shape({
+    userName: yup.string().required(t['FieldRequired']),
+    email: yup.string().email(t['InvalidEmail']).required(t['FieldRequired']),
+    fullName: yup.string().required(t['FieldRequired']),
+    phoneNumber: yup.string().required(t['FieldRequired']),
+    avatar: yup.string().required(t['FieldRequired']),
+    gender: yup.number().required(t['PleaseEnterGender']),
+    birthOfDate: yup.string().notRequired(),
+  });
+};
 
 export type FormDataProfile = {
   userName: string;
@@ -23,7 +33,7 @@ export type FormDataProfile = {
   fullName: string;
   phoneNumber: string;
   avatar: string;
-  gender?: number;
+  gender: number;
   birthOfDate?: string | null;
 };
 

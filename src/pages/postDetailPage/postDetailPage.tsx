@@ -8,6 +8,7 @@ import TitleSection from 'components/titleSection';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useStoreApp } from 'store/store';
 import { formatDate, formatImageSrc } from 'utils';
+import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Page, useNavigate, useParams, useSnackbar } from 'zmp-ui';
 
 import SkeletonPostDetailPage from './skeletonPostDetailPage';
@@ -16,6 +17,7 @@ const PostDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
+  const { showSuccess, showError } = useCustomSnackbar();
   const { mutateAsync: addFavorite } = useAddFavorite();
   const { mutateAsync: removeFavorite } = useRemoveFavorite();
   const { data: postDetailData } = useGetPostDetail(Number(id));
@@ -42,24 +44,20 @@ const PostDetailPage = () => {
     try {
       if (isFavorite) {
         await removeFavorite(postDetailData.id);
+        showSuccess(t['AddFavoriteSuccess']);
       } else {
         await addFavorite(postDetailData.id);
+        showSuccess(t['AddFavoriteSuccess']);
       }
       setIsFavorite(!isFavorite);
     } catch (error: any) {
-      openSnackbar({
-        icon: true,
-        text: error.message,
-        type: 'error',
-        action: { text: 'Đóng', close: true },
-        duration: 3000,
-      });
+      showError(error.message);
     }
   };
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
-        <HeaderSub title={t.PostDetail} />
+        <HeaderSub title={t['PostDetail']} />
         {!postDetailData ? (
           <SkeletonPostDetailPage />
         ) : (
@@ -86,7 +84,7 @@ const PostDetailPage = () => {
                 </Box>
 
                 <Box>
-                  <TitleSubDetail title={t.Desc} />
+                  <TitleSubDetail title={t['Desc']} />
                   <div
                     className="detail-content"
                     dangerouslySetInnerHTML={{
@@ -97,7 +95,7 @@ const PostDetailPage = () => {
               </Box>
               {isMap && (
                 <Box p={4} mb={4}>
-                  <TitleSubDetail title={t.Map} />
+                  <TitleSubDetail title={t['Map']} />
                   <div className="infor-map">
                     {postDetailData?.maps && postDetailData?.maps.length > 0 ? (
                       postDetailData?.maps.length === 1 ? (
@@ -106,7 +104,7 @@ const PostDetailPage = () => {
                         <CategoryMap locations={postDetailData.maps} />
                       )
                     ) : (
-                      'Dữ liệu đang được cập nhật...'
+                      t['MessageUpdate']
                     )}
                   </div>
                 </Box>
@@ -122,23 +120,10 @@ const PostDetailPage = () => {
             </Box>
 
             <Box px={4} mb={4}>
-              {isRating && (
-                <Rating
-                  averageRating={postDetailData?.averageRating}
-                  totalReviews={postDetailData?.totalVotes}
-                  ratingDistribution={{
-                    5: postDetailData.ratingDistribution[4],
-                    4: postDetailData.ratingDistribution[3],
-                    3: postDetailData.ratingDistribution[2],
-                    2: postDetailData.ratingDistribution[1],
-                    1: postDetailData.ratingDistribution[0],
-                  }}
-                  onRate={rating => console.log('Người dùng chọn:', rating)}
-                />
-              )}
+              {isRating && <Rating postId={Number(id)} />}
             </Box>
             <Box px={4} pb={4}>
-              <TitleSection title={t.RelatedPost} mB={2} />
+              <TitleSection title={t['RelatedPost']} mB={2} />
               <Box pt={4}>
                 <div className="grid grid-cols-1 gap-3">
                   {postDetailData?.relatedPosts &&

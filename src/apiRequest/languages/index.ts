@@ -20,7 +20,7 @@ export const useGetLanguages = () => {
         throw error;
       }
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 1,
     retry: 1,
   });
 };

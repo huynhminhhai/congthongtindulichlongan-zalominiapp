@@ -14,4 +14,6 @@ export type UserInfoType = {
   fullName: string;
   phoneNumber: string;
   avatar: string;
+  gender: number;
+  birthOfDate: string;
 };
