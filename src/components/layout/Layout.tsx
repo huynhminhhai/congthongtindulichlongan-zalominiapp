@@ -46,9 +46,12 @@ const Layout = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const res = await getUserInfo();
-        if (res) {
-          setAccount(res);
+        const token = await getDataFromStorage('token');
+        if (token) {
+          const res = await getUserInfo();
+          if (res) {
+            setAccount(res);
+          }
         }
       } catch (error) {
         console.error('Lỗi lấy thông tin tài khoản:', error);

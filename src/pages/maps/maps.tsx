@@ -25,6 +25,7 @@ import { Button } from 'antd';
 import { useGetCategoryListHasMap } from 'apiRequest/categories';
 import { useGetPostsList } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
+import { formatImageSrc } from 'utils';
 
 import ServiceItemSkeleton from './ServiceItemSkeleton';
 
@@ -33,8 +34,7 @@ interface Location {
   lng: number;
   name: string;
   address: string;
-  img: string;
-  rating: number;
+  image: string;
 }
 
 interface Icons {
@@ -70,22 +70,8 @@ const ResidentMapPage = () => {
     taxi: images.markerTaxi,
     shopping: images.markerShopping,
   };
-  // const categories = [
-  //   { key: 'tourist', icon: 'material-symbols:tour-rounded', title: 'Tourist' },
-  //   {
-  //     key: 'restaurant',
-  //     icon: 'ion:restaurant-sharp',
-  //     title: 'Restaurant',
-  //   },
-  //   { key: 'hotel', icon: 'mingcute:hotel-fill', title: 'Hotel' },
-  //   { key: 'bus', icon: 'bxs:bus', title: 'Bus' },
-  //   { key: 'atm', icon: 'map:atm', title: 'Atm' },
-  //   { key: 'hospital', icon: 'uis:hospital', title: 'Hospital' },
-  //   { key: 'oil', icon: 'maki:fuel', title: 'Oil' },
-  //   { key: 'taxi', icon: 'bxs:taxi', title: 'Taxi' },
-  //   { key: 'shopping', icon: 'icon-park-solid:shopping', title: 'Shopping' },
-  // ];
-  const locations = postListData?.pages[0].items || 0;
+
+  const locations = postListData?.pages[0].items || [];
   useEffect(() => {
     import('leaflet-search')
       .then(() => {
@@ -97,7 +83,7 @@ const ResidentMapPage = () => {
 
           markersRef.current.addTo(mapRef.current);
         }
-        loadMarkers(activeTab);
+
         addSearchControl();
       })
       .catch(err => {
@@ -111,56 +97,67 @@ const ResidentMapPage = () => {
       }
     };
   }, [activeTab]);
+  useEffect(() => {
+    if (!mapRef.current || !postListData) return;
 
-  const loadMarkers = (type: string) => {
-    if (!mapRef.current && !locations) return;
+    const locations = postListData.pages?.[0]?.items || [];
+    loadMarkers();
+  }, [postListData]);
+  const loadMarkers = () => {
+    if (!mapRef.current || locations.length === 0) return;
 
     markersRef.current.clearLayers();
 
     const icon = L.icon({
-      iconUrl: icons[type],
+      iconUrl: icons['tourist'],
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],
     });
 
-    const items = locations[type];
+    const items = locations;
+    console.log('locations', locations);
 
     if (items.length === 0) {
       mapRef.current.setView([10.5333, 106.4167], 10);
       return;
     }
 
-    const bounds = L.latLngBounds(items.map((item: Location) => [item.lat, item.lng]));
+    const boundsArray: [number, number][] = [];
 
-    items.forEach((item: Location) => {
-      const marker = L.marker([item.lat, item.lng], {
-        icon,
-        title: item.name,
-      }).addTo(markersRef.current).bindPopup(`
-            <div style="width: 180px">
-              <div class="card-img">
-                <img style="width: 100%; height: 100px" src="${item.img}" alt="${item.name}" />
-              </div>
-              <div style="padding-block: 6px;">
-                <div style="color: #355933; font-size: 15px; font-weight: 600; margin-bottom: 2px;">${item.name}</div>
-                <div style="font-size: 11px;">
-                  <div style="margin-bottom: 4px;"><strong>${t('address')}:</strong> ${item.address}</div>
-                  <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
-                </div>
-              </div>
+    items.forEach((item: PostType) => {
+      item.maps?.forEach((point: Location) => {
+        const marker = L.marker([point.lat, point.lng], {
+          icon,
+          title: item.title,
+        }).addTo(markersRef.current).bindPopup(`
+        <div style="width: 180px">
+          <div class="card-img">
+            <img style="width: 100%; height: 100px" src="${formatImageSrc(point.image)}" alt="${point.name}" />
+          </div>
+          <div style="padding-block: 6px;">
+            <div style="color: #355933; font-size: 15px; font-weight: 600; margin-bottom: 2px;">${point.name}</div>
+            <div style="font-size: 11px;">
+              <div style="margin-bottom: 4px;"><strong>${t('address')}:</strong> ${point.address}</div>
+              <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t('directions')}</button>
             </div>
-          `);
+          </div>
+        </div>
+      `);
 
-      marker.on('popupopen', () => {
-        const googleMapsLink = (marker.getPopup() as any).getElement()?.querySelector('.google-maps-link');
-        if (googleMapsLink) {
-          googleMapsLink.addEventListener('click', () => openGoogleMaps(item.lat, item.lng));
-        }
+        marker.on('popupopen', () => {
+          const googleMapsLink = (marker.getPopup() as any).getElement()?.querySelector('.google-maps-link');
+          if (googleMapsLink) {
+            googleMapsLink.addEventListener('click', () => openGoogleMaps(point.lat, point.lng));
+          }
+        });
+
+        boundsArray.push([point.lat, point.lng]);
       });
     });
 
-    if (bounds.isValid()) {
+    if (boundsArray.length > 0) {
+      const bounds = L.latLngBounds(boundsArray);
       mapRef.current.fitBounds(bounds, {
         paddingTopLeft: [0, 100],
         maxZoom: 14,
@@ -210,7 +207,7 @@ const ResidentMapPage = () => {
 
   const handleItemClick = (lat: number, lng: number) => {
     if (!mapRef.current) return;
-
+    if (!lat || !lng) return;
     mapRef.current.setView([lat, lng], 15);
     markersRef.current.eachLayer((marker: any) => {
       const markerLatLng = marker.getLatLng();
@@ -277,7 +274,7 @@ const ResidentMapPage = () => {
                           address={item.address}
                           image={item.image}
                           totolVote={item.totalVotes}
-                          onClick={() => handleItemClick(item.lat, item.lng)}
+                          onClick={() => handleItemClick(item.maps[0].lat, item.maps[0].lng)}
                         />
                       </SwiperSlide>
                     ))}
