@@ -11,7 +11,7 @@ import { FilterBar } from 'components/table';
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
-import { gridLayoutComponentMap, layoutComponentMap, PostComponentPropsType } from 'utils/constants';
+import { GRID_COLUMN_LAYOUT_MAP, LAYOUT_COMPONENT_MAP, PostComponentPropsType } from 'utils/constants';
 import { Box, Input, Page, Select } from 'zmp-ui';
 
 import PostSkeleton from './postListSkeleton';
@@ -25,13 +25,13 @@ const PostListPage = () => {
   const t = currentLanguage.value;
   const PostComponent = useMemo((): React.FC<PostComponentPropsType> => {
     if (categoryDetail) {
-      return layoutComponentMap[categoryDetail.zaloLayout] || NewsItem;
+      return LAYOUT_COMPONENT_MAP[categoryDetail.zaloLayout] || NewsItem;
     }
     return NewsItem;
   }, [categoryDetail]);
   const gridColumn = useMemo(() => {
     if (categoryDetail) {
-      return gridLayoutComponentMap[categoryDetail.zaloLayout];
+      return GRID_COLUMN_LAYOUT_MAP[categoryDetail.zaloLayout];
     }
     return 1;
   }, [categoryDetail]);

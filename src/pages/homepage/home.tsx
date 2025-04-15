@@ -8,7 +8,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { layoutComponentMap, SLIDE_PER_VIEW_HOMEPAGE, SLIDE_SPACE_BETWEEN_HOMEPAGE } from 'utils/constants';
+import {
+  LAYOUT_COMPONENT_MAP,
+  SLIDE_PER_VIEW_HOMEPAGE,
+  SLIDE_PER_VIEWS_SECTION_HOMEPAGE,
+  SLIDE_SPACE_BETWEEN_HOMEPAGE,
+} from 'utils/constants';
 import { ROUTES } from 'utils/pathRoute';
 import { Box, Page } from 'zmp-ui';
 
@@ -25,15 +30,16 @@ const HomePage: React.FunctionComponent = () => {
 
         {categoriesList &&
           categoriesList.map((cate, index) => {
+            const gridColumn = SLIDE_PER_VIEWS_SECTION_HOMEPAGE[cate.zaloLayout] || SLIDE_PER_VIEW_HOMEPAGE;
             return (
               <React.Fragment key={index}>
                 <Box py={4} pl={4}>
                   <Box pr={4}>
                     <TitleSection title={cate.name} handleClick={() => navigate(`/chuyen-muc/${cate.id}`)} />
                   </Box>
-                  <Swiper spaceBetween={SLIDE_SPACE_BETWEEN_HOMEPAGE} slidesPerView={SLIDE_PER_VIEW_HOMEPAGE} loop>
+                  <Swiper spaceBetween={SLIDE_SPACE_BETWEEN_HOMEPAGE} slidesPerView={gridColumn} loop>
                     {cate.posts.map(post => {
-                      const PostComponent = layoutComponentMap[cate.zaloLayout] || layoutComponentMap['HomeNews'];
+                      const PostComponent = LAYOUT_COMPONENT_MAP[cate.zaloLayout] || LAYOUT_COMPONENT_MAP['HomeNews'];
                       return (
                         <SwiperSlide key={post.id}>
                           <PostComponent data={post} onClick={() => navigate(`${ROUTES.postDetail}/${post.id}`)} />

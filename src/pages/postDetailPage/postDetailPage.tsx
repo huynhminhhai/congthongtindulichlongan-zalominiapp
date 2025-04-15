@@ -1,3 +1,4 @@
+import { Flex } from 'antd';
 import { useAddFavorite, useRemoveFavorite } from 'apiRequest/favorites';
 import { useGetPostDetail } from 'apiRequest/posts';
 import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/actions';
@@ -69,22 +70,24 @@ const PostDetailPage = () => {
             <Box>
               <Box mb={2} className="relative">
                 <img src={formatImageSrc(postDetailData?.image)} alt="" className="h-[250px] object-cover w-full" />
-                <ActionButton
-                  className="absolute bottom-0 translate-y-[50%] right-5"
-                  icon="mdi:heart"
-                  altText="Mục yêu thích"
-                  isChecked={isFavorite}
-                  onClick={handleToggleFavorite}
-                />
               </Box>
               <Box p={4}>
-                <Box mb={10}>
-                  <TitleDetail title={postDetailData?.title} />
-                  {postDetailData?.dateCreated && (
-                    <div className="text-[14px] mt-2 italic text-[#355933]">
-                      {formatDate(postDetailData.dateCreated)}
-                    </div>
-                  )}
+                <Box flex alignItems="flex-start" justifyContent="space-between" mb={10}>
+                  <div>
+                    <TitleDetail title={postDetailData?.title} />
+                    {postDetailData?.dateCreated && (
+                      <div className="text-[14px] mt-2 italic text-[#355933]">
+                        {formatDate(postDetailData.dateCreated)}
+                      </div>
+                    )}
+                  </div>
+
+                  <ActionButton
+                    icon="mdi:heart"
+                    altText="Mục yêu thích"
+                    isChecked={isFavorite}
+                    onClick={handleToggleFavorite}
+                  />
                 </Box>
 
                 <Box>

@@ -7,7 +7,6 @@ import { HttpError } from './http';
 import { getAccessTokenAccount, getPhoneNumberAccount, getUser, setDataToStorage } from './zalo';
 
 export const useLoginWithZalo = () => {
-  const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
   const { setIsLoadingFullScreen, setAccount, setToken } = useStoreApp();
   const { mutateAsync: loginMutation } = useLoginZalo();

@@ -14,7 +14,7 @@ export type PostComponentPropsType = {
   onClick?: () => void;
 };
 
-export const layoutComponentMap: Record<string, React.FC<PostComponentPropsType>> = {
+export const LAYOUT_COMPONENT_MAP: Record<string, React.FC<PostComponentPropsType>> = {
   HomeNews: NewsItem,
   SuKienHome: NewsItem,
   DiaDiemHome: LocationItem,
@@ -23,7 +23,7 @@ export const layoutComponentMap: Record<string, React.FC<PostComponentPropsType>
   HuongDanVienDuLichHome: GuideItem,
   TourDuLichHome: TourItem,
 };
-export const gridLayoutComponentMap: Record<string, number> = {
+export const GRID_COLUMN_LAYOUT_MAP: Record<string, number> = {
   HomeNews: 1,
   SuKienHome: 1,
   DiaDiemHome: 1,
@@ -31,4 +31,13 @@ export const gridLayoutComponentMap: Record<string, number> = {
   DacSanDiaPhuongHome: 1,
   HuongDanVienDuLichHome: 2,
   TourDuLichHome: 1,
+};
+export const SLIDE_PER_VIEWS_SECTION_HOMEPAGE: Record<string, number> = {
+  HomeNews: SLIDE_PER_VIEW_HOMEPAGE,
+  SuKienHome: SLIDE_PER_VIEW_HOMEPAGE,
+  DiaDiemHome: SLIDE_PER_VIEW_HOMEPAGE,
+  NhaHangKhachSanHome: SLIDE_PER_VIEW_HOMEPAGE,
+  DacSanDiaPhuongHome: SLIDE_PER_VIEW_HOMEPAGE,
+  TourDuLichHome: SLIDE_PER_VIEW_HOMEPAGE,
+  HuongDanVienDuLichHome: 2.1,
 };
