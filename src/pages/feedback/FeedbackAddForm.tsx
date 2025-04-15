@@ -32,6 +32,11 @@ const defaultValues: FormDataFeedback = {
     isPublic: false
 };
 
+interface Option {
+    value: string;
+    label: string;
+}
+
 const FeedbackAddForm: React.FC = () => {
 
     const { t: tCommon } = useTranslation("common");
@@ -138,62 +143,102 @@ const FeedbackAddForm: React.FC = () => {
         setFormData(data)
     };
 
+    /**
+     * HANDLE CONVERT DATA
+    **/
+
+    const preparePetitionData = (
+        formData: any,
+        feedbackChuyenMucOptions: Option[] | undefined,
+        tinhOptions: Option[] | undefined,
+        userAddress: any,
+        feedbackAddress: any,
+        listFileUpload: File[],
+        moreAddressInfoUser: any,
+    ): { data: any; isValid: boolean } => {
+        const tagItem = feedbackChuyenMucOptions?.find((item) => item.value === formData.tag);
+        const userAddressProvince = tinhOptions?.find((item) => item.value === formData.reporter_address_province);
+        const userAddressTown = userAddress?.huyenOptions?.find((item) => item.value === formData.reporter_address_town);
+        const userAddressVillage = userAddress?.xaOptions?.find((item) => item.value === formData.reporter_address_village);
+        const feedbackAddressTown = feedbackAddress?.huyenOptions?.find((item) => item.value === formData.takePlaceTown);
+        const feedbackAddressVillage = feedbackAddress?.xaOptions?.find((item) => item.value === formData.takePlaceVillage);
+
+        // Kiểm tra tệp đính kèm
+        if (listFileUpload.length === 0) {
+            openSnackbar({
+                icon: true,
+                text: 'Bạn chưa chọn tệp đính kèm',
+                type: 'warning',
+                action: { text: 'Đóng', close: true },
+                duration: 3000,
+            });
+            return { data: null, isValid: false };
+        }
+
+        // Chuyển đổi dữ liệu
+        const convertedData = convertPetitionBody(
+            {
+                ...formData,
+                tag: tagItem,
+                reporter_address_province: {
+                    id: formData.reporter_address_province,
+                    typeId: '5ee304423167922ac55bea01',
+                    name: userAddressProvince?.label,
+                },
+                reporter_address_town: {
+                    id: formData.reporter_address_town,
+                    typeId: '5ee304423167922ac55bea02',
+                    name: userAddressTown?.label,
+                },
+                reporter_address_village: {
+                    id: formData.reporter_address_village,
+                    typeId: '5ee304423167922ac55bea03',
+                    name: userAddressVillage?.label,
+                },
+                takePlaceTown: {
+                    id: formData.takePlaceTown,
+                    typeId: '5ee304423167922ac55bea02',
+                    name: feedbackAddressTown?.label,
+                },
+                takePlaceVillage: {
+                    id: formData.takePlaceVillage,
+                    typeId: '5ee304423167922ac55bea03',
+                    name: feedbackAddressVillage?.label,
+                },
+            },
+            listFileUpload,
+            moreAddressInfoUser
+        );
+
+        if (!convertedData?.tag) {
+            openSnackbar({
+                icon: true,
+                text: 'Dữ liệu không hợp lệ',
+                type: 'error',
+                action: { text: 'Đóng', close: true },
+                duration: 3000,
+            });
+            return { data: null, isValid: false };
+        }
+
+        return { data: convertedData, isValid: true };
+    };
+
     const handleConfirm = async () => {
         setConfirmVisible(false);
         if (formData) {
             try {
-                const tagItem = feedbackChuyenMucOptions?.find((item) => item.value === formData.tag)
-                const userAddressProvince = tinhOptions?.find((item) => item.value === formData.reporter_address_province)
-                const userAddressTown = userAddress?.huyenOptions?.find((item) => item.value === formData.reporter_address_town)
-                const userAddressVillage = userAddress?.xaOptions?.find((item) => item.value === formData.reporter_address_village)
-                const feedbackAddressTown = feedbackAddress?.huyenOptions?.find((item) => item.value === formData.takePlaceTown)
-                const feedbackAddressVillage = feedbackAddress?.xaOptions?.find((item) => item.value === formData.takePlaceVillage)
-
-                let rs: any = convertPetitionBody(
-                    {
-                        ...formData,
-                        tag: tagItem,
-                        reporter_address_province: {
-                            id: formData.reporter_address_province,
-                            typeId: '5ee304423167922ac55bea01',
-                            name: userAddressProvince?.label
-                        },
-                        reporter_address_town: {
-                            id: formData.reporter_address_town,
-                            typeId: '5ee304423167922ac55bea02',
-                            name: userAddressTown?.label
-                        },
-                        reporter_address_village: {
-                            id: formData.reporter_address_village,
-                            typeId: '5ee304423167922ac55bea03',
-                            name: userAddressVillage?.label
-                        },
-                        takePlaceTown: {
-                            id: formData.takePlaceTown,
-                            typeId: '5ee304423167922ac55bea02',
-                            name: feedbackAddressTown?.label
-                        },
-                        takePlaceVillage: {
-                            id: formData.takePlaceVillage,
-                            typeId: '5ee304423167922ac55bea03',
-                            name: feedbackAddressVillage?.label
-                        }
-                    },
+                const { data: rs, isValid } = preparePetitionData(
+                    formData,
+                    feedbackChuyenMucOptions,
+                    tinhOptions,
+                    userAddress,
+                    feedbackAddress,
                     listFileUpload,
-                    moreAddressInfoUser,
+                    moreAddressInfoUser
                 );
 
-                if (listFileUpload.length === 0) {
-                    openSnackbar({
-                        icon: true,
-                        text: 'Bạn chưa chọn tệp đính kèm',
-                        type: 'warning',
-                        action: { text: 'Đóng', close: true },
-                        duration: 3000,
-                    });
-
-                    return;
-                }
+                if (!isValid) return;
 
                 if (rs?.tag) {
                     setCountdown(120)
@@ -263,58 +308,17 @@ const FeedbackAddForm: React.FC = () => {
     };
 
     async function handleCreateFeedback() {
-        const tagItem = feedbackChuyenMucOptions?.find((item) => item.value === formData.tag)
-        const userAddressProvince = tinhOptions?.find((item) => item.value === formData.reporter_address_province)
-        const userAddressTown = userAddress?.huyenOptions?.find((item) => item.value === formData.reporter_address_town)
-        const userAddressVillage = userAddress?.xaOptions?.find((item) => item.value === formData.reporter_address_village)
-        const feedbackAddressTown = feedbackAddress?.huyenOptions?.find((item) => item.value === formData.takePlaceTown)
-        const feedbackAddressVillage = feedbackAddress?.xaOptions?.find((item) => item.value === formData.takePlaceVillage)
-
-        let rs: any = convertPetitionBody(
-            {
-                ...formData,
-                tag: tagItem,
-                reporter_address_province: {
-                    id: formData.reporter_address_province,
-                    typeId: '5ee304423167922ac55bea01',
-                    name: userAddressProvince?.label
-                },
-                reporter_address_town: {
-                    id: formData.reporter_address_town,
-                    typeId: '5ee304423167922ac55bea02',
-                    name: userAddressTown?.label
-                },
-                reporter_address_village: {
-                    id: formData.reporter_address_village,
-                    typeId: '5ee304423167922ac55bea03',
-                    name: userAddressVillage?.label
-                },
-                takePlaceTown: {
-                    id: formData.takePlaceTown,
-                    typeId: '5ee304423167922ac55bea02',
-                    name: feedbackAddressTown?.label
-                },
-                takePlaceVillage: {
-                    id: formData.takePlaceVillage,
-                    typeId: '5ee304423167922ac55bea03',
-                    name: feedbackAddressVillage?.label
-                }
-            },
+        const { data: rs, isValid } = preparePetitionData(
+            formData,
+            feedbackChuyenMucOptions,
+            tinhOptions,
+            userAddress,
+            feedbackAddress,
             listFileUpload,
-            moreAddressInfoUser,
+            moreAddressInfoUser
         );
 
-        if (listFileUpload.length === 0) {
-            openSnackbar({
-                icon: true,
-                text: 'Bạn chưa chọn tệp đính kèm',
-                type: 'warning',
-                action: { text: 'Đóng', close: true },
-                duration: 3000,
-            });
-
-            return;
-        }
+        if (!isValid) return;
 
         if (rs?.tag) {
 
