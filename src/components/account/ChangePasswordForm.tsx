@@ -4,24 +4,24 @@ import { FormInputField } from 'components/form';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useStoreApp } from 'store/store';
-import { useCustomSnackbar } from 'utils/useCustomSnackbar';
-import { Box, Button, useNavigate, useSnackbar } from 'zmp-ui';
+import { Box, Button } from 'zmp-ui';
 
 import { FormDataChangePassword, schemaChangePassword } from './type';
+import { useUpdatePassword } from 'apiRequest/account';
+import { ConfirmModal } from 'components/modal';
 
 const defaultValues: FormDataChangePassword = {
   password: '',
-  oldPassword: '',
+  // oldPassword: '',
   confirmPassword: '',
 };
 
 const ChangePasswordForm: React.FC = () => {
-  const { showError, showSuccess } = useCustomSnackbar();
-  const { currentLanguage } = useStoreApp();
-  const t = currentLanguage.value;
-  const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
+  const { currentLanguage, account } = useStoreApp();
+  const t = currentLanguage.value;
+
+  const [isConfirmVisible, setConfirmVisible] = useState(false);
   const [formData, setFormData] = useState<FormDataChangePassword>(defaultValues);
   const [isHidePw, setIsHidePw] = useState<boolean>(true);
   const [isHideOPw, setIsHideOPw] = useState<boolean>(true);
@@ -37,34 +37,45 @@ const ChangePasswordForm: React.FC = () => {
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<FormDataChangePassword> = data => {
-    setFormData(data);
+  const { mutateAsync, isPending } = useUpdatePassword();
 
-    if (data) {
-      fetchApi();
+  const onSubmit: SubmitHandler<FormDataChangePassword> = data => {
+    setConfirmVisible(true);
+    setFormData(data);
+  };
+
+  const handleConfirm = async () => {
+    setConfirmVisible(false);
+    if (formData) {
+      try {
+
+        const dataSubmit = {
+          Password: formData.password,
+          ConfirmPassword: formData.confirmPassword,
+          PassCode: null,
+          changePassword: true,
+          fullName: account?.fullName,
+        };
+
+        await mutateAsync({ ...dataSubmit, changePassword: true });
+
+        reset(defaultValues);
+
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
   };
 
-  const fetchApi = () => {
-    setLoading(true);
-    try {
-      console.log('call api login with: ', { ...formData });
-      showSuccess(t['ChangePasswordSuccess']);
-      reset(defaultValues);
-      navigate('/profile');
-    } catch (error) {
-      console.error('Error:', error);
-      showError(t['ErrorOccurred']);
-    } finally {
-      setLoading(false);
-    }
+  const handleCancel = () => {
+    setConfirmVisible(false);
   };
 
   return (
     <Box px={4} pb={4} className="login-form">
       <Box>
         <div className="grid grid-cols-12 gap-x-3">
-          <div className="col-span-12 relative">
+          {/* <div className="col-span-12 relative">
             <Icon
               icon="mdi:password"
               fontSize={20}
@@ -89,7 +100,7 @@ const ChangePasswordForm: React.FC = () => {
                 <Icon fontSize={20} color="#355933" icon="mdi:eye" />
               )}
             </div>
-          </div>
+          </div> */}
           <div className="col-span-12 relative">
             <Icon
               icon="mdi:password"
@@ -143,12 +154,19 @@ const ChangePasswordForm: React.FC = () => {
             </div>
           </div>
           <div className="col-span-12 relative mt-[40px]">
-            <Button fullWidth onClick={handleSubmit(onSubmit)} className="capitalize">
-              {loading ? `${t['Processing']}` : `${t['ChangePw']}`}
+            <Button disabled={isPending} fullWidth onClick={handleSubmit(onSubmit)} className="capitalize">
+              {isPending ? `${t['Processing']}` : `${t['ChangePw']}`}
             </Button>
           </div>
         </div>
       </Box>
+      <ConfirmModal
+        visible={isConfirmVisible}
+        title={t['Confirm']}
+        message={t['ConfirmUpdateAccount']}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
     </Box>
   );
 };

@@ -1,55 +1,52 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import http from 'services/http';
 import { useStoreApp } from 'store/store';
-import { useSnackbar } from 'zmp-ui';
+import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 
 const accountApiRequest = {
   update: async (data: any) => {
-    console.log(data);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const response = data;
-
-        resolve(response);
-      }, 1500);
-    });
-    return await http.put<any>('/account/update', data);
+    return await http.post<any>('/Account/update-profile', data);
   },
 };
 
 export const useUpdateAccount = () => {
   const queryClient = useQueryClient();
-  const { openSnackbar } = useSnackbar();
   const { setAuth, account, token } = useStoreApp();
+  const { showSuccess, showError } = useCustomSnackbar();
 
   return useMutation({
     mutationFn: accountApiRequest.update,
     onSuccess: data => {
-      openSnackbar({
-        icon: true,
-        text: 'Cập nhật thông tin tài khoản thành công',
-        type: 'success',
-        action: { text: 'Đóng', close: true },
-        duration: 3000,
-      });
+      showSuccess('Cập nhật thông tin tài khoản thành công');
 
-      const newData = { ...account, ...data };
+      if (data && data?.data) {
+        const newData = { ...account, ...data.data };
 
-      queryClient.setQueryData(['account'], newData);
+        queryClient.setQueryData(['account'], newData);
 
-      if (newData) {
-        setAuth({ account: newData, token });
+        if (newData) {
+          setAuth({ account: newData, token });
+        }
       }
     },
     onError: (error: string) => {
       console.error('Lỗi:', error);
-      openSnackbar({
-        icon: true,
-        text: error,
-        type: 'error',
-        action: { text: 'Đóng', close: true },
-        duration: 3000,
-      });
+      showError(error);
+    },
+  });
+};
+
+export const useUpdatePassword = () => {
+  const { showSuccess, showError } = useCustomSnackbar();
+
+  return useMutation({
+    mutationFn: accountApiRequest.update,
+    onSuccess: data => {
+      showSuccess('Cập nhật mật khẩu thành công');
+    },
+    onError: (error: string) => {
+      console.error('Lỗi:', error);
+      showError(error);
     },
   });
 };

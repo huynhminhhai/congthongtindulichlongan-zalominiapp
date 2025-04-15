@@ -38,16 +38,37 @@ export type FormDataProfile = {
 };
 
 export const schemaChangePassword = yup.object().shape({
-  oldPassword: yup.string().required('Không được để trống'),
-  password: yup.string().required('Không được để trống'),
+  // oldPassword: yup
+  //   .string()
+  //   .required('Không được để trống')
+  //   .required('Không được để trống')
+  //   .min(8, 'Mật khẩu phải có ít nhất 8 ký tự')
+  //   .matches(
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]+$/,
+  //     'Mật khẩu phải chứa ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt (@$!%*?&#_)'
+  //   ),
+  password: yup
+    .string()
+    .required('Không được để trống')
+    .min(8, 'Mật khẩu phải có ít nhất 8 ký tự')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]+$/,
+      'Mật khẩu phải chứa ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt (@$!%*?&#_)'
+    ),
   confirmPassword: yup
     .string()
     .required('Không được để trống')
+    .required('Không được để trống')
+    .min(8, 'Mật khẩu phải có ít nhất 8 ký tự')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]+$/,
+      'Mật khẩu phải chứa ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt (@$!%*?&#_)'
+    )
     .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không khớp'),
 });
 
 export type FormDataChangePassword = {
-  oldPassword: string;
+  // oldPassword: string;
   confirmPassword: string;
   password: string;
 };
