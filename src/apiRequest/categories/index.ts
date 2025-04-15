@@ -46,7 +46,7 @@ export const useGetCategoryListShowHome = () => {
       }
     },
 
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 60,
     retry: 1,
   });
 };

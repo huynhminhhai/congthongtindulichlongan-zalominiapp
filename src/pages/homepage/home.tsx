@@ -20,6 +20,7 @@ import { Box, Page } from 'zmp-ui';
 const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { data: categoriesList } = useGetCategoryListShowHome();
+
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px] home">
       <Box className="relative z-[1]">

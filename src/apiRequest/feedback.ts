@@ -1,5 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import envConfig from 'envConfig';
 import { useEffect, useState } from 'react';
 import http from 'services/http';
 import { useNavigate, useSnackbar } from 'zmp-ui';
@@ -20,19 +21,13 @@ var auth = {
 };
 
 export async function getToken() {
-  if (auth?.expires_in > 0) {
-    return;
+  try {
+    const response = await http.get<{ token: string }>(`/petition`);
+    auth = { ...auth, configreq: { headers: { Authorization: 'Bearer ' + response?.token } } };
+    return response;
+  } catch (error) {
+    throw error;
   }
-  const formData = new FormData();
-  formData.append('Authorization', '$WpKz#lH3d7E%uN81');
-  const response = await axios.post(`/AppLAS/Miniapps/TokenPetition`, formData);
-  auth = {
-    ...response?.data?.result,
-    configreq: { headers: { Authorization: 'Bearer ' + response?.data?.result?.access_token } },
-  };
-  console.log(auth);
-
-  return auth;
 }
 
 export async function getTokenPetition() {
@@ -117,7 +112,9 @@ export function convertPetitionBody(petition: any, listFile: any, ccDiaChiUser: 
     title: petition?.title?.trim(),
   };
 }
-
+type SaveFeedbackType = {
+  code: string;
+};
 function getThumbnailId(listFile: any) {
   let rs = '';
   const imgRegex = /(\.jpg|\.jpeg|\.png)$/i;
@@ -136,6 +133,9 @@ export const feedbackApiRequest = {
     return await http.get<any>(
       `/phananh?current=${param.page}&size=${param.pageSize}&ApId=${param.ApId}&TextSearch=${param.keyword}`
     );
+  },
+  saveCodeFeedback: async (data: SaveFeedbackType) => {
+    return await http.post('/petition', data);
   },
   createFeedback: async (formData: any) => {
     return await axios.post(endpointAPI1022 + '/pe/petition', formData, auth?.configreq);
@@ -228,7 +228,7 @@ export const useGetFeedbackList = (param: { page: number; pageSize: number; ApId
 /**
  * POST FEEDBACK
  **/
-export const useCreateFeeback = () => {
+export const useCreateFeedback = () => {
   const { openSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -261,7 +261,28 @@ export const useCreateFeeback = () => {
     },
   });
 };
+export const useSaveFeedbackCode = () => {
+  const { openSnackbar } = useSnackbar();
+  const queryClient = useQueryClient();
 
+  return useMutation({
+    mutationFn: async (formData: any) => {
+      return await feedbackApiRequest.saveCodeFeedback(formData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['feedbackList'] });
+    },
+    onError: (error: string) => {
+      openSnackbar({
+        icon: true,
+        text: `Lỗi: ${error}`,
+        type: 'error',
+        action: { text: 'Đóng', close: true },
+        duration: 3000,
+      });
+    },
+  });
+};
 /**
  * GET FEEDBACK LINH VUC
  **/

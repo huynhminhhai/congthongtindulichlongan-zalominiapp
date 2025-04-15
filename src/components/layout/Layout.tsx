@@ -148,10 +148,10 @@ const Layout = () => {
         <Route path="/gallery-detail" element={<GalleryDetailPage></GalleryDetailPage>}></Route>
 
         {/* FEEDBACK */}
-        <Route path="/feedback" element={<FeedbackPage></FeedbackPage>}></Route>
-        <Route path="/feedback-detail" element={<FeedbackDetailPage></FeedbackDetailPage>}></Route>
+        <Route path="/feedback" element={<FeedbackAddPage></FeedbackAddPage>}></Route>
+        {/* <Route path="/feedback-detail" element={<FeedbackDetailPage></FeedbackDetailPage>}></Route>
         <Route path="/feedback-add" element={<FeedbackAddPage></FeedbackAddPage>}></Route>
-        <Route path="/feedback-history" element={<FeedbackHistoryPage></FeedbackHistoryPage>}></Route>
+        <Route path="/feedback-history" element={<FeedbackHistoryPage></FeedbackHistoryPage>}></Route> */}
 
         {/* ACCOUNT */}
         <Route path="/account" element={<AccountPage></AccountPage>}></Route>

@@ -25,10 +25,15 @@ export const useCustomSnackbar = () => {
       text,
       type: 'success',
     });
-
+  const showWarning = (text: string) =>
+    showSnackbar({
+      text,
+      type: 'warning',
+    });
   return {
     showSnackbar,
     showError,
     showSuccess,
+    showWarning,
   };
 };
