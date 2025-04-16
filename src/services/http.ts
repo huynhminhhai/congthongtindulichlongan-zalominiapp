@@ -64,7 +64,11 @@ const request = async <T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string
     try {
       const errorData = await response.json();
 
-      errorMessage = errorData?.message || errorMessage;
+      if (errorData?.errors?.length > 0) {
+        errorMessage = errorData.errors[0] || errorMessage;
+      } else {
+        errorMessage = errorData?.message || errorMessage;
+      }
     } catch (err) {
       console.warn('Không thể đọc JSON từ lỗi API');
     }

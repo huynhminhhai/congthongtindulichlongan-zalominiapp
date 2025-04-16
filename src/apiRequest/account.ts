@@ -29,9 +29,9 @@ export const useUpdateAccount = () => {
         }
       }
     },
-    onError: (error: string) => {
-      console.error('Lỗi:', error);
-      showError(error);
+    onError: (error: any) => {
+      console.error('Lỗi:', error?.message);
+      showError(error?.message);
     },
   });
 };
@@ -44,9 +44,9 @@ export const useUpdatePassword = () => {
     onSuccess: data => {
       showSuccess('Cập nhật mật khẩu thành công');
     },
-    onError: (error: string) => {
-      console.error('Lỗi:', error);
-      showError(error);
+    onError: (error: any) => {
+      console.error('Lỗi:', error?.message);
+      showError(error?.message);
     },
   });
 };

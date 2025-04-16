@@ -61,8 +61,8 @@ const ChangePasswordForm: React.FC = () => {
 
         reset(defaultValues);
 
-      } catch (error) {
-        console.error('Error:', error);
+      } catch (error: any) {
+        console.error('Error:', error.message);
       }
     }
   };
