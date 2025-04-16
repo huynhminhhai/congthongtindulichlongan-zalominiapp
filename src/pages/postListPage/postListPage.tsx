@@ -20,35 +20,30 @@ const PostListPage = () => {
   const navigate = useNavigate();
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
-
-  const [filters, setFilters] = useState({
-    search: '',
-  });
+  const [searchText, setSearchText] = useState('');
 
   const [param, setParam] = useState({
     page: 1,
     size: 10,
     categoryId: Number(id),
-    // search: '',
+    search: searchText,
   });
 
-  const updateFilter = (key: keyof typeof filters, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
-  };
+  useEffect(() => {
+    const handler = debounce((value: string) => {
+      setParam(prev => ({
+        ...prev,
+        search: value,
+        page: 1,
+      }));
+    }, 300);
 
-  const useDebouncedParam = (value: string, key: keyof typeof param) => {
-    useEffect(() => {
-      const handler = debounce((v: string) => {
-        setParam(prev => ({ ...prev, [key]: v }));
-      }, 300);
+    handler(searchText);
 
-      handler(value);
-
-      return () => handler.cancel();
-    }, [value, key]);
-  };
-
-  // useDebouncedParam(filters.search, 'search');
+    return () => {
+      handler.cancel();
+    };
+  }, [searchText]);
 
   const { data: categoryDetail } = useGetCategoryDetail(Number(id));
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetPostsListForScroll(param);
@@ -89,7 +84,7 @@ const PostListPage = () => {
         <Box>
           {postsList.length === 0 && !isFetchingNextPage && !isLoading ? (
             <Box px={4}>
-              <EmptyData title="Hiện chưa có danh sách về chuyên mục này!" desc="Vui lòng quay lại sau." />
+              <EmptyData title={t['NoDataForThisCategory']} desc={t['PleaseComeBackLater']} />
             </Box>
           ) : (
             <div className={`grid gap-4 grid-cols-${gridColumn}`}>
@@ -106,7 +101,7 @@ const PostListPage = () => {
 
         <div ref={loaderRef} className="px-4 pt-4">
           {isFetchingNextPage && <PostSkeleton count={1} />}
-          {postsList.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả</p>}
+          {postsList.length > 0 && !hasNextPage && <p className="text-center">{t['AllDisplayed']}</p>}
         </div>
       </Box>
     );
@@ -117,7 +112,17 @@ const PostListPage = () => {
       <Box>
         <HeaderSub title={categoryDetail?.name || '...'} onBackClick={() => navigate('/')} />
         <Box pb={4}>
-          <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t['Search']} value={''} />}>
+          <FilterBar
+            showFilter={false}
+            showAddButton={false}
+            searchComponent={
+              <Input.Search
+                placeholder={t['Search']}
+                value={searchText}
+                onChange={e => setSearchText(e.target.value)}
+              />
+            }
+          >
             {/* <div className="col-span-12">
                 <Select placeholder={tCommon('all')} closeOnSelect>
                   <Option title={tCommon('all')} value={0} />

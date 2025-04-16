@@ -24,7 +24,6 @@ import Label from 'components/form/Label';
 import { ConfirmModal } from 'components/modal';
 import React, { useEffect, useMemo, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Input, Switch, useNavigate, useSnackbar, Button as ZMPButton } from 'zmp-ui';
@@ -57,7 +56,6 @@ interface Option {
 }
 
 const FeedbackAddForm: React.FC = () => {
-  const { t: tCommon } = useTranslation('common');
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
   const { showError, showSuccess, showWarning } = useCustomSnackbar();
@@ -600,7 +598,7 @@ const FeedbackAddForm: React.FC = () => {
             <Box py={3} className="w-[100%]" flex alignItems="center" justifyContent="center">
               <PrimaryButton
                 fullWidth
-                label={isPending ? `${tCommon('processing')}` : `${tCommon('send-feedback')}`}
+                label={isPending ? `${t['Processing']}` : `${t['SendFeedback']}`}
                 handleClick={handleSubmit(onSubmit)}
                 disabled={isPending}
               />

@@ -106,14 +106,14 @@ const FavoritePage = () => {
                 title="Hiện chưa có yêu thích nào!"
                 desc={
                   token ? (
-                    `Bạn có thể thêm mục yêu thích để có thể tương tác tại đây. Vui lòng quay lại sau.`
+                    t['FavoriteWhenLoggedIn']
                   ) : (
                     <>
-                      Vui lòng{' '}
+                      {t['Please']}{' '}
                       <span className="text-[#355933] font-semibold" onClick={() => setIsLoginModalOpen(true)}>
-                        đăng nhập
+                        {t['Login']}
                       </span>{' '}
-                      để thêm mục yêu thích.
+                      {t['ToAddFavorite']}
                     </>
                   )
                 }
@@ -141,7 +141,7 @@ const FavoritePage = () => {
         </Box>
         <div ref={loaderRef} className="px-4">
           {isFetchingNextPage && <FavoriteItemSkeleton />}
-          {favoritePosts.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả mục yêu thích</p>}
+          {favoritePosts.length > 0 && !hasNextPage && <p className="text-center">{t['DisplayedAllFavorites']}</p>}
         </div>
       </Box>
     );

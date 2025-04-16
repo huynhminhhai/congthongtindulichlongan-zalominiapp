@@ -115,7 +115,7 @@ const SearchPage: React.FC = () => {
                   );
                 })
               ) : (
-                <EmptyData title="Không tìm thấy kết quả" />
+                <EmptyData title={t['NoResultsFound']} />
               ))}
           </Box>
           <div ref={loaderRef} className="px-4 pt-4">
@@ -125,7 +125,7 @@ const SearchPage: React.FC = () => {
                   <ItemDetailCardSkeleton />
                 </Box>
               ))}
-            {postsList.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả</p>}
+            {postsList.length > 0 && !hasNextPage && <p className="text-center">{t['AllDisplayed']}</p>}
           </div>
         </Box>
       </Box>
