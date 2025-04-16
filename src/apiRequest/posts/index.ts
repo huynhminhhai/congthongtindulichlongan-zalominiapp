@@ -52,7 +52,7 @@ export const useGetPostsList = (params: PostParamsType, options?: { enabled?: bo
 
 export const useGetPostsListForScroll = (params: PostParamsType, options?: { enabled?: boolean }) => {
   return useInfiniteQuery<PostsResponseType>({
-    queryKey: ['postsList', params.categoryId],
+    queryKey: ['postsList', params.categoryId, params.search],
     queryFn: async ({ pageParam = 1 }) => {
       const res = await postsApiRequest.getPostsList({
         ...params,

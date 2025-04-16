@@ -13,8 +13,9 @@ export type FavoriteItemType = {
   category: string;
   isFavorite?: boolean;
   onCancel?: () => void;
+  onClick?: () => void;
 };
-const FavoriteItem: React.FC<FavoriteItemType> = ({ id, title, image, category, onCancel }) => {
+const FavoriteItem: React.FC<FavoriteItemType> = ({ id, title, image, category, onCancel, onClick }) => {
   return (
     <Box className={styles.favoriteItem}>
       <ActionButton
@@ -25,7 +26,12 @@ const FavoriteItem: React.FC<FavoriteItemType> = ({ id, title, image, category, 
         onClick={onCancel}
       />
 
-      <img className="w-full h-[210px] object-cover rounded-lg" src={formatImageSrc(image)} alt={title} />
+      <img
+        onClick={onClick}
+        className="w-full h-[210px] object-cover rounded-lg"
+        src={formatImageSrc(image)}
+        alt={title}
+      />
       <Box pt={2} pb={3}>
         <h3 className="text-[18px] leading-6 font-bold text-[#355933] line-clamp-2 mb-2">{title}</h3>
         {category && (

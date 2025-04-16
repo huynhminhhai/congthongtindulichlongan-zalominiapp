@@ -4,12 +4,14 @@ import { useGetFavoritePosts } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
 import { FavoriteItem } from 'components/favorite';
 import { HeaderSub } from 'components/header-sub';
+import { FilterBar } from 'components/table';
 import { debounce } from 'lodash';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { useInfiniteScroll } from 'utils/useInfiniteScroll';
-import { Box, Page, Select } from 'zmp-ui';
+import { Box, Input, Page, Select } from 'zmp-ui';
 
 const FavoriteItemSkeleton = () => {
   return (
@@ -20,18 +22,22 @@ const FavoriteItemSkeleton = () => {
   );
 };
 const FavoritePage = () => {
+  const navigate = useNavigate();
+
+  const [activeCate, setActiveCate] = useState<number | undefined>(0);
+  const [searchText, setSearchText] = useState('');
+
+  const [param, setParam] = useState({
+    searchByParentCate: true,
+    page: 1,
+    size: 10,
+  });
   const { Option } = Select;
   const { currentLanguage, setIsLoginModalOpen, token } = useStoreApp();
   const t = currentLanguage.value;
 
   const [filters, setFilters] = useState({
     search: '',
-  });
-
-  const [param, setParam] = useState({
-    page: 1,
-    size: 10,
-    // search: '',
   });
 
   const { data, isLoading, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetFavoritePosts(param, {
@@ -146,7 +152,7 @@ const FavoritePage = () => {
       <Box>
         <HeaderSub title={t['ZaloFavorites']} />
         <Box mt={3}>
-          {/* <Box>
+          <Box>
             <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t['Search']} value={''} />}>
               <div className="col-span-12">
                 <Select placeholder="Danh mục" closeOnSelect>
@@ -155,30 +161,8 @@ const FavoritePage = () => {
                 </Select>
               </div>
             </FilterBar>
-          </Box> */}
-          <Box px={4}>
-            {/* {isLoading
-              ? [...Array(4)].map((_, idx) => (
-                <Box mb={6} key={idx}>
-                  <FavoriteItemSkeleton />
-                </Box>
-              ))
-              : favoritePosts?.map((item, index) => {
-                const fvr = item.post;
-                return (
-                  <Box mb={6} key={index}>
-                    <FavoriteItem
-                      id={fvr.id}
-                      image={fvr.image}
-                      title={fvr.title}
-                      category={fvr.category}
-                      onCancel={() => handleToggleFavorite(fvr.id)}
-                    />
-                  </Box>
-                );
-              })} */}
-            {renderContent()}
           </Box>
+          <Box px={4}>{renderContent()}</Box>
         </Box>
       </Box>
     </Page>

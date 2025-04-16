@@ -3,7 +3,8 @@ import { useGetPostsListForScroll } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
 import { ItemDetailCard, ItemDetailCardSkeleton } from 'components/detail';
 import { HeaderSub } from 'components/header-sub';
-import React, { useState } from 'react';
+import { debounce } from 'lodash';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { useInfiniteScroll } from 'utils/useInfiniteScroll';
@@ -14,11 +15,12 @@ const { Option } = Select;
 const SearchPage: React.FC = () => {
   const navigate = useNavigate();
   const [activeCate, setActiveCate] = useState<number | undefined>(0);
+  const [searchText, setSearchText] = useState('');
+
   const [param, setParam] = useState({
     searchByParentCate: true,
     page: 1,
     size: 10,
-    search: '',
   });
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
@@ -41,6 +43,23 @@ const SearchPage: React.FC = () => {
     loading: isFetchingNextPage,
     onLoadMore: fetchNextPage,
   });
+  console.log(param);
+  useEffect(() => {
+    const handler = debounce((value: string) => {
+      setParam(prev => ({
+        ...prev,
+        search: value,
+        page: 1,
+      }));
+    }, 300);
+
+    handler(searchText);
+
+    return () => {
+      handler.cancel();
+    };
+  }, [searchText]);
+
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[66px]">
       <Box>
@@ -49,9 +68,9 @@ const SearchPage: React.FC = () => {
           <Box mb={2}>
             <Input.Search
               className="h-[46px] !border-0"
-              focused
+              value={searchText}
               placeholder={t['Search']}
-              onSearch={text => setParam(prev => ({ ...prev, search: text }))}
+              onChange={e => setSearchText(e.target.value)}
             />
           </Box>
           <Box>
