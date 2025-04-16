@@ -14,7 +14,7 @@ export const encodeQueryData = (data = {}) => {
   };
 
   return Object.entries(obj)
-    .filter(([_, value]) => value !== undefined)
+    .filter(([_, value]) => value !== undefined && value !== '')
     .map(pair => pair.map((element: any) => encodeURIComponent(element)).join('='))
     .join('&');
 };

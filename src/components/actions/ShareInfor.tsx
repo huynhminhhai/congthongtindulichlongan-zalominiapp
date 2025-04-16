@@ -1,15 +1,19 @@
+import { PostType } from 'apiRequest/posts/types';
 import images from 'assets/images';
 import React from 'react';
 import { openUrlInWebview } from 'services/zalo';
 import { useStoreApp } from 'store/store';
+import { formatImageSrc } from 'utils';
 import { copyToClipboard } from 'utils/copyToClipboard';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import zmp from 'zmp-sdk';
+import { openShareSheet } from 'zmp-sdk/apis';
 import { Box } from 'zmp-ui';
 
-const ShareInfor: React.FC = () => {
+const ShareInfor: React.FC<{ postDetail: PostType }> = ({ postDetail }) => {
   const { showError, showSuccess } = useCustomSnackbar();
   const link = window.location.href;
+  console.log(link);
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
 
@@ -22,17 +26,21 @@ const ShareInfor: React.FC = () => {
   };
 
   const handleShareZalo = () => {
-    zmp
-      .openShareSheet({
-        type: 'link',
-        data: { link, chatOnly: false },
-      })
-      .then(() => {
+    openShareSheet({
+      type: 'zmp_deep_link',
+      data: {
+        title: postDetail.title,
+        thumbnail: formatImageSrc(postDetail.image),
+        // description: postDetail.content,
+      },
+      success: () => {
         showSuccess(t['ShareSuccess']);
-      })
-      .catch(() => {
-        showSuccess(t['ShareFailure']);
-      });
+      },
+      fail: err => {
+        console.error(err);
+        showError(t['ShareFailure']);
+      },
+    });
   };
 
   const handleShareSocial = async (platform: string) => {

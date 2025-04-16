@@ -1,18 +1,19 @@
 import { useGetCategoryDetail } from 'apiRequest/categories';
 import { useGetPostsListForScroll } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
+import { EmptyData } from 'components/data';
 import { HeaderSub } from 'components/header-sub';
 import { NewsItem } from 'components/PostComponent/news';
 import { FilterBar } from 'components/table';
+import { debounce } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { GRID_COLUMN_LAYOUT_MAP, LAYOUT_COMPONENT_MAP, PostComponentPropsType } from 'utils/constants';
-import { Box, Input, Page } from 'zmp-ui';
-import PostSkeleton from './postListSkeleton';
 import { useInfiniteScroll } from 'utils/useInfiniteScroll';
-import { EmptyData } from 'components/data';
-import { debounce } from 'lodash';
+import { Box, Input, Page } from 'zmp-ui';
+
+import PostSkeleton from './postListSkeleton';
 
 const PostListPage = () => {
   const { id } = useParams();
@@ -32,27 +33,27 @@ const PostListPage = () => {
   });
 
   const updateFilter = (key: keyof typeof filters, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters(prev => ({ ...prev, [key]: value }));
   };
 
   const useDebouncedParam = (value: string, key: keyof typeof param) => {
     useEffect(() => {
       const handler = debounce((v: string) => {
-        setParam(prev => ({ ...prev, [key]: v }))
-      }, 300)
+        setParam(prev => ({ ...prev, [key]: v }));
+      }, 300);
 
-      handler(value)
+      handler(value);
 
-      return () => handler.cancel()
-    }, [value, key])
-  }
+      return () => handler.cancel();
+    }, [value, key]);
+  };
 
   // useDebouncedParam(filters.search, 'search');
 
   const { data: categoryDetail } = useGetCategoryDetail(Number(id));
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetPostsListForScroll(param);
 
-  const postsList = data?.pages?.reduce((acc, page) => [...acc, ...page], []) || [];
+  const postsList = data?.pages?.reduce((acc, page) => [...acc, ...page.items], []) || [];
 
   const loaderRef = useInfiniteScroll({
     hasMore: hasNextPage,
@@ -76,41 +77,40 @@ const PostListPage = () => {
 
   const renderContent = () => {
     if (isLoading) {
-      return <Box mb={4}>
-        <PostSkeleton gridColumn={gridColumn} count={param.size} />
-      </Box>;
+      return (
+        <Box mb={4}>
+          <PostSkeleton gridColumn={gridColumn} count={param.size} />
+        </Box>
+      );
     }
 
-    return <Box>
+    return (
       <Box>
-        {
-          (postsList.length === 0 && !isFetchingNextPage && !isLoading) ? (
+        <Box>
+          {postsList.length === 0 && !isFetchingNextPage && !isLoading ? (
             <Box px={4}>
               <EmptyData title="Hiện chưa có danh sách về chuyên mục này!" desc="Vui lòng quay lại sau." />
             </Box>
-          ) :
-            (
-              <>
-                {
-                  postsList.map((data: PostType, index: number) => {
-                    return (
-                      <Box mb={4} key={index}>
-                        <PostComponent key={data.id} data={data} onClick={() => navigate(`/bai-viet/${data.id}`)} />
-                      </Box>
-                    );
-                  })
-                }
-              </>
-            )
-        }
-      </Box>
+          ) : (
+            <div className={`grid gap-4 grid-cols-${gridColumn}`}>
+              {postsList.map((data: PostType, index: number) => {
+                return (
+                  <Box mb={4} key={index}>
+                    <PostComponent key={data.id} data={data} onClick={() => navigate(`/bai-viet/${data.id}`)} />
+                  </Box>
+                );
+              })}
+            </div>
+          )}
+        </Box>
 
-      <div ref={loaderRef} className="px-4 pt-4">
-        {isFetchingNextPage && <PostSkeleton count={1} />}
-        {postsList.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả</p>}
-      </div>
-    </Box>;
-  }
+        <div ref={loaderRef} className="px-4 pt-4">
+          {isFetchingNextPage && <PostSkeleton count={1} />}
+          {postsList.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả</p>}
+        </div>
+      </Box>
+    );
+  };
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
@@ -138,9 +138,7 @@ const PostListPage = () => {
               </div>
             )}
           </Box> */}
-          <Box px={4}>
-            {renderContent()}
-          </Box>
+          <Box px={4}>{renderContent()}</Box>
         </Box>
       </Box>
     </Page>

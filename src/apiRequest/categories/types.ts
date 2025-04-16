@@ -12,3 +12,7 @@ export type CategoryType = {
   posts: PostType[];
   icon: string;
 };
+export type CategoryOptionType = {
+  text: string;
+  value: string;
+};

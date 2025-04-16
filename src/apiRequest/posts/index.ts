@@ -3,7 +3,7 @@ import http from 'services/http';
 import { getDataFromStorage } from 'services/zalo';
 import { encodeQueryData } from 'utils';
 
-import { PostType } from './types';
+import { PostsResponseType, PostType } from './types';
 
 type PostParamsType = {
   page: number;
@@ -14,12 +14,12 @@ type PostParamsType = {
   langId?: number;
 };
 const postsApiRequest = {
-  getPostsList: async (params: PostParamsType) => {
+  getPostsList: async (params: PostParamsType): Promise<PostsResponseType> => {
     const langId = Number((await getDataFromStorage('langId')) || 1);
     params = { ...params, langId };
     return await http.get<any>(`/posts?${encodeQueryData(params)}`);
   },
-  getPostDetail: async (id: number) => {
+  getPostDetail: async (id: number): Promise<PostType> => {
     return await http.get<any>(`/posts/${id}`);
   },
   getListPostFavorite: async (params: PostParamsType) => {
@@ -30,19 +30,19 @@ const postsApiRequest = {
 };
 
 export const useGetPostsList = (params: PostParamsType, options?: { enabled?: boolean }) => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<PostsResponseType>({
     queryKey: ['postsList', params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
       const res = await postsApiRequest.getPostsList({
         ...params,
-        page: pageParam,
+        page: pageParam as number,
       });
 
       return res;
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === params.size ? allPages.length + 1 : undefined;
+      return lastPage.items.length === params.size ? allPages.length + 1 : undefined;
     },
     staleTime: 0,
     retry: 1,
@@ -51,19 +51,19 @@ export const useGetPostsList = (params: PostParamsType, options?: { enabled?: bo
 };
 
 export const useGetPostsListForScroll = (params: PostParamsType, options?: { enabled?: boolean }) => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<PostsResponseType>({
     queryKey: ['postsList', params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
       const res = await postsApiRequest.getPostsList({
         ...params,
-        page: pageParam,
+        page: pageParam as number,
       });
 
-      return res?.items;
+      return res;
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === params.size ? allPages.length + 1 : undefined;
+      return lastPage.items.length === params.size ? allPages.length + 1 : undefined;
     },
     staleTime: 0,
     retry: 1,

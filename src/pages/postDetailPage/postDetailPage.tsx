@@ -122,7 +122,7 @@ const PostDetailPage = () => {
                 </Box>
               )}
               <Box px={4} mb={4}>
-                <ShareInfor />
+                <ShareInfor postDetail={postDetailData} />
               </Box>
             </Box>
 
