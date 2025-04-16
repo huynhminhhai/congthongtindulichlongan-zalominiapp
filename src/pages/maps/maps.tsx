@@ -79,7 +79,7 @@ const ResidentMapPage = () => {
 
     const map = L.map(mapContainer).setView([10.5333, 106.4167], 10);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+    L.tileLayer('https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}', {
       maxZoom: 19,
     }).addTo(map);
 
@@ -253,22 +253,22 @@ const ResidentMapPage = () => {
               <Swiper className={styles.serviceList} slidesPerView={1.08} spaceBetween={12}>
                 {isLoading
                   ? Array.from({ length: 4 }).map((_, index) => (
-                      <SwiperSlide key={index}>
-                        <ServiceItemSkeleton />
-                      </SwiperSlide>
-                    ))
+                    <SwiperSlide key={index}>
+                      <ServiceItemSkeleton />
+                    </SwiperSlide>
+                  ))
                   : locations.map((item: PostType, index: number) => (
-                      <SwiperSlide key={index}>
-                        <ServiceItem
-                          rating={item.averageRating}
-                          name={item.title}
-                          address={item.address}
-                          image={item.image}
-                          totolVote={item.totalVotes}
-                          onClick={() => handleItemClick(item.postMaps[0]?.lat, item.postMaps[0]?.lng)}
-                        />
-                      </SwiperSlide>
-                    ))}
+                    <SwiperSlide key={index}>
+                      <ServiceItem
+                        rating={item.averageRating}
+                        name={item.title}
+                        address={item.address}
+                        image={item.image}
+                        totolVote={item.totalVotes}
+                        onClick={() => handleItemClick(item.postMaps[0]?.lat, item.postMaps[0]?.lng)}
+                      />
+                    </SwiperSlide>
+                  ))}
               </Swiper>
             </div>
           </div>
