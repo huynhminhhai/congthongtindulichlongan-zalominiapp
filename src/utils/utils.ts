@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 
-export const LIMIT = 10;
 export const FORMAT_DATE = 'DD/MM/YYYY';
 
 export const formatImageSrc = (src: string | undefined): string => {
@@ -11,13 +10,12 @@ export const formatImageSrc = (src: string | undefined): string => {
 
 export const encodeQueryData = (data = {}) => {
   const obj = {
-    limit: LIMIT,
     ...data,
   };
 
   return Object.entries(obj)
     .filter(([_, value]) => value !== undefined)
-    .map(pair => pair.map(element => encodeURIComponent(element)).join('='))
+    .map(pair => pair.map((element: any) => encodeURIComponent(element)).join('='))
     .join('&');
 };
 

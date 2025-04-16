@@ -4,7 +4,8 @@ import { useGetFavoritePosts } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
 import { FavoriteItem } from 'components/favorite';
 import { HeaderSub } from 'components/header-sub';
-import React, { useEffect } from 'react';
+import { debounce } from 'lodash';
+import React, { useEffect, useState } from 'react';
 import { useStoreApp } from 'store/store';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { useInfiniteScroll } from 'utils/useInfiniteScroll';
@@ -22,15 +23,41 @@ const FavoritePage = () => {
   const { Option } = Select;
   const { currentLanguage, setIsLoginModalOpen, token } = useStoreApp();
   const t = currentLanguage.value;
+
+  const [filters, setFilters] = useState({
+    search: '',
+  });
+
+  const [param, setParam] = useState({
+    page: 1,
+    size: 10,
+    // search: '',
+  });
+
   const { data, isLoading, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetFavoritePosts(
-    {
-      page: 1,
-      size: 4,
-    },
+    param,
     {
       enabled: !!token,
     }
   );
+
+  const updateFilter = (key: keyof typeof filters, value: string) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const useDebouncedParam = (value: string, key: keyof typeof param) => {
+    useEffect(() => {
+      const handler = debounce((v: string) => {
+        setParam(prev => ({ ...prev, [key]: v }))
+      }, 300)
+
+      handler(value)
+
+      return () => handler.cancel()
+    }, [value, key])
+  }
+
+  // useDebouncedParam(filters.search, 'search');
 
   const favoritePosts = data?.pages?.reduce((acc, page) => [...acc, ...page], []) || [];
 
@@ -62,7 +89,7 @@ const FavoritePage = () => {
 
   const renderContent = () => {
     if (isLoading) {
-      return [...Array(4)].map((_, idx) => (
+      return [...Array(param.size)].map((_, idx) => (
         <Box mb={4} key={idx}>
           <FavoriteItemSkeleton />
         </Box>
