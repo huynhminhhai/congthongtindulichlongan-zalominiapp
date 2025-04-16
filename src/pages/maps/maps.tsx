@@ -134,7 +134,7 @@ const ResidentMapPage = () => {
     const boundsArray: [number, number][] = [];
 
     locations.forEach((item: PostType) => {
-      item.maps?.forEach((point: Location) => {
+      item.postMaps?.forEach((point: Location) => {
         const marker = L.marker([point.lat, point.lng], {
           icon,
           title: point.name,
@@ -265,7 +265,7 @@ const ResidentMapPage = () => {
                           address={item.address}
                           image={item.image}
                           totolVote={item.totalVotes}
-                          onClick={() => handleItemClick(item.maps[0]?.lat, item.maps[0]?.lng)}
+                          onClick={() => handleItemClick(item.postMaps[0]?.lat, item.postMaps[0]?.lng)}
                         />
                       </SwiperSlide>
                     ))}

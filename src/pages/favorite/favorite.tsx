@@ -34,28 +34,25 @@ const FavoritePage = () => {
     // search: '',
   });
 
-  const { data, isLoading, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetFavoritePosts(
-    param,
-    {
-      enabled: !!token,
-    }
-  );
+  const { data, isLoading, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetFavoritePosts(param, {
+    enabled: !!token,
+  });
 
   const updateFilter = (key: keyof typeof filters, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters(prev => ({ ...prev, [key]: value }));
   };
 
   const useDebouncedParam = (value: string, key: keyof typeof param) => {
     useEffect(() => {
       const handler = debounce((v: string) => {
-        setParam(prev => ({ ...prev, [key]: v }))
-      }, 300)
+        setParam(prev => ({ ...prev, [key]: v }));
+      }, 300);
 
-      handler(value)
+      handler(value);
 
-      return () => handler.cancel()
-    }, [value, key])
-  }
+      return () => handler.cancel();
+    }, [value, key]);
+  };
 
   // useDebouncedParam(filters.search, 'search');
 
@@ -95,42 +92,46 @@ const FavoritePage = () => {
         </Box>
       ));
     }
-    return <Box>
+    return (
       <Box>
-        {
-          (favoritePosts.length === 0 && !isFetchingNextPage && !isLoading) ? (
+        <Box>
+          {favoritePosts.length === 0 && !isFetchingNextPage && !isLoading ? (
             <Box px={4}>
-              <EmptyData title="Hiện chưa có mục yêu thích nào!" desc={token ? `Bạn có thể thêm mục yêu thích để có thể tương tác tại đây. Vui lòng quay lại sau.` : `Vui lòng đăng nhập để thêm mục yêu thích.`} />
-            </Box>
-          ) :
-            (
-              <>
-                {
-                  favoritePosts.map((item, index) => {
-                    const fvr = item.post;
-                    return (
-                      <Box mb={3} key={index}>
-                        <FavoriteItem
-                          id={fvr.id}
-                          image={fvr.image}
-                          title={fvr.title}
-                          category={fvr.category}
-                          onCancel={() => handleToggleFavorite(fvr.id)}
-                        />
-                      </Box>
-                    );
-                  })
+              <EmptyData
+                title="Hiện chưa có mục yêu thích nào!"
+                desc={
+                  token
+                    ? `Bạn có thể thêm mục yêu thích để có thể tương tác tại đây. Vui lòng quay lại sau.`
+                    : `Vui lòng đăng nhập để thêm mục yêu thích.`
                 }
-              </>
-            )
-        }
+              />
+            </Box>
+          ) : (
+            <>
+              {favoritePosts.map((item, index) => {
+                const fvr = item.post;
+                return (
+                  <Box mb={3} key={index}>
+                    <FavoriteItem
+                      id={fvr.id}
+                      image={fvr.image}
+                      title={fvr.title}
+                      category={fvr.category}
+                      onCancel={() => handleToggleFavorite(fvr.id)}
+                    />
+                  </Box>
+                );
+              })}
+            </>
+          )}
+        </Box>
+        <div ref={loaderRef} className="px-4">
+          {isFetchingNextPage && <FavoriteItemSkeleton />}
+          {favoritePosts.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả mục yêu thích</p>}
+        </div>
       </Box>
-      <div ref={loaderRef} className="px-4">
-        {isFetchingNextPage && <FavoriteItemSkeleton />}
-        {favoritePosts.length > 0 && !hasNextPage && <p className="text-center">Đã hiển thị tất cả mục yêu thích</p>}
-      </div>
-    </Box>;
-  }
+    );
+  };
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white pb-[72px]">

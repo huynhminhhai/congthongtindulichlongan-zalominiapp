@@ -15,7 +15,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({ icon, altText, isChecked = 
     <div
       className={classNames(
         className,
-        'p-[6px] rounded-full transition-colors transition-transform duration-300 ease-in-out transform hover:scale-115 active:scale-95',
+        'p-[6px] rounded-full transition-transform duration-300 ease-in-out transform hover:scale-115 active:scale-95',
         isChecked ? 'text-[#860f2d] bg-gray-200' : 'text-gray-300 bg-gray-100'
       )}
       onClick={onClick}

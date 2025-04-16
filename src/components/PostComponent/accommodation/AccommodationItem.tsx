@@ -27,7 +27,9 @@ const AccommodationItem: React.FC<PostComponentPropsType> = ({ data, onClick }) 
         </div>
         <div className={styles.address}>
           <Icon className={styles.addressIcon} icon="weui:location-filled" />
-          <span className={styles.addressText}>{data?.postMaps.length > 0 && data.postMaps[0].address}</span>
+          <span className={styles.addressText}>
+            {data?.postMaps && data?.postMaps.length > 0 && data.postMaps[0].address}
+          </span>
         </div>
       </Box>
     </Box>

@@ -43,7 +43,7 @@ export type PostType = {
   totalVotes: number;
   isFavorite: boolean;
   address: string;
-  maps: MapType[];
+  postMaps: MapType[];
   vote: number;
   postTypeNames: string;
 };

@@ -73,7 +73,7 @@ const PostDetailPage = () => {
               </Box>
               <Box p={4}>
                 <Box flex alignItems="flex-start" justifyContent="space-between" mb={10}>
-                  <div>
+                  <div className="mr-1">
                     <TitleDetail title={postDetailData?.title} />
                     {postDetailData?.dateCreated && (
                       <div className="text-[14px] mt-2 italic text-[#355933]">
@@ -104,11 +104,11 @@ const PostDetailPage = () => {
                 <Box p={4} mb={4}>
                   <TitleSubDetail title={t['Map']} />
                   <div className="infor-map">
-                    {postDetailData?.maps && postDetailData?.maps.length > 0 ? (
-                      postDetailData?.maps.length === 1 ? (
-                        <SingleLocationMap location={postDetailData.maps[0]} />
+                    {postDetailData?.postMaps && postDetailData?.postMaps.length > 0 ? (
+                      postDetailData?.postMaps.length === 1 ? (
+                        <SingleLocationMap location={postDetailData.postMaps[0]} />
                       ) : (
-                        <CategoryMap locations={postDetailData.maps} />
+                        <CategoryMap locations={postDetailData.postMaps} />
                       )
                     ) : (
                       t['MessageUpdate']

@@ -1,4 +1,4 @@
-// @import '../../../styles/mixins';
+@import '../../../styles/mixins';
 .accommodationItem {
   // border: 1px solid #eee;
   border-radius: 8px;
@@ -63,7 +63,7 @@
 .addressText {
   flex: 1;
   color: var(--neutral-700);
-  // @include line-clamp(2);
+  @include line-clamp(2);
 }
 .accommodationRate {
   padding: 4px 6px;
