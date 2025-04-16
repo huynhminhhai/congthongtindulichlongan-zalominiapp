@@ -12,6 +12,7 @@ type PostParamsType = {
   categoryId?: number;
   postId?: number;
   langId?: number;
+  searchByParentCate?: boolean;
 };
 const postsApiRequest = {
   getPostsList: async (params: PostParamsType): Promise<PostsResponseType> => {
@@ -89,16 +90,10 @@ export const useGetPostDetail = (id: number) => {
 };
 export const useGetFavoritePosts = (params: PostParamsType, options?: { enabled?: boolean }) => {
   return useInfiniteQuery({
-    queryKey: ['favoritePosts', params.size],
+    queryKey: ['favoritePosts', params.size, params.search, params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
       try {
-        const res = await postsApiRequest.getListPostFavorite({
-          page: pageParam,
-          size: params.size,
-          search: params.search,
-          categoryId: params.categoryId,
-          postId: params.postId,
-        });
+        const res = await postsApiRequest.getListPostFavorite(params);
 
         return res?.items;
       } catch (error) {

@@ -1,4 +1,5 @@
 import { Skeleton } from 'antd';
+import { useGetCategoryList } from 'apiRequest/categories';
 import { useRemoveFavorite } from 'apiRequest/favorites';
 import { useGetFavoritePosts } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
@@ -23,6 +24,7 @@ const FavoriteItemSkeleton = () => {
 };
 const FavoritePage = () => {
   const navigate = useNavigate();
+  const { data: categoriesList } = useGetCategoryList();
 
   const [activeCate, setActiveCate] = useState<number | undefined>(0);
   const [searchText, setSearchText] = useState('');
@@ -36,31 +38,28 @@ const FavoritePage = () => {
   const { currentLanguage, setIsLoginModalOpen, token } = useStoreApp();
   const t = currentLanguage.value;
 
-  const [filters, setFilters] = useState({
-    search: '',
-  });
+  const { data, isLoading, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetFavoritePosts(
+    { ...param, categoryId: activeCate || undefined, search: searchText },
+    {
+      enabled: !!token,
+    }
+  );
 
-  const { data, isLoading, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetFavoritePosts(param, {
-    enabled: !!token,
-  });
+  useEffect(() => {
+    const handler = debounce((value: string) => {
+      setParam(prev => ({
+        ...prev,
+        search: value,
+        page: 1,
+      }));
+    }, 300);
 
-  const updateFilter = (key: keyof typeof filters, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
-  };
+    handler(searchText);
 
-  const useDebouncedParam = (value: string, key: keyof typeof param) => {
-    useEffect(() => {
-      const handler = debounce((v: string) => {
-        setParam(prev => ({ ...prev, [key]: v }));
-      }, 300);
-
-      handler(value);
-
-      return () => handler.cancel();
-    }, [value, key]);
-  };
-
-  // useDebouncedParam(filters.search, 'search');
+    return () => {
+      handler.cancel();
+    };
+  }, [searchText]);
 
   const favoritePosts = data?.pages?.reduce((acc, page) => [...acc, ...page], []) || [];
 
@@ -130,8 +129,9 @@ const FavoritePage = () => {
                       id={fvr.id}
                       image={fvr.image}
                       title={fvr.title}
-                      category={fvr.category}
+                      categories={fvr.categories}
                       onCancel={() => handleToggleFavorite(fvr.id)}
+                      onClick={() => navigate(`/bai-viet/${fvr.id}`)}
                     />
                   </Box>
                 );
@@ -153,11 +153,32 @@ const FavoritePage = () => {
         <HeaderSub title={t['ZaloFavorites']} />
         <Box mt={3}>
           <Box>
-            <FilterBar showAddButton={false} searchComponent={<Input.Search placeholder={t['Search']} value={''} />}>
+            <FilterBar
+              showAddButton={false}
+              searchComponent={
+                <Input.Search
+                  className="h-[46px] !border-0"
+                  value={searchText}
+                  placeholder={t['Search']}
+                  onChange={e => setSearchText(e.target.value)}
+                />
+              }
+            >
               <div className="col-span-12">
-                <Select placeholder="Danh mục" closeOnSelect>
-                  <Option title={'Tất cả'} value={0} />
-                  <Option title={'Nổi tiếng'} value={1} />
+                <Select
+                  defaultValue={0}
+                  closeOnSelect
+                  placeholder={t['SelectAllSearch']}
+                  value={activeCate}
+                  onChange={value => setActiveCate(Number(value))}
+                  className="h-[46px] !border-0"
+                >
+                  <Option value={0} title={t['SelectAllSearch']} />
+
+                  {categoriesList &&
+                    categoriesList.map((item, index) => (
+                      <Option key={index} value={Number(item.value)} title={item.text} />
+                    ))}
                 </Select>
               </div>
             </FilterBar>
