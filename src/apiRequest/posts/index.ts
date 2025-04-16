@@ -33,15 +33,37 @@ export const useGetPostsList = (params: PostParamsType, options?: { enabled?: bo
   return useInfiniteQuery({
     queryKey: ['postsList', params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
-      return await postsApiRequest.getPostsList({
+      const res = await postsApiRequest.getPostsList({
         ...params,
         page: pageParam,
       });
+
+      return res;
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      const posts = lastPage?.data || [];
-      return posts.length === params.size ? allPages.length + 1 : undefined;
+      return lastPage.length === params.size ? allPages.length + 1 : undefined;
+    },
+    staleTime: 0,
+    retry: 1,
+    enabled: options?.enabled ?? true,
+  });
+};
+
+export const useGetPostsListForScroll = (params: PostParamsType, options?: { enabled?: boolean }) => {
+  return useInfiniteQuery({
+    queryKey: ['postsList', params.categoryId],
+    queryFn: async ({ pageParam = 1 }) => {
+      const res = await postsApiRequest.getPostsList({
+        ...params,
+        page: pageParam,
+      });
+
+      return res?.items;
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === params.size ? allPages.length + 1 : undefined;
     },
     staleTime: 0,
     retry: 1,
@@ -70,13 +92,15 @@ export const useGetFavoritePosts = (params: PostParamsType, options?: { enabled?
     queryKey: ['favoritePosts', params.size],
     queryFn: async ({ pageParam = 1 }) => {
       try {
-        return await postsApiRequest.getListPostFavorite({
+        const res = await postsApiRequest.getListPostFavorite({
           page: pageParam,
           size: params.size,
           search: params.search,
           categoryId: params.categoryId,
           postId: params.postId,
         });
+
+        return res?.items;
       } catch (error) {
         console.error(error);
         throw error;
