@@ -4,13 +4,13 @@ import { PrimaryButton } from 'components/button';
 import { FormAvatarUploaderSingle, FormControllerDatePicker, FormInputField, FormSelectField } from 'components/form';
 import { ConfirmModal } from 'components/modal';
 import { gender } from 'constants/mock';
+import { omit } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useStoreApp } from 'store/store';
 import { Box } from 'zmp-ui';
 
 import { FormDataProfile, schemaProfile } from './type';
-import { omit } from 'lodash';
 
 const defaultValues: FormDataProfile = {
   userName: '',
@@ -23,7 +23,6 @@ const defaultValues: FormDataProfile = {
 };
 
 const ProfileForm: React.FC = () => {
-
   const { account, setAuth, currentLanguage } = useStoreApp();
   const [isConfirmVisible, setConfirmVisible] = useState(false);
   const [formData, setFormData] = useState<FormDataProfile>(defaultValues);
@@ -56,11 +55,9 @@ const ProfileForm: React.FC = () => {
     setConfirmVisible(false);
     if (formData) {
       try {
-
         const dataSubmit = { ...omit(formData, ['userId', 'userName']) };
 
         await mutateAsync({ ...dataSubmit, changePassword: false });
-
       } catch (error: any) {
         console.error('Error:', error.message);
       }

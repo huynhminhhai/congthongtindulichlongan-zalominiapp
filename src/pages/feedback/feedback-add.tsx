@@ -1,22 +1,22 @@
-import { HeaderSub } from "components/header-sub"
-import React from "react"
-import { Box, Page } from "zmp-ui"
-import FeedbackAddForm from "./FeedbackAddForm"
-import { useTranslation } from "react-i18next"
+import { HeaderSub } from 'components/header-sub';
+import React from 'react';
+import { useStoreApp } from 'store/store';
+import { Box, Page } from 'zmp-ui';
+
+import FeedbackAddForm from './FeedbackAddForm';
 
 const FeedbackAddPage: React.FC = () => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
 
-    const { t: tCommon } = useTranslation("common");
+  return (
+    <Page className="relative flex-1 flex flex-col bg-white pb-[72px]">
+      <Box>
+        <HeaderSub title={t['SendFeedbackTitle']} />
+        <FeedbackAddForm />
+      </Box>
+    </Page>
+  );
+};
 
-    return (
-        <Page className="relative flex-1 flex flex-col bg-white pb-[72px]">
-            <Box>
-                {/* <HeaderSub title={tCommon('send-feedback')} /> */}
-                <HeaderSub title='Gửi phản ánh, kiến nghị 1022' />
-                <FeedbackAddForm />
-            </Box>
-        </Page>
-    )
-}
-
-export default FeedbackAddPage
+export default FeedbackAddPage;

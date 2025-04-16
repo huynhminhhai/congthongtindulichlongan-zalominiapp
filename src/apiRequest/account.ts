@@ -10,6 +10,8 @@ const accountApiRequest = {
 };
 
 export const useUpdateAccount = () => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const queryClient = useQueryClient();
   const { setAuth, account, token } = useStoreApp();
   const { showSuccess, showError } = useCustomSnackbar();
@@ -17,7 +19,7 @@ export const useUpdateAccount = () => {
   return useMutation({
     mutationFn: accountApiRequest.update,
     onSuccess: data => {
-      showSuccess('Cập nhật thông tin tài khoản thành công');
+      showSuccess(t['AccountInfoUpdatedSuccess']);
 
       if (data && data?.data) {
         const newData = { ...account, ...data.data };
@@ -37,12 +39,14 @@ export const useUpdateAccount = () => {
 };
 
 export const useUpdatePassword = () => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const { showSuccess, showError } = useCustomSnackbar();
 
   return useMutation({
     mutationFn: accountApiRequest.update,
     onSuccess: data => {
-      showSuccess('Cập nhật mật khẩu thành công');
+      showSuccess(t['ChangePasswordSuccess']);
     },
     onError: (error: any) => {
       console.error('Lỗi:', error?.message);

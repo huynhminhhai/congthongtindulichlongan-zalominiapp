@@ -1,9 +1,8 @@
 import { Icon } from '@iconify/react';
-import { useGetCategoryList } from 'apiRequest/categories';
 import { motion } from 'framer-motion';
 import React, { ReactNode, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useStoreApp } from 'store/store';
 import { Box, Button } from 'zmp-ui';
 
 interface FilterBarProps {
@@ -24,8 +23,9 @@ const FilterBar: React.FC<FilterBarProps> = ({
   searchComponent,
 }) => {
   const navigate = useNavigate();
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const [filterVisible, setFilterVisible] = useState(false);
-  const { t: tCommon } = useTranslation('common');
 
   return (
     <div className="bg-[#fff] flex flex-col px-4 py-2 gap-2 filter-bar">
@@ -41,7 +41,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
           >
             <div className="flex items-center justify-center gap-1">
               <Icon fontSize={18} icon="material-symbols:add-rounded" />
-              {tCommon('add')}
+              {t['Add']}
             </div>
           </Button>
         </Box>

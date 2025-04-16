@@ -56,7 +56,7 @@ const LoginForm: React.FC = () => {
       setToken(res.token);
       setAccount(accountInfo);
       showSuccess(t['YouLoginSuccess']);
-      navigate('/account');
+      navigate('/account', { replace: true });
     } catch (error: any) {
       showError(error.message);
     } finally {
