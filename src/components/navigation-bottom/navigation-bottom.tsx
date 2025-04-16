@@ -20,8 +20,8 @@ const Navigation: FC = () => {
     },
     '/maps': {
       label: Map,
-      icon: <Icon icon="material-symbols:map" />,
-      activeIcon: <Icon icon="material-symbols:map" />,
+      icon: <Icon icon="solar:map-bold" />,
+      activeIcon: <Icon icon="solar:map-bold" />,
     },
     '/favorite': {
       label: ZaloFavorites,

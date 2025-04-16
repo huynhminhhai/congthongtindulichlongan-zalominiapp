@@ -96,16 +96,24 @@ const FavoritePage = () => {
       <Box>
         <Box>
           {favoritePosts.length === 0 && !isFetchingNextPage && !isLoading ? (
-            <Box px={4}>
+            <div className="mt-[50px] px-4">
               <EmptyData
-                title="Hiện chưa có mục yêu thích nào!"
+                title="Hiện chưa có yêu thích nào!"
                 desc={
-                  token
-                    ? `Bạn có thể thêm mục yêu thích để có thể tương tác tại đây. Vui lòng quay lại sau.`
-                    : `Vui lòng đăng nhập để thêm mục yêu thích.`
+                  token ? (
+                    `Bạn có thể thêm mục yêu thích để có thể tương tác tại đây. Vui lòng quay lại sau.`
+                  ) : (
+                    <>
+                      Vui lòng{' '}
+                      <span className="text-[#355933] font-semibold" onClick={() => setIsLoginModalOpen(true)}>
+                        đăng nhập
+                      </span>{' '}
+                      để thêm mục yêu thích.
+                    </>
+                  )
                 }
               />
-            </Box>
+            </div>
           ) : (
             <>
               {favoritePosts.map((item, index) => {
