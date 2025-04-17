@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box } from 'zmp-ui';
 
 import ServiceItem from './ServiceItem';
+import ServiceItemSkeleton from './ServiceItemSkeleton';
 import ServiceSub from './ServiceSub';
 
 const ServiceSection: React.FC = () => {
@@ -27,27 +28,35 @@ const ServiceSection: React.FC = () => {
   return (
     <Box p={4} className="bg-white">
       <Box>
-        <div className="grid grid-cols-4 gap-x-3 gap-y-4">
-          {serviceItemList &&
-            serviceItemList.map((item: MenuItemType, index: React.Key) => (
-              <ServiceItem key={index} data={item} onClick={() => navigate(item.url)} />
+        {data ? (
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4">
+            {serviceItemList &&
+              serviceItemList.map((item, index) => (
+                <ServiceItem key={index} data={item} onClick={() => navigate(item.url)} />
+              ))}
+            {otherServiceItem && (
+              <>
+                <ServiceItem
+                  data={otherServiceItem}
+                  onClick={() => {
+                    setSheetVisible(true);
+                  }}
+                />
+                <ServiceSub
+                  otherServiceItem={otherServiceItem.children}
+                  sheetVisible={sheetVisible}
+                  setSheetVisible={setSheetVisible}
+                />
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4">
+            {[...Array(12)].map((_, index) => (
+              <ServiceItemSkeleton key={index} />
             ))}
-          {otherServiceItem && (
-            <>
-              <ServiceItem
-                data={otherServiceItem}
-                onClick={() => {
-                  setSheetVisible(true);
-                }}
-              />
-              <ServiceSub
-                otherServiceItem={otherServiceItem.children}
-                sheetVisible={sheetVisible}
-                setSheetVisible={setSheetVisible}
-              />
-            </>
-          )}
-        </div>
+          </div>
+        )}
       </Box>
     </Box>
   );

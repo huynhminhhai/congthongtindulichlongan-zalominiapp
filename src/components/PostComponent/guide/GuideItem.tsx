@@ -6,8 +6,6 @@ import { PostComponentPropsType } from 'utils/constants';
 import { Box, useNavigate } from 'zmp-ui';
 
 const GuideItem: React.FC<PostComponentPropsType> = ({ data, onClick }) => {
-  console.log(data);
-
   return (
     <Box flex flexDirection="column" alignItems="center" onClick={onClick}>
       <img
