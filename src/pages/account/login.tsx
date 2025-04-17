@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
         </Box>
         <Box p={4} mt={6}>
           <Box>
-            <h3 className="text-[24px] font-bold text-[#355933] text-center">{t['WellcomeBack']}</h3>
+            <h3 className="text-[24px] font-bold text-[#355933] text-center">{t['WelcomeBack']}</h3>
             <h4 className="text-[16px] font-normal text-[#8f8f8f] text-center mt-3">{t['LoginDesc']}</h4>
           </Box>
           <Box py={4}>

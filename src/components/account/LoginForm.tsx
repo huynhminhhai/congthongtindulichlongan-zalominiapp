@@ -79,7 +79,7 @@ const LoginForm: React.FC = () => {
             <FormInputField
               name="username"
               label=""
-              placeholder="username"
+              placeholder={t['Email']}
               control={control}
               error={errors.username?.message}
             />

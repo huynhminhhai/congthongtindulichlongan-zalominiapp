@@ -73,12 +73,12 @@ const ShareInfor: React.FC<{ postDetail: PostType }> = ({ postDetail }) => {
         <Box onClick={handleShareZalo}>
           <img className="w-[36px]" src={images.zalo} alt="Zalo" />
         </Box>
-        <Box onClick={() => handleShareSocial('facebook')}>
+        {/* <Box onClick={() => handleShareSocial('facebook')}>
           <img className="w-[36px]" src={images.facebook} alt="Facebook" />
         </Box>
         <Box onClick={() => handleShareSocial('twitter')}>
           <img className="w-[36px]" src={images.twitter} alt="Twitter" />
-        </Box>
+        </Box> */}
         <Box onClick={() => handleCopy()}>
           <img className="w-[36px]" src={images.link} alt="Copy" />
         </Box>
