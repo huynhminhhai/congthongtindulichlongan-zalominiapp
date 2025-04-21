@@ -231,7 +231,9 @@ tbody tr td:not(:first-child) {
   opacity: 1;
   border-radius: 8px;
 }
-
+.swiper-slide {
+  height: auto;
+}
 /**
 * CUSTOM
 **/

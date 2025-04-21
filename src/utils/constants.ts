@@ -4,7 +4,7 @@ import { CusineItem } from 'components/PostComponent/CusineItem';
 import { GuideItem } from 'components/PostComponent/GuideItem';
 import { LocationItem } from 'components/PostComponent/LocationItem';
 import { NewsItem } from 'components/PostComponent/NewsItem';
-import { TourItem } from 'components/PostComponent/tour';
+import { TourItem } from 'components/PostComponent/TourItem';
 
 export const SLIDE_SPACE_BETWEEN_HOMEPAGE = 20;
 export const SLIDE_PER_VIEW_HOMEPAGE = 1.2;

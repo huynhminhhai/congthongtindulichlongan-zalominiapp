@@ -1,8 +1,11 @@
 .tourItem {
-  border: 1px solid #e5e7eb; // tương đương border-[1px]
-  border-radius: 0.5rem; // rounded-lg
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
   cursor: pointer;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   .toggleFavorite {
     position: absolute;
     right: 10px;
@@ -28,7 +31,7 @@
 
   .content {
     padding: 1rem 0.75rem;
-
+    flex: 1;
     h3 {
       font-size: 18px;
       font-weight: bold;
