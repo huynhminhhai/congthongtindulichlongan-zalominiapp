@@ -19,7 +19,6 @@ import { OilDetailPage, OilPage } from 'pages/oil';
 import { PostDetailPage } from 'pages/postDetailPage';
 import { PostListPage } from 'pages/postListPage';
 import { SearchPage, SettingsPage } from 'pages/settings';
-import { TaxiDetailPage, TaxiPage } from 'pages/taxi';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { getDataFromStorage } from 'services/zalo';
@@ -75,10 +74,6 @@ const Layout = () => {
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
-
-        {/* Taxi */}
-        <Route path="/taxi" element={<TaxiPage></TaxiPage>}></Route>
-        <Route path="/taxi-detail" element={<TaxiDetailPage></TaxiDetailPage>}></Route>
 
         {/* Oil */}
         <Route path="/oil" element={<OilPage></OilPage>}></Route>
