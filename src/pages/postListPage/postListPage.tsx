@@ -3,7 +3,7 @@ import { useGetPostsListForScroll } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
 import { EmptyData } from 'components/data';
 import { HeaderSub } from 'components/header-sub';
-import { NewsItem } from 'components/PostComponent/news';
+import { NewsItem } from 'components/PostComponent/NewsItem';
 import { FilterBar } from 'components/table';
 import { debounce } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';

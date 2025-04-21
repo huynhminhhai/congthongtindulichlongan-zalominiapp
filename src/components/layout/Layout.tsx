@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useGetUserInfo } from 'apiRequest/auth';
 import { useGetLanguages } from 'apiRequest/languages';
 import { LoadingFullScreen } from 'components/loading';
@@ -23,19 +22,17 @@ import { HospitalDetailPage, HospitalPage } from 'pages/hospital';
 import { LocationDetailPage, LocationPage } from 'pages/location';
 import { ResidentMapPage } from 'pages/maps';
 import { MarketDetailPage, MarketPage } from 'pages/market';
-import { NewsDetailPage, NewsPage } from 'pages/news';
 import { NotificationPage } from 'pages/notification';
 import { OilDetailPage, OilPage } from 'pages/oil';
 import { PostDetailPage } from 'pages/postDetailPage';
 import { PostListPage } from 'pages/postListPage';
-import { ProfileResidentPage } from 'pages/profile';
 import { SearchPage, SettingsPage } from 'pages/settings';
 import { ShoppingDetailPage, ShoppingPage } from 'pages/shopping';
 import { TaxiDetailPage, TaxiPage } from 'pages/taxi';
 import { TourDetailPage, TourPage } from 'pages/tour';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { getDataFromStorage, setDataToStorage } from 'services/zalo';
+import { getDataFromStorage } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 
 const Layout = () => {
@@ -85,9 +82,6 @@ const Layout = () => {
         {/* NEWS */}
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
         <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
-
-        <Route path="/news" element={<NewsPage></NewsPage>}></Route>
-        <Route path="/news/:id" element={<NewsDetailPage></NewsDetailPage>}></Route>
 
         {/* CUSINE */}
         <Route path="/cusine" element={<CusinePage></CusinePage>}></Route>
