@@ -9,7 +9,6 @@ import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from '
 import LanguagePage from 'pages/account/language';
 import RegisterPage from 'pages/account/register';
 import { AtmDetailPage, AtmPage } from 'pages/atm';
-import { BusDetailPage, BusPage } from 'pages/bus';
 import { BusRoutingDetailPage, BusRoutingPage } from 'pages/bus-routing';
 import { Favorite } from 'pages/Favorite';
 import { FeedbackAddPage } from 'pages/feedback';
@@ -77,10 +76,6 @@ const Layout = () => {
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
-
-        {/* BUS */}
-        <Route path="/bus" element={<BusPage></BusPage>}></Route>
-        <Route path="/bus-detail" element={<BusDetailPage></BusDetailPage>}></Route>
 
         {/* Taxi */}
         <Route path="/taxi" element={<TaxiPage></TaxiPage>}></Route>
