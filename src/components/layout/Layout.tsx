@@ -16,7 +16,6 @@ import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { HomePage } from 'pages/homepage';
 import { ResidentMapPage } from 'pages/maps';
-import { MarketDetailPage, MarketPage } from 'pages/market';
 import { NotificationPage } from 'pages/notification';
 import { OilDetailPage, OilPage } from 'pages/oil';
 import { PostDetailPage } from 'pages/postDetailPage';
@@ -78,10 +77,6 @@ const Layout = () => {
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
-
-        {/* MARKET */}
-        <Route path="/market" element={<MarketPage></MarketPage>}></Route>
-        <Route path="/market-detail" element={<MarketDetailPage></MarketDetailPage>}></Route>
 
         {/* BUS */}
         <Route path="/bus" element={<BusPage></BusPage>}></Route>
