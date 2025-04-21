@@ -17,7 +17,6 @@ import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { GuideDetailPage, GuidePage } from 'pages/guide-tour';
 import { HomePage } from 'pages/homepage';
-import { HospitalDetailPage, HospitalPage } from 'pages/hospital';
 import { ResidentMapPage } from 'pages/maps';
 import { MarketDetailPage, MarketPage } from 'pages/market';
 import { NotificationPage } from 'pages/notification';
@@ -110,10 +109,6 @@ const Layout = () => {
         {/* Oil */}
         <Route path="/oil" element={<OilPage></OilPage>}></Route>
         <Route path="/oil-detail" element={<OilDetailPage></OilDetailPage>}></Route>
-
-        {/* Hospital */}
-        <Route path="/hospital" element={<HospitalPage></HospitalPage>}></Route>
-        <Route path="/hospital-detail" element={<HospitalDetailPage></HospitalDetailPage>}></Route>
 
         {/* ATM */}
         <Route path="/atm" element={<AtmPage></AtmPage>}></Route>
