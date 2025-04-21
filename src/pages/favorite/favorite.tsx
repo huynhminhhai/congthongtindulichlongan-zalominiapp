@@ -103,7 +103,7 @@ const FavoritePage = () => {
           {favoritePosts.length === 0 && !isFetchingNextPage && !isLoading ? (
             <div className="mt-[50px] px-4">
               <EmptyData
-                title="Hiện chưa có yêu thích nào!"
+                title={t['NoFavoritesYet']}
                 desc={
                   token ? (
                     t['FavoriteWhenLoggedIn']
