@@ -34,8 +34,10 @@ const CategoryMap: React.FC<any> = ({ locations, iconMarker }) => {
       .then(() => {
         if (!mapRef.current) {
           mapRef.current = L.map('map').setView([locations[0].lat, locations[0].lng], 10);
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+
+          L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.google.com/maps">Google Maps</a>',
           }).addTo(mapRef.current);
 
           markersRef.current.addTo(mapRef.current);

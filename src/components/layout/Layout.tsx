@@ -77,7 +77,7 @@ const Layout = () => {
 
         {/* Gallery */}
         <Route path="/gallery" element={<GalleryPage />}></Route>
-        <Route path="/gallery-detail" element={<GalleryDetailPage />}></Route>
+        <Route path="/gallery-detail/:id" element={<GalleryDetailPage />}></Route>
 
         {/* FEEDBACK */}
         <Route path="/feedback" element={<FeedbackAddPage />}></Route>

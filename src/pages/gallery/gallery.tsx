@@ -1,67 +1,101 @@
-import { Divider } from 'components/divider';
-import FilterBar from 'components/FilterBar/FilterBar';
-import { GalleryItem } from 'components/gallery';
+import { useGetListImageAlbums } from 'apiRequest/album';
+import { EmptyData } from 'components/data';
+import { GalleryItem, GalleryItemSkeleton } from 'components/GalleryItem';
 import { HeaderSub } from 'components/HeaderSub';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Box, Input, Page, Select, useNavigate } from 'zmp-ui';
-
-export const galleryData = [
-  {
-    title: 'Thực vật Long An',
-    img: 'https://khuyennongvn.gov.vn/portals/0/news_images/2015/10/nguyetkn/dua_hau.jpg',
-    alt: 'Thực vật Long An',
-    category: 1,
-  },
-  {
-    title: 'Hình ảnh giá trị địa chất',
-    img: 'https://media.la34.com.vn/upload/image/201509/medium/69258_A1.jpg',
-    alt: 'Hình ảnh giá trị địa chất',
-    category: 1,
-  },
-  {
-    title: 'Thiên Nhiên & Văn Hóa',
-    img: 'https://vocongton.wordpress.com/wp-content/uploads/2024/09/long-an-que-huong-toi-02.jpg',
-    alt: 'Thiên Nhiên & Văn Hóa',
-    category: 1,
-  },
-  {
-    title: 'Hành Trình Trải Nghiệm Đáng Nhớ',
-    img: 'https://media.vietnamplus.vn/images/7255a701687d11cb8c6bbc58a6c80785987dd491ccd2796e1d44e73ef229421b32fa3d014e2040f13f8c98354406681a2a99523f2fe5e4403176af1a434f7a53/du-lich-long-an-1802.jpg.webp',
-    alt: 'Hành Trình Trải Nghiệm Đáng Nhớ',
-    category: 2,
-  },
-];
+import { debounce } from 'lodash';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useStoreApp } from 'store/store';
+import { useInfiniteScroll } from 'utils/useInfiniteScroll';
+import { Box, Input, Page } from 'zmp-ui';
 
 const GalleryPage = () => {
-  const { Option } = Select;
-  const { t: tCommon } = useTranslation('common');
+  const navigate = useNavigate();
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
+  const [searchText, setSearchText] = useState('');
+
+  const [param, setParam] = useState({
+    page: 1,
+    size: 10,
+  });
+  const {
+    data: galleryData,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGetListImageAlbums({
+    ...param,
+  });
+
+  const galleryList = galleryData?.pages?.reduce((acc, page) => [...acc, ...page.items], []) || [];
+
+  const loaderRef = useInfiniteScroll({
+    hasMore: hasNextPage,
+    loading: isFetchingNextPage,
+    onLoadMore: fetchNextPage,
+  });
+
+  useEffect(() => {
+    const handler = debounce((value: string) => {
+      setParam(prev => ({
+        ...prev,
+        search: value,
+        page: 1,
+      }));
+    }, 300);
+
+    handler(searchText);
+
+    return () => {
+      handler.cancel();
+    };
+  }, [searchText]);
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
-        <HeaderSub title={tCommon('gallery')} />
-        <Box pb={4}>
-          <Box>
-            <FilterBar
-              showAddButton={false}
-              searchComponent={<Input.Search placeholder={tCommon('searching')} value={''} />}
-            >
-              <div className="col-span-12">
-                <Select placeholder={tCommon('all')} closeOnSelect>
-                  <Option title={tCommon('all')} value={0} />
-                  <Option title={'Nổi tiếng'} value={1} />
-                </Select>
-              </div>
-            </FilterBar>
+        <HeaderSub title={t['AlbumTitleOnDetail']} />
+        <Box px={4} pb={4}>
+          <div className="mb-4">
+            <Input.Search
+              className="h-[46px] !border-0"
+              value={searchText}
+              placeholder={t['Search']}
+              onChange={e => setSearchText(e.target.value)}
+            />
+          </div>
+          <Box flex flexDirection="column">
+            {isLoading &&
+              [...Array(param.size)].map((_, idx) => (
+                <Box mb={4} key={idx}>
+                  <GalleryItemSkeleton />
+                </Box>
+              ))}
+            {galleryList &&
+              (galleryList.length > 0 ? (
+                galleryList.map((item, index) => {
+                  return (
+                    <Box mb={4} key={index}>
+                      <GalleryItem data={item} onClick={() => navigate(`/gallery-detail/${item.id}`)} />
+                    </Box>
+                  );
+                })
+              ) : (
+                <EmptyData title={t['NoResultsFound']} />
+              ))}
           </Box>
-          <Box px={4}>
-            {galleryData.map((item, index) => (
-              <Box mb={6} key={index}>
-                <GalleryItem data={item} />
-              </Box>
-            ))}
-          </Box>
+
+          <div ref={loaderRef} className="px-4">
+            {isFetchingNextPage &&
+              [...Array(param.size)].map((_, idx) => (
+                <Box mb={4} key={idx}>
+                  <GalleryItemSkeleton />
+                </Box>
+              ))}
+            {galleryList.length > 0 && !hasNextPage && <p className="text-center">{t['AllDisplayed']}</p>}
+          </div>
         </Box>
       </Box>
     </Page>

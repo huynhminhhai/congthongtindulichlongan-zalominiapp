@@ -79,8 +79,9 @@ const ResidentMapPage = () => {
 
     const map = L.map(mapContainer).setView([10.5333, 106.4167], 10);
 
-    L.tileLayer('https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}', {
-      maxZoom: 19,
+    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://www.google.com/maps">Google Maps</a>',
     }).addTo(map);
 
     const markers = L.layerGroup().addTo(map);
