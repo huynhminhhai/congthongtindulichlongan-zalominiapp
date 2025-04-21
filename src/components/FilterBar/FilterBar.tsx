@@ -36,7 +36,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
             fullWidth
             size="medium"
             variant="secondary"
-            onClick={onAddButtonClick || (() => navigate('/'))} // Nếu có onAddButtonClick thì dùng, nếu không thì navigate mặc định
+            onClick={onAddButtonClick || (() => navigate('/'))}
             className="!rounded-3xl"
           >
             <div className="flex items-center justify-center gap-1">
@@ -46,8 +46,6 @@ const FilterBar: React.FC<FilterBarProps> = ({
           </Button>
         </Box>
       )}
-
-      {/* Filter & View Toggle */}
 
       <Box flex alignItems="center" justifyContent="space-between" className="gap-2">
         {searchComponent && <Box className="flex-1">{searchComponent}</Box>}

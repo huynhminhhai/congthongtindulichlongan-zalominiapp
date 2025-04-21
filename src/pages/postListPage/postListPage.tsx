@@ -2,9 +2,9 @@ import { useGetCategoryDetail } from 'apiRequest/categories';
 import { useGetPostsListForScroll } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
 import { EmptyData } from 'components/data';
+import { FilterBar } from 'components/FilterBar';
 import { HeaderSub } from 'components/header-sub';
 import { NewsItem } from 'components/PostComponent/NewsItem';
-import { FilterBar } from 'components/table';
 import { debounce } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { GRID_COLUMN_LAYOUT_MAP, LAYOUT_COMPONENT_MAP, PostComponentPropsType } 
 import { useInfiniteScroll } from 'utils/useInfiniteScroll';
 import { Box, Input, Page } from 'zmp-ui';
 
-import PostSkeleton from './postListSkeleton';
+import PostSkeleton from './PostListSkeleton';
 
 const PostListPage = () => {
   const { id } = useParams();

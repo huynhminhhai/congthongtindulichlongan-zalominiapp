@@ -12,7 +12,7 @@ import { formatDate, formatImageSrc } from 'utils';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Page, useNavigate, useParams, useSnackbar } from 'zmp-ui';
 
-import SkeletonPostDetailPage from './skeletonPostDetailPage';
+import SkeletonPostDetailPage from './SkeletonPostDetailPage';
 
 const PostDetailPage = () => {
   const { id } = useParams();

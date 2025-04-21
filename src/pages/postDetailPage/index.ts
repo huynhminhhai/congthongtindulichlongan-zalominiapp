@@ -1,1 +1,1 @@
-export { default as PostDetailPage } from './postDetailPage';
+export { default as PostDetailPage } from './PostDetailPage';
