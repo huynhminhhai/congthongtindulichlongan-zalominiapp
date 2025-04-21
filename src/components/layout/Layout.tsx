@@ -13,10 +13,9 @@ import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { HomePage } from 'pages/homepage';
 import { ResidentMapPage } from 'pages/maps';
-import { NotificationPage } from 'pages/notification';
 import { PostDetailPage } from 'pages/postDetailPage';
 import { PostListPage } from 'pages/postListPage';
-import { SearchPage, SettingsPage } from 'pages/settings';
+import { SearchPage } from 'pages/Search';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { getDataFromStorage } from 'services/zalo';
@@ -87,17 +86,12 @@ const Layout = () => {
         <Route path="/change-password" element={<ChangePasswordPage></ChangePasswordPage>}></Route>
         <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
 
-        {/* NOTIFICATION */}
-        <Route path="/notification" element={<NotificationPage></NotificationPage>}></Route>
-
         {/* MAP */}
         <Route path="/maps" element={<ResidentMapPage></ResidentMapPage>}></Route>
 
         {/* PERMISSION */}
         <Route path="/403" element={<ForbiddenPage></ForbiddenPage>}></Route>
 
-        {/* SETTINGS */}
-        <Route path="/settings" element={<SettingsPage></SettingsPage>}></Route>
         <Route path="/languages" element={<LanguagePage></LanguagePage>}></Route>
         <Route path="/search" element={<SearchPage></SearchPage>}></Route>
       </Routes>

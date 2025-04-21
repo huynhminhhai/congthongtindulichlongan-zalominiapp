@@ -6,7 +6,7 @@ import { useStoreApp } from 'store/store';
 import { App, SnackbarProvider, ZMPRouter } from 'zmp-ui';
 
 import { initI18n } from '../i18n';
-import { Layout } from './layout';
+import { Layout } from './Layout';
 import { LoadingFullScreen } from './loading';
 
 const MyApp = () => {
