@@ -3,9 +3,9 @@ import { useGetCategoryList } from 'apiRequest/categories';
 import { useRemoveFavorite } from 'apiRequest/favorites';
 import { useGetFavoritePosts } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
-import { FavoriteItem } from 'components/favorite';
-import { HeaderSub } from 'components/header-sub';
-import { FilterBar } from 'components/table';
+import { FavoriteItem } from 'components/FavoriteItem';
+import { FilterBar } from 'components/FilterBar';
+import { HeaderSub } from 'components/HeaderSub';
 import { debounce } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -103,7 +103,7 @@ const FavoritePage = () => {
           {favoritePosts.length === 0 && !isFetchingNextPage && !isLoading ? (
             <div className="mt-[50px] px-4">
               <EmptyData
-                title="Hiện chưa có yêu thích nào!"
+                title={t['NoFavoritesYet']}
                 desc={
                   token ? (
                     t['FavoriteWhenLoggedIn']

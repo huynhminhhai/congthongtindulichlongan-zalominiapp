@@ -1,7 +1,7 @@
 import { Divider } from 'components/divider';
+import FilterBar from 'components/FilterBar/FilterBar';
 import { GalleryItem } from 'components/gallery';
-import { HeaderSub } from 'components/header-sub';
-import FilterBar from 'components/table/FilterBar';
+import { HeaderSub } from 'components/HeaderSub';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Input, Page, Select, useNavigate } from 'zmp-ui';

@@ -1,9 +1,9 @@
 import { PostType } from 'apiRequest/posts/types';
-import { AccommodationItem } from 'components/PostComponent/accommodation';
-import { CusineItem } from 'components/PostComponent/cusine';
-import { GuideItem } from 'components/PostComponent/guide';
-import { LocationItem } from 'components/PostComponent/location';
-import { NewsItem } from 'components/PostComponent/news';
+import { AccommodationItem } from 'components/PostComponent/AccommodationItem';
+import { CusineItem } from 'components/PostComponent/CusineItem';
+import { GuideItem } from 'components/PostComponent/GuideItem';
+import { LocationItem } from 'components/PostComponent/LocationItem';
+import { NewsItem } from 'components/PostComponent/NewsItem';
 import { TourItem } from 'components/PostComponent/tour';
 
 export const SLIDE_SPACE_BETWEEN_HOMEPAGE = 20;
