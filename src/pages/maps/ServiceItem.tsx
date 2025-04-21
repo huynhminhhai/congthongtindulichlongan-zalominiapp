@@ -14,6 +14,7 @@ interface IServiceItem {
   onClick: () => void;
 }
 const ServiceItem: React.FC<IServiceItem> = ({ image, name, address, rating, totolVote, onClick }) => {
+  console.log('hihi');
   return (
     <div className={styles.serviceItem} onClick={onClick}>
       <img className={styles.serviceImage} src={formatImageSrc(image)} alt={name} />

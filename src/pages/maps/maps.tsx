@@ -258,18 +258,25 @@ const ResidentMapPage = () => {
                         <ServiceItemSkeleton />
                       </SwiperSlide>
                     ))
-                  : locations.map((item: PostType, index: number) => (
-                      <SwiperSlide key={index}>
-                        <ServiceItem
-                          rating={item.averageRating}
-                          name={item.title}
-                          address={item.address}
-                          image={item.image}
-                          totolVote={item.totalVotes}
-                          onClick={() => handleItemClick(item.postMaps[0]?.lat, item.postMaps[0]?.lng)}
-                        />
-                      </SwiperSlide>
-                    ))}
+                  : locations.map((location: PostType) => {
+                      if (location.postMaps.length > 0) {
+                        return location.postMaps.map((postMap, index) => {
+                          return (
+                            <SwiperSlide key={index}>
+                              <ServiceItem
+                                rating={location.averageRating}
+                                name={postMap.name}
+                                address={postMap.address}
+                                image={postMap.image}
+                                totolVote={location.totalVotes}
+                                onClick={() => handleItemClick(postMap.lat, postMap.lng)}
+                              />
+                            </SwiperSlide>
+                          );
+                        });
+                      }
+                      return;
+                    })}
               </Swiper>
             </div>
           </div>
