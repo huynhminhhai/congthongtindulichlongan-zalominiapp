@@ -8,14 +8,12 @@ import ForbiddenPage from 'pages/403';
 import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from 'pages/account';
 import LanguagePage from 'pages/account/language';
 import RegisterPage from 'pages/account/register';
-import { AtmDetailPage, AtmPage } from 'pages/atm';
 import { Favorite } from 'pages/Favorite';
 import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { HomePage } from 'pages/homepage';
 import { ResidentMapPage } from 'pages/maps';
 import { NotificationPage } from 'pages/notification';
-import { OilDetailPage, OilPage } from 'pages/oil';
 import { PostDetailPage } from 'pages/postDetailPage';
 import { PostListPage } from 'pages/postListPage';
 import { SearchPage, SettingsPage } from 'pages/settings';
@@ -74,10 +72,6 @@ const Layout = () => {
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
-
-        {/* ATM */}
-        <Route path="/atm" element={<AtmPage></AtmPage>}></Route>
-        <Route path="/atm-detail" element={<AtmDetailPage></AtmDetailPage>}></Route>
 
         {/* Gallery */}
         <Route path="/gallery" element={<GalleryPage></GalleryPage>}></Route>
