@@ -18,7 +18,6 @@ import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { GuideDetailPage, GuidePage } from 'pages/guide-tour';
 import { HomePage } from 'pages/homepage';
 import { HospitalDetailPage, HospitalPage } from 'pages/hospital';
-import { LocationDetailPage, LocationPage } from 'pages/location';
 import { ResidentMapPage } from 'pages/maps';
 import { MarketDetailPage, MarketPage } from 'pages/market';
 import { NotificationPage } from 'pages/notification';
@@ -85,9 +84,6 @@ const Layout = () => {
         <Route path="/accommodation" element={<AccommodationPage></AccommodationPage>}></Route>
         <Route path="/accommodation/:id" element={<AccommodationDetailPage></AccommodationDetailPage>}></Route>
 
-        {/* Địa điểm */}
-        <Route path="/location" element={<LocationPage />}></Route>
-        <Route path="/location/:id" element={<LocationDetailPage />}></Route>
         {/* GUIDE TOUR */}
         <Route path="/guide" element={<GuidePage></GuidePage>}></Route>
         <Route path="/guide-detail" element={<GuideDetailPage></GuideDetailPage>}></Route>

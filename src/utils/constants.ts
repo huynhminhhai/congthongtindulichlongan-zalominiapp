@@ -2,7 +2,7 @@ import { PostType } from 'apiRequest/posts/types';
 import { AccommodationItem } from 'components/PostComponent/accommodation';
 import { CusineItem } from 'components/PostComponent/CusineItem';
 import { GuideItem } from 'components/PostComponent/guide';
-import { LocationItem } from 'components/PostComponent/location';
+import { LocationItem } from 'components/PostComponent/LocationItem';
 import { NewsItem } from 'components/PostComponent/NewsItem';
 import { TourItem } from 'components/PostComponent/tour';
 
