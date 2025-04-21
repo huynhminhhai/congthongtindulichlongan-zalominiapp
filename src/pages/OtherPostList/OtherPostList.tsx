@@ -5,6 +5,7 @@ import { EmptyData } from 'components/data';
 import { FilterBar } from 'components/FilterBar';
 import { HeaderSub } from 'components/HeaderSub';
 import { NewsItem } from 'components/PostComponent/NewsItem';
+import { OtherPostComponent } from 'components/PostComponent/OtherPostComponent';
 import { debounce } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -13,9 +14,9 @@ import { GRID_COLUMN_LAYOUT_MAP, LAYOUT_COMPONENT_MAP, PostComponentPropsType } 
 import { useInfiniteScroll } from 'utils/useInfiniteScroll';
 import { Box, Input, Page } from 'zmp-ui';
 
-import PostSkeleton from './PostListSkeleton';
+import PostSkeleton from './OtherPostListSkeleton';
 
-const PostList = () => {
+const OtherPostList = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentLanguage } = useStoreApp();
@@ -56,13 +57,6 @@ const PostList = () => {
     onLoadMore: fetchNextPage,
   });
 
-  const PostComponent = useMemo((): React.FC<PostComponentPropsType> => {
-    if (categoryDetail) {
-      return LAYOUT_COMPONENT_MAP[categoryDetail.zaloLayout] || LAYOUT_COMPONENT_MAP['Default'];
-    }
-    return NewsItem;
-  }, [categoryDetail]);
-
   const gridColumn = useMemo(() => {
     if (categoryDetail) {
       return GRID_COLUMN_LAYOUT_MAP[categoryDetail.zaloLayout] || 1;
@@ -88,12 +82,21 @@ const PostList = () => {
             </Box>
           ) : (
             <div className={`grid gap-4 grid-cols-${gridColumn}`}>
-              {postsList.map((data: PostType, index: number) => {
-                return (
-                  <Box key={index} className="w-full">
-                    <PostComponent key={data.id} data={data} onClick={() => navigate(`/bai-viet/${data.id}`)} />
-                  </Box>
-                );
+              {postsList.map((data: PostType) => {
+                if (data.postMaps.length > 0) {
+                  return data.postMaps.map((postMap, index) => {
+                    return (
+                      <Box key={index} className="w-full">
+                        <OtherPostComponent
+                          key={postMap.id}
+                          data={postMap}
+                          onClick={() => navigate(`/bai-viet-khac/${data.id}`)}
+                        />
+                      </Box>
+                    );
+                  });
+                }
+                return;
               })}
             </div>
           )}
@@ -130,19 +133,6 @@ const PostList = () => {
               </div> */}
           </FilterBar>
 
-          {/* <Box pb={4} px={4}>
-            {!postsList ? (
-              <PostSkeleton gridColumn={gridColumn} />
-            ) : (
-              <div className={`grid gap-4 grid-cols-${gridColumn}`}>
-                {postsList?.pages.map(page =>
-                  page.items.map((data: PostType) => (
-                    <PostComponent key={data.id} data={data} onClick={() => navigate(`/bai-viet/${data.id}`)} />
-                  ))
-                )}
-              </div>
-            )}
-          </Box> */}
           <Box px={4}>{renderContent()}</Box>
         </Box>
       </Box>
@@ -150,4 +140,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default OtherPostList;

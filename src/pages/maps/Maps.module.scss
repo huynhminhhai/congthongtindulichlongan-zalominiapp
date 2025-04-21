@@ -114,7 +114,16 @@
   .serviceAddress {
     font-size: 14px;
     line-height: 18px;
-    @include line-clamp(2);
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    .addressIcon {
+      font-size: 16px;
+      color: var(--danger-600);
+    }
+    p {
+      @include line-clamp(2);
+    }
   }
   .serviceRate {
     display: flex;

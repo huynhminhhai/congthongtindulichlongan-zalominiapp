@@ -55,7 +55,7 @@ const HomePage: React.FunctionComponent = () => {
                   </Box>
                   <Swiper spaceBetween={SLIDE_SPACE_BETWEEN_HOMEPAGE} slidesPerView={gridColumn} loop>
                     {cate.posts.map(post => {
-                      const PostComponent = LAYOUT_COMPONENT_MAP[cate.zaloLayout] || LAYOUT_COMPONENT_MAP['HomeNews'];
+                      const PostComponent = LAYOUT_COMPONENT_MAP[cate.zaloLayout] || LAYOUT_COMPONENT_MAP['Default'];
                       return (
                         <SwiperSlide key={post.id}>
                           <PostComponent data={post} onClick={() => navigate(`${ROUTES.postDetail}/${post.id}`)} />

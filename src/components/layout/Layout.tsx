@@ -14,6 +14,8 @@ import { Homepage } from 'pages/Homepage';
 import LanguagePage from 'pages/Languages/Languages';
 import { LoginPage } from 'pages/Login';
 import { ResidentMapPage } from 'pages/Maps';
+import { OtherPostDetail } from 'pages/OtherPostDetail';
+import { OtherPostListPage } from 'pages/OtherPostList';
 import { PostDetailPage } from 'pages/PostDetail';
 import { PostListPage } from 'pages/PostList';
 import { ProfilePage } from 'pages/Profile';
@@ -71,6 +73,10 @@ const Layout = () => {
         {/* NEWS */}
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
         <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
+
+        {/* NEWS */}
+        <Route path="/chuyen-muc-khac/:id" element={<OtherPostListPage />}></Route>
+        <Route path="/bai-viet-khac/:id" element={<OtherPostDetail />}></Route>
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite />}></Route>

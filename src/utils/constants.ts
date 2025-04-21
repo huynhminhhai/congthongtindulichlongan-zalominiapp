@@ -22,6 +22,7 @@ export const LAYOUT_COMPONENT_MAP: Record<string, React.FC<PostComponentPropsTyp
   DacSanDiaPhuongHome: CusineItem,
   HuongDanVienDuLichHome: GuideItem,
   TourDuLichHome: TourItem,
+  Default: AccommodationItem,
 };
 export const GRID_COLUMN_LAYOUT_MAP: Record<string, number> = {
   HomeNews: 1,
