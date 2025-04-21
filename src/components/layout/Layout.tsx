@@ -22,7 +22,6 @@ import { OilDetailPage, OilPage } from 'pages/oil';
 import { PostDetailPage } from 'pages/postDetailPage';
 import { PostListPage } from 'pages/postListPage';
 import { SearchPage, SettingsPage } from 'pages/settings';
-import { ShoppingDetailPage, ShoppingPage } from 'pages/shopping';
 import { TaxiDetailPage, TaxiPage } from 'pages/taxi';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -79,10 +78,6 @@ const Layout = () => {
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
-
-        {/* SHOPPING */}
-        <Route path="/shopping" element={<ShoppingPage></ShoppingPage>}></Route>
-        <Route path="/shopping-detail" element={<ShoppingDetailPage></ShoppingDetailPage>}></Route>
 
         {/* MARKET */}
         <Route path="/market" element={<MarketPage></MarketPage>}></Route>
