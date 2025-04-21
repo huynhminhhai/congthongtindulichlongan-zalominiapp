@@ -12,7 +12,7 @@ import RegisterPage from 'pages/account/register';
 import { AtmDetailPage, AtmPage } from 'pages/atm';
 import { BusDetailPage, BusPage } from 'pages/bus';
 import { BusRoutingDetailPage, BusRoutingPage } from 'pages/bus-routing';
-import { FavoritePage } from 'pages/favorite';
+import { Favorite } from 'pages/Favorite';
 import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { GuideDetailPage, GuidePage } from 'pages/guide-tour';
@@ -28,7 +28,6 @@ import { PostListPage } from 'pages/postListPage';
 import { SearchPage, SettingsPage } from 'pages/settings';
 import { ShoppingDetailPage, ShoppingPage } from 'pages/shopping';
 import { TaxiDetailPage, TaxiPage } from 'pages/taxi';
-import { TourDetailPage, TourPage } from 'pages/tour';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { getDataFromStorage } from 'services/zalo';
@@ -82,10 +81,6 @@ const Layout = () => {
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
         <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
 
-        {/* TOUR */}
-        <Route path="/tour" element={<TourPage></TourPage>}></Route>
-        <Route path="/tour/:id" element={<TourDetailPage></TourDetailPage>}></Route>
-
         {/* Lưu trú */}
         <Route path="/accommodation" element={<AccommodationPage></AccommodationPage>}></Route>
         <Route path="/accommodation/:id" element={<AccommodationDetailPage></AccommodationDetailPage>}></Route>
@@ -98,7 +93,7 @@ const Layout = () => {
         <Route path="/guide-detail" element={<GuideDetailPage></GuideDetailPage>}></Route>
 
         {/* FAVORITE */}
-        <Route path="/favorite" element={<FavoritePage></FavoritePage>}></Route>
+        <Route path="/favorite" element={<Favorite></Favorite>}></Route>
 
         {/* SHOPPING */}
         <Route path="/shopping" element={<ShoppingPage></ShoppingPage>}></Route>

@@ -3,7 +3,7 @@ import { useGetCategoryList } from 'apiRequest/categories';
 import { useRemoveFavorite } from 'apiRequest/favorites';
 import { useGetFavoritePosts } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
-import { FavoriteItem } from 'components/favorite';
+import { FavoriteItem } from 'components/FavoriteItem';
 import { HeaderSub } from 'components/header-sub';
 import { FilterBar } from 'components/table';
 import { debounce } from 'lodash';
