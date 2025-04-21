@@ -1,3 +1,4 @@
+import RegisterBanner from 'assets/images/register_banner.jpg';
 import { RegisterForm } from 'components/account';
 import { HeaderSub } from 'components/HeaderSub';
 import React from 'react';
@@ -18,9 +19,7 @@ const RegisterPage: React.FC = () => {
             style={{
               clipPath: 'ellipse(120% 100% at 60% 0%)',
             }}
-            src={
-              'https://vinhtour.vn/wp-content/uploads/2024/09/VT_Khu-Du-Lich-Canh-Dong-Bat-Tan-Long-An-Ve-Dep-Moc-Mac-Dam-Chat-Tay-Nam-Bo1.jpg'
-            }
+            src={RegisterBanner}
             alt="Đăng ký"
           />
         </Box>

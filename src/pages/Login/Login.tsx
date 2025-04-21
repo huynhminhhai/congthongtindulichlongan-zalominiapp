@@ -1,3 +1,4 @@
+import LoginBanner from 'assets/images/login_banner.webp';
 import { LoginForm } from 'components/account';
 import { HeaderSub } from 'components/HeaderSub';
 import React from 'react';
@@ -18,9 +19,7 @@ const LoginPage: React.FC = () => {
             style={{
               clipPath: 'ellipse(120% 100% at 30% 0%)',
             }}
-            src={
-              'https://ik.imagekit.io/tvlk/blog/2022/12/dia-diem-du-lich-long-an-3.jpg?tr=q-70,c-at_max,w-500,h-300,dpr-2'
-            }
+            src={LoginBanner}
             alt="Đăng nhập"
           />
         </Box>

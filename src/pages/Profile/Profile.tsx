@@ -4,7 +4,7 @@ import React from 'react';
 import { useStoreApp } from 'store/store';
 import { Box, Page } from 'zmp-ui';
 
-const ProfileAccountPage: React.FC = () => {
+const Profile: React.FC = () => {
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
   return (
@@ -19,4 +19,4 @@ const ProfileAccountPage: React.FC = () => {
   );
 };
 
-export default ProfileAccountPage;
+export default Profile;
