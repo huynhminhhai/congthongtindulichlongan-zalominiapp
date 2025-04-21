@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
               clipPath: 'ellipse(120% 100% at 30% 0%)',
             }}
             src={LoginBanner}
-            alt="Đăng nhập"
+            alt={t['Login']}
           />
         </Box>
         <Box p={4} mt={6}>

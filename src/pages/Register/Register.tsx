@@ -20,7 +20,7 @@ const RegisterPage: React.FC = () => {
               clipPath: 'ellipse(120% 100% at 60% 0%)',
             }}
             src={RegisterBanner}
-            alt="Đăng ký"
+            alt={t['Register']}
           />
         </Box>
         <Box p={4} mt={4}>

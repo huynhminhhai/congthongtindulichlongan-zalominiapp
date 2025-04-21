@@ -138,7 +138,7 @@ export const feedbackApiRequest = {
     return await http.post('/petition', data);
   },
   createFeedback: async (formData: any) => {
-    return await axios.post(endpointAPI1022 + '/pe/petition', formData, auth?.configreq);
+    return await http.post('/petition', formData);
   },
   getListLinhVuc: async () => {
     return await axios.get(
@@ -261,28 +261,28 @@ export const useCreateFeedback = () => {
     },
   });
 };
-export const useSaveFeedbackCode = () => {
-  const { openSnackbar } = useSnackbar();
-  const queryClient = useQueryClient();
+// export const useSaveFeedbackCode = () => {
+//   const { openSnackbar } = useSnackbar();
+//   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: async (formData: any) => {
-      return await feedbackApiRequest.saveCodeFeedback(formData);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['feedbackList'] });
-    },
-    onError: (error: string) => {
-      openSnackbar({
-        icon: true,
-        text: `Lỗi: ${error}`,
-        type: 'error',
-        action: { text: 'Đóng', close: true },
-        duration: 3000,
-      });
-    },
-  });
-};
+//   return useMutation({
+//     mutationFn: async (formData: any) => {
+//       return await feedbackApiRequest.saveCodeFeedback(formData);
+//     },
+//     onSuccess: () => {
+//       queryClient.invalidateQueries({ queryKey: ['feedbackList'] });
+//     },
+//     onError: (error: string) => {
+//       openSnackbar({
+//         icon: true,
+//         text: `Lỗi: ${error}`,
+//         type: 'error',
+//         action: { text: 'Đóng', close: true },
+//         duration: 3000,
+//       });
+//     },
+//   });
+// };
 /**
  * GET FEEDBACK LINH VUC
  **/

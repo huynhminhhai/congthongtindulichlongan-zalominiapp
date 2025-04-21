@@ -97,8 +97,8 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
       </Box>
       <ConfirmModal
         visible={isConfirmVisible}
-        title="Xác nhận"
-        message="Bạn có chắc chắn muốn thêm bình luận không này không?"
+        title={t['ConfirmTitle']}
+        message={t['ConfirmCommentMessage']}
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />

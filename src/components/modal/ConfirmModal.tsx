@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStoreApp } from 'store/store';
 import { Button, Modal } from 'zmp-ui';
 
 interface ConfirmModalProps {
@@ -9,17 +10,13 @@ interface ConfirmModalProps {
   onCancel: () => void;
 }
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({
-  visible,
-  title = 'Xác nhận',
-  message = 'Bạn có chắc chắn muốn thực hiện hành động này?',
-  onConfirm,
-  onCancel,
-}) => {
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ visible, title, message, onConfirm, onCancel }) => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   return (
-    <Modal visible={visible} onClose={onCancel} title={title}>
+    <Modal visible={visible} onClose={onCancel} title={title || t['ConfirmTitle']}>
       <div style={{ padding: '20px' }}>
-        <p style={{ marginBottom: '20px', textAlign: 'center' }}>{message}</p>
+        <p style={{ marginBottom: '20px', textAlign: 'center' }}>{message || t['ConfirmGenericActionMessage']}</p>
         <div
           style={{
             display: 'flex',
@@ -28,10 +25,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
           }}
         >
           <Button onClick={onCancel} style={{ flex: 1, backgroundColor: '#f8f9fa', color: '#000' }}>
-            Hủy
+            {t['Cancel']}
           </Button>
           <Button onClick={onConfirm} style={{ flex: 1, backgroundColor: '#355933', color: '#fff' }}>
-            Đồng ý
+            {t['Confirm']}
           </Button>
         </div>
       </div>

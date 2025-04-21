@@ -10,7 +10,6 @@ import {
   useGetFeedbackChuyenMuc,
   useGetFeedbackLinhVuc,
   useGetListTinh,
-  useSaveFeedbackCode,
 } from 'apiRequest/feedback';
 import { PrimaryButton } from 'components/button';
 import {
@@ -116,7 +115,6 @@ const FeedbackAddForm: React.FC = () => {
   }, [watch('tag_parent')]);
 
   const { mutateAsync: createFeedback, isPending } = useCreateFeedback();
-  const { mutateAsync: saveFeedbackCode } = useSaveFeedbackCode();
 
   const { data: feedbackLinhVuc } = useGetFeedbackLinhVuc(!!token);
   const { data: feedbackChuyenMuc } = useGetFeedbackChuyenMuc(linhVucId);
@@ -324,22 +322,10 @@ const FeedbackAddForm: React.FC = () => {
         const res: any = await createFeedback(rs);
 
         if (res?.data) {
-          await saveFeedbackCode({
-            code: res?.data.code,
-          });
           Modal.success({
             centered: true,
-            title: (
-              <div className="text-[16px]">
-                Phản ánh về <b>{feedbackLinhVucOptions?.find(item => item.value === formData?.tag_parent)?.label}</b>{' '}
-                của bạn đã được ghi nhận. Chân thành cảm ơn.
-              </div>
-            ),
-            content: (
-              <div className="text-[16px]">
-                Mã phản ánh: <b>{res?.data?.code}</b>
-              </div>
-            ),
+            title: <div className="text-[16px]">{t['FeedbackTitle']}</div>,
+
             onOk: () => {
               navigate('/');
             },
@@ -393,13 +379,13 @@ const FeedbackAddForm: React.FC = () => {
       <Box>
         <div className="grid grid-cols-12 gap-x-3">
           <div className="col-span-12">
-            <h2 className="text-[18px] left-6 font-semibold mb-2">Thông tin cá nhân</h2>
+            <h2 className="text-[18px] left-6 font-semibold mb-2">{t['PersonalInformation']}</h2>
           </div>
           <div className="col-span-12">
             <FormInputField
               name="reporter_fullname"
-              label="Họ và tên"
-              placeholder="Nhập họ và tên"
+              label={t['NamePlaceholder']}
+              placeholder={t['EnterName']}
               control={control}
               error={errors.reporter_fullname?.message}
               required
@@ -409,8 +395,8 @@ const FeedbackAddForm: React.FC = () => {
             <FormInputField
               type="number"
               name="reporter_phone"
-              label="Số điện thoại"
-              placeholder="Nhập số điện thoại"
+              label={t['Phone']}
+              placeholder={t['EnterPhone']}
               control={control}
               error={errors.reporter_phone?.message}
               required
@@ -420,8 +406,8 @@ const FeedbackAddForm: React.FC = () => {
             <FormInputField
               type="number"
               name="reporter_identityId"
-              label="CMND/CCCD"
-              placeholder="Nhập số CMND/CCCD"
+              label={t['IdentityNumber']}
+              placeholder={t['EnterIdentityNumber']}
               control={control}
               error={errors.reporter_identityId?.message}
               required
@@ -430,7 +416,7 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <div className="flex items-center gap-2 mb-2">
               <Switch label="" onClick={() => setMoreAddressInfoUser(!moreAddressInfoUser)} />
-              <span className="font-medium">Cập nhật địa chỉ của tôi</span>
+              <span className="font-medium">{t['UpdateMyAddress']}</span>
             </div>
           </div>
           {moreAddressInfoUser && (
@@ -438,8 +424,8 @@ const FeedbackAddForm: React.FC = () => {
               <div className="col-span-12">
                 <FormSelectField
                   name="reporter_address_province"
-                  label="Tỉnh/Thành phố"
-                  placeholder="Chọn Tỉnh/Thành phố"
+                  label={t['Province']}
+                  placeholder={t['ChooseProvince']}
                   control={control}
                   options={tinhOptions}
                   error={errors.reporter_address_province?.message}
@@ -448,8 +434,8 @@ const FeedbackAddForm: React.FC = () => {
               <div className="col-span-12">
                 <FormSelectField
                   name="reporter_address_town"
-                  label="Quận/Huyện"
-                  placeholder="Chọn Quận/Huyện"
+                  label={t['District']}
+                  placeholder={t['ChooseDistrict']}
                   control={control}
                   options={userAddress?.huyenOptions}
                   error={errors.reporter_address_town?.message}
@@ -458,8 +444,8 @@ const FeedbackAddForm: React.FC = () => {
               <div className="col-span-12">
                 <FormSelectField
                   name="reporter_address_village"
-                  label="Phường/Xã"
-                  placeholder="Chọn Phường/Xã"
+                  label={t['Commune']}
+                  placeholder={t['ChooseCommune']}
                   control={control}
                   options={userAddress?.xaOptions}
                   error={errors.reporter_address_village?.message}
@@ -468,8 +454,8 @@ const FeedbackAddForm: React.FC = () => {
               <div className="col-span-12">
                 <FormInputField
                   name="reporter_address_fullAddress"
-                  label="Địa chỉ chi tiết"
-                  placeholder="Nhập địa chỉ chi tiết"
+                  label={t['DetailedAddress']}
+                  placeholder={t['EnterDetailedAddress']}
                   control={control}
                   error={errors.reporter_address_fullAddress?.message}
                 />
@@ -477,13 +463,13 @@ const FeedbackAddForm: React.FC = () => {
             </div>
           )}
           <div className="col-span-12">
-            <h2 className="text-[18px] left-6 font-semibold mt-2 mb-2">Thông tin phản ánh</h2>
+            <h2 className="text-[18px] left-6 font-semibold mt-2 mb-2">{t['FeedbackInformation']}</h2>
           </div>
           <div className="col-span-12">
             <FormInputField
               name="title"
-              label="Tiêu đề"
-              placeholder="Nhập tiêu đề"
+              label={t['Title']}
+              placeholder={t['EnterTitle']}
               control={control}
               error={errors.title?.message}
               required
@@ -492,8 +478,8 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <FormSelectField
               name="tag_parent"
-              label="Lĩnh vực phản ánh"
-              placeholder="Chọn lĩnh vực"
+              label={t['FeedbackArea']}
+              placeholder={t['ChooseField']}
               control={control}
               options={feedbackLinhVucOptions}
               error={errors.tag_parent?.message}
@@ -502,8 +488,8 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <FormSelectField
               name="tag"
-              label="Chuyên mục phản ánh"
-              placeholder="Chọn chuyên mục"
+              label={t['FeedbackCategory']}
+              placeholder={t['ChooseFeedbackCategory']}
               control={control}
               options={feedbackChuyenMucOptions}
               error={errors.tag?.message}
@@ -512,21 +498,21 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <FormInputAreaField
               name="description"
-              label="Nội dung phản ánh"
-              placeholder="Nhập nội dung phản ánh"
+              label={t['FeedbackContent']}
+              placeholder={t['EnterFeedbackContent']}
               control={control}
               error={errors.description?.message}
               required
             />
           </div>
           <div className="col-span-12">
-            <h2 className="text-[18px] left-6 font-semibold mt-2 mb-2">Địa điểm xảy ra</h2>
+            <h2 className="text-[18px] left-6 font-semibold mt-2 mb-2">{t['PlaceDetails']}</h2>
           </div>
           <div className="col-span-12">
             <FormSelectField
               name="takePlaceTown"
-              label="Quận/Huyện"
-              placeholder="Chọn Quận/Huyện"
+              label={t['District']}
+              placeholder={t['ChooseDistrict']}
               control={control}
               options={feedbackAddress?.huyenOptions}
               error={errors.takePlaceTown?.message}
@@ -536,8 +522,8 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <FormSelectField
               name="takePlaceVillage"
-              label="Phường/Xã"
-              placeholder="Chọn Phường/Xã"
+              label={t['Commune']}
+              placeholder={t['ChooseCommune']}
               control={control}
               options={feedbackAddress?.xaOptions}
               error={errors.takePlaceVillage?.message}
@@ -547,8 +533,8 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <FormInputField
               name="fullAddress"
-              label="Địa chỉ chi tiết"
-              placeholder="Nhập địa chỉ chi tiết"
+              label={t['DetailedAddress']}
+              placeholder={t['EnterDetailedAddress']}
               control={control}
               error={errors.fullAddress?.message}
               required
@@ -557,8 +543,8 @@ const FeedbackAddForm: React.FC = () => {
           <div className="col-span-12">
             <FormControllerDatetimePicker
               name="takePlaceOn"
-              label="Chọn ngày giờ"
-              placeholder="Chọn ngày và giờ"
+              label={t['ChooseDateTime']}
+              placeholder={t['ChooseDateAndTime']}
               control={control}
               error={errors.takePlaceOn?.message}
               required
@@ -566,7 +552,7 @@ const FeedbackAddForm: React.FC = () => {
           </div>
           <div className="col-span-12">
             <Box pb={4}>
-              <Label required={true} text="Tệp đính kèm" />
+              <Label required={true} text={t['AttachmentFile']} />
               <Upload
                 multiple
                 listType="picture"
@@ -580,19 +566,19 @@ const FeedbackAddForm: React.FC = () => {
                   icon={<Icon icon="lucide:upload" className="mt-1" fontSize={18} />}
                   className="w-full h-[38px] font-medium gap-1"
                 >
-                  Thêm tệp đính kèm
+                  {t['AddAttachment']}
                 </Button>
               </Upload>
             </Box>
           </div>
           <div className="col-span-12">
-            <h2 className="text-[18px] left-6 font-semibold mt-2 mb-2">Công khai</h2>
+            <h2 className="text-[18px] left-6 font-semibold mt-2 mb-2">{t['Public']}</h2>
           </div>
           <div className="col-span-6">
-            <FormSwitchField name="isAnonymous" label="Thông tin cá nhân" control={control} required />
+            <FormSwitchField name="isAnonymous" label={t['PersonalInformation']} control={control} required />
           </div>
           <div className="col-span-6">
-            <FormSwitchField name="isPublic" label="Phản ánh" control={control} required />
+            <FormSwitchField name="isPublic" label={t['Feedback']} control={control} required />
           </div>
           <div className="fixed bottom-0 left-0 flex justify-center w-[100%] bg-white">
             <Box py={3} className="w-[100%]" flex alignItems="center" justifyContent="center">
@@ -608,8 +594,8 @@ const FeedbackAddForm: React.FC = () => {
       </Box>
       <ConfirmModal
         visible={isConfirmVisible}
-        title="Xác nhận"
-        message="Bạn có chắc chắn muốn gửi phản ánh này không?"
+        title={t['ConfirmTitle']}
+        message={t['ConfirmSendFeedbackMessage']}
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />
@@ -623,20 +609,11 @@ const FeedbackAddForm: React.FC = () => {
         centered
       >
         <div className="text-center">
-          <h3 className="text-[20px] text-[#355933] font-semibold">XÁC THỰC OTP</h3>
-          <p className="text-[16px] font-medium">Mã xác thực đã gửi đến số điện thoại</p>
+          <h3 className="text-[20px] text-[#355933] font-semibold"> {t['OtpVerificationTitle']}</h3>
+          <p className="text-[16px] font-medium"> {t['OtpSentMessage']}</p>
           <p className="text-[16px] font-semibold">*********{formData?.reporter_phone?.slice(-3)}</p>
         </div>
         <div style={{ marginTop: 16 }}>
-          {/* <TextField
-                        label="Mã xác thực *"
-                        style={{ width: "100%" }}
-                        placeholder="Nhập mã xác thực"
-                        value={otp}
-                        size="small"
-                        variant="outlined"
-                        onChange={(e) => setOTP(e.target.value)}
-                    /> */}
           <Input.OTP
             defaultValue=""
             value={otp}
@@ -646,9 +623,11 @@ const FeedbackAddForm: React.FC = () => {
             className="w-full"
           />
           <p className="text-[14px] text-center font-medium">
-            Mã xác thực sẽ hết hạn sử dụng trong{' '}
+            {t['OtpExpireMessage']}{' '}
             <span className="text-red-500">
-              <b>{countdown} giây</b>
+              <b>
+                {countdown} {t['Seconds']}
+              </b>
             </span>
           </p>
         </div>
@@ -658,14 +637,14 @@ const FeedbackAddForm: React.FC = () => {
             onClick={handleResendCode}
             disabled={countdown > 0}
           >
-            Gửi lại mã
+            {t['ResendOtpButton']}
           </Button>
           <Button
             className="!bg-[#355933] !text-white !py-5 !px-6 !border-0 w-full"
             onClick={handleConfirmOTP}
             disabled={otp?.length < 6}
           >
-            Tiếp tục
+            {t['ContinueButton']}
           </Button>
         </div>
       </Modal>
