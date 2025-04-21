@@ -3,7 +3,7 @@ import { useAddFavorite, useRemoveFavorite } from 'apiRequest/favorites';
 import { useGetPostDetail } from 'apiRequest/posts';
 import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/actions';
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail';
-import { HeaderSub } from 'components/header-sub';
+import { HeaderSub } from 'components/HeaderSub';
 import { CategoryMap, SingleLocationMap } from 'components/maps';
 import TitleSection from 'components/titleSection';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -12,9 +12,9 @@ import { formatDate, formatImageSrc } from 'utils';
 import { useCustomSnackbar } from 'utils/useCustomSnackbar';
 import { Box, Page, useNavigate, useParams, useSnackbar } from 'zmp-ui';
 
-import SkeletonPostDetailPage from './SkeletonPostDetailPage';
+import SkeletonPostDetail from './SkeletonPostDetail';
 
-const PostDetailPage = () => {
+const PostDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
@@ -64,7 +64,7 @@ const PostDetailPage = () => {
       <Box>
         <HeaderSub title={t['PostDetail']} />
         {!postDetailData ? (
-          <SkeletonPostDetailPage />
+          <SkeletonPostDetail />
         ) : (
           <>
             <Box>
@@ -149,4 +149,4 @@ const PostDetailPage = () => {
   );
 };
 
-export default PostDetailPage;
+export default PostDetail;

@@ -7,7 +7,7 @@ import { App, SnackbarProvider, ZMPRouter } from 'zmp-ui';
 
 import { initI18n } from '../i18n';
 import { Layout } from './Layout';
-import { LoadingFullScreen } from './loading';
+import { LoadingFullScreen } from './LoadingFullScreen';
 
 const MyApp = () => {
   const queryClient = new QueryClient();

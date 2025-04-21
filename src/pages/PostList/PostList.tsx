@@ -3,7 +3,7 @@ import { useGetPostsListForScroll } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
 import { EmptyData } from 'components/data';
 import { FilterBar } from 'components/FilterBar';
-import { HeaderSub } from 'components/header-sub';
+import { HeaderSub } from 'components/HeaderSub';
 import { NewsItem } from 'components/PostComponent/NewsItem';
 import { debounce } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -15,7 +15,7 @@ import { Box, Input, Page } from 'zmp-ui';
 
 import PostSkeleton from './PostListSkeleton';
 
-const PostListPage = () => {
+const PostList = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentLanguage } = useStoreApp();
@@ -150,4 +150,4 @@ const PostListPage = () => {
   );
 };
 
-export default PostListPage;
+export default PostList;

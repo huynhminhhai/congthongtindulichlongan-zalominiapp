@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import { Flex } from 'antd';
 import { useLogout } from 'apiRequest/auth';
 import images from 'assets/images';
-import { HeaderSub } from 'components/header-sub';
+import { HeaderSub } from 'components/HeaderSub';
 import React from 'react';
 import { useLoginWithZalo } from 'services/loginWithZalo';
 import { useStoreApp } from 'store/store';

@@ -12,7 +12,7 @@ import { useGetPostsList } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
 import images from 'assets/images';
 import classNames from 'classnames';
-import { HeaderSub } from 'components/header-sub';
+import { HeaderSub } from 'components/HeaderSub';
 import { openUrlInWebview } from 'services/zalo';
 import { useStoreApp } from 'store/store';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -253,22 +253,22 @@ const ResidentMapPage = () => {
               <Swiper className={styles.serviceList} slidesPerView={1.08} spaceBetween={12}>
                 {isLoading
                   ? Array.from({ length: 4 }).map((_, index) => (
-                    <SwiperSlide key={index}>
-                      <ServiceItemSkeleton />
-                    </SwiperSlide>
-                  ))
+                      <SwiperSlide key={index}>
+                        <ServiceItemSkeleton />
+                      </SwiperSlide>
+                    ))
                   : locations.map((item: PostType, index: number) => (
-                    <SwiperSlide key={index}>
-                      <ServiceItem
-                        rating={item.averageRating}
-                        name={item.title}
-                        address={item.address}
-                        image={item.image}
-                        totolVote={item.totalVotes}
-                        onClick={() => handleItemClick(item.postMaps[0]?.lat, item.postMaps[0]?.lng)}
-                      />
-                    </SwiperSlide>
-                  ))}
+                      <SwiperSlide key={index}>
+                        <ServiceItem
+                          rating={item.averageRating}
+                          name={item.title}
+                          address={item.address}
+                          image={item.image}
+                          totolVote={item.totalVotes}
+                          onClick={() => handleItemClick(item.postMaps[0]?.lat, item.postMaps[0]?.lng)}
+                        />
+                      </SwiperSlide>
+                    ))}
               </Swiper>
             </div>
           </div>

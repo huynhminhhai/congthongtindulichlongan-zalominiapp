@@ -3,7 +3,7 @@ import TitleSection from 'components/titleSection';
 import React from 'react';
 import { Box } from 'zmp-ui';
 
-const SkeletonPostDetailPage = () => {
+const SkeletonPostDetail = () => {
   return (
     <Box>
       {/* Image skeleton */}
@@ -49,4 +49,4 @@ const SkeletonPostDetailPage = () => {
   );
 };
 
-export default SkeletonPostDetailPage;
+export default SkeletonPostDetail;

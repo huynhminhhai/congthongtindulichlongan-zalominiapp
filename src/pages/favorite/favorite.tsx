@@ -5,7 +5,7 @@ import { useGetFavoritePosts } from 'apiRequest/posts';
 import { EmptyData } from 'components/data';
 import { FavoriteItem } from 'components/FavoriteItem';
 import { FilterBar } from 'components/FilterBar';
-import { HeaderSub } from 'components/header-sub';
+import { HeaderSub } from 'components/HeaderSub';
 import { debounce } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

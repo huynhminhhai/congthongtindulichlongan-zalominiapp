@@ -1,5 +1,5 @@
 import { ProfileForm } from 'components/account';
-import { HeaderSub } from 'components/header-sub';
+import { HeaderSub } from 'components/HeaderSub';
 import React from 'react';
 import { useStoreApp } from 'store/store';
 import { Box, Page } from 'zmp-ui';

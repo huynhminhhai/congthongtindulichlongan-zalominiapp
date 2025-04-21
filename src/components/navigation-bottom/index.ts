@@ -1,1 +1,0 @@
-export {default as NavigationBottom} from './navigation-bottom'

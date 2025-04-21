@@ -1,20 +1,22 @@
 import { useGetUserInfo } from 'apiRequest/auth';
 import { useGetLanguages } from 'apiRequest/languages';
-import { LoadingFullScreen } from 'components/loading';
+import { LoadingFullScreen } from 'components/LoadingFullScreen';
 import LoginModal from 'components/LoginModal/LoginModal';
-import { NavigationBottom } from 'components/navigation-bottom';
+import { NavigationBottom } from 'components/NavigationBottom';
 import ScrollToTop from 'components/scroll-top';
 import ForbiddenPage from 'pages/403';
-import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from 'pages/account';
-import LanguagePage from 'pages/account/language';
-import RegisterPage from 'pages/account/register';
+import { AccountPage, ProfileAccountPage } from 'pages/account';
+import { ChangePasswordPage } from 'pages/ChangePassword';
 import { Favorite } from 'pages/Favorite';
-import { FeedbackAddPage } from 'pages/feedback';
+import { FeedbackAddPage } from 'pages/Feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
-import { HomePage } from 'pages/Homepage';
-import { ResidentMapPage } from 'pages/maps';
-import { PostDetailPage } from 'pages/PostDetailPage';
-import { PostListPage } from 'pages/PostListPage';
+import { Homepage } from 'pages/Homepage';
+import LanguagePage from 'pages/Languages/Languages';
+import { LoginPage } from 'pages/Login';
+import { ResidentMapPage } from 'pages/Maps';
+import { PostDetailPage } from 'pages/PostDetail';
+import { PostListPage } from 'pages/PostList';
+import { RegisterPage } from 'pages/Register';
 import { SearchPage } from 'pages/Search';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -63,7 +65,7 @@ const Layout = () => {
       <ScrollToTop />
       <LoadingFullScreen isLoading={isLoadingFullScreen} />
       <Routes>
-        <Route path="/" element={<HomePage></HomePage>}></Route>
+        <Route path="/" element={<Homepage />}></Route>
 
         {/* NEWS */}
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
