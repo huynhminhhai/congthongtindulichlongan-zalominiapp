@@ -5,7 +5,6 @@ import LoginModal from 'components/LoginModal/LoginModal';
 import { NavigationBottom } from 'components/navigation-bottom';
 import ScrollToTop from 'components/scroll-top';
 import ForbiddenPage from 'pages/403';
-import { AccommodationDetailPage, AccommodationPage } from 'pages/accommodation';
 import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from 'pages/account';
 import LanguagePage from 'pages/account/language';
 import RegisterPage from 'pages/account/register';
@@ -15,7 +14,6 @@ import { BusRoutingDetailPage, BusRoutingPage } from 'pages/bus-routing';
 import { Favorite } from 'pages/Favorite';
 import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
-import { GuideDetailPage, GuidePage } from 'pages/guide-tour';
 import { HomePage } from 'pages/homepage';
 import { ResidentMapPage } from 'pages/maps';
 import { MarketDetailPage, MarketPage } from 'pages/market';
@@ -78,10 +76,6 @@ const Layout = () => {
         {/* NEWS */}
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
         <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
-
-        {/* GUIDE TOUR */}
-        <Route path="/guide" element={<GuidePage></GuidePage>}></Route>
-        <Route path="/guide-detail" element={<GuideDetailPage></GuideDetailPage>}></Route>
 
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
