@@ -15,7 +15,7 @@ import { BusDetailPage, BusPage } from 'pages/bus';
 import { BusRoutingDetailPage, BusRoutingPage } from 'pages/bus-routing';
 import { CusineDetailPage, CusinePage } from 'pages/cusine';
 import { FavoritePage } from 'pages/favorite';
-import { FeedbackAddPage, FeedbackDetailPage, FeedbackHistoryPage, FeedbackPage } from 'pages/feedback';
+import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
 import { GuideDetailPage, GuidePage } from 'pages/guide-tour';
 import { HomePage } from 'pages/homepage';
@@ -149,9 +149,6 @@ const Layout = () => {
 
         {/* FEEDBACK */}
         <Route path="/feedback" element={<FeedbackAddPage></FeedbackAddPage>}></Route>
-        {/* <Route path="/feedback-detail" element={<FeedbackDetailPage></FeedbackDetailPage>}></Route>
-        <Route path="/feedback-add" element={<FeedbackAddPage></FeedbackAddPage>}></Route>
-        <Route path="/feedback-history" element={<FeedbackHistoryPage></FeedbackHistoryPage>}></Route> */}
 
         {/* ACCOUNT */}
         <Route path="/account" element={<AccountPage></AccountPage>}></Route>
@@ -165,9 +162,6 @@ const Layout = () => {
 
         {/* MAP */}
         <Route path="/maps" element={<ResidentMapPage></ResidentMapPage>}></Route>
-
-        {/* PROFILE */}
-        <Route path="/profile-resident" element={<ProfileResidentPage></ProfileResidentPage>}></Route>
 
         {/* PERMISSION */}
         <Route path="/403" element={<ForbiddenPage></ForbiddenPage>}></Route>
