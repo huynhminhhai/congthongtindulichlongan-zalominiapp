@@ -9,7 +9,6 @@ import { AccountPage, ChangePasswordPage, LoginPage, ProfileAccountPage } from '
 import LanguagePage from 'pages/account/language';
 import RegisterPage from 'pages/account/register';
 import { AtmDetailPage, AtmPage } from 'pages/atm';
-import { BusRoutingDetailPage, BusRoutingPage } from 'pages/bus-routing';
 import { Favorite } from 'pages/Favorite';
 import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
@@ -88,10 +87,6 @@ const Layout = () => {
         {/* ATM */}
         <Route path="/atm" element={<AtmPage></AtmPage>}></Route>
         <Route path="/atm-detail" element={<AtmDetailPage></AtmDetailPage>}></Route>
-
-        {/* Bus routing */}
-        <Route path="/bus-routing" element={<BusRoutingPage></BusRoutingPage>}></Route>
-        <Route path="/bus-routing-detail" element={<BusRoutingDetailPage></BusRoutingDetailPage>}></Route>
 
         {/* Gallery */}
         <Route path="/gallery" element={<GalleryPage></GalleryPage>}></Route>
