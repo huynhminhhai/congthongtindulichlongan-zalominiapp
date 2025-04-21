@@ -12,7 +12,6 @@ import RegisterPage from 'pages/account/register';
 import { AtmDetailPage, AtmPage } from 'pages/atm';
 import { BusDetailPage, BusPage } from 'pages/bus';
 import { BusRoutingDetailPage, BusRoutingPage } from 'pages/bus-routing';
-import { CusineDetailPage, CusinePage } from 'pages/cusine';
 import { FavoritePage } from 'pages/favorite';
 import { FeedbackAddPage } from 'pages/feedback';
 import { GalleryDetailPage, GalleryPage } from 'pages/gallery';
@@ -82,10 +81,6 @@ const Layout = () => {
         {/* NEWS */}
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
         <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
-
-        {/* CUSINE */}
-        <Route path="/cusine" element={<CusinePage></CusinePage>}></Route>
-        <Route path="/cusine-detail" element={<CusineDetailPage></CusineDetailPage>}></Route>
 
         {/* TOUR */}
         <Route path="/tour" element={<TourPage></TourPage>}></Route>
