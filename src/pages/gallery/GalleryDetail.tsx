@@ -8,17 +8,19 @@ import 'swiper/css/pagination';
 
 import { useGetAlbumsDetail } from 'apiRequest/album';
 import { useTranslation } from 'react-i18next';
+import { useStoreApp } from 'store/store';
 import { Pagination } from 'swiper/modules';
 import { formatImageSrc } from 'utils';
 
 const GalleryDetailPage = () => {
+  const { currentLanguage } = useStoreApp();
+  const t = currentLanguage.value;
   const { id } = useParams();
-  const { t: tPage } = useTranslation('page');
   const { data: imagesGallery } = useGetAlbumsDetail(Number(id));
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
-        <HeaderSub title={tPage('gallery-detail')} />
+        <HeaderSub title={t['GalleryDetail']} />
         <div className="bg-[rgba(0,0,0,0.8)] h-[calc(100vh-56px)] flex flex-col items-center justify-center">
           <Swiper
             spaceBetween={10}

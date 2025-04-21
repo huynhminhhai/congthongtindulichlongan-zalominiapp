@@ -8,7 +8,7 @@ const BlurLoading = ({ isLoading }) => {
       {isLoading && (
         <motion.div
           className={classNames(
-            'fixed inset-0 flex items-center justify-center bg-white/30 backdrop-blur-sm z-[50000]'
+            'fixed inset-0 flex items-center justify-center bg-white/30 backdrop-blur-sm z-[5000000]'
           )}
         >
           <span className="loader"></span>

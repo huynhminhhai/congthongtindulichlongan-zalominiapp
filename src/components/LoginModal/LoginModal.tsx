@@ -18,6 +18,7 @@ const LoginModal: React.FC = () => {
   const t = currentLanguage.value;
   return (
     <Modal
+      zIndex={20000}
       className={styles.loginModal}
       visible={isLoginModalOpen}
       title={t['LoginRequired']}

@@ -64,6 +64,13 @@ const OtherPostList = () => {
     return 1;
   }, [categoryDetail]);
 
+  const PostComponent = useMemo((): React.FC<PostComponentPropsType> => {
+    if (categoryDetail) {
+      return LAYOUT_COMPONENT_MAP[categoryDetail.zaloLayout] || LAYOUT_COMPONENT_MAP['Default'];
+    }
+    return NewsItem;
+  }, [categoryDetail]);
+
   const renderContent = () => {
     if (isLoading) {
       return (
@@ -82,21 +89,12 @@ const OtherPostList = () => {
             </Box>
           ) : (
             <div className={`grid gap-4 grid-cols-${gridColumn}`}>
-              {postsList.map((data: PostType) => {
-                if (data.postMaps.length > 0) {
-                  return data.postMaps.map((postMap, index) => {
-                    return (
-                      <Box key={index} className="w-full">
-                        <OtherPostComponent
-                          key={postMap.id}
-                          data={postMap}
-                          onClick={() => navigate(`/bai-viet-khac/${data.id}`)}
-                        />
-                      </Box>
-                    );
-                  });
-                }
-                return;
+              {postsList.map((data: PostType, index: number) => {
+                return (
+                  <Box key={index} className="w-full">
+                    <PostComponent key={data.id} data={data} onClick={() => navigate(`/bai-viet-khac/${data.id}`)} />
+                  </Box>
+                );
               })}
             </div>
           )}

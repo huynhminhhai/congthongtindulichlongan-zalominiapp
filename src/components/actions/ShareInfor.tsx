@@ -13,7 +13,6 @@ import { Box } from 'zmp-ui';
 const ShareInfor: React.FC<{ postDetail: PostType }> = ({ postDetail }) => {
   const { showError, showSuccess } = useCustomSnackbar();
   const link = window.location.href;
-  console.log(link);
   const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
 

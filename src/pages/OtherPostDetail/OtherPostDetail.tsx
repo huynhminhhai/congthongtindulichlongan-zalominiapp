@@ -5,6 +5,7 @@ import { ActionButton, CommentSection, Rating, ShareInfor } from 'components/act
 import { ItemDetailCard, TitleDetail, TitleSubDetail } from 'components/detail';
 import { HeaderSub } from 'components/HeaderSub';
 import { CategoryMap, SingleLocationMap } from 'components/maps';
+import BusMap from 'components/maps/BusMap';
 import TitleSection from 'components/titleSection';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useStoreApp } from 'store/store';
@@ -17,48 +18,20 @@ import SkeletonPostDetail from './SkeletonPostDetail';
 const OtherPostDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { openSnackbar } = useSnackbar();
-  const { showSuccess, showError } = useCustomSnackbar();
-  const { mutateAsync: addFavorite } = useAddFavorite();
-  const { mutateAsync: removeFavorite } = useRemoveFavorite();
+
   const { data: postDetailData } = useGetPostDetail(Number(id));
 
-  const [isFavorite, setIsFavorite] = useState(false);
-  const { currentLanguage, token, setIsLoginModalOpen } = useStoreApp();
+  const { currentLanguage } = useStoreApp();
   const t = currentLanguage.value;
-  const { isRating, isMap, isComment } = useMemo(() => {
+  const { isBusMap } = useMemo(() => {
     if (postDetailData) {
-      const isRating = postDetailData.categories.some(cat => cat.isRating);
-      const isMap = postDetailData.categories.some(cat => cat.isMap);
-      const isComment = postDetailData.categories.some(cat => cat.isComment);
-      return { isRating, isMap, isComment };
+      const isBusMap = postDetailData.categories.some(cat => cat.zaloLayout === 'TuyenXePage');
+
+      return { isBusMap };
     }
     return { isRating: false, isMap: false, isComment: false };
   }, [postDetailData]);
-  useEffect(() => {
-    if (postDetailData) {
-      setIsFavorite(postDetailData.isFavorite);
-    }
-  }, [postDetailData]);
-  const handleToggleFavorite = async () => {
-    if (!postDetailData) return;
-    if (!token) {
-      setIsLoginModalOpen(true);
-      return;
-    }
-    try {
-      if (isFavorite) {
-        await removeFavorite(postDetailData.id);
-        showSuccess(t['AddFavoriteSuccess']);
-      } else {
-        await addFavorite(postDetailData.id);
-        showSuccess(t['AddFavoriteSuccess']);
-      }
-      setIsFavorite(!isFavorite);
-    } catch (error: any) {
-      showError(error.message);
-    }
-  };
+
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
@@ -72,7 +45,7 @@ const OtherPostDetail = () => {
                 <img src={formatImageSrc(postDetailData?.image)} alt="" className="h-[250px] object-cover w-full" />
               </Box>
               <Box p={4}>
-                <Box flex alignItems="flex-start" justifyContent="space-between" mb={10}>
+                <Box flex alignItems="flex-start" justifyContent="space-between">
                   <div className="mr-1">
                     <TitleDetail title={postDetailData?.title} />
                     {postDetailData?.dateCreated && (
@@ -83,7 +56,11 @@ const OtherPostDetail = () => {
                   </div>
                 </Box>
               </Box>
-              {isMap && (
+              {isBusMap ? (
+                <Box p={4} mb={4}>
+                  <BusMap busStops={postDetailData.postMaps} />
+                </Box>
+              ) : (
                 <Box p={4} mb={4}>
                   <TitleSubDetail title={t['Map']} />
                   <div className="infor-map">

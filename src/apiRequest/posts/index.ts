@@ -92,18 +92,16 @@ export const useGetFavoritePosts = (params: PostParamsType, options?: { enabled?
   return useInfiniteQuery({
     queryKey: ['favoritePosts', params.size, params.search, params.categoryId],
     queryFn: async ({ pageParam = 1 }) => {
-      try {
-        const res = await postsApiRequest.getListPostFavorite(params);
+      const res = await postsApiRequest.getListPostFavorite({
+        ...params,
+        page: pageParam as number,
+      });
 
-        return res?.items;
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
+      return res;
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === params.size ? allPages.length + 1 : undefined;
+      return lastPage.items.length === params.size ? allPages.length + 1 : undefined;
     },
     staleTime: 0,
     retry: 1,

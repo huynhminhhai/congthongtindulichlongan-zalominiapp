@@ -248,7 +248,7 @@ const ResidentMapPage = () => {
             </div>
           </div>
           <div className="relative">
-            <div className={classNames(styles.map, 'h-[calc(100vh-175px)] w-full rounded-lg')} id="map" />
+            <div className={classNames(styles.map, 'h-[calc(100vh-175px)] w-full rounded-lg z-10')} id="map" />
             <div className={styles.serviceListWrapper}>
               <div className={styles.actionWrapper}></div>
               <Swiper className={styles.serviceList} slidesPerView={1.08} spaceBetween={12}>

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { MenuItem } from 'constants/types';
 import React, { FC, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useStoreApp } from 'store/store';
 import { BottomNavigation } from 'zmp-ui';
 

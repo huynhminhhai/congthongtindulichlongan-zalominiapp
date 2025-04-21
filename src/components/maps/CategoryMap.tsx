@@ -119,7 +119,7 @@ const CategoryMap: React.FC<any> = ({ locations, iconMarker }) => {
             </div>
           ))}
       </div>
-      <div id="map" style={{ height: '500px' }}></div>
+      <div id="map" style={{ height: '500px', zIndex: 1 }}></div>
     </div>
   );
 };

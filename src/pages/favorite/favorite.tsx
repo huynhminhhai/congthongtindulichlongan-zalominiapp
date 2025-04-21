@@ -60,8 +60,8 @@ const FavoritePage = () => {
       handler.cancel();
     };
   }, [searchText]);
-
-  const favoritePosts = data?.pages?.reduce((acc, page) => [...acc, ...page], []) || [];
+  console.log(data);
+  const favoritePosts = data?.pages?.reduce((acc, page) => [...acc, ...page.items], []) || [];
 
   const loaderRef = useInfiniteScroll({
     hasMore: hasNextPage,
