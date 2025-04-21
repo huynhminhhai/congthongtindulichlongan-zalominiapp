@@ -1,5 +1,5 @@
 import { HeaderSub } from 'components/header-sub';
-import { AccommodationItem } from 'components/PostComponent/accommodation';
+import { AccommodationItem } from 'components/PostComponent/AccommodationItem';
 import FilterBar from 'components/table/FilterBar';
 import React from 'react';
 import { useTranslation } from 'react-i18next';

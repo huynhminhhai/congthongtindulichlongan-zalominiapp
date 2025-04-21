@@ -79,10 +79,6 @@ const Layout = () => {
         <Route path="/chuyen-muc/:id" element={<PostListPage />}></Route>
         <Route path="/bai-viet/:id" element={<PostDetailPage />}></Route>
 
-        {/* Lưu trú */}
-        <Route path="/accommodation" element={<AccommodationPage></AccommodationPage>}></Route>
-        <Route path="/accommodation/:id" element={<AccommodationDetailPage></AccommodationDetailPage>}></Route>
-
         {/* GUIDE TOUR */}
         <Route path="/guide" element={<GuidePage></GuidePage>}></Route>
         <Route path="/guide-detail" element={<GuideDetailPage></GuideDetailPage>}></Route>

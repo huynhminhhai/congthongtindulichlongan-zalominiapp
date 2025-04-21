@@ -1,5 +1,5 @@
 import { PostType } from 'apiRequest/posts/types';
-import { AccommodationItem } from 'components/PostComponent/accommodation';
+import { AccommodationItem } from 'components/PostComponent/AccommodationItem';
 import { CusineItem } from 'components/PostComponent/CusineItem';
 import { GuideItem } from 'components/PostComponent/guide';
 import { LocationItem } from 'components/PostComponent/LocationItem';
