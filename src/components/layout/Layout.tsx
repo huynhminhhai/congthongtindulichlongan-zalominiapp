@@ -75,10 +75,6 @@ const Layout = () => {
         {/* FAVORITE */}
         <Route path="/favorite" element={<Favorite></Favorite>}></Route>
 
-        {/* Oil */}
-        <Route path="/oil" element={<OilPage></OilPage>}></Route>
-        <Route path="/oil-detail" element={<OilDetailPage></OilDetailPage>}></Route>
-
         {/* ATM */}
         <Route path="/atm" element={<AtmPage></AtmPage>}></Route>
         <Route path="/atm-detail" element={<AtmDetailPage></AtmDetailPage>}></Route>
