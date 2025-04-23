@@ -21,6 +21,7 @@ import { PostListPage } from 'pages/PostList';
 import { ProfilePage } from 'pages/Profile';
 import { RegisterPage } from 'pages/Register';
 import { SearchPage } from 'pages/Search';
+import { VideoPage } from 'pages/Video';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { getDataFromStorage } from 'services/zalo';
@@ -84,6 +85,8 @@ const Layout = () => {
         {/* Gallery */}
         <Route path="/gallery" element={<GalleryPage />}></Route>
         <Route path="/gallery-detail/:id" element={<GalleryDetailPage />}></Route>
+
+        <Route path="/video" element={<VideoPage />}></Route>
 
         {/* FEEDBACK */}
         <Route path="/feedback" element={<FeedbackAddPage />}></Route>

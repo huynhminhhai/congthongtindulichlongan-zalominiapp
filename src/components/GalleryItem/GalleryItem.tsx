@@ -9,8 +9,6 @@ type GalleryItemType = {
   onClick?: () => void;
 };
 const GalleryItem: React.FC<GalleryItemType> = ({ data, onClick }) => {
-  const navigate = useNavigate();
-
   return (
     <Box className="relative w-full h-[240px] rounded-lg overflow-hidden" onClick={onClick}>
       <img className="h-full w-full object-cover" src={formatImageSrc(data.image)} alt="destination" />
