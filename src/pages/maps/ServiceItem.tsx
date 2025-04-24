@@ -27,10 +27,12 @@ const ServiceItem: React.FC<IServiceItem> = ({ image, name, address, rating, tot
             {' đánh giá'})
           </p>
         </div> */}
-        <div className={styles.serviceAddress}>
-          <Icon className={styles.addressIcon} icon="weui:location-filled" />
-          <p>{address}</p>
-        </div>
+        {address && (
+          <div className={styles.serviceAddress}>
+            <Icon className={styles.addressIcon} icon="weui:location-filled" />
+            <p>{address}</p>
+          </div>
+        )}
       </div>
     </div>
   );

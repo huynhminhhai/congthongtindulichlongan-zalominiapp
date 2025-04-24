@@ -21,8 +21,9 @@ const SingleLocationMap: React.FC<Props> = ({ location }) => {
   useEffect(() => {
     if (!mapRef.current) {
       mapRef.current = L.map('map').setView([location.lat, location.lng], 15);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+      L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://www.google.com/maps">Google Maps</a>',
       }).addTo(mapRef.current);
     } else {
       mapRef.current.setView([location.lat, location.lng], 15);

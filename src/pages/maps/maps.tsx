@@ -4,10 +4,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-search/dist/leaflet-search.min.css';
 import 'swiper/css';
+import 'leaflet-routing-machine';
 
 import { Icon } from '@iconify/react';
 import { Button } from 'antd';
 import { useGetCategoryListHasMap } from 'apiRequest/categories';
+import { MapType } from 'apiRequest/map/type';
 import { useGetPostsList } from 'apiRequest/posts';
 import { PostType } from 'apiRequest/posts/types';
 import images from 'assets/images';
@@ -42,8 +44,10 @@ const ResidentMapPage = () => {
   const [isMapReady, setIsMapReady] = useState(false);
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.LayerGroup>(L.layerGroup());
-
+  const routingControlRef = useRef<any>(null);
   const [activeTab, setActiveTab] = useState<number>();
+  const [activeZaloLayout, setActiveZaloLayout] = useState<string>();
+
   const { data: categories } = useGetCategoryListHasMap();
   const { data: postListData, isLoading } = useGetPostsList(
     {
@@ -116,14 +120,16 @@ const ResidentMapPage = () => {
 
   useEffect(() => {
     if (isMapReady) {
-      loadMarkers();
+      markersRef.current.clearLayers();
+      if (activeZaloLayout != 'TuyenXePage' && activeZaloLayout != 'TourDuLichHome') {
+        loadMarkers();
+      }
+      routingControlRef.current?.remove();
     }
-  }, [postListData, activeTab, isMapReady]);
+  }, [postListData, activeTab, activeZaloLayout, isMapReady]);
 
   const loadMarkers = () => {
     if (!mapRef.current || locations.length === 0) return;
-
-    markersRef.current.clearLayers();
 
     const icon = L.icon({
       iconUrl: icons['tourist'],
@@ -229,6 +235,78 @@ const ResidentMapPage = () => {
     });
   };
 
+  const drawRouteMultiplePoints = (postMap: any[]) => {
+    if (!mapRef.current) return;
+    markersRef.current.clearLayers();
+    const icon = L.icon({
+      iconUrl: icons['tourist'],
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32],
+    });
+
+    const boundsArray: [number, number][] = [];
+
+    postMap.forEach((point: MapType) => {
+      const marker = L.marker([point.lat, point.lng], {
+        icon,
+        title: point.name,
+      }).addTo(markersRef.current).bindPopup(`
+            <div style="width: 180px">
+              <div class="card-img">
+                <img style="width: 100%; height: 100px" src="${formatImageSrc(point.image)}" alt="${point.name}" />
+              </div>
+              <div style="padding-block: 6px;">
+                <div style="color: #355933; font-size: 15px; font-weight: 600; margin-bottom: 2px;">${point.name}</div>
+                <div style="font-size: 11px;">
+                  <div style="margin-bottom: 4px;"><strong>${t['Address']}:</strong> ${point.address}</div>
+                  <button style="line-height: 1; padding: 6px; background-color: #355933; border-radius: 4px; color: #fff;" class="google-maps-link">${t['Directions']}</button>
+                </div>
+              </div>
+            </div>
+          `);
+
+      marker.on('popupopen', () => {
+        const popupEl = (marker.getPopup() as any).getElement();
+        const button = popupEl?.querySelector('.google-maps-link');
+        if (button) {
+          button.addEventListener('click', () => openGoogleMaps(point.lat, point.lng));
+        }
+      });
+
+      boundsArray.push([point.lat, point.lng]);
+    });
+
+    if (boundsArray.length > 0) {
+      const bounds = L.latLngBounds(boundsArray);
+      mapRef.current.fitBounds(bounds, {
+        paddingTopLeft: [0, 100],
+        maxZoom: 14,
+      });
+    }
+
+    // Draw route
+    if (routingControlRef.current) {
+      mapRef.current.removeControl(routingControlRef.current);
+    }
+
+    const waypoints = postMap.map(p => L.latLng(parseFloat(p.lat), parseFloat(p.lng)));
+
+    const routingControl = L.Routing.control({
+      waypoints,
+      routeWhileDragging: false,
+      createMarker: () => null as any,
+      lineOptions: {
+        styles: [{ color: '#2b5a3c', weight: 5 }],
+        extendToWaypoints: true,
+        missingRouteTolerance: 0,
+      },
+      show: false,
+    } as any).addTo(mapRef.current);
+
+    routingControlRef.current = routingControl;
+  };
+
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <Box>
@@ -242,7 +320,10 @@ const ResidentMapPage = () => {
                   active={activeTab === cate.id}
                   icon={cate.icon}
                   title={cate.name}
-                  onClick={() => setActiveTab(cate.id)}
+                  onClick={() => {
+                    setActiveTab(cate.id);
+                    setActiveZaloLayout(cate.zaloLayout);
+                  }}
                 />
               ))}
             </div>
@@ -259,6 +340,20 @@ const ResidentMapPage = () => {
                       </SwiperSlide>
                     ))
                   : locations.map((location: PostType) => {
+                      if (activeZaloLayout === 'TuyenXePage' || activeZaloLayout === 'TourDuLichHome') {
+                        return (
+                          <SwiperSlide key={location.id}>
+                            <ServiceItem
+                              rating={location.averageRating}
+                              name={location.title}
+                              address={location.address}
+                              image={location.image}
+                              totolVote={location.totalVotes}
+                              onClick={() => drawRouteMultiplePoints(location.postMaps)}
+                            />
+                          </SwiperSlide>
+                        );
+                      }
                       if (location.postMaps.length > 0) {
                         return location.postMaps.map((postMap, index) => {
                           return (
