@@ -11,6 +11,7 @@ export type CategoryType = {
   url: string;
   posts: PostType[];
   icon: string;
+  iconClass: string;
 };
 export type CategoryOptionType = {
   text: string;

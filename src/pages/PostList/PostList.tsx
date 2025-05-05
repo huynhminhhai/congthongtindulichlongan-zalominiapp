@@ -87,7 +87,7 @@ const PostList = () => {
               <EmptyData title={t['NoDataForThisCategory']} desc={t['PleaseComeBackLater']} />
             </Box>
           ) : (
-            <div className={`grid gap-4 grid-cols-${gridColumn}`}>
+            <div className={`grid gap-5 grid-cols-${gridColumn}`}>
               {postsList.map((data: PostType, index: number) => {
                 return (
                   <Box key={index} className="w-full">

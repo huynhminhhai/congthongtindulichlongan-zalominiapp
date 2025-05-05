@@ -13,9 +13,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--brand-300);
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 8px 14px;
   color: var(--primary-color);
   &.active {
     background: var(--primary-color);

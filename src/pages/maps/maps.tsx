@@ -318,7 +318,7 @@ const ResidentMapPage = () => {
                 <CategoryItem
                   key={index}
                   active={activeTab === cate.id}
-                  icon={cate.icon}
+                  icon={cate.iconClass}
                   title={cate.name}
                   onClick={() => {
                     setActiveTab(cate.id);
