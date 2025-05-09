@@ -130,7 +130,7 @@ const PostDetail = () => {
                   </div>
                 </Box>
               )}
-              {isComment && (
+              {isComment && t['OpenCommentMini'] === 'true' && (
                 <Box px={4} mb={4}>
                   <CommentSection postId={Number(id)} />
                 </Box>
